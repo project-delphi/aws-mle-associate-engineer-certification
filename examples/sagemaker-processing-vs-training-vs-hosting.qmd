@@ -3,7 +3,6 @@ title: "Storage: S3 vs EFS vs FSx vs EBS"
 format: html
 ---
 
-# AWS Storage Services: S3 vs EFS vs FSx vs EBS
 
 AWS offers a range of storage solutions tailored for different use cases. Below is a comparison of four major storage options: **Amazon S3, Amazon EFS, Amazon FSx, and Amazon EBS**.
 

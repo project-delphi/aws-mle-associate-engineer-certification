@@ -3,7 +3,6 @@ title: "Search Services: Kendra vs OpenSearch"
 format: html
 ---
 
-# AWS Search Services: Kendra vs OpenSearch
 
 AWS provides two primary search services: **Amazon Kendra** and **Amazon OpenSearch Service**. While both enable search capabilities, they serve different use cases and have distinct strengths.
 

@@ -3,7 +3,6 @@ title: "ML Services: SageMaker vs Bedrock"
 format: html
 ---
 
-# AWS ML Services: SageMaker vs Bedrock
 
 AWS provides multiple machine learning (ML) services, with **Amazon SageMaker** and **Amazon Bedrock** being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels.
 
