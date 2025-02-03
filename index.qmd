@@ -2,6 +2,4 @@
 title: "aws-mle-associate-engineer-certification"
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Welcome, this is a work in progress. I'm creating this site to help me study for the AWS Machine Learning Engineer Associate certification. I'll be adding more content over time, so check back for updates.

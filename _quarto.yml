@@ -1,19 +1,18 @@
 project:
   type: website
+  output-dir: docs  # GitHub Pages will serve from the 'docs/' folder
 
 website:
-  title: "aws-mle-associate-engineer-certification"
+  title: "AWS Services Comparison"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: aws-flashcards.qmd
+        text: AWS Services Flashcards
+      - href: aws-comparison-tables.qmd
+        text: AWS Comparisons
 
 format:
   html:
     theme: cosmo
-    css: styles.css
-    toc: true
-
-
-

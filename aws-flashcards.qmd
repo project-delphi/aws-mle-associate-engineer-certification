@@ -1,0 +1,157 @@
+---
+title: "AWS Services Flashcards"
+format: html
+---
+
+## Instructions
+
+Click each dropdown to reveal the definition/explanation of each service.
+
+---
+
+## Data Services
+
+::: {.callout-note collapse="true"}
+### Amazon Kinesis Data Streams
+A scalable and durable real-time data streaming service that can continuously capture gigabytes of data per second from hundreds of thousands of sources.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Kinesis Data Firehose
+A fully managed service that scales automatically to match the throughput of your data. It can batch, compress, and encrypt data before loading it into storage and analytics services.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon MSK (Managed Streaming for Apache Kafka)
+A fully managed service that makes it easy to build and run applications using Apache Kafka, an open-source distributed event streaming platform.
+:::
+
+---
+
+## Storage Solutions
+
+::: {.callout-note collapse="true"}
+### Amazon S3
+Highly scalable object storage service offering industry-leading durability, security, and performance. Store and retrieve any amount of data from anywhere.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon EBS, FSx, and EFS
+- **Amazon EBS (Elastic Block Store):** Block-level storage for EC2 instances.
+- **Amazon FSx:** Fully managed file storage for Windows, Lustre, and other file systems.
+- **Amazon EFS (Elastic File System):** Fully managed, scalable NFS file storage.
+:::
+
+---
+
+## Big Data & Analytics
+
+::: {.callout-note collapse="true"}
+### Apache Hadoop
+An open-source framework for distributed processing of large datasets across clusters of computers.
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Glue
+A fully managed extract, transform, and load (ETL) service that simplifies data preparation for analytics.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon EMR (Elastic MapReduce)
+A cloud big data platform for processing vast amounts of data using open-source frameworks like Apache Spark, Hadoop, and Presto.
+:::
+
+---
+
+## AI/ML Services
+
+::: {.callout-note collapse="true"}
+### Amazon Bedrock
+A fully managed service that provides access to foundation models from leading AI providers via a single API.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Comprehend
+A natural language processing (NLP) service that uses machine learning to analyze text for insights, such as sentiment and key phrases.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Personalize
+A machine learning service for building real-time personalized recommendations.
+:::
+
+---
+
+## SageMaker Ecosystem
+
+::: {.callout-note collapse="true"}
+### Amazon SageMaker Studio
+A fully integrated development environment (IDE) for machine learning with a single, web-based visual interface.
+:::
+
+::: {.callout-note collapse="true"}
+### Built-in SageMaker Algorithms
+Prebuilt algorithms optimized for performance and scalability:
+- Linear Learner
+- XGBoost
+- DeepAR
+- BlazingText
+- Object Detection
+- And more...
+:::
+
+---
+
+## Security & Networking
+
+::: {.callout-note collapse="true"}
+### Amazon VPC Components
+- **VPC:** A private, isolated cloud network.
+- **Subnets:** Segments of VPC IP address ranges.
+- **Internet Gateway:** Enables internet access for VPC.
+- **NAT Gateway:** Allows private subnets to access the internet securely.
+- **Security Groups:** Instance-level firewalls for controlling inbound/outbound traffic.
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Key Management Service (KMS)
+A fully managed service that makes it easy to create, control, and use cryptographic keys to encrypt your data.
+:::
+
+---
+
+## DevOps & CI/CD
+
+::: {.callout-note collapse="true"}
+### AWS CodePipeline
+A fully managed continuous integration and continuous delivery (CI/CD) service that automates software release pipelines.
+:::
+
+::: {.callout-note collapse="true"}
+### Containers & Orchestration
+- **Docker:** A platform for building, shipping, and running applications in containers.
+- **Amazon ECS:** A scalable container orchestration service.
+- **Amazon ECR:** A fully managed container registry for storing Docker images.
+- **Amazon EKS:** A managed Kubernetes service for running containerized applications.
+:::
+
+---
+
+## Monitoring & Management
+
+::: {.callout-note collapse="true"}
+### Amazon CloudWatch
+A monitoring and observability service for logs, metrics, alarms, and application performance.
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Glue (ETL)
+A fully managed ETL (Extract, Transform, Load) service that prepares and integrates data for analytics and machine learning.
+:::
+
+---
+
+```{css}
+.callout-note {
+  margin-bottom: 1em;
+}

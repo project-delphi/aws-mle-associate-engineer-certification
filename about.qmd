@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+This site is a collection of notes, comparisons and tools that I've found useful while studying for AWS MLE Associate certifications. It's a work in progress, and I'll be adding more content over time.

@@ -1,0 +1,86 @@
+---
+title: "AWS Services Comparison Tables"
+format: html
+---
+
+## Streaming Services Comparison
+
+| Feature | Kinesis Data Streams | AWS Firehose | MSK (Managed Kafka) |
+|---------|---------------------|--------------|-------------------|
+| Latency | Real-time (sub-second) | Near real-time (60s minimum) | Real-time (sub-second) |
+| Scaling | Manual provisioning of shards | Automatic scaling | Manual provisioning of brokers |
+| Data Retention | 24h by default, up to 365 days | No retention (immediate processing) | Configurable, unlimited |
+| Use Cases | Real-time analytics, processing logs | Data loading into S3, Redshift, ES | Event streaming, log aggregation |
+| Throughput | MB/s per shard | Automatic up to GB/s | MB/s per broker |
+| Cost Model | Per shard hour | Per GB processed | Per broker hour |
+
+## Storage Services Comparison
+
+| Feature | S3 | EBS | EFS | FSx |
+|---------|-----|-----|-----|-----|
+| Type | Object Storage | Block Storage | File System | File System |
+| Latency | ms (varies) | Sub-ms | ms | Sub-ms to ms |
+| Scalability | Unlimited | Up to 64TB per volume | Automatic | Automatic |
+| Access Pattern | Web/API | Mount as drive | NFS mount | SMB/Lustre |
+| Use Cases | Static files, backups | OS drives, databases | Shared files, web serving | Windows/HPC workloads |
+| Availability | 99.99% | 99.99% | 99.99% | 99.99% |
+| Cost Model | GB-month + requests | GB-month provisioned | GB-month used | GB-month + throughput |
+
+## AI/ML Services Comparison
+
+| Feature | Comprehend | Personalize | Bedrock | SageMaker |
+|---------|------------|-------------|----------|-----------|
+| Type | Managed NLP | Managed Recommendations | Foundation Models | ML Platform |
+| Training Required | No | Yes (with your data) | No | Yes |
+| Customization | Limited | High | Model fine-tuning | Complete control |
+| Latency | ~100ms | ~100ms | Varies by model | Depends on deployment |
+| Use Cases | Text analysis | Recommendations | Gen AI applications | Custom ML models |
+| Scaling | Automatic | Automatic | Automatic | Manual/Auto |
+| Cost Model | Per unit processed | Per training hour + predictions | Per token/request | Per instance hour |
+
+## Container Services Comparison
+
+| Feature | ECS | EKS | App Runner | Lambda Container |
+|---------|-----|-----|------------|------------------|
+| Complexity | Low | High | Very Low | Low |
+| Control | Moderate | High | Low | Low |
+| Scaling | Auto/Manual | Auto/Manual | Automatic | Automatic |
+| Max Container Size | 30GB | 30GB | 10GB | 10GB |
+| Cold Start | No | No | Yes | Yes |
+| Use Cases | Microservices | Complex orchestration | Web apps | Serverless containers |
+| Cost Model | Per task hour | Per cluster hour + tasks | Per vCPU/GB | Per request + duration |
+
+## Data Analytics Services Comparison
+
+| Feature | EMR | Glue | Athena | Redshift |
+|---------|-----|------|--------|-----------|
+| Type | Managed Hadoop | ETL Service | Query Service | Data Warehouse |
+| Processing | Batch/Stream | Batch | Interactive | Batch/Interactive |
+| Latency | Minutes | Minutes | Seconds | Sub-second to seconds |
+| Scale | Manual clusters | Automatic | Automatic | Manual/Auto |
+| Use Cases | Big data processing | Data preparation | Ad-hoc queries | Data warehousing |
+| Setup Time | Hours | Minutes | Minutes | Hours |
+| Cost Model | Per instance hour | Per DPU hour | Per TB scanned | Per node hour |
+
+## Monitoring Services Comparison
+
+| Feature | CloudWatch | X-Ray | Prometheus | Grafana |
+|---------|------------|--------|------------|----------|
+| Type | Metrics/Logs | Tracing | Metrics | Visualization |
+| Data Retention | 15 months | 30 days | Configurable | Depends on source |
+| Granularity | 1s to 1h | Per request | Custom | Custom |
+| Use Cases | Basic monitoring | Distributed tracing | Container monitoring | Dashboarding |
+| Integration | AWS native | AWS services | Kubernetes | Multiple sources |
+| Cost Model | Per metric/GB | Per trace | Storage based | By features |
+
+## ML Model Deployment Options Comparison
+
+| Feature | SageMaker Endpoints | SageMaker Serverless | Lambda | ECS/EKS |
+|---------|-------------------|---------------------|--------|----------|
+| Cold Start | No | Yes | Yes | No |
+| Auto-scaling | Yes | Yes | Yes | Yes |
+| Max Duration | Unlimited | 15 min | 15 min | Unlimited |
+| Cost Model | Per instance hour | Per request | Per request | Per container |
+| Use Cases | Steady traffic | Variable traffic | Lightweight inference | Custom deployment |
+| Max Model Size | Instance dependent | 10GB | 10GB | No limit |
+| Concurrency | High | Limited | Limited | High |
