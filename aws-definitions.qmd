@@ -1,5 +1,5 @@
 ---
-title: "AWS Services Flashcards"
+title: "AWS Services Definitions"
 format: html
 ---
 
@@ -61,6 +61,51 @@ A fully managed extract, transform, and load (ETL) service that simplifies data 
 A cloud big data platform for processing vast amounts of data using open-source frameworks like Apache Spark, Hadoop, and Presto.
 :::
 
+::: {.callout-note collapse="true"}
+### Amazon Athena
+An interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL.
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Glue DataBrew
+A visual data preparation tool that makes it easy for data analysts and data scientists to clean and normalize data.
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Glue Data Quality
+A service that helps you measure and monitor the quality of your data.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Kinesis
+A platform on AWS to collect, process, and analyze real-time, streaming data.
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Lake Formation
+A service that makes it easy to set up a secure data lake in days.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Managed Service for Apache Flink
+A fully managed service that enables you to build and run Apache Flink applications.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon OpenSearch Service
+A fully managed service that makes it easy to deploy, secure, and operate OpenSearch at scale.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon QuickSight
+A scalable, serverless, embeddable, machine learning-powered business intelligence (BI) service built for the cloud.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Redshift
+A fully managed data warehouse that makes it simple and cost-effective to analyze all your data using standard SQL and your existing Business Intelligence (BI) tools.
+:::
+
 ---
 
 ## AI/ML Services
@@ -83,77 +128,64 @@ A machine learning service for building real-time personalized recommendations.
 ::: {.callout-note collapse="true"}
 ### Amazon Lex
 A fully managed AI service for building conversational interfaces using speech and text.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon Polly
 A text-to-speech service that converts written text into lifelike speech.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon Rekognition
 A deep learning-based image and video analysis service for object detection, facial recognition, and content moderation.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon Textract
 An AI service that automatically extracts text, handwriting, and data from scanned documents.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon Transcribe
 A speech-to-text service that uses machine learning to convert spoken language into written text.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon Kendra
 An intelligent search service that uses machine learning to provide highly accurate search results.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon SageMaker
 A fully managed service that provides tools to build, train, and deploy machine learning models at scale.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### AWS Panorama
 A machine learning appliance and software development kit (SDK) that enables adding computer vision to on-premises cameras.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon CodeWhisperer
 An AI-powered coding assistant that provides real-time code suggestions.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon HealthLake
 A HIPAA-eligible service that uses machine learning to store, transform, and analyze health data.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon Forecast
 A time-series forecasting service that uses machine learning to predict future trends.
-
 :::
 
 ::: {.callout-note collapse="true"}
 ### Amazon Fraud Detector
 An AI service that helps identify potentially fraudulent activities in real-time.
-
 :::
 
 ---
-
 
 ## SageMaker Ecosystem
 
@@ -276,14 +308,12 @@ Provides explainability and bias detection tools:
 - **Subnets:** Segments of VPC IP address ranges.
 - **Internet Gateway:** Enables internet access for VPC.
 - **NAT Gateway:** Allows private subnets to access the internet securely.
-- **Security Groups:** Instance-level firewallsfor controlling inbound/outbound traffic.
-
+- **Security Groups:** Instance-level firewalls for controlling inbound/outbound traffic.
 :::
 
 ::: {.callout-note collapse="true"}
 ### AWS Key Management Service (KMS)
 A fully managed service that makes it easy to create, control, and use cryptographic keys to encrypt your data.
-
 :::
 
 ---
@@ -293,7 +323,6 @@ A fully managed service that makes it easy to create, control, and use cryptogra
 ::: {.callout-note collapse="true"}
 ### AWS CodePipeline
 A fully managed continuous integration and continuous delivery (CI/CD) service that automates software release pipelines.
-
 :::
 
 ::: {.callout-note collapse="true"}
@@ -302,7 +331,6 @@ A fully managed continuous integration and continuous delivery (CI/CD) service t
 - **Amazon ECS:** A scalable container orchestration service.
 - **Amazon ECR:** A fully managed container registry for storing Docker images.
 - **Amazon EKS:** A managed Kubernetes service for running containerized applications.
-
 :::
 
 ---
@@ -321,8 +349,50 @@ A fully managed ETL (Extract, Transform, Load) service that prepares and integra
 
 ---
 
-```{css}
-.callout-note {
-  margin-bottom: 1em;
-}
-```
+## Application Integration
+
+::: {.callout-note collapse="true"}
+### Amazon EventBridge
+A serverless event bus service that makes it easy to connect applications using data from your own applications, integrated Software-as-a-Service (SaaS) applications, and AWS services.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Managed Workflows for Apache Airflow (Amazon MWAA)
+A managed orchestration service for Apache Airflow that makes it easy to set up and operate end-to-end data pipelines in the cloud.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Simple Notification Service (Amazon SNS)
+A fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Simple Queue Service (Amazon SQS)
+A fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Step Functions
+A serverless orchestration service that lets you combine AWS Lambda functions and other AWS services to build business-critical applications.
+:::
+
+---
+
+## Cloud Financial Management
+
+::: {.callout-note collapse="true"}
+### AWS Billing and Cost Management
+A service that helps you pay your AWS bill, monitor your usage, and budget your costs.
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Budgets
+A service that lets you set custom cost and usage budgets and receive alerts when you exceed them.
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Cost Explorer
+A service that enables you to visualize, understand, and manage your AWS costs and usage over time.
+:::
+
+---

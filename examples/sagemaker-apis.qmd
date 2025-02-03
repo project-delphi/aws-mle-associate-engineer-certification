@@ -1,0 +1,92 @@
+---
+title: "Amazon SageMaker APIs: Real-World Examples"
+author: "Ravi Kalia"
+date: "2025-02-03"
+format: html
+---
+
+# Introduction
+Amazon SageMaker provides a variety of APIs to interact with its services, including training, inference, and model deployment. This document explores real-world examples of using these APIs.
+
+## Example 1: Creating a SageMaker Training Job
+
+```python
+import boto3
+import json
+
+sagemaker_client = boto3.client("sagemaker")
+
+response = sagemaker_client.create_training_job(
+    TrainingJobName="my-xgboost-training-job",
+    AlgorithmSpecification={
+        "TrainingImage": "811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest",
+        "TrainingInputMode": "File"
+    },
+    RoleArn="arn:aws:iam::123456789012:role/SageMakerRole",
+    InputDataConfig=[
+        {
+            "ChannelName": "train",
+            "DataSource": {
+                "S3DataSource": {
+                    "S3DataType": "S3Prefix",
+                    "S3Uri": "s3://my-bucket/train/",
+                    "S3DataDistributionType": "FullyReplicated"
+                }
+            }
+        }
+    ],
+    OutputDataConfig={"S3OutputPath": "s3://my-bucket/output/"},
+    ResourceConfig={
+        "InstanceType": "ml.m5.large",
+        "InstanceCount": 1,
+        "VolumeSizeInGB": 10
+    },
+    StoppingCondition={"MaxRuntimeInSeconds": 3600},
+)
+
+print(json.dumps(response, indent=4))
+```
+
+## Example 2: Deploying a Model to a SageMaker Endpoint
+
+```python
+response = sagemaker_client.create_endpoint_config(
+    EndpointConfigName="my-endpoint-config",
+    ProductionVariants=[
+        {
+            "VariantName": "AllTraffic",
+            "ModelName": "my-trained-model",
+            "InstanceType": "ml.m5.large",
+            "InitialInstanceCount": 1
+        }
+    ]
+)
+
+response = sagemaker_client.create_endpoint(
+    EndpointName="my-endpoint",
+    EndpointConfigName="my-endpoint-config"
+)
+
+print(json.dumps(response, indent=4))
+```
+
+## Example 3: Invoking a SageMaker Endpoint for Inference
+
+```python
+import json
+import boto3
+
+runtime_client = boto3.client("sagemaker-runtime")
+
+response = runtime_client.invoke_endpoint(
+    EndpointName="my-endpoint",
+    ContentType="application/json",
+    Body=json.dumps({"data": [1.0, 2.0, 3.0, 4.0]})
+)
+
+result = json.loads(response["Body"].read().decode())
+print(result)
+```
+
+# Conclusion
+SageMaker APIs enable programmatic interaction with training, deployment, and inference services. These examples provide a foundation for building scalable ML solutions.

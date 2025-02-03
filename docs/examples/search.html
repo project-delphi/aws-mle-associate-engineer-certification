@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AWS Machine Learning Engineer Associate – AWS Machine Learning Associate Certification</title>
+<title>Search Services: Kendra vs OpenSearch – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AWS Machine Learning Associate Certification</span>
     </a>
   </div>
@@ -88,15 +122,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aws-definitions.html"> 
+    <a class="nav-link" href="../aws-definitions.html"> 
 <span class="menu-text">AWS Services Definitions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aws-comparison-tables.html"> 
+    <a class="nav-link" href="../aws-comparison-tables.html"> 
 <span class="menu-text">AWS Comparisons Table</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -105,39 +139,39 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-pipelines.html">
+    <a class="dropdown-item" href="../examples/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-processing-vs-training-vs-hosting.html">
+    <a class="dropdown-item" href="../examples/sagemaker-processing-vs-training-vs-hosting.html">
  <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/flink-vs-kinesis.html">
+    <a class="dropdown-item" href="../examples/flink-vs-kinesis.html">
  <span class="dropdown-text">Apache Flink vs Kinesis Data Analytics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/storage.html">
+    <a class="dropdown-item" href="../examples/storage.html">
  <span class="dropdown-text">Storage: S3 vs EFS vs FSx vs EBS</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/datastreams.html">
+    <a class="dropdown-item" href="../examples/datastreams.html">
  <span class="dropdown-text">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-vs-bedrock.html">
+    <a class="dropdown-item" href="../examples/sagemaker-vs-bedrock.html">
  <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/glue.html">
+    <a class="dropdown-item" href="../examples/glue.html">
  <span class="dropdown-text">Glue Data Catalog vs Glue DataBrew vs Glue Studio</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/search.html">
+    <a class="dropdown-item" href="../examples/search.html">
  <span class="dropdown-text">Kendra vs OpenSearch</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/emr-vs-hadoop-vs-spark.html">
+    <a class="dropdown-item" href="../examples/emr-vs-hadoop-vs-spark.html">
  <span class="dropdown-text">EMR vs Hadoop vs Spark</span></a>
   </li>  
     </ul>
@@ -159,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AWS Machine Learning Engineer Associate</h1>
+<h1 class="title">Search Services: Kendra vs OpenSearch</h1>
 </div>
 
 
@@ -176,15 +210,112 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./aws-mle-associate-badge.jpeg" class="img-fluid figure-img"></p>
-<figcaption>AWS MLE Associate Badge</figcaption>
-</figure>
-</div>
-<p>Welcome, this is a work in progress. I’m creating this site to help me study for the AWS Machine Learning Engineer Associate certification. I’ll be adding more content over time, so check back for updates.</p>
+<section id="aws-search-services-kendra-vs-opensearch" class="level1">
+<h1>AWS Search Services: Kendra vs OpenSearch</h1>
+<p>AWS provides two primary search services: <strong>Amazon Kendra</strong> and <strong>Amazon OpenSearch Service</strong>. While both enable search capabilities, they serve different use cases and have distinct strengths.</p>
+<section id="overview-table" class="level2">
+<h2 class="anchored" data-anchor-id="overview-table">Overview Table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 49%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Amazon Kendra</th>
+<th>Amazon OpenSearch Service</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Type</td>
+<td>AI-powered enterprise search</td>
+<td>Open-source search and analytics engine</td>
+</tr>
+<tr class="even">
+<td>Use Case</td>
+<td>Document and knowledge search</td>
+<td>Log analytics, full-text search, observability</td>
+</tr>
+<tr class="odd">
+<td>Data Sources</td>
+<td>Pre-built connectors for common enterprise sources</td>
+<td>Structured and unstructured data from various sources</td>
+</tr>
+<tr class="even">
+<td>Query Type</td>
+<td>Natural Language Processing (NLP)-based</td>
+<td>Keyword-based and structured queries (Elasticsearch DSL)</td>
+</tr>
+<tr class="odd">
+<td>Indexing</td>
+<td>Managed, AI-driven indexing</td>
+<td>Full control over indexing with custom mappings</td>
+</tr>
+<tr class="even">
+<td>Access Model</td>
+<td>API-based search queries</td>
+<td>REST API, Kibana dashboards, SQL</td>
+</tr>
+<tr class="odd">
+<td>Scaling</td>
+<td>Fully managed, auto-scaling</td>
+<td>Cluster-based, requires management</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="amazon-kendra" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-kendra">Amazon Kendra</h2>
+<p><strong>Definition</strong>: Amazon Kendra is an AI-powered enterprise search service that enables organizations to search structured and unstructured documents using natural language queries.</p>
+<p><strong>Common Use Cases</strong>: - Enterprise knowledge management - Internal document search - Customer support knowledge bases</p>
+<section id="example-code-querying-kendra-with-python-boto3" class="level3">
+<h3 class="anchored" data-anchor-id="example-code-querying-kendra-with-python-boto3">Example Code: Querying Kendra with Python (Boto3)</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>kendra <span class="op">=</span> boto3.client(<span class="st">'kendra'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> kendra.query(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    IndexId<span class="op">=</span><span class="st">'index-id'</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    QueryText<span class="op">=</span><span class="st">'How do I reset my password?'</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="amazon-opensearch-service" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-opensearch-service">Amazon OpenSearch Service</h2>
+<p><strong>Definition</strong>: Amazon OpenSearch Service is a managed search and analytics engine based on the open-source Elasticsearch and OpenSearch projects.</p>
+<p><strong>Common Use Cases</strong>: - Log and event data analysis - Real-time application search - Security monitoring and observability</p>
+<section id="example-code-querying-opensearch-with-python" class="level3">
+<h3 class="anchored" data-anchor-id="example-code-querying-opensearch-with-python">Example Code: Querying OpenSearch with Python</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> opensearchpy <span class="im">import</span> OpenSearch</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenSearch(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    hosts<span class="op">=</span>[{<span class="st">'host'</span>: <span class="st">'your-opensearch-domain'</span>, <span class="st">'port'</span>: <span class="dv">443</span>}],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    http_auth<span class="op">=</span>(<span class="st">'user'</span>, <span class="st">'password'</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    use_ssl<span class="op">=</span><span class="va">True</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> {</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"query"</span>: {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"match"</span>: {<span class="st">"message"</span>: <span class="st">"error"</span>}</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.search(index<span class="op">=</span><span class="st">"logs"</span>, body<span class="op">=</span>query)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>If your use case involves <strong>enterprise knowledge retrieval with AI-driven natural language search</strong>, Amazon <strong>Kendra</strong> is the better option. If you need <strong>log analytics, real-time search, or structured query capabilities</strong>, <strong>OpenSearch</strong> is the preferred choice.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

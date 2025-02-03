@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Ravi Kalia">
+<meta name="dcterms.date" content="2025-02-03">
 
-<title>AWS Comparison Tables – AWS Machine Learning Associate Certification</title>
+<title>Flink vs Kinesis – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +22,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AWS Machine Learning Associate Certification</span>
     </a>
   </div>
@@ -88,15 +124,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aws-definitions.html"> 
+    <a class="nav-link" href="../aws-definitions.html"> 
 <span class="menu-text">AWS Services Definitions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./aws-comparison-tables.html" aria-current="page"> 
+    <a class="nav-link" href="../aws-comparison-tables.html"> 
 <span class="menu-text">AWS Comparisons Table</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -105,39 +141,39 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-pipelines.html">
+    <a class="dropdown-item" href="../examples/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-processing-vs-training-vs-hosting.html">
+    <a class="dropdown-item" href="../examples/sagemaker-processing-vs-training-vs-hosting.html">
  <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/flink-vs-kinesis.html">
+    <a class="dropdown-item" href="../examples/flink-vs-kinesis.html">
  <span class="dropdown-text">Apache Flink vs Kinesis Data Analytics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/storage.html">
+    <a class="dropdown-item" href="../examples/storage.html">
  <span class="dropdown-text">Storage: S3 vs EFS vs FSx vs EBS</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/datastreams.html">
+    <a class="dropdown-item" href="../examples/datastreams.html">
  <span class="dropdown-text">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-vs-bedrock.html">
+    <a class="dropdown-item" href="../examples/sagemaker-vs-bedrock.html">
  <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/glue.html">
+    <a class="dropdown-item" href="../examples/glue.html">
  <span class="dropdown-text">Glue Data Catalog vs Glue DataBrew vs Glue Studio</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/search.html">
+    <a class="dropdown-item" href="../examples/search.html">
  <span class="dropdown-text">Kendra vs OpenSearch</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/emr-vs-hadoop-vs-spark.html">
+    <a class="dropdown-item" href="../examples/emr-vs-hadoop-vs-spark.html">
  <span class="dropdown-text">EMR vs Hadoop vs Spark</span></a>
   </li>  
     </ul>
@@ -159,14 +195,26 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AWS Comparison Tables</h1>
+<h1 class="title">Flink vs Kinesis</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ravi Kalia </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 3, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -176,489 +224,176 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="streaming-services-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="streaming-services-comparison">Streaming Services Comparison</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 33%">
-<col style="width: 22%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Kinesis Data Streams</th>
-<th>AWS Firehose</th>
-<th>MSK (Managed Kafka)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Latency</td>
-<td>Real-time (sub-second)</td>
-<td>Near real-time (60s minimum)</td>
-<td>Real-time (sub-second)</td>
-</tr>
-<tr class="even">
-<td>Scaling</td>
-<td>Manual provisioning of shards</td>
-<td>Automatic scaling</td>
-<td>Manual provisioning of brokers</td>
-</tr>
-<tr class="odd">
-<td>Data Retention</td>
-<td>24h by default, up to 365 days</td>
-<td>No retention (immediate processing)</td>
-<td>Configurable, unlimited</td>
-</tr>
-<tr class="even">
-<td>Use Cases</td>
-<td>Real-time analytics, processing logs</td>
-<td>Data loading into S3, Redshift, ES</td>
-<td>Event streaming, log aggregation</td>
-</tr>
-<tr class="odd">
-<td>Throughput</td>
-<td>MB/s per shard</td>
-<td>Automatic up to GB/s</td>
-<td>MB/s per broker</td>
-</tr>
-<tr class="even">
-<td>Cost Model</td>
-<td>Per shard hour</td>
-<td>Per GB processed</td>
-<td>Per broker hour</td>
-</tr>
-</tbody>
-</table>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Apache Flink and AWS Kinesis are both powerful tools for real-time data processing, but they serve different purposes and have different architectures. Below is a comparison of the two, with definitions, explanations, and code examples.</p>
+<section id="definitions" class="level2">
+<h2 class="anchored" data-anchor-id="definitions">Definitions</h2>
+<section id="apache-flink" class="level3">
+<h3 class="anchored" data-anchor-id="apache-flink">Apache Flink</h3>
+<p>Apache Flink is an open-source stream-processing framework used for distributed processing of data streams. It is designed for stateful computations over unbounded data streams and can handle large-scale, real-time analytics.</p>
+<ul>
+<li><strong>Key Features</strong>:
+<ul>
+<li>Real-time stream processing</li>
+<li>Fault tolerance with checkpointing</li>
+<li>Supports batch processing (as a special case of stream processing)</li>
+<li>Advanced windowing and event time processing</li>
+<li>Support for complex event processing (CEP)</li>
+</ul></li>
+</ul>
 </section>
-<section id="storage-services-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="storage-services-comparison">Storage Services Comparison</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 31%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 17%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>S3</th>
-<th>EBS</th>
-<th>EFS</th>
-<th>FSx</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Type</td>
-<td>Object Storage</td>
-<td>Block Storage</td>
-<td>File System</td>
-<td>File System</td>
-</tr>
-<tr class="even">
-<td>Latency</td>
-<td>ms (varies)</td>
-<td>Sub-ms</td>
-<td>ms</td>
-<td>Sub-ms to ms</td>
-</tr>
-<tr class="odd">
-<td>Scalability</td>
-<td>Unlimited</td>
-<td>Up to 64TB per volume</td>
-<td>Automatic</td>
-<td>Automatic</td>
-</tr>
-<tr class="even">
-<td>Access Pattern</td>
-<td>Web/API</td>
-<td>Mount as drive</td>
-<td>NFS mount</td>
-<td>SMB/Lustre</td>
-</tr>
-<tr class="odd">
-<td>Use Cases</td>
-<td>Static files, backups</td>
-<td>OS drives, databases</td>
-<td>Shared files, web serving</td>
-<td>Windows/HPC workloads</td>
-</tr>
-<tr class="even">
-<td>Availability</td>
-<td>99.99%</td>
-<td>99.99%</td>
-<td>99.99%</td>
-<td>99.99%</td>
-</tr>
-<tr class="odd">
-<td>Cost Model</td>
-<td>GB-month + requests</td>
-<td>GB-month provisioned</td>
-<td>GB-month used</td>
-<td>GB-month + throughput</td>
-</tr>
-</tbody>
-</table>
+<section id="aws-kinesis" class="level3">
+<h3 class="anchored" data-anchor-id="aws-kinesis">AWS Kinesis</h3>
+<p>AWS Kinesis is a fully managed service by Amazon Web Services for real-time data streaming and processing. It allows users to collect, process, and analyze real-time data at massive scale.</p>
+<ul>
+<li><strong>Key Features</strong>:
+<ul>
+<li>Fully managed, scalable stream processing</li>
+<li>Integration with AWS ecosystem (e.g., Lambda, Redshift, etc.)</li>
+<li>Real-time analytics</li>
+<li>Supports data ingestion, storage, and analytics on streaming data</li>
+<li>Auto-scaling based on data volume</li>
+</ul></li>
+</ul>
 </section>
-<section id="aiml-services-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="aiml-services-comparison">AI/ML Services Comparison</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 21%">
-<col style="width: 23%">
-<col style="width: 18%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Comprehend</th>
-<th>Personalize</th>
-<th>Bedrock</th>
-<th>SageMaker</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Type</td>
-<td>Managed NLP</td>
-<td>Managed Recommendations</td>
-<td>Foundation Models</td>
-<td>ML Platform</td>
-</tr>
-<tr class="even">
-<td>Training Required</td>
-<td>No</td>
-<td>Yes (with your data)</td>
-<td>No</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>Customization</td>
-<td>Limited</td>
-<td>High</td>
-<td>Model fine-tuning</td>
-<td>Complete control</td>
-</tr>
-<tr class="even">
-<td>Latency</td>
-<td>~100ms</td>
-<td>~100ms</td>
-<td>Varies by model</td>
-<td>Depends on deployment</td>
-</tr>
-<tr class="odd">
-<td>Use Cases</td>
-<td>Text analysis</td>
-<td>Recommendations</td>
-<td>Gen AI applications</td>
-<td>Custom ML models</td>
-</tr>
-<tr class="even">
-<td>Scaling</td>
-<td>Automatic</td>
-<td>Automatic</td>
-<td>Automatic</td>
-<td>Manual/Auto</td>
-</tr>
-<tr class="odd">
-<td>Cost Model</td>
-<td>Per unit processed</td>
-<td>Per training hour + predictions</td>
-<td>Per token/request</td>
-<td>Per instance hour</td>
-</tr>
-</tbody>
-</table>
 </section>
-<section id="container-services-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="container-services-comparison">Container Services Comparison</h2>
+<section id="key-differences" class="level2">
+<h2 class="anchored" data-anchor-id="key-differences">Key Differences</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 10%">
-<col style="width: 10%">
 <col style="width: 24%">
-<col style="width: 36%">
+<col style="width: 39%">
+<col style="width: 35%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Feature</th>
-<th>ECS</th>
-<th>EKS</th>
-<th>App Runner</th>
-<th>Lambda Container</th>
+<th>Apache Flink</th>
+<th>AWS Kinesis</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Complexity</td>
-<td>Low</td>
-<td>High</td>
-<td>Very Low</td>
-<td>Low</td>
+<td><strong>Purpose</strong></td>
+<td>Stream processing and complex event processing</td>
+<td>Real-time data streaming and ingestion</td>
 </tr>
 <tr class="even">
-<td>Control</td>
-<td>Moderate</td>
-<td>High</td>
-<td>Low</td>
-<td>Low</td>
+<td><strong>Management</strong></td>
+<td>Self-managed (on-premise or cloud)</td>
+<td>Fully managed service by AWS</td>
 </tr>
 <tr class="odd">
-<td>Scaling</td>
-<td>Auto/Manual</td>
-<td>Auto/Manual</td>
-<td>Automatic</td>
-<td>Automatic</td>
+<td><strong>Fault Tolerance</strong></td>
+<td>Checkpointing and state management</td>
+<td>Built-in replication and data retention</td>
 </tr>
 <tr class="even">
-<td>Max Container Size</td>
-<td>30GB</td>
-<td>30GB</td>
-<td>10GB</td>
-<td>10GB</td>
+<td><strong>Use Case</strong></td>
+<td>Complex analytics, real-time ETL, CEP</td>
+<td>Data ingestion, analytics, and streaming apps</td>
 </tr>
 <tr class="odd">
-<td>Cold Start</td>
-<td>No</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
+<td><strong>Scaling</strong></td>
+<td>Manual or automated scaling</td>
+<td>Auto-scaling based on data volume</td>
 </tr>
 <tr class="even">
-<td>Use Cases</td>
-<td>Microservices</td>
-<td>Complex orchestration</td>
-<td>Web apps</td>
-<td>Serverless containers</td>
+<td><strong>Integrations</strong></td>
+<td>Kafka, HDFS, Cassandra, Elasticsearch</td>
+<td>AWS ecosystem (Lambda, Redshift, etc.)</td>
 </tr>
 <tr class="odd">
-<td>Cost Model</td>
-<td>Per task hour</td>
-<td>Per cluster hour + tasks</td>
-<td>Per vCPU/GB</td>
-<td>Per request + duration</td>
+<td><strong>Language Support</strong></td>
+<td>Java, Scala, Python, SQL</td>
+<td>Kinesis Client Library (Java, Python, etc.)</td>
+</tr>
+<tr class="even">
+<td><strong>Latency</strong></td>
+<td>Sub-second latency (low-latency)</td>
+<td>Typically sub-second (low-latency)</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="data-analytics-services-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="data-analytics-services-comparison">Data Analytics Services Comparison</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 12%">
-<col style="width: 15%">
-<col style="width: 20%">
-<col style="width: 28%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>EMR</th>
-<th>Glue</th>
-<th>Athena</th>
-<th>Redshift</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Type</td>
-<td>Managed Hadoop</td>
-<td>ETL Service</td>
-<td>Query Service</td>
-<td>Data Warehouse</td>
-</tr>
-<tr class="even">
-<td>Processing</td>
-<td>Batch/Stream</td>
-<td>Batch</td>
-<td>Interactive</td>
-<td>Batch/Interactive</td>
-</tr>
-<tr class="odd">
-<td>Latency</td>
-<td>Minutes</td>
-<td>Minutes</td>
-<td>Seconds</td>
-<td>Sub-second to seconds</td>
-</tr>
-<tr class="even">
-<td>Scale</td>
-<td>Manual clusters</td>
-<td>Automatic</td>
-<td>Automatic</td>
-<td>Manual/Auto</td>
-</tr>
-<tr class="odd">
-<td>Use Cases</td>
-<td>Big data processing</td>
-<td>Data preparation</td>
-<td>Ad-hoc queries</td>
-<td>Data warehousing</td>
-</tr>
-<tr class="even">
-<td>Setup Time</td>
-<td>Hours</td>
-<td>Minutes</td>
-<td>Minutes</td>
-<td>Hours</td>
-</tr>
-<tr class="odd">
-<td>Cost Model</td>
-<td>Per instance hour</td>
-<td>Per DPU hour</td>
-<td>Per TB scanned</td>
-<td>Per node hour</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="monitoring-services-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="monitoring-services-comparison">Monitoring Services Comparison</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 23%">
-<col style="width: 15%">
-<col style="width: 23%">
-<col style="width: 19%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>CloudWatch</th>
-<th>X-Ray</th>
-<th>Prometheus</th>
-<th>Grafana</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Type</td>
-<td>Metrics/Logs</td>
-<td>Tracing</td>
-<td>Metrics</td>
-<td>Visualization</td>
-</tr>
-<tr class="even">
-<td>Data Retention</td>
-<td>15 months</td>
-<td>30 days</td>
-<td>Configurable</td>
-<td>Depends on source</td>
-</tr>
-<tr class="odd">
-<td>Granularity</td>
-<td>1s to 1h</td>
-<td>Per request</td>
-<td>Custom</td>
-<td>Custom</td>
-</tr>
-<tr class="even">
-<td>Use Cases</td>
-<td>Basic monitoring</td>
-<td>Distributed tracing</td>
-<td>Container monitoring</td>
-<td>Dashboarding</td>
-</tr>
-<tr class="odd">
-<td>Integration</td>
-<td>AWS native</td>
-<td>AWS services</td>
-<td>Kubernetes</td>
-<td>Multiple sources</td>
-</tr>
-<tr class="even">
-<td>Cost Model</td>
-<td>Per metric/GB</td>
-<td>Per trace</td>
-<td>Storage based</td>
-<td>By features</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="ml-model-deployment-options-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="ml-model-deployment-options-comparison">ML Model Deployment Options Comparison</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 28%">
-<col style="width: 31%">
-<col style="width: 11%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>SageMaker Endpoints</th>
-<th>SageMaker Serverless</th>
-<th>Lambda</th>
-<th>ECS/EKS</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Cold Start</td>
-<td>No</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td>Auto-scaling</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td>Max Duration</td>
-<td>Unlimited</td>
-<td>15 min</td>
-<td>15 min</td>
-<td>Unlimited</td>
-</tr>
-<tr class="even">
-<td>Cost Model</td>
-<td>Per instance hour</td>
-<td>Per request</td>
-<td>Per request</td>
-<td>Per container</td>
-</tr>
-<tr class="odd">
-<td>Use Cases</td>
-<td>Steady traffic</td>
-<td>Variable traffic</td>
-<td>Lightweight inference</td>
-<td>Custom deployment</td>
-</tr>
-<tr class="even">
-<td>Max Model Size</td>
-<td>Instance dependent</td>
-<td>10GB</td>
-<td>10GB</td>
-<td>No limit</td>
-</tr>
-<tr class="odd">
-<td>Concurrency</td>
-<td>High</td>
-<td>Limited</td>
-<td>Limited</td>
-<td>High</td>
-</tr>
-</tbody>
-</table>
+<section id="comparison-in-action" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-in-action">Comparison in Action</h2>
+<section id="apache-flink-example" class="level3">
+<h3 class="anchored" data-anchor-id="apache-flink-example">Apache Flink Example</h3>
+<p>Here is a basic example of a Flink job that processes a stream of events:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">apache</span><span class="op">.</span><span class="im">flink</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">common</span><span class="op">.</span><span class="im">functions</span><span class="op">.</span><span class="im">MapFunction</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">apache</span><span class="op">.</span><span class="im">flink</span><span class="op">.</span><span class="im">streaming</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">datastream</span><span class="op">.</span><span class="im">DataStream</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">apache</span><span class="op">.</span><span class="im">flink</span><span class="op">.</span><span class="im">streaming</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">environment</span><span class="op">.</span><span class="im">StreamExecutionEnvironment</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> FlinkExample <span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Exception</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">final</span> StreamExecutionEnvironment env <span class="op">=</span> StreamExecutionEnvironment<span class="op">.</span><span class="fu">getExecutionEnvironment</span><span class="op">();</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Example: Create a stream of integers and map them to a string</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        DataStream<span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> numbers <span class="op">=</span> env<span class="op">.</span><span class="fu">fromElements</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        DataStream<span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> result <span class="op">=</span> numbers<span class="op">.</span><span class="fu">map</span><span class="op">(</span><span class="kw">new</span> MapFunction<span class="op">&lt;</span><span class="bu">Integer</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;()</span> <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="bu">String</span> <span class="fu">map</span><span class="op">(</span><span class="bu">Integer</span> value<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Exception</span> <span class="op">{</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="st">"Number: "</span> <span class="op">+</span> value<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">});</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        result<span class="op">.</span><span class="fu">print</span><span class="op">();</span> <span class="co">// Output the result</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        env<span class="op">.</span><span class="fu">execute</span><span class="op">(</span><span class="st">"Flink Streaming Example"</span><span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example, Flink reads from a stream of integers, processes them, and outputs a transformed result. AWS Kinesis Example</p>
+<p>Below is an example of how to produce and consume data from Kinesis streams using the AWS SDK for Python (Boto3).</p>
+<p>Kinesis Producer Example</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Kinesis client</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>kinesis <span class="op">=</span> boto3.client(<span class="st">'kinesis'</span>, region_name<span class="op">=</span><span class="st">'us-east-1'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> send_to_kinesis(stream_name, data):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">=</span> json.dumps(data)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    kinesis.put_record(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        StreamName<span class="op">=</span>stream_name,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        Data<span class="op">=</span>payload,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        PartitionKey<span class="op">=</span><span class="st">"partitionkey"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>send_to_kinesis(<span class="st">"my-kinesis-stream"</span>, {<span class="st">"event"</span>: <span class="st">"start"</span>, <span class="st">"timestamp"</span>: <span class="st">"2025-02-03T12:00:00"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Kinesis Consumer Example</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Kinesis client</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>kinesis <span class="op">=</span> boto3.client(<span class="st">'kinesis'</span>, region_name<span class="op">=</span><span class="st">'us-east-1'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> consume_from_kinesis(stream_name):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    shard_iterator <span class="op">=</span> kinesis.get_shard_iterator(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        StreamName<span class="op">=</span>stream_name,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        ShardId<span class="op">=</span><span class="st">'shardId-000000000000'</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        ShardIteratorType<span class="op">=</span><span class="st">'TRIM_HORIZON'</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    )[<span class="st">'ShardIterator'</span>]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        record_response <span class="op">=</span> kinesis.get_records(ShardIterator<span class="op">=</span>shard_iterator, Limit<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> record <span class="kw">in</span> record_response[<span class="st">'Records'</span>]:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(json.loads(record[<span class="st">'Data'</span>]))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        shard_iterator <span class="op">=</span> record_response[<span class="st">'NextShardIterator'</span>]</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>consume_from_kinesis(<span class="st">"my-kinesis-stream"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>n the Kinesis example, we have a producer that sends data to a stream and a consumer that reads data from it. Conclusion</p>
+<p>Both Apache Flink and AWS Kinesis are valuable tools in the realm of real-time data processing. Flink is a stream-processing framework ideal for complex event processing and advanced analytics, while Kinesis provides a fully managed solution for collecting, processing, and analyzing streaming data.</p>
+<p>The choice between the two depends on factors such as the scale of your infrastructure, integration needs, and whether you prefer a fully managed service (Kinesis) or a more customizable stream processing framework (Flink).</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

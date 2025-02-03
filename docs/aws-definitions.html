@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AWS Services Flashcards – AWS Services Comparison</title>
+<title>AWS Services Definitions – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">AWS Services Comparison</span>
+    <span class="navbar-title">AWS Machine Learning Associate Certification</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -92,8 +92,8 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./aws-flashcards.html" aria-current="page"> 
-<span class="menu-text">AWS Services Flashcards</span></a>
+    <a class="nav-link active" href="./aws-definitions.html" aria-current="page"> 
+<span class="menu-text">AWS Services Definitions</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./aws-comparison-tables.html"> 
@@ -105,31 +105,39 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-pipelines.qmd">
+    <a class="dropdown-item" href="./examples/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/storage.qmd">
+    <a class="dropdown-item" href="./examples/sagemaker-processing-vs-training-vs-hosting.html">
+ <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./examples/flink-vs-kinesis.html">
+ <span class="dropdown-text">Apache Flink vs Kinesis Data Analytics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./examples/storage.html">
  <span class="dropdown-text">Storage: S3 vs EFS vs FSx vs EBS</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/databases.qmd">
- <span class="dropdown-text">Streaming: Kinesis vs MSK</span></a>
+    <a class="dropdown-item" href="./examples/datastreams.html">
+ <span class="dropdown-text">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/ai-ml.qmd">
+    <a class="dropdown-item" href="./examples/sagemaker-vs-bedrock.html">
  <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/data.qmd">
- <span class="dropdown-text">Data: Glue vs DataBrew</span></a>
+    <a class="dropdown-item" href="./examples/glue.html">
+ <span class="dropdown-text">Glue Data Catalog vs Glue DataBrew vs Glue Studio</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/search.qmd">
+    <a class="dropdown-item" href="./examples/search.html">
  <span class="dropdown-text">Kendra vs OpenSearch</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/emr_vs_hadoop_vs_spark.qmd">
+    <a class="dropdown-item" href="./examples/emr-vs-hadoop-vs-spark.html">
  <span class="dropdown-text">EMR vs Hadoop vs Spark</span></a>
   </li>  
     </ul>
@@ -151,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AWS Services Flashcards</h1>
+<h1 class="title">AWS Services Definitions</h1>
 </div>
 
 
@@ -315,23 +323,19 @@ Amazon EMR (Elastic MapReduce)
 </div>
 </div>
 </div>
-<hr>
-</section>
-<section id="aiml-services" class="level2">
-<h2 class="anchored" data-anchor-id="aiml-services">AI/ML Services</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Bedrock
+Amazon Athena
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A fully managed service that provides access to foundation models from leading AI providers via a single API.</p>
+<p>An interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL.</p>
 </div>
 </div>
 </div>
@@ -341,13 +345,13 @@ Amazon Bedrock
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Comprehend
+AWS Glue DataBrew
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A natural language processing (NLP) service that uses machine learning to analyze text for insights, such as sentiment and key phrases.</p>
+<p>A visual data preparation tool that makes it easy for data analysts and data scientists to clean and normalize data.</p>
 </div>
 </div>
 </div>
@@ -357,13 +361,13 @@ Amazon Comprehend
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Personalize
+AWS Glue Data Quality
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A machine learning service for building real-time personalized recommendations.</p>
+<p>A service that helps you measure and monitor the quality of your data.</p>
 </div>
 </div>
 </div>
@@ -373,13 +377,13 @@ Amazon Personalize
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Lex
+Amazon Kinesis
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A fully managed AI service for building conversational interfaces using speech and text.</p>
+<p>A platform on AWS to collect, process, and analyze real-time, streaming data.</p>
 </div>
 </div>
 </div>
@@ -389,13 +393,13 @@ Amazon Lex
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Polly
+AWS Lake Formation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A text-to-speech service that converts written text into lifelike speech.</p>
+<p>A service that makes it easy to set up a secure data lake in days.</p>
 </div>
 </div>
 </div>
@@ -405,13 +409,13 @@ Amazon Polly
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Rekognition
+Amazon Managed Service for Apache Flink
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A deep learning-based image and video analysis service for object detection, facial recognition, and content moderation.</p>
+<p>A fully managed service that enables you to build and run Apache Flink applications.</p>
 </div>
 </div>
 </div>
@@ -421,13 +425,13 @@ Amazon Rekognition
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Textract
+Amazon OpenSearch Service
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>An AI service that automatically extracts text, handwriting, and data from scanned documents.</p>
+<p>A fully managed service that makes it easy to deploy, secure, and operate OpenSearch at scale.</p>
 </div>
 </div>
 </div>
@@ -437,13 +441,13 @@ Amazon Textract
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Transcribe
+Amazon QuickSight
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A speech-to-text service that uses machine learning to convert spoken language into written text.</p>
+<p>A scalable, serverless, embeddable, machine learning-powered business intelligence (BI) service built for the cloud.</p>
 </div>
 </div>
 </div>
@@ -453,29 +457,33 @@ Amazon Transcribe
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Kendra
+Amazon Redshift
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-17" class="callout-17-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>An intelligent search service that uses machine learning to provide highly accurate search results.</p>
+<p>A fully managed data warehouse that makes it simple and cost-effective to analyze all your data using standard SQL and your existing Business Intelligence (BI) tools.</p>
 </div>
 </div>
 </div>
+<hr>
+</section>
+<section id="aiml-services" class="level2">
+<h2 class="anchored" data-anchor-id="aiml-services">AI/ML Services</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon SageMaker
+Amazon Bedrock
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-18" class="callout-18-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A fully managed service that provides tools to build, train, and deploy machine learning models at scale.</p>
+<p>A fully managed service that provides access to foundation models from leading AI providers via a single API.</p>
 </div>
 </div>
 </div>
@@ -485,13 +493,13 @@ Amazon SageMaker
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-AWS Panorama
+Amazon Comprehend
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-19" class="callout-19-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A machine learning appliance and software development kit (SDK) that enables adding computer vision to on-premises cameras.</p>
+<p>A natural language processing (NLP) service that uses machine learning to analyze text for insights, such as sentiment and key phrases.</p>
 </div>
 </div>
 </div>
@@ -501,13 +509,13 @@ AWS Panorama
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon CodeWhisperer
+Amazon Personalize
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-20" class="callout-20-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>An AI-powered coding assistant that provides real-time code suggestions.</p>
+<p>A machine learning service for building real-time personalized recommendations.</p>
 </div>
 </div>
 </div>
@@ -517,13 +525,13 @@ Amazon CodeWhisperer
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon HealthLake
+Amazon Lex
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A HIPAA-eligible service that uses machine learning to store, transform, and analyze health data.</p>
+<p>A fully managed AI service for building conversational interfaces using speech and text.</p>
 </div>
 </div>
 </div>
@@ -533,13 +541,13 @@ Amazon HealthLake
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Forecast
+Amazon Polly
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A time-series forecasting service that uses machine learning to predict future trends.</p>
+<p>A text-to-speech service that converts written text into lifelike speech.</p>
 </div>
 </div>
 </div>
@@ -549,11 +557,155 @@ Amazon Forecast
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon Fraud Detector
+Amazon Rekognition
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A deep learning-based image and video analysis service for object detection, facial recognition, and content moderation.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon Textract
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>An AI service that automatically extracts text, handwriting, and data from scanned documents.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon Transcribe
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A speech-to-text service that uses machine learning to convert spoken language into written text.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon Kendra
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>An intelligent search service that uses machine learning to provide highly accurate search results.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A fully managed service that provides tools to build, train, and deploy machine learning models at scale.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AWS Panorama
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A machine learning appliance and software development kit (SDK) that enables adding computer vision to on-premises cameras.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon CodeWhisperer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>An AI-powered coding assistant that provides real-time code suggestions.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon HealthLake
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A HIPAA-eligible service that uses machine learning to store, transform, and analyze health data.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon Forecast
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A time-series forecasting service that uses machine learning to predict future trends.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon Fraud Detector
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>An AI service that helps identify potentially fraudulent activities in real-time.</p>
 </div>
@@ -564,7 +716,7 @@ Amazon Fraud Detector
 <section id="sagemaker-ecosystem" class="level2">
 <h2 class="anchored" data-anchor-id="sagemaker-ecosystem">SageMaker Ecosystem</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -573,153 +725,9 @@ Amazon SageMaker Studio
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>A fully integrated development environment (IDE) for machine learning with a single, web-based visual interface. Provides capabilities for data preparation, model building, training, debugging, and deployment.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Built-in SageMaker Algorithms
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Prebuilt algorithms optimized for performance and scalability: - Linear Learner (Regression, Classification) - XGBoost (Gradient Boosting) - DeepAR (Time Series Forecasting) - BlazingText (Word2Vec, Text Classification) - Object Detection (Image Analysis) - Image Classification (ResNet, VGG, etc.) - Semantic Segmentation - Factorization Machines (Recommender Systems) - Neural Topic Model (Topic Modeling) - K-Means Clustering - PCA (Dimensionality Reduction) - LDA (Latent Dirichlet Allocation) - Sequence-to-Sequence (Translation, Text Generation) - Random Cut Forest (Anomaly Detection) - And more…</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Amazon SageMaker Pipelines
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>A CI/CD service for automating machine learning workflows, including data preprocessing, model training, and deployment. Features include: - Step-based workflow definition - Integration with SageMaker Training, Processing, and Model Registry - Lineage tracking and experiment management - Execution via SDK or AWS Console</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Amazon SageMaker Model Monitor
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Continuously monitors deployed models for data drift and quality issues. Key features: - Baseline creation from training data - Monitoring statistics and visualizations - Alerts and automated remediation - Integration with SageMaker Pipelines</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Amazon SageMaker Inference &amp; Deployment
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Multiple options for deploying models: - <strong>Real-time inference</strong>: Deploy models as endpoints with auto-scaling - <strong>Batch Transform</strong>: Process large datasets asynchronously - <strong>Serverless inference</strong>: Deploy without managing infrastructure - <strong>Edge deployment</strong>: Use SageMaker Edge Manager for on-device inference</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Amazon SageMaker APIs
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>SageMaker provides SDKs and APIs for integrating ML into applications: - <strong>Boto3 (Python SDK)</strong>: Automate SageMaker workflows - <strong>SageMaker SDK</strong>: Train, deploy, and manage models - <strong>SageMaker JumpStart</strong>: Access pre-trained models and solutions - <strong>Model Registry API</strong>: Manage model versions and deployments</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Amazon SageMaker Feature Store
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-30" class="callout-30-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>A fully managed repository to store, update, and retrieve ML features. Supports: - Online and offline stores for low-latency and batch processing - Feature versioning and governance - Integration with SageMaker Pipelines and Model Monitor</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Amazon SageMaker Autopilot
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Automates model selection, hyperparameter tuning, and feature engineering. Provides: - Explainability reports - Candidate model evaluation - Deployable models without manual tuning</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Amazon SageMaker Debugger
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Automatically detects training issues, such as overfitting and vanishing gradients. Key features: - Real-time monitoring of training metrics - Integration with TensorBoard - Automated rule-based alerts</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Amazon SageMaker Ground Truth
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
 <div id="callout-33" class="callout-33-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>A data labeling service that supports: - Human-in-the-loop labeling - Automated labeling with active learning - Integration with Amazon Mechanical Turk and private workforce</p>
+<p>A fully integrated development environment (IDE) for machine learning with a single, web-based visual interface. Provides capabilities for data preparation, model building, training, debugging, and deployment.</p>
 </div>
 </div>
 </div>
@@ -729,13 +737,13 @@ Amazon SageMaker Ground Truth
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon SageMaker Data Wrangler
+Built-in SageMaker Algorithms
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-34" class="callout-34-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Simplifies data preparation and feature engineering with: - Pre-built data transformations - Automated data quality checks - Integration with SageMaker Pipelines</p>
+<p>Prebuilt algorithms optimized for performance and scalability: - Linear Learner (Regression, Classification) - XGBoost (Gradient Boosting) - DeepAR (Time Series Forecasting) - BlazingText (Word2Vec, Text Classification) - Object Detection (Image Analysis) - Image Classification (ResNet, VGG, etc.) - Semantic Segmentation - Factorization Machines (Recommender Systems) - Neural Topic Model (Topic Modeling) - K-Means Clustering - PCA (Dimensionality Reduction) - LDA (Latent Dirichlet Allocation) - Sequence-to-Sequence (Translation, Text Generation) - Random Cut Forest (Anomaly Detection) - And more…</p>
 </div>
 </div>
 </div>
@@ -745,11 +753,155 @@ Amazon SageMaker Data Wrangler
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Amazon SageMaker Clarify
+Amazon SageMaker Pipelines
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A CI/CD service for automating machine learning workflows, including data preprocessing, model training, and deployment. Features include: - Step-based workflow definition - Integration with SageMaker Training, Processing, and Model Registry - Lineage tracking and experiment management - Execution via SDK or AWS Console</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker Model Monitor
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Continuously monitors deployed models for data drift and quality issues. Key features: - Baseline creation from training data - Monitoring statistics and visualizations - Alerts and automated remediation - Integration with SageMaker Pipelines</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker Inference &amp; Deployment
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-37" class="callout-37-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Multiple options for deploying models: - <strong>Real-time inference</strong>: Deploy models as endpoints with auto-scaling - <strong>Batch Transform</strong>: Process large datasets asynchronously - <strong>Serverless inference</strong>: Deploy without managing infrastructure - <strong>Edge deployment</strong>: Use SageMaker Edge Manager for on-device inference</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker APIs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>SageMaker provides SDKs and APIs for integrating ML into applications: - <strong>Boto3 (Python SDK)</strong>: Automate SageMaker workflows - <strong>SageMaker SDK</strong>: Train, deploy, and manage models - <strong>SageMaker JumpStart</strong>: Access pre-trained models and solutions - <strong>Model Registry API</strong>: Manage model versions and deployments</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker Feature Store
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A fully managed repository to store, update, and retrieve ML features. Supports: - Online and offline stores for low-latency and batch processing - Feature versioning and governance - Integration with SageMaker Pipelines and Model Monitor</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker Autopilot
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Automates model selection, hyperparameter tuning, and feature engineering. Provides: - Explainability reports - Candidate model evaluation - Deployable models without manual tuning</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker Debugger
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-41" class="callout-41-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Automatically detects training issues, such as overfitting and vanishing gradients. Key features: - Real-time monitoring of training metrics - Integration with TensorBoard - Automated rule-based alerts</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker Ground Truth
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A data labeling service that supports: - Human-in-the-loop labeling - Automated labeling with active learning - Integration with Amazon Mechanical Turk and private workforce</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker Data Wrangler
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Simplifies data preparation and feature engineering with: - Pre-built data transformations - Automated data quality checks - Integration with SageMaker Pipelines</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon SageMaker Clarify
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-44" class="callout-44-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Provides explainability and bias detection tools: - Feature importance analysis - Bias detection in datasets and models - Integration with Model Monitor for ongoing fairness assessment</p>
 </div>
@@ -760,7 +912,7 @@ Amazon SageMaker Clarify
 <section id="security-networking" class="level2">
 <h2 class="anchored" data-anchor-id="security-networking">Security &amp; Networking</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -769,20 +921,20 @@ Amazon VPC Components
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div id="callout-45" class="callout-45-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>VPC:</strong> A private, isolated cloud network.</li>
 <li><strong>Subnets:</strong> Segments of VPC IP address ranges.</li>
 <li><strong>Internet Gateway:</strong> Enables internet access for VPC.</li>
 <li><strong>NAT Gateway:</strong> Allows private subnets to access the internet securely.</li>
-<li><strong>Security Groups:</strong> Instance-level firewallsfor controlling inbound/outbound traffic.</li>
+<li><strong>Security Groups:</strong> Instance-level firewalls for controlling inbound/outbound traffic.</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -791,7 +943,7 @@ AWS Key Management Service (KMS)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-37" class="callout-37-contents callout-collapse collapse">
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A fully managed service that makes it easy to create, control, and use cryptographic keys to encrypt your data.</p>
 </div>
@@ -802,7 +954,7 @@ AWS Key Management Service (KMS)
 <section id="devops-cicd" class="level2">
 <h2 class="anchored" data-anchor-id="devops-cicd">DevOps &amp; CI/CD</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -811,14 +963,14 @@ AWS CodePipeline
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div id="callout-47" class="callout-47-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A fully managed continuous integration and continuous delivery (CI/CD) service that automates software release pipelines.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-48-contents" aria-controls="callout-48" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -827,7 +979,7 @@ Containers &amp; Orchestration
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-39" class="callout-39-contents callout-collapse collapse">
+<div id="callout-48" class="callout-48-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>Docker:</strong> A platform for building, shipping, and running applications in containers.</li>
@@ -843,7 +995,7 @@ Containers &amp; Orchestration
 <section id="monitoring-management" class="level2">
 <h2 class="anchored" data-anchor-id="monitoring-management">Monitoring &amp; Management</h2>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-49-contents" aria-controls="callout-49" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -852,14 +1004,14 @@ Amazon CloudWatch
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div id="callout-49" class="callout-49-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A monitoring and observability service for logs, metrics, alarms, and application performance.</p>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-50-contents" aria-controls="callout-50" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -868,16 +1020,149 @@ AWS Glue (ETL)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-41" class="callout-41-contents callout-collapse collapse">
+<div id="callout-50" class="callout-50-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A fully managed ETL (Extract, Transform, Load) service that prepares and integrates data for analytics and machine learning.</p>
 </div>
 </div>
 </div>
 <hr>
-<pre class="{css}"><code>.callout-note {
-  margin-bottom: 1em;
-}</code></pre>
+</section>
+<section id="application-integration" class="level2">
+<h2 class="anchored" data-anchor-id="application-integration">Application Integration</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-51-contents" aria-controls="callout-51" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon EventBridge
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-51" class="callout-51-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A serverless event bus service that makes it easy to connect applications using data from your own applications, integrated Software-as-a-Service (SaaS) applications, and AWS services.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-52-contents" aria-controls="callout-52" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon Managed Workflows for Apache Airflow (Amazon MWAA)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-52" class="callout-52-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A managed orchestration service for Apache Airflow that makes it easy to set up and operate end-to-end data pipelines in the cloud.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-53-contents" aria-controls="callout-53" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon Simple Notification Service (Amazon SNS)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-53" class="callout-53-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-54-contents" aria-controls="callout-54" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Amazon Simple Queue Service (Amazon SQS)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-54" class="callout-54-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-55-contents" aria-controls="callout-55" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AWS Step Functions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-55" class="callout-55-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A serverless orchestration service that lets you combine AWS Lambda functions and other AWS services to build business-critical applications.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="cloud-financial-management" class="level2">
+<h2 class="anchored" data-anchor-id="cloud-financial-management">Cloud Financial Management</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-56-contents" aria-controls="callout-56" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AWS Billing and Cost Management
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-56" class="callout-56-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A service that helps you pay your AWS bill, monitor your usage, and budget your costs.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-57-contents" aria-controls="callout-57" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AWS Budgets
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-57" class="callout-57-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A service that lets you set custom cost and usage budgets and receive alerts when you exceed them.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-58-contents" aria-controls="callout-58" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+AWS Cost Explorer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-58" class="callout-58-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A service that enables you to visualize, understand, and manage your AWS costs and usage over time.</p>
+</div>
+</div>
+</div>
+<hr>
 
 
 </section>

@@ -1,0 +1,92 @@
+---
+title: "Amazon SageMaker Pipelines: Real-World Examples"
+author: "Ravi Kalia"
+date: "2025-02-03"
+format: html
+---
+
+# Introduction
+Amazon SageMaker Pipelines provide a way to automate and manage machine learning workflows. They help in orchestrating ML steps, such as data processing, training, and deployment.
+
+## Example 1: Basic SageMaker Pipeline with Preprocessing and Training
+
+```python
+import boto3
+import sagemaker
+from sagemaker.workflow.pipeline import Pipeline
+from sagemaker.workflow.steps import ProcessingStep, TrainingStep
+from sagemaker.processing import ScriptProcessor
+from sagemaker.sklearn.estimator import SKLearn
+from sagemaker.estimator import Estimator
+
+sagemaker_session = sagemaker.Session()
+role = sagemaker.get_execution_role()
+
+# Step 1: Preprocessing
+sklearn_processor = ScriptProcessor(
+    image_uri=sagemaker.image_uris.retrieve("sklearn", boto3.Session().region_name, version="0.23-1"),
+    role=role,
+    instance_count=1,
+    instance_type="ml.m5.large",
+)
+
+step_preprocess = ProcessingStep(
+    name="PreprocessData",
+    processor=sklearn_processor,
+    code="preprocessing.py",
+    outputs=[],
+)
+
+# Step 2: Model Training
+estimator = Estimator(
+    image_uri=sagemaker.image_uris.retrieve("xgboost", boto3.Session().region_name, "latest"),
+    role=role,
+    instance_count=1,
+    instance_type="ml.m5.large",
+    hyperparameters={"max_depth": 5, "eta": 0.2, "objective": "reg:squarederror"},
+)
+
+step_train = TrainingStep(
+    name="TrainModel",
+    estimator=estimator,
+    inputs={},
+)
+
+# Define Pipeline
+pipeline = Pipeline(
+    name="BasicPipeline",
+    steps=[step_preprocess, step_train],
+)
+
+pipeline.upsert(role_arn=role)
+pipeline.start()
+```
+
+## Example 2: SageMaker Pipeline with Model Evaluation
+
+```python
+from sagemaker.workflow.steps import ModelStep
+from sagemaker.model import Model
+
+model = Model(
+    image_uri=sagemaker.image_uris.retrieve("xgboost", boto3.Session().region_name, "latest"),
+    model_data="s3://my-bucket/model.tar.gz",
+    role=role,
+)
+
+step_register = ModelStep(
+    name="RegisterModel",
+    model=model,
+)
+
+pipeline = Pipeline(
+    name="PipelineWithEvaluation",
+    steps=[step_preprocess, step_train, step_register],
+)
+
+pipeline.upsert(role_arn=role)
+pipeline.start()
+```
+
+# Conclusion
+SageMaker Pipelines help in automating ML workflows efficiently. These examples demonstrate basic and advanced workflows, including preprocessing, training, and model registration.

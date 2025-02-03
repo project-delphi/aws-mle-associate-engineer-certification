@@ -1,0 +1,145 @@
+---
+title: "Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA"
+author: "Ravi Kalia"
+date: "2025-02-03"
+format: html
+---
+
+# Introduction
+
+This document compares AWS streaming solutions: **Kinesis Data Streams**, **Kinesis Data Firehose**, **Amazon Managed Streaming for Apache Kafka (MSK)**, and **Amazon Managed Workflows for Apache Airflow (AMAA)**. We'll explore their use cases, differences, and provide code examples.
+
+---
+
+# Overview of Services
+
+## Kinesis Data Streams
+AWS **Kinesis Data Streams** is a real-time streaming service for collecting, processing, and analyzing large volumes of data. It provides low-latency access and supports custom consumer applications.
+
+### Key Features:
+- Real-time data processing
+- Custom applications using AWS SDKs
+- Retention period up to 7 days
+
+### Sample Code: Writing to Kinesis Data Stream
+
+```python
+import boto3
+import json
+
+def put_record_to_kinesis(stream_name, data):
+    kinesis_client = boto3.client('kinesis')
+    response = kinesis_client.put_record(
+        StreamName=stream_name,
+        Data=json.dumps(data),
+        PartitionKey="partition-1"
+    )
+    return response
+
+# Example usage
+record = {"event": "click", "user": "12345"}
+put_record_to_kinesis("my-stream", record)
+```
+
+## Kinesis Data Firehose
+AWS **Kinesis Data Firehose** is a managed service that loads streaming data into data lakes, warehouses, or analytics services. Unlike Data Streams, Firehose handles buffering and batch writing.
+
+### Key Features:
+- Fully managed with automatic scaling
+- Supports S3, Redshift, Elasticsearch, and Splunk as destinations
+- No custom consumer applications required
+
+### Sample Code: Writing to Firehose
+
+```python
+import boto3
+import json
+
+def put_record_to_firehose(delivery_stream_name, data):
+    firehose_client = boto3.client('firehose')
+    response = firehose_client.put_record(
+        DeliveryStreamName=delivery_stream_name,
+        Record={"Data": json.dumps(data) + "\n"}
+    )
+    return response
+
+# Example usage
+record = {"event": "purchase", "amount": 100}
+put_record_to_firehose("my-firehose-stream", record)
+```
+
+## Amazon Managed Streaming for Apache Kafka (MSK)
+MSK provides a **fully managed Kafka cluster** that integrates with AWS services. It’s ideal for applications needing open-source Kafka features.
+
+### Key Features:
+- Fully managed Kafka clusters
+- Secure with IAM authentication
+- Supports standard Kafka clients
+
+### Sample Code: Producing Messages to Kafka
+
+```python
+from kafka import KafkaProducer
+import json
+
+producer = KafkaProducer(
+    bootstrap_servers=['b-1.msk-cluster.amazonaws.com:9092'],
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
+)
+
+producer.send("my-topic", {"event": "login", "user": "user_123"})
+producer.flush()
+```
+
+## Amazon Managed Workflows for Apache Airflow (AMAA)
+AMAA is a managed **workflow orchestration service** based on Apache Airflow. Unlike real-time streaming services, it is used for **data pipeline scheduling and orchestration**.
+
+### Key Features:
+- Fully managed Airflow environment
+- DAG-based workflow scheduling
+- Integrates with AWS services
+
+### Sample Code: Defining an Airflow DAG in AMAA
+
+```python
+from airflow import DAG
+from airflow.operators.dummy import DummyOperator
+from airflow.operators.python import PythonOperator
+from datetime import datetime
+
+def my_task():
+    print("Running my task")
+
+default_args = {"start_date": datetime(2024, 2, 1)}
+
+dag = DAG("my_dag", default_args=default_args, schedule_interval="@daily")
+
+start = DummyOperator(task_id="start", dag=dag)
+task = PythonOperator(task_id="run_task", python_callable=my_task, dag=dag)
+
+start >> task
+```
+
+---
+
+# Comparison Table
+
+| Feature | Kinesis Data Streams | Kinesis Firehose | MSK | AMAA |
+|---------|---------------------|------------------|-----|------|
+| Use Case | Real-time analytics | Data lake ingestion | Event-driven streaming | Workflow automation |
+| Custom Consumers | Yes | No | Yes | No |
+| Latency | Low | Medium | Low | Scheduled |
+| Integration | AWS SDKs | S3, Redshift, Elasticsearch | Kafka ecosystem | DAG-based workflows |
+
+---
+
+# Conclusion
+
+Each AWS streaming service serves a different purpose:
+- **Kinesis Data Streams**: Real-time custom streaming apps
+- **Kinesis Firehose**: Managed ETL to AWS data stores
+- **MSK**: Open-source Kafka for event-driven architectures
+- **AMAA**: Workflow automation with Airflow
+
+Choose the right service based on your use case!
+

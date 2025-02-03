@@ -3,31 +3,35 @@ project:
   output-dir: docs  # GitHub Pages will serve from the 'docs/' folder
 
 website:
-  title: "AWS Services Comparison"
+  title: "AWS Machine Learning Associate Certification"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - href: aws-flashcards.qmd
-        text: AWS Services Flashcards
+      - href: aws-definitions.qmd
+        text: AWS Services Definitions
       - href: aws-comparison-tables.qmd
         text: AWS Comparisons Table
       - text: "Examples"
         menu:
           - text: "SageMaker Pipelines"
             href: examples/sagemaker-pipelines.qmd
+          - text: "SageMaker Processing vs Training vs Hosting"
+            href: examples/sagemaker-processing-vs-training-vs-hosting.qmd
+          - text: "Apache Flink vs Kinesis Data Analytics"
+            href: examples/flink-vs-kinesis.qmd
           - text: "Storage: S3 vs EFS vs FSx vs EBS"
             href: examples/storage.qmd
-          - text: "Streaming: Kinesis vs MSK"
-            href: examples/databases.qmd
+          - text: "Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA"
+            href: examples/datastreams.qmd
           - text: "AI/ML: SageMaker vs Bedrock"
-            href: examples/ai-ml.qmd
-          - text: "Data: Glue vs DataBrew"
-            href: examples/data.qmd
+            href: examples/sagemaker-vs-bedrock.qmd
+          - text: "Glue Data Catalog vs Glue DataBrew vs Glue Studio"
+            href: examples/glue.qmd
           - text: "Kendra vs OpenSearch"
             href: examples/search.qmd
           - text: "EMR vs Hadoop vs Spark"
-            href: examples/emr_vs_hadoop_vs_spark.qmd
+            href: examples/emr-vs-hadoop-vs-spark.qmd
 
 format:
   html:
