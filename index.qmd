@@ -1,5 +1,5 @@
 ---
-title: "aws-mle-associate-engineer-certification"
+title: "AWS MLE Engineer Certification Study Guide"
 ---
 
 Welcome, this is a work in progress. I'm creating this site to help me study for the AWS Machine Learning Engineer Associate certification. I'll be adding more content over time, so check back for updates.

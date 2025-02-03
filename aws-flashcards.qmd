@@ -80,6 +80,78 @@ A natural language processing (NLP) service that uses machine learning to analyz
 A machine learning service for building real-time personalized recommendations.
 :::
 
+::: {.callout-note collapse="true"}
+### Amazon Lex
+A fully managed AI service for building conversational interfaces using speech and text.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Polly
+A text-to-speech service that converts written text into lifelike speech.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Rekognition
+A deep learning-based image and video analysis service for object detection, facial recognition, and content moderation.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Textract
+An AI service that automatically extracts text, handwriting, and data from scanned documents.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Transcribe
+A speech-to-text service that uses machine learning to convert spoken language into written text.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Kendra
+An intelligent search service that uses machine learning to provide highly accurate search results.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon SageMaker
+A fully managed service that provides tools to build, train, and deploy machine learning models at scale.
+
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Panorama
+A machine learning appliance and software development kit (SDK) that enables adding computer vision to on-premises cameras.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon CodeWhisperer
+An AI-powered coding assistant that provides real-time code suggestions.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon HealthLake
+A HIPAA-eligible service that uses machine learning to store, transform, and analyze health data.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Forecast
+A time-series forecasting service that uses machine learning to predict future trends.
+
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon Fraud Detector
+An AI service that helps identify potentially fraudulent activities in real-time.
+
+:::
+
 ---
 
 ## SageMaker Ecosystem
@@ -87,6 +159,7 @@ A machine learning service for building real-time personalized recommendations.
 ::: {.callout-note collapse="true"}
 ### Amazon SageMaker Studio
 A fully integrated development environment (IDE) for machine learning with a single, web-based visual interface.
+
 :::
 
 ::: {.callout-note collapse="true"}
@@ -98,6 +171,25 @@ Prebuilt algorithms optimized for performance and scalability:
 - BlazingText
 - Object Detection
 - And more...
+
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Lookout for Vision
+A machine learning service that uses computer vision to automate visual inspection of industrial products.
+
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Lookout for Equipment
+A machine learning service that uses sensor data to detect abnormal equipment behavior and prevent costly downtime.
+
+:::
+
+::: {.callout-note collapse="true"}
+### AWS Lookout for Metrics
+A machine learning service that uses anomaly detection to monitor business metrics and alert on unexpected changes.
+
 :::
 
 ---
@@ -111,11 +203,13 @@ Prebuilt algorithms optimized for performance and scalability:
 - **Internet Gateway:** Enables internet access for VPC.
 - **NAT Gateway:** Allows private subnets to access the internet securely.
 - **Security Groups:** Instance-level firewalls for controlling inbound/outbound traffic.
+
 :::
 
 ::: {.callout-note collapse="true"}
 ### AWS Key Management Service (KMS)
 A fully managed service that makes it easy to create, control, and use cryptographic keys to encrypt your data.
+
 :::
 
 ---
@@ -125,6 +219,7 @@ A fully managed service that makes it easy to create, control, and use cryptogra
 ::: {.callout-note collapse="true"}
 ### AWS CodePipeline
 A fully managed continuous integration and continuous delivery (CI/CD) service that automates software release pipelines.
+
 :::
 
 ::: {.callout-note collapse="true"}
@@ -133,6 +228,7 @@ A fully managed continuous integration and continuous delivery (CI/CD) service t
 - **Amazon ECS:** A scalable container orchestration service.
 - **Amazon ECR:** A fully managed container registry for storing Docker images.
 - **Amazon EKS:** A managed Kubernetes service for running containerized applications.
+
 :::
 
 ---
@@ -155,3 +251,4 @@ A fully managed ETL (Extract, Transform, Load) service that prepares and integra
 .callout-note {
   margin-bottom: 1em;
 }
+```
