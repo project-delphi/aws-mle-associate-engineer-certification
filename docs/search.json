@@ -1,0 +1,142 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This site is a collection of notes, comparisons and tools that I’ve found useful while studying for AWS MLE Associate certifications. It’s a work in progress, and I’ll be adding more content over time."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "aws-mle-associate-engineer-certification",
+    "section": "",
+    "text": "Welcome, this is a work in progress. I’m creating this site to help me study for the AWS Machine Learning Engineer Associate certification. I’ll be adding more content over time, so check back for updates."
+  },
+  {
+    "objectID": "aws-flashcards.html",
+    "href": "aws-flashcards.html",
+    "title": "AWS Services Flashcards",
+    "section": "",
+    "text": "Click each dropdown to reveal the definition/explanation of each service."
+  },
+  {
+    "objectID": "aws-flashcards.html#instructions",
+    "href": "aws-flashcards.html#instructions",
+    "title": "AWS Services Flashcards",
+    "section": "",
+    "text": "Click each dropdown to reveal the definition/explanation of each service."
+  },
+  {
+    "objectID": "aws-flashcards.html#data-services",
+    "href": "aws-flashcards.html#data-services",
+    "title": "AWS Services Flashcards",
+    "section": "Data Services",
+    "text": "Data Services\n\n\n\n\n\n\nAmazon Kinesis Data Streams\n\n\n\n\n\nA scalable and durable real-time data streaming service that can continuously capture gigabytes of data per second from hundreds of thousands of sources.\n\n\n\n\n\n\n\n\n\nAmazon Kinesis Data Firehose\n\n\n\n\n\nA fully managed service that scales automatically to match the throughput of your data. It can batch, compress, and encrypt data before loading it into storage and analytics services.\n\n\n\n\n\n\n\n\n\nAmazon MSK (Managed Streaming for Apache Kafka)\n\n\n\n\n\nA fully managed service that makes it easy to build and run applications using Apache Kafka, an open-source distributed event streaming platform."
+  },
+  {
+    "objectID": "aws-flashcards.html#storage-solutions",
+    "href": "aws-flashcards.html#storage-solutions",
+    "title": "AWS Services Flashcards",
+    "section": "Storage Solutions",
+    "text": "Storage Solutions\n\n\n\n\n\n\nAmazon S3\n\n\n\n\n\nHighly scalable object storage service offering industry-leading durability, security, and performance. Store and retrieve any amount of data from anywhere.\n\n\n\n\n\n\n\n\n\nAmazon EBS, FSx, and EFS\n\n\n\n\n\n\nAmazon EBS (Elastic Block Store): Block-level storage for EC2 instances.\nAmazon FSx: Fully managed file storage for Windows, Lustre, and other file systems.\nAmazon EFS (Elastic File System): Fully managed, scalable NFS file storage."
+  },
+  {
+    "objectID": "aws-flashcards.html#big-data-analytics",
+    "href": "aws-flashcards.html#big-data-analytics",
+    "title": "AWS Services Flashcards",
+    "section": "Big Data & Analytics",
+    "text": "Big Data & Analytics\n\n\n\n\n\n\nApache Hadoop\n\n\n\n\n\nAn open-source framework for distributed processing of large datasets across clusters of computers.\n\n\n\n\n\n\n\n\n\nAWS Glue\n\n\n\n\n\nA fully managed extract, transform, and load (ETL) service that simplifies data preparation for analytics.\n\n\n\n\n\n\n\n\n\nAmazon EMR (Elastic MapReduce)\n\n\n\n\n\nA cloud big data platform for processing vast amounts of data using open-source frameworks like Apache Spark, Hadoop, and Presto."
+  },
+  {
+    "objectID": "aws-flashcards.html#aiml-services",
+    "href": "aws-flashcards.html#aiml-services",
+    "title": "AWS Services Flashcards",
+    "section": "AI/ML Services",
+    "text": "AI/ML Services\n\n\n\n\n\n\nAmazon Bedrock\n\n\n\n\n\nA fully managed service that provides access to foundation models from leading AI providers via a single API.\n\n\n\n\n\n\n\n\n\nAmazon Comprehend\n\n\n\n\n\nA natural language processing (NLP) service that uses machine learning to analyze text for insights, such as sentiment and key phrases.\n\n\n\n\n\n\n\n\n\nAmazon Personalize\n\n\n\n\n\nA machine learning service for building real-time personalized recommendations."
+  },
+  {
+    "objectID": "aws-flashcards.html#sagemaker-ecosystem",
+    "href": "aws-flashcards.html#sagemaker-ecosystem",
+    "title": "AWS Services Flashcards",
+    "section": "SageMaker Ecosystem",
+    "text": "SageMaker Ecosystem\n\n\n\n\n\n\nAmazon SageMaker Studio\n\n\n\n\n\nA fully integrated development environment (IDE) for machine learning with a single, web-based visual interface.\n\n\n\n\n\n\n\n\n\nBuilt-in SageMaker Algorithms\n\n\n\n\n\nPrebuilt algorithms optimized for performance and scalability: - Linear Learner - XGBoost - DeepAR - BlazingText - Object Detection - And more…"
+  },
+  {
+    "objectID": "aws-flashcards.html#security-networking",
+    "href": "aws-flashcards.html#security-networking",
+    "title": "AWS Services Flashcards",
+    "section": "Security & Networking",
+    "text": "Security & Networking\n\n\n\n\n\n\nAmazon VPC Components\n\n\n\n\n\n\nVPC: A private, isolated cloud network.\nSubnets: Segments of VPC IP address ranges.\nInternet Gateway: Enables internet access for VPC.\nNAT Gateway: Allows private subnets to access the internet securely.\nSecurity Groups: Instance-level firewalls for controlling inbound/outbound traffic.\n\n\n\n\n\n\n\n\n\n\nAWS Key Management Service (KMS)\n\n\n\n\n\nA fully managed service that makes it easy to create, control, and use cryptographic keys to encrypt your data."
+  },
+  {
+    "objectID": "aws-flashcards.html#devops-cicd",
+    "href": "aws-flashcards.html#devops-cicd",
+    "title": "AWS Services Flashcards",
+    "section": "DevOps & CI/CD",
+    "text": "DevOps & CI/CD\n\n\n\n\n\n\nAWS CodePipeline\n\n\n\n\n\nA fully managed continuous integration and continuous delivery (CI/CD) service that automates software release pipelines.\n\n\n\n\n\n\n\n\n\nContainers & Orchestration\n\n\n\n\n\n\nDocker: A platform for building, shipping, and running applications in containers.\nAmazon ECS: A scalable container orchestration service.\nAmazon ECR: A fully managed container registry for storing Docker images.\nAmazon EKS: A managed Kubernetes service for running containerized applications."
+  },
+  {
+    "objectID": "aws-flashcards.html#monitoring-management",
+    "href": "aws-flashcards.html#monitoring-management",
+    "title": "AWS Services Flashcards",
+    "section": "Monitoring & Management",
+    "text": "Monitoring & Management\n\n\n\n\n\n\nAmazon CloudWatch\n\n\n\n\n\nA monitoring and observability service for logs, metrics, alarms, and application performance.\n\n\n\n\n\n\n\n\n\nAWS Glue (ETL)\n\n\n\n\n\nA fully managed ETL (Extract, Transform, Load) service that prepares and integrates data for analytics and machine learning.\n\n\n\n\n.callout-note { margin-bottom: 1em; }"
+  },
+  {
+    "objectID": "aws-comparison-tables.html",
+    "href": "aws-comparison-tables.html",
+    "title": "AWS Services Comparison Tables",
+    "section": "",
+    "text": "Feature\nKinesis Data Streams\nAWS Firehose\nMSK (Managed Kafka)\n\n\n\n\nLatency\nReal-time (sub-second)\nNear real-time (60s minimum)\nReal-time (sub-second)\n\n\nScaling\nManual provisioning of shards\nAutomatic scaling\nManual provisioning of brokers\n\n\nData Retention\n24h by default, up to 365 days\nNo retention (immediate processing)\nConfigurable, unlimited\n\n\nUse Cases\nReal-time analytics, processing logs\nData loading into S3, Redshift, ES\nEvent streaming, log aggregation\n\n\nThroughput\nMB/s per shard\nAutomatic up to GB/s\nMB/s per broker\n\n\nCost Model\nPer shard hour\nPer GB processed\nPer broker hour"
+  },
+  {
+    "objectID": "aws-comparison-tables.html#streaming-services-comparison",
+    "href": "aws-comparison-tables.html#streaming-services-comparison",
+    "title": "AWS Services Comparison Tables",
+    "section": "",
+    "text": "Feature\nKinesis Data Streams\nAWS Firehose\nMSK (Managed Kafka)\n\n\n\n\nLatency\nReal-time (sub-second)\nNear real-time (60s minimum)\nReal-time (sub-second)\n\n\nScaling\nManual provisioning of shards\nAutomatic scaling\nManual provisioning of brokers\n\n\nData Retention\n24h by default, up to 365 days\nNo retention (immediate processing)\nConfigurable, unlimited\n\n\nUse Cases\nReal-time analytics, processing logs\nData loading into S3, Redshift, ES\nEvent streaming, log aggregation\n\n\nThroughput\nMB/s per shard\nAutomatic up to GB/s\nMB/s per broker\n\n\nCost Model\nPer shard hour\nPer GB processed\nPer broker hour"
+  },
+  {
+    "objectID": "aws-comparison-tables.html#storage-services-comparison",
+    "href": "aws-comparison-tables.html#storage-services-comparison",
+    "title": "AWS Services Comparison Tables",
+    "section": "Storage Services Comparison",
+    "text": "Storage Services Comparison\n\n\n\n\n\n\n\n\n\n\nFeature\nS3\nEBS\nEFS\nFSx\n\n\n\n\nType\nObject Storage\nBlock Storage\nFile System\nFile System\n\n\nLatency\nms (varies)\nSub-ms\nms\nSub-ms to ms\n\n\nScalability\nUnlimited\nUp to 64TB per volume\nAutomatic\nAutomatic\n\n\nAccess Pattern\nWeb/API\nMount as drive\nNFS mount\nSMB/Lustre\n\n\nUse Cases\nStatic files, backups\nOS drives, databases\nShared files, web serving\nWindows/HPC workloads\n\n\nAvailability\n99.99%\n99.99%\n99.99%\n99.99%\n\n\nCost Model\nGB-month + requests\nGB-month provisioned\nGB-month used\nGB-month + throughput"
+  },
+  {
+    "objectID": "aws-comparison-tables.html#aiml-services-comparison",
+    "href": "aws-comparison-tables.html#aiml-services-comparison",
+    "title": "AWS Services Comparison Tables",
+    "section": "AI/ML Services Comparison",
+    "text": "AI/ML Services Comparison\n\n\n\n\n\n\n\n\n\n\nFeature\nComprehend\nPersonalize\nBedrock\nSageMaker\n\n\n\n\nType\nManaged NLP\nManaged Recommendations\nFoundation Models\nML Platform\n\n\nTraining Required\nNo\nYes (with your data)\nNo\nYes\n\n\nCustomization\nLimited\nHigh\nModel fine-tuning\nComplete control\n\n\nLatency\n~100ms\n~100ms\nVaries by model\nDepends on deployment\n\n\nUse Cases\nText analysis\nRecommendations\nGen AI applications\nCustom ML models\n\n\nScaling\nAutomatic\nAutomatic\nAutomatic\nManual/Auto\n\n\nCost Model\nPer unit processed\nPer training hour + predictions\nPer token/request\nPer instance hour"
+  },
+  {
+    "objectID": "aws-comparison-tables.html#container-services-comparison",
+    "href": "aws-comparison-tables.html#container-services-comparison",
+    "title": "AWS Services Comparison Tables",
+    "section": "Container Services Comparison",
+    "text": "Container Services Comparison\n\n\n\n\n\n\n\n\n\n\nFeature\nECS\nEKS\nApp Runner\nLambda Container\n\n\n\n\nComplexity\nLow\nHigh\nVery Low\nLow\n\n\nControl\nModerate\nHigh\nLow\nLow\n\n\nScaling\nAuto/Manual\nAuto/Manual\nAutomatic\nAutomatic\n\n\nMax Container Size\n30GB\n30GB\n10GB\n10GB\n\n\nCold Start\nNo\nNo\nYes\nYes\n\n\nUse Cases\nMicroservices\nComplex orchestration\nWeb apps\nServerless containers\n\n\nCost Model\nPer task hour\nPer cluster hour + tasks\nPer vCPU/GB\nPer request + duration"
+  },
+  {
+    "objectID": "aws-comparison-tables.html#data-analytics-services-comparison",
+    "href": "aws-comparison-tables.html#data-analytics-services-comparison",
+    "title": "AWS Services Comparison Tables",
+    "section": "Data Analytics Services Comparison",
+    "text": "Data Analytics Services Comparison\n\n\n\n\n\n\n\n\n\n\nFeature\nEMR\nGlue\nAthena\nRedshift\n\n\n\n\nType\nManaged Hadoop\nETL Service\nQuery Service\nData Warehouse\n\n\nProcessing\nBatch/Stream\nBatch\nInteractive\nBatch/Interactive\n\n\nLatency\nMinutes\nMinutes\nSeconds\nSub-second to seconds\n\n\nScale\nManual clusters\nAutomatic\nAutomatic\nManual/Auto\n\n\nUse Cases\nBig data processing\nData preparation\nAd-hoc queries\nData warehousing\n\n\nSetup Time\nHours\nMinutes\nMinutes\nHours\n\n\nCost Model\nPer instance hour\nPer DPU hour\nPer TB scanned\nPer node hour"
+  },
+  {
+    "objectID": "aws-comparison-tables.html#monitoring-services-comparison",
+    "href": "aws-comparison-tables.html#monitoring-services-comparison",
+    "title": "AWS Services Comparison Tables",
+    "section": "Monitoring Services Comparison",
+    "text": "Monitoring Services Comparison\n\n\n\n\n\n\n\n\n\n\nFeature\nCloudWatch\nX-Ray\nPrometheus\nGrafana\n\n\n\n\nType\nMetrics/Logs\nTracing\nMetrics\nVisualization\n\n\nData Retention\n15 months\n30 days\nConfigurable\nDepends on source\n\n\nGranularity\n1s to 1h\nPer request\nCustom\nCustom\n\n\nUse Cases\nBasic monitoring\nDistributed tracing\nContainer monitoring\nDashboarding\n\n\nIntegration\nAWS native\nAWS services\nKubernetes\nMultiple sources\n\n\nCost Model\nPer metric/GB\nPer trace\nStorage based\nBy features"
+  },
+  {
+    "objectID": "aws-comparison-tables.html#ml-model-deployment-options-comparison",
+    "href": "aws-comparison-tables.html#ml-model-deployment-options-comparison",
+    "title": "AWS Services Comparison Tables",
+    "section": "ML Model Deployment Options Comparison",
+    "text": "ML Model Deployment Options Comparison\n\n\n\n\n\n\n\n\n\n\nFeature\nSageMaker Endpoints\nSageMaker Serverless\nLambda\nECS/EKS\n\n\n\n\nCold Start\nNo\nYes\nYes\nNo\n\n\nAuto-scaling\nYes\nYes\nYes\nYes\n\n\nMax Duration\nUnlimited\n15 min\n15 min\nUnlimited\n\n\nCost Model\nPer instance hour\nPer request\nPer request\nPer container\n\n\nUse Cases\nSteady traffic\nVariable traffic\nLightweight inference\nCustom deployment\n\n\nMax Model Size\nInstance dependent\n10GB\n10GB\nNo limit\n\n\nConcurrency\nHigh\nLimited\nLimited\nHigh"
+  }
+]

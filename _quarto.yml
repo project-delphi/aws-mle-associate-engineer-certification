@@ -1,0 +1,18 @@
+project:
+  type: website
+  output-dir: docs  # GitHub Pages will serve from the 'docs/' folder
+
+website:
+  title: "AWS Services Comparison"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: aws-flashcards.qmd
+        text: AWS Services Flashcards
+      - href: aws-comparison-tables.qmd
+        text: AWS Comparisons
+
+format:
+  html:
+    theme: cosmo
