@@ -1,5 +1,5 @@
 ---
-title: "AWS Services Comparison Tables"
+title: "AWS Comparison Tables"
 format: html
 ---
 

@@ -11,7 +11,23 @@ website:
       - href: aws-flashcards.qmd
         text: AWS Services Flashcards
       - href: aws-comparison-tables.qmd
-        text: AWS Comparisons
+        text: AWS Comparisons Table
+      - text: "Examples"
+        menu:
+          - text: "SageMaker Pipelines"
+            href: examples/sagemaker-pipelines.qmd
+          - text: "Storage: S3 vs EFS vs FSx vs EBS"
+            href: examples/storage.qmd
+          - text: "Streaming: Kinesis vs MSK"
+            href: examples/databases.qmd
+          - text: "AI/ML: SageMaker vs Bedrock"
+            href: examples/ai-ml.qmd
+          - text: "Data: Glue vs DataBrew"
+            href: examples/data.qmd
+          - text: "Kendra vs OpenSearch"
+            href: examples/search.qmd
+          - text: "EMR vs Hadoop vs Spark"
+            href: examples/emr_vs_hadoop_vs_spark.qmd
 
 format:
   html:
