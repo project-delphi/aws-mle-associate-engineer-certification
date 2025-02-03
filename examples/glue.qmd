@@ -1,0 +1,118 @@
+---
+title: "Glue Data Catalog vs Glue DataBrew vs Glue Studio"
+author: "Ravi Kalia"
+date: "2025-02-03"
+format: html
+---
+
+# Introduction
+
+This document compares **AWS Glue Data Catalog**, **AWS Glue DataBrew**, and **AWS Glue Studio**, highlighting their use cases, differences, and providing code examples.
+
+---
+
+# Overview of Services
+
+## AWS Glue Data Catalog
+AWS **Glue Data Catalog** is a metadata repository for organizing and discovering datasets across AWS services.
+
+### Key Features:
+- Centralized metadata management
+- Schema discovery and versioning
+- Integration with Athena, Redshift, and EMR
+
+### Sample Code: Creating a Glue Database
+```python
+import boto3
+
+def create_glue_database(database_name):
+    glue_client = boto3.client('glue')
+    response = glue_client.create_database(
+        DatabaseInput={
+            'Name': database_name,
+            'Description': 'Example Glue Database'
+        }
+    )
+    return response
+
+# Example usage
+create_glue_database("my_glue_db")
+```
+
+## AWS Glue DataBrew
+AWS **Glue DataBrew** is a visual data preparation tool for cleaning and transforming data without coding.
+
+### Key Features:
+- No-code data transformation
+- Integration with S3, Redshift, and RDS
+- Automated data profiling and anomaly detection
+
+### Sample Code: Creating a DataBrew Dataset
+```python
+import boto3
+
+def create_databrew_dataset(name, s3_path, role_arn):
+    databrew_client = boto3.client('databrew')
+    response = databrew_client.create_dataset(
+        Name=name,
+        Input={
+            'S3InputDefinition': {'Bucket': s3_path}
+        },
+        RoleArn=role_arn
+    )
+    return response
+
+# Example usage
+create_databrew_dataset("my_dataset", "my-s3-bucket", "arn:aws:iam::123456789012:role/my-role")
+```
+
+## AWS Glue Studio
+AWS **Glue Studio** provides a graphical interface to visually build, run, and monitor AWS Glue ETL jobs.
+
+### Key Features:
+- Drag-and-drop interface for ETL workflows
+- Supports Spark-based transformations
+- Integration with Glue Data Catalog
+
+### Sample Code: Creating a Glue Job
+```python
+import boto3
+
+def create_glue_job(job_name, script_s3_path, role_arn):
+    glue_client = boto3.client('glue')
+    response = glue_client.create_job(
+        Name=job_name,
+        Role=role_arn,
+        Command={
+            'Name': 'glueetl',
+            'ScriptLocation': script_s3_path
+        },
+        GlueVersion='2.0'
+    )
+    return response
+
+# Example usage
+create_glue_job("my_glue_job", "s3://my-bucket/scripts/job.py", "arn:aws:iam::123456789012:role/my-role")
+```
+
+---
+
+# Comparison Table
+
+| Feature | Glue Data Catalog | Glue DataBrew | Glue Studio |
+|---------|------------------|--------------|-------------|
+| Use Case | Metadata management | Data preparation | Visual ETL development |
+| Code-Free | No | Yes | Yes |
+| Integration | Athena, Redshift, EMR | S3, Redshift, RDS | Glue ETL |
+| Processing Engine | Metadata storage | Serverless data transformations | Spark-based ETL |
+
+---
+
+# Conclusion
+
+- **Glue Data Catalog** is for organizing and discovering metadata.
+- **Glue DataBrew** is for visually transforming and preparing data.
+- **Glue Studio** is for building ETL pipelines using a graphical interface.
+
+Choose the right service based on your needs!
+

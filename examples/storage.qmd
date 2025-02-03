@@ -1,0 +1,86 @@
+---
+title: "Storage: S3 vs EFS vs FSx vs EBS"
+author: "Ravi Kalia"
+date: "2025-02-03"
+format: html
+---
+
+# Introduction
+
+AWS offers multiple storage options, each optimized for different use cases. This document compares Amazon S3, EFS, FSx, and EBS based on features, performance, and use cases.
+
+# Overview of Storage Services
+
+| Storage Service | Type | Best For | Performance | Durability | Cost |
+|----------------|------|----------|-------------|------------|------|
+| **Amazon S3** | Object Storage | Backup, Big Data, Static Content | High scalability, eventual consistency | 99.999999999% (11 9s) | Low, pay-as-you-go |
+| **Amazon EFS** | File Storage (NFS) | Shared access, containerized apps | Scales elastically, high availability | High | Medium |
+| **Amazon FSx** | Managed File System | Windows/Linux workloads, HPC | Optimized for specific workloads | High | Medium |
+| **Amazon EBS** | Block Storage | EC2 root volume, databases | Low-latency, high IOPS | High | Medium to High |
+
+# Storage Service Deep Dive
+
+## Amazon S3 (Simple Storage Service)
+
+- **Use Case**: Backup, Data Lakes, Static Websites
+- **Features**: 
+  - Scalable, durable object storage
+  - Multiple storage classes (Standard, Intelligent-Tiering, Glacier)
+  - Server-side encryption and lifecycle management
+
+### Example: Upload a File to S3 Using Boto3
+
+```python
+import boto3
+s3 = boto3.client('s3')
+s3.upload_file('local_file.txt', 'my-bucket', 'uploaded_file.txt')
+```
+
+## Amazon EFS (Elastic File System)
+
+- **Use Case**: Multi-instance shared storage, Kubernetes, Serverless
+- **Features**:
+  - POSIX-compliant, automatically scales
+  - Supports NFS protocol
+  - Mountable across multiple EC2 instances
+
+### Example: Mount EFS on an EC2 Instance
+
+```bash
+sudo mount -t nfs4 -o nfsvers=4.1 fs-0123456789abcdef0.efs.us-east-1.amazonaws.com:/ efs-mount-point
+```
+
+## Amazon FSx
+
+- **Use Case**: High-performance file storage for Windows/Linux applications
+- **Features**:
+  - Optimized for Windows File Server or Lustre (HPC)
+  - Fully managed with built-in backups
+
+### Example: Mount FSx for Windows on EC2
+
+```powershell
+New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\fs-0123456789abcdef0.example.com\share"
+```
+
+## Amazon EBS (Elastic Block Store)
+
+- **Use Case**: Low-latency storage for EC2, Databases, Big Data
+- **Features**:
+  - Persistent block storage for EC2
+  - SSD (gp3, io2) and HDD (sc1, st1) options
+  - Snapshots for backup & recovery
+
+### Example: Attach an EBS Volume to EC2
+
+```bash
+aws ec2 attach-volume --volume-id vol-0123456789abcdef0 --instance-id i-0123456789abcdef0 --device /dev/xvdf
+```
+
+# Conclusion
+- **S3**: Best for object storage, backups, and static content.
+- **EFS**: Best for shared file storage across multiple instances.
+- **FSx**: Best for high-performance Windows/Linux applications.
+- **EBS**: Best for low-latency, high-throughput block storage.
+
+Choose based on scalability, performance, and workload requirements!

@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Ravi Kalia">
+<meta name="dcterms.date" content="2025-02-03">
 
-<title>AWS Machine Learning Engineer Associate – AWS Machine Learning Associate Certification</title>
+<title>Storage: S3 vs EFS vs FSx vs EBS – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +22,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AWS Machine Learning Associate Certification</span>
     </a>
   </div>
@@ -88,15 +124,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aws-definitions.html"> 
+    <a class="nav-link" href="../aws-definitions.html"> 
 <span class="menu-text">AWS Services Definitions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aws-comparison-tables.html"> 
+    <a class="nav-link" href="../aws-comparison-tables.html"> 
 <span class="menu-text">AWS Comparisons Table</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -105,39 +141,39 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-pipelines.html">
+    <a class="dropdown-item" href="../examples/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-processing-vs-training-vs-hosting.html">
+    <a class="dropdown-item" href="../examples/sagemaker-processing-vs-training-vs-hosting.html">
  <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/flink-vs-kinesis.html">
+    <a class="dropdown-item" href="../examples/flink-vs-kinesis.html">
  <span class="dropdown-text">Apache Flink vs Kinesis Data Analytics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/storage.html">
+    <a class="dropdown-item" href="../examples/storage.html">
  <span class="dropdown-text">Storage: S3 vs EFS vs FSx vs EBS</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/datastreams.html">
+    <a class="dropdown-item" href="../examples/datastreams.html">
  <span class="dropdown-text">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-vs-bedrock.html">
+    <a class="dropdown-item" href="../examples/sagemaker-vs-bedrock.html">
  <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/glue.html">
+    <a class="dropdown-item" href="../examples/glue.html">
  <span class="dropdown-text">Glue Data Catalog vs Glue DataBrew vs Glue Studio</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/search.html">
+    <a class="dropdown-item" href="../examples/search.html">
  <span class="dropdown-text">Kendra vs OpenSearch</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/emr-vs-hadoop-vs-spark.html">
+    <a class="dropdown-item" href="../examples/emr-vs-hadoop-vs-spark.html">
  <span class="dropdown-text">EMR vs Hadoop vs Spark</span></a>
   </li>  
     </ul>
@@ -159,14 +195,26 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AWS Machine Learning Engineer Associate</h1>
+<h1 class="title">Storage: S3 vs EFS vs FSx vs EBS</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ravi Kalia </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 3, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -176,15 +224,147 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./aws-mle-associate-badge.jpeg" class="img-fluid figure-img"></p>
-<figcaption>AWS MLE Associate Badge</figcaption>
-</figure>
-</div>
-<p>Welcome, this is a work in progress. I’m creating this site to help me study for the AWS Machine Learning Engineer Associate certification. I’ll be adding more content over time, so check back for updates.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>AWS offers multiple storage options, each optimized for different use cases. This document compares Amazon S3, EFS, FSx, and EBS based on features, performance, and use cases.</p>
+</section>
+<section id="overview-of-storage-services" class="level1">
+<h1>Overview of Storage Services</h1>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 9%">
+<col style="width: 15%">
+<col style="width: 20%">
+<col style="width: 19%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Storage Service</th>
+<th>Type</th>
+<th>Best For</th>
+<th>Performance</th>
+<th>Durability</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Amazon S3</strong></td>
+<td>Object Storage</td>
+<td>Backup, Big Data, Static Content</td>
+<td>High scalability, eventual consistency</td>
+<td>99.999999999% (11 9s)</td>
+<td>Low, pay-as-you-go</td>
+</tr>
+<tr class="even">
+<td><strong>Amazon EFS</strong></td>
+<td>File Storage (NFS)</td>
+<td>Shared access, containerized apps</td>
+<td>Scales elastically, high availability</td>
+<td>High</td>
+<td>Medium</td>
+</tr>
+<tr class="odd">
+<td><strong>Amazon FSx</strong></td>
+<td>Managed File System</td>
+<td>Windows/Linux workloads, HPC</td>
+<td>Optimized for specific workloads</td>
+<td>High</td>
+<td>Medium</td>
+</tr>
+<tr class="even">
+<td><strong>Amazon EBS</strong></td>
+<td>Block Storage</td>
+<td>EC2 root volume, databases</td>
+<td>Low-latency, high IOPS</td>
+<td>High</td>
+<td>Medium to High</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="storage-service-deep-dive" class="level1">
+<h1>Storage Service Deep Dive</h1>
+<section id="amazon-s3-simple-storage-service" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-s3-simple-storage-service">Amazon S3 (Simple Storage Service)</h2>
+<ul>
+<li><strong>Use Case</strong>: Backup, Data Lakes, Static Websites</li>
+<li><strong>Features</strong>:
+<ul>
+<li>Scalable, durable object storage</li>
+<li>Multiple storage classes (Standard, Intelligent-Tiering, Glacier)</li>
+<li>Server-side encryption and lifecycle management</li>
+</ul></li>
+</ul>
+<section id="example-upload-a-file-to-s3-using-boto3" class="level3">
+<h3 class="anchored" data-anchor-id="example-upload-a-file-to-s3-using-boto3">Example: Upload a File to S3 Using Boto3</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">'local_file.txt'</span>, <span class="st">'my-bucket'</span>, <span class="st">'uploaded_file.txt'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="amazon-efs-elastic-file-system" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-efs-elastic-file-system">Amazon EFS (Elastic File System)</h2>
+<ul>
+<li><strong>Use Case</strong>: Multi-instance shared storage, Kubernetes, Serverless</li>
+<li><strong>Features</strong>:
+<ul>
+<li>POSIX-compliant, automatically scales</li>
+<li>Supports NFS protocol</li>
+<li>Mountable across multiple EC2 instances</li>
+</ul></li>
+</ul>
+<section id="example-mount-efs-on-an-ec2-instance" class="level3">
+<h3 class="anchored" data-anchor-id="example-mount-efs-on-an-ec2-instance">Example: Mount EFS on an EC2 Instance</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-t</span> nfs4 <span class="at">-o</span> nfsvers=4.1 fs-0123456789abcdef0.efs.us-east-1.amazonaws.com:/ efs-mount-point</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="amazon-fsx" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-fsx">Amazon FSx</h2>
+<ul>
+<li><strong>Use Case</strong>: High-performance file storage for Windows/Linux applications</li>
+<li><strong>Features</strong>:
+<ul>
+<li>Optimized for Windows File Server or Lustre (HPC)</li>
+<li>Fully managed with built-in backups</li>
+</ul></li>
+</ul>
+<section id="example-mount-fsx-for-windows-on-ec2" class="level3">
+<h3 class="anchored" data-anchor-id="example-mount-fsx-for-windows-on-ec2">Example: Mount FSx for Windows on EC2</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">New-PSDrive</span> <span class="op">-</span>Name <span class="st">"Z"</span> <span class="op">-</span>PSProvider FileSystem <span class="op">-</span>Root <span class="st">"\\fs-0123456789abcdef0.example.com\share"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="amazon-ebs-elastic-block-store" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-ebs-elastic-block-store">Amazon EBS (Elastic Block Store)</h2>
+<ul>
+<li><strong>Use Case</strong>: Low-latency storage for EC2, Databases, Big Data</li>
+<li><strong>Features</strong>:
+<ul>
+<li>Persistent block storage for EC2</li>
+<li>SSD (gp3, io2) and HDD (sc1, st1) options</li>
+<li>Snapshots for backup &amp; recovery</li>
+</ul></li>
+</ul>
+<section id="example-attach-an-ebs-volume-to-ec2" class="level3">
+<h3 class="anchored" data-anchor-id="example-attach-an-ebs-volume-to-ec2">Example: Attach an EBS Volume to EC2</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> ec2 attach-volume <span class="at">--volume-id</span> vol-0123456789abcdef0 <span class="at">--instance-id</span> i-0123456789abcdef0 <span class="at">--device</span> /dev/xvdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<ul>
+<li><strong>S3</strong>: Best for object storage, backups, and static content.</li>
+<li><strong>EFS</strong>: Best for shared file storage across multiple instances.</li>
+<li><strong>FSx</strong>: Best for high-performance Windows/Linux applications.</li>
+<li><strong>EBS</strong>: Best for low-latency, high-throughput block storage.</li>
+</ul>
+<p>Choose based on scalability, performance, and workload requirements!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

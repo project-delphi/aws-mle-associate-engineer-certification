@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AWS Machine Learning Engineer Associate – AWS Machine Learning Associate Certification</title>
+<title>ML Services: SageMaker vs Bedrock – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AWS Machine Learning Associate Certification</span>
     </a>
   </div>
@@ -88,15 +122,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aws-definitions.html"> 
+    <a class="nav-link" href="../aws-definitions.html"> 
 <span class="menu-text">AWS Services Definitions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aws-comparison-tables.html"> 
+    <a class="nav-link" href="../aws-comparison-tables.html"> 
 <span class="menu-text">AWS Comparisons Table</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -105,39 +139,39 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-pipelines.html">
+    <a class="dropdown-item" href="../examples/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-processing-vs-training-vs-hosting.html">
+    <a class="dropdown-item" href="../examples/sagemaker-processing-vs-training-vs-hosting.html">
  <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/flink-vs-kinesis.html">
+    <a class="dropdown-item" href="../examples/flink-vs-kinesis.html">
  <span class="dropdown-text">Apache Flink vs Kinesis Data Analytics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/storage.html">
+    <a class="dropdown-item" href="../examples/storage.html">
  <span class="dropdown-text">Storage: S3 vs EFS vs FSx vs EBS</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/datastreams.html">
+    <a class="dropdown-item" href="../examples/datastreams.html">
  <span class="dropdown-text">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/sagemaker-vs-bedrock.html">
+    <a class="dropdown-item" href="../examples/sagemaker-vs-bedrock.html">
  <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/glue.html">
+    <a class="dropdown-item" href="../examples/glue.html">
  <span class="dropdown-text">Glue Data Catalog vs Glue DataBrew vs Glue Studio</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/search.html">
+    <a class="dropdown-item" href="../examples/search.html">
  <span class="dropdown-text">Kendra vs OpenSearch</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/emr-vs-hadoop-vs-spark.html">
+    <a class="dropdown-item" href="../examples/emr-vs-hadoop-vs-spark.html">
  <span class="dropdown-text">EMR vs Hadoop vs Spark</span></a>
   </li>  
     </ul>
@@ -159,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AWS Machine Learning Engineer Associate</h1>
+<h1 class="title">ML Services: SageMaker vs Bedrock</h1>
 </div>
 
 
@@ -176,15 +210,127 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./aws-mle-associate-badge.jpeg" class="img-fluid figure-img"></p>
-<figcaption>AWS MLE Associate Badge</figcaption>
-</figure>
-</div>
-<p>Welcome, this is a work in progress. I’m creating this site to help me study for the AWS Machine Learning Engineer Associate certification. I’ll be adding more content over time, so check back for updates.</p>
+<section id="aws-ml-services-sagemaker-vs-bedrock" class="level1">
+<h1>AWS ML Services: SageMaker vs Bedrock</h1>
+<p>AWS provides multiple machine learning (ML) services, with <strong>Amazon SageMaker</strong> and <strong>Amazon Bedrock</strong> being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels.</p>
+<section id="overview-table" class="level2">
+<h2 class="anchored" data-anchor-id="overview-table">Overview Table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 36%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Amazon SageMaker</th>
+<th>Amazon Bedrock</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Type</td>
+<td>Fully managed ML development platform</td>
+<td>Fully managed foundation model (FM) service</td>
+</tr>
+<tr class="even">
+<td>Use Case</td>
+<td>Building, training, and deploying custom ML models</td>
+<td>Using and fine-tuning foundation models for AI applications</td>
+</tr>
+<tr class="odd">
+<td>Customization</td>
+<td>High (bring your own data and model)</td>
+<td>Limited (fine-tune pre-trained models)</td>
+</tr>
+<tr class="even">
+<td>Model Hosting</td>
+<td>Custom models on managed infrastructure</td>
+<td>API-based access to foundation models (FM)</td>
+</tr>
+<tr class="odd">
+<td>Data Handling</td>
+<td>Requires dataset preparation and preprocessing</td>
+<td>Uses pre-trained models with minimal data processing</td>
+</tr>
+<tr class="even">
+<td>Access Model</td>
+<td>SDK, APIs, Jupyter notebooks</td>
+<td>API-based inference</td>
+</tr>
+<tr class="odd">
+<td>Scaling</td>
+<td>Fully managed infrastructure</td>
+<td>Fully managed with auto-scaling</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="amazon-sagemaker" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-sagemaker">Amazon SageMaker</h2>
+<p><strong>Definition</strong>: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.</p>
+<p><strong>Common Use Cases</strong>: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring</p>
+<section id="example-code-train-a-model-in-sagemaker-using-python" class="level3">
+<h3 class="anchored" data-anchor-id="example-code-train-a-model-in-sagemaker-using-python">Example Code: Train a Model in SageMaker using Python</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sagemaker <span class="op">=</span> boto3.client(<span class="st">'sagemaker'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sagemaker.create_training_job(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    TrainingJobName<span class="op">=</span><span class="st">'my-training-job'</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    AlgorithmSpecification<span class="op">=</span>{</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'TrainingImage'</span>: <span class="st">'your-docker-image'</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'TrainingInputMode'</span>: <span class="st">'File'</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    RoleArn<span class="op">=</span><span class="st">'your-role-arn'</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    InputDataConfig<span class="op">=</span>[</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">'ChannelName'</span>: <span class="st">'train'</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">'DataSource'</span>: {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">'S3DataSource'</span>: {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'S3Uri'</span>: <span class="st">'s3://your-dataset/'</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'S3DataType'</span>: <span class="st">'S3Prefix'</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    OutputDataConfig<span class="op">=</span>{<span class="st">'S3OutputPath'</span>: <span class="st">'s3://your-output-bucket/'</span>},</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ResourceConfig<span class="op">=</span>{</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">'InstanceType'</span>: <span class="st">'ml.m5.large'</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">'InstanceCount'</span>: <span class="dv">1</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">'VolumeSizeInGB'</span>: <span class="dv">50</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    StoppingCondition<span class="op">=</span>{<span class="st">'MaxRuntimeInSeconds'</span>: <span class="dv">3600</span>}</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="amazon-bedrock" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-bedrock">Amazon Bedrock</h2>
+<p><strong>Definition</strong>: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.</p>
+<p><strong>Common Use Cases</strong>: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications</p>
+<section id="example-code-call-a-foundation-model-via-bedrock-api" class="level3">
+<h3 class="anchored" data-anchor-id="example-code-call-a-foundation-model-via-bedrock-api">Example Code: Call a Foundation Model via Bedrock API</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bedrock <span class="op">=</span> boto3.client(<span class="st">'bedrock-runtime'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> bedrock.invoke_model(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    modelId<span class="op">=</span><span class="st">'anthropic.claude-v2'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    body<span class="op">=</span><span class="st">'{"prompt": "Write a short poem about the ocean.", "max_tokens": 100}'</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response[<span class="st">"body"</span>].read().decode(<span class="st">'utf-8'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>If your goal is to <strong>build and train custom ML models</strong>, <strong>SageMaker</strong> provides the flexibility and infrastructure to do so. If you need <strong>quick access to pre-trained foundation models for AI applications</strong>, <strong>Bedrock</strong> offers a simple API-based approach to integrate generative AI into applications.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

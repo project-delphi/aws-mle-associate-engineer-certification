@@ -1,5 +1,159 @@
 [
   {
+    "objectID": "examples/glue.html",
+    "href": "examples/glue.html",
+    "title": "Glue Data Catalog vs Glue DataBrew vs Glue Studio",
+    "section": "",
+    "text": "This document compares AWS Glue Data Catalog, AWS Glue DataBrew, and AWS Glue Studio, highlighting their use cases, differences, and providing code examples."
+  },
+  {
+    "objectID": "examples/glue.html#aws-glue-data-catalog",
+    "href": "examples/glue.html#aws-glue-data-catalog",
+    "title": "Glue Data Catalog vs Glue DataBrew vs Glue Studio",
+    "section": "AWS Glue Data Catalog",
+    "text": "AWS Glue Data Catalog\nAWS Glue Data Catalog is a metadata repository for organizing and discovering datasets across AWS services.\n\nKey Features:\n\nCentralized metadata management\nSchema discovery and versioning\nIntegration with Athena, Redshift, and EMR\n\n\n\nSample Code: Creating a Glue Database\nimport boto3\n\ndef create_glue_database(database_name):\n    glue_client = boto3.client('glue')\n    response = glue_client.create_database(\n        DatabaseInput={\n            'Name': database_name,\n            'Description': 'Example Glue Database'\n        }\n    )\n    return response\n\n# Example usage\ncreate_glue_database(\"my_glue_db\")"
+  },
+  {
+    "objectID": "examples/glue.html#aws-glue-databrew",
+    "href": "examples/glue.html#aws-glue-databrew",
+    "title": "Glue Data Catalog vs Glue DataBrew vs Glue Studio",
+    "section": "AWS Glue DataBrew",
+    "text": "AWS Glue DataBrew\nAWS Glue DataBrew is a visual data preparation tool for cleaning and transforming data without coding.\n\nKey Features:\n\nNo-code data transformation\nIntegration with S3, Redshift, and RDS\nAutomated data profiling and anomaly detection\n\n\n\nSample Code: Creating a DataBrew Dataset\nimport boto3\n\ndef create_databrew_dataset(name, s3_path, role_arn):\n    databrew_client = boto3.client('databrew')\n    response = databrew_client.create_dataset(\n        Name=name,\n        Input={\n            'S3InputDefinition': {'Bucket': s3_path}\n        },\n        RoleArn=role_arn\n    )\n    return response\n\n# Example usage\ncreate_databrew_dataset(\"my_dataset\", \"my-s3-bucket\", \"arn:aws:iam::123456789012:role/my-role\")"
+  },
+  {
+    "objectID": "examples/glue.html#aws-glue-studio",
+    "href": "examples/glue.html#aws-glue-studio",
+    "title": "Glue Data Catalog vs Glue DataBrew vs Glue Studio",
+    "section": "AWS Glue Studio",
+    "text": "AWS Glue Studio\nAWS Glue Studio provides a graphical interface to visually build, run, and monitor AWS Glue ETL jobs.\n\nKey Features:\n\nDrag-and-drop interface for ETL workflows\nSupports Spark-based transformations\nIntegration with Glue Data Catalog\n\n\n\nSample Code: Creating a Glue Job\nimport boto3\n\ndef create_glue_job(job_name, script_s3_path, role_arn):\n    glue_client = boto3.client('glue')\n    response = glue_client.create_job(\n        Name=job_name,\n        Role=role_arn,\n        Command={\n            'Name': 'glueetl',\n            'ScriptLocation': script_s3_path\n        },\n        GlueVersion='2.0'\n    )\n    return response\n\n# Example usage\ncreate_glue_job(\"my_glue_job\", \"s3://my-bucket/scripts/job.py\", \"arn:aws:iam::123456789012:role/my-role\")"
+  },
+  {
+    "objectID": "examples/storage.html",
+    "href": "examples/storage.html",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "",
+    "text": "AWS offers multiple storage options, each optimized for different use cases. This document compares Amazon S3, EFS, FSx, and EBS based on features, performance, and use cases."
+  },
+  {
+    "objectID": "examples/storage.html#amazon-s3-simple-storage-service",
+    "href": "examples/storage.html#amazon-s3-simple-storage-service",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Amazon S3 (Simple Storage Service)",
+    "text": "Amazon S3 (Simple Storage Service)\n\nUse Case: Backup, Data Lakes, Static Websites\nFeatures:\n\nScalable, durable object storage\nMultiple storage classes (Standard, Intelligent-Tiering, Glacier)\nServer-side encryption and lifecycle management\n\n\n\nExample: Upload a File to S3 Using Boto3\nimport boto3\ns3 = boto3.client('s3')\ns3.upload_file('local_file.txt', 'my-bucket', 'uploaded_file.txt')"
+  },
+  {
+    "objectID": "examples/storage.html#amazon-efs-elastic-file-system",
+    "href": "examples/storage.html#amazon-efs-elastic-file-system",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Amazon EFS (Elastic File System)",
+    "text": "Amazon EFS (Elastic File System)\n\nUse Case: Multi-instance shared storage, Kubernetes, Serverless\nFeatures:\n\nPOSIX-compliant, automatically scales\nSupports NFS protocol\nMountable across multiple EC2 instances\n\n\n\nExample: Mount EFS on an EC2 Instance\nsudo mount -t nfs4 -o nfsvers=4.1 fs-0123456789abcdef0.efs.us-east-1.amazonaws.com:/ efs-mount-point"
+  },
+  {
+    "objectID": "examples/storage.html#amazon-fsx",
+    "href": "examples/storage.html#amazon-fsx",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Amazon FSx",
+    "text": "Amazon FSx\n\nUse Case: High-performance file storage for Windows/Linux applications\nFeatures:\n\nOptimized for Windows File Server or Lustre (HPC)\nFully managed with built-in backups\n\n\n\nExample: Mount FSx for Windows on EC2\nNew-PSDrive -Name \"Z\" -PSProvider FileSystem -Root \"\\\\fs-0123456789abcdef0.example.com\\share\""
+  },
+  {
+    "objectID": "examples/storage.html#amazon-ebs-elastic-block-store",
+    "href": "examples/storage.html#amazon-ebs-elastic-block-store",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Amazon EBS (Elastic Block Store)",
+    "text": "Amazon EBS (Elastic Block Store)\n\nUse Case: Low-latency storage for EC2, Databases, Big Data\nFeatures:\n\nPersistent block storage for EC2\nSSD (gp3, io2) and HDD (sc1, st1) options\nSnapshots for backup & recovery\n\n\n\nExample: Attach an EBS Volume to EC2\naws ec2 attach-volume --volume-id vol-0123456789abcdef0 --instance-id i-0123456789abcdef0 --device /dev/xvdf"
+  },
+  {
+    "objectID": "examples/sagemaker-apis.html",
+    "href": "examples/sagemaker-apis.html",
+    "title": "Amazon SageMaker APIs: Real-World Examples",
+    "section": "",
+    "text": "Amazon SageMaker provides a variety of APIs to interact with its services, including training, inference, and model deployment. This document explores real-world examples of using these APIs.\n\n\nimport boto3\nimport json\n\nsagemaker_client = boto3.client(\"sagemaker\")\n\nresponse = sagemaker_client.create_training_job(\n    TrainingJobName=\"my-xgboost-training-job\",\n    AlgorithmSpecification={\n        \"TrainingImage\": \"811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest\",\n        \"TrainingInputMode\": \"File\"\n    },\n    RoleArn=\"arn:aws:iam::123456789012:role/SageMakerRole\",\n    InputDataConfig=[\n        {\n            \"ChannelName\": \"train\",\n            \"DataSource\": {\n                \"S3DataSource\": {\n                    \"S3DataType\": \"S3Prefix\",\n                    \"S3Uri\": \"s3://my-bucket/train/\",\n                    \"S3DataDistributionType\": \"FullyReplicated\"\n                }\n            }\n        }\n    ],\n    OutputDataConfig={\"S3OutputPath\": \"s3://my-bucket/output/\"},\n    ResourceConfig={\n        \"InstanceType\": \"ml.m5.large\",\n        \"InstanceCount\": 1,\n        \"VolumeSizeInGB\": 10\n    },\n    StoppingCondition={\"MaxRuntimeInSeconds\": 3600},\n)\n\nprint(json.dumps(response, indent=4))\n\n\n\nresponse = sagemaker_client.create_endpoint_config(\n    EndpointConfigName=\"my-endpoint-config\",\n    ProductionVariants=[\n        {\n            \"VariantName\": \"AllTraffic\",\n            \"ModelName\": \"my-trained-model\",\n            \"InstanceType\": \"ml.m5.large\",\n            \"InitialInstanceCount\": 1\n        }\n    ]\n)\n\nresponse = sagemaker_client.create_endpoint(\n    EndpointName=\"my-endpoint\",\n    EndpointConfigName=\"my-endpoint-config\"\n)\n\nprint(json.dumps(response, indent=4))\n\n\n\nimport json\nimport boto3\n\nruntime_client = boto3.client(\"sagemaker-runtime\")\n\nresponse = runtime_client.invoke_endpoint(\n    EndpointName=\"my-endpoint\",\n    ContentType=\"application/json\",\n    Body=json.dumps({\"data\": [1.0, 2.0, 3.0, 4.0]})\n)\n\nresult = json.loads(response[\"Body\"].read().decode())\nprint(result)"
+  },
+  {
+    "objectID": "examples/sagemaker-apis.html#example-1-creating-a-sagemaker-training-job",
+    "href": "examples/sagemaker-apis.html#example-1-creating-a-sagemaker-training-job",
+    "title": "Amazon SageMaker APIs: Real-World Examples",
+    "section": "",
+    "text": "import boto3\nimport json\n\nsagemaker_client = boto3.client(\"sagemaker\")\n\nresponse = sagemaker_client.create_training_job(\n    TrainingJobName=\"my-xgboost-training-job\",\n    AlgorithmSpecification={\n        \"TrainingImage\": \"811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest\",\n        \"TrainingInputMode\": \"File\"\n    },\n    RoleArn=\"arn:aws:iam::123456789012:role/SageMakerRole\",\n    InputDataConfig=[\n        {\n            \"ChannelName\": \"train\",\n            \"DataSource\": {\n                \"S3DataSource\": {\n                    \"S3DataType\": \"S3Prefix\",\n                    \"S3Uri\": \"s3://my-bucket/train/\",\n                    \"S3DataDistributionType\": \"FullyReplicated\"\n                }\n            }\n        }\n    ],\n    OutputDataConfig={\"S3OutputPath\": \"s3://my-bucket/output/\"},\n    ResourceConfig={\n        \"InstanceType\": \"ml.m5.large\",\n        \"InstanceCount\": 1,\n        \"VolumeSizeInGB\": 10\n    },\n    StoppingCondition={\"MaxRuntimeInSeconds\": 3600},\n)\n\nprint(json.dumps(response, indent=4))"
+  },
+  {
+    "objectID": "examples/sagemaker-apis.html#example-2-deploying-a-model-to-a-sagemaker-endpoint",
+    "href": "examples/sagemaker-apis.html#example-2-deploying-a-model-to-a-sagemaker-endpoint",
+    "title": "Amazon SageMaker APIs: Real-World Examples",
+    "section": "",
+    "text": "response = sagemaker_client.create_endpoint_config(\n    EndpointConfigName=\"my-endpoint-config\",\n    ProductionVariants=[\n        {\n            \"VariantName\": \"AllTraffic\",\n            \"ModelName\": \"my-trained-model\",\n            \"InstanceType\": \"ml.m5.large\",\n            \"InitialInstanceCount\": 1\n        }\n    ]\n)\n\nresponse = sagemaker_client.create_endpoint(\n    EndpointName=\"my-endpoint\",\n    EndpointConfigName=\"my-endpoint-config\"\n)\n\nprint(json.dumps(response, indent=4))"
+  },
+  {
+    "objectID": "examples/sagemaker-apis.html#example-3-invoking-a-sagemaker-endpoint-for-inference",
+    "href": "examples/sagemaker-apis.html#example-3-invoking-a-sagemaker-endpoint-for-inference",
+    "title": "Amazon SageMaker APIs: Real-World Examples",
+    "section": "",
+    "text": "import json\nimport boto3\n\nruntime_client = boto3.client(\"sagemaker-runtime\")\n\nresponse = runtime_client.invoke_endpoint(\n    EndpointName=\"my-endpoint\",\n    ContentType=\"application/json\",\n    Body=json.dumps({\"data\": [1.0, 2.0, 3.0, 4.0]})\n)\n\nresult = json.loads(response[\"Body\"].read().decode())\nprint(result)"
+  },
+  {
+    "objectID": "examples/emr-vs-hadoop-vs-spark.html",
+    "href": "examples/emr-vs-hadoop-vs-spark.html",
+    "title": "EMR vs Hadoop vs Spark",
+    "section": "",
+    "text": "This document compares Amazon EMR, Apache Hadoop, and Apache Spark, highlighting their use cases, differences, and providing code examples."
+  },
+  {
+    "objectID": "examples/emr-vs-hadoop-vs-spark.html#amazon-emr",
+    "href": "examples/emr-vs-hadoop-vs-spark.html#amazon-emr",
+    "title": "EMR vs Hadoop vs Spark",
+    "section": "Amazon EMR",
+    "text": "Amazon EMR\nAWS Elastic MapReduce (EMR) is a cloud-based big data processing service that simplifies running frameworks like Hadoop and Spark.\n\nKey Features:\n\nManaged Hadoop, Spark, Presto, and more\nAuto-scaling and cost-efficient\nTight integration with AWS services\n\n\n\nSample Code: Submitting a Spark Job to EMR\nimport boto3\n\ndef submit_spark_job(cluster_id, script_s3_path):\n    emr_client = boto3.client('emr')\n    response = emr_client.add_job_flow_steps(\n        JobFlowId=cluster_id,\n        Steps=[{\n            'Name': 'Spark Job',\n            'ActionOnFailure': 'CONTINUE',\n            'HadoopJarStep': {\n                'Jar': 'command-runner.jar',\n                'Args': ['spark-submit', script_s3_path]\n            }\n        }]\n    )\n    return response\n\n# Example usage\nsubmit_spark_job(\"j-XYZ123\", \"s3://my-bucket/my-spark-job.py\")"
+  },
+  {
+    "objectID": "examples/emr-vs-hadoop-vs-spark.html#apache-hadoop",
+    "href": "examples/emr-vs-hadoop-vs-spark.html#apache-hadoop",
+    "title": "EMR vs Hadoop vs Spark",
+    "section": "Apache Hadoop",
+    "text": "Apache Hadoop\nHadoop is an open-source framework for distributed storage and processing of large datasets using MapReduce.\n\nKey Features:\n\nDistributed computing using HDFS and YARN\nBatch processing of large data volumes\nEcosystem includes Hive, Pig, HBase, and more\n\n\n\nSample Code: Hadoop Word Count Job\nimport java.io.IOException;\nimport org.apache.hadoop.io.*;\nimport org.apache.hadoop.mapreduce.*;\n\npublic class WordCount {\n    public static class TokenizerMapper extends Mapper&lt;Object, Text, Text, IntWritable&gt; {\n        private final static IntWritable one = new IntWritable(1);\n        private Text word = new Text();\n\n        public void map(Object key, Text value, Context context) throws IOException, InterruptedException {\n            for (String token : value.toString().split(\" \")) {\n                word.set(token);\n                context.write(word, one);\n            }\n        }\n    }\n}"
+  },
+  {
+    "objectID": "examples/emr-vs-hadoop-vs-spark.html#apache-spark",
+    "href": "examples/emr-vs-hadoop-vs-spark.html#apache-spark",
+    "title": "EMR vs Hadoop vs Spark",
+    "section": "Apache Spark",
+    "text": "Apache Spark\nSpark is a fast, in-memory data processing framework designed for large-scale data analytics and machine learning.\n\nKey Features:\n\nIn-memory processing for speed\nSupports batch, streaming, and machine learning workloads\nAPIs in Python, Java, Scala, and R\n\n\n\nSample Code: Running a PySpark Job\nfrom pyspark.sql import SparkSession\n\nspark = SparkSession.builder.appName(\"Example\").getOrCreate()\ndata = [(\"Alice\", 34), (\"Bob\", 45)]\ndf = spark.createDataFrame(data, [\"Name\", \"Age\"])\ndf.show()"
+  },
+  {
+    "objectID": "examples/search.html",
+    "href": "examples/search.html",
+    "title": "Search Services: Kendra vs OpenSearch",
+    "section": "",
+    "text": "AWS provides two primary search services: Amazon Kendra and Amazon OpenSearch Service. While both enable search capabilities, they serve different use cases and have distinct strengths.\n\n\n\n\n\n\n\n\n\n\nFeature\nAmazon Kendra\nAmazon OpenSearch Service\n\n\n\n\nType\nAI-powered enterprise search\nOpen-source search and analytics engine\n\n\nUse Case\nDocument and knowledge search\nLog analytics, full-text search, observability\n\n\nData Sources\nPre-built connectors for common enterprise sources\nStructured and unstructured data from various sources\n\n\nQuery Type\nNatural Language Processing (NLP)-based\nKeyword-based and structured queries (Elasticsearch DSL)\n\n\nIndexing\nManaged, AI-driven indexing\nFull control over indexing with custom mappings\n\n\nAccess Model\nAPI-based search queries\nREST API, Kibana dashboards, SQL\n\n\nScaling\nFully managed, auto-scaling\nCluster-based, requires management\n\n\n\n\n\n\n\nDefinition: Amazon Kendra is an AI-powered enterprise search service that enables organizations to search structured and unstructured documents using natural language queries.\nCommon Use Cases: - Enterprise knowledge management - Internal document search - Customer support knowledge bases\n\n\nimport boto3\n\nkendra = boto3.client('kendra')\nresponse = kendra.query(\n    IndexId='index-id',\n    QueryText='How do I reset my password?'\n)\nprint(response)\n\n\n\n\n\nDefinition: Amazon OpenSearch Service is a managed search and analytics engine based on the open-source Elasticsearch and OpenSearch projects.\nCommon Use Cases: - Log and event data analysis - Real-time application search - Security monitoring and observability\n\n\nfrom opensearchpy import OpenSearch\n\nclient = OpenSearch(\n    hosts=[{'host': 'your-opensearch-domain', 'port': 443}],\n    http_auth=('user', 'password'),\n    use_ssl=True\n)\n\nquery = {\n    \"query\": {\n        \"match\": {\"message\": \"error\"}\n    }\n}\nresponse = client.search(index=\"logs\", body=query)\nprint(response)\n\n\n\n\n\nIf your use case involves enterprise knowledge retrieval with AI-driven natural language search, Amazon Kendra is the better option. If you need log analytics, real-time search, or structured query capabilities, OpenSearch is the preferred choice."
+  },
+  {
+    "objectID": "examples/search.html#overview-table",
+    "href": "examples/search.html#overview-table",
+    "title": "Search Services: Kendra vs OpenSearch",
+    "section": "",
+    "text": "Feature\nAmazon Kendra\nAmazon OpenSearch Service\n\n\n\n\nType\nAI-powered enterprise search\nOpen-source search and analytics engine\n\n\nUse Case\nDocument and knowledge search\nLog analytics, full-text search, observability\n\n\nData Sources\nPre-built connectors for common enterprise sources\nStructured and unstructured data from various sources\n\n\nQuery Type\nNatural Language Processing (NLP)-based\nKeyword-based and structured queries (Elasticsearch DSL)\n\n\nIndexing\nManaged, AI-driven indexing\nFull control over indexing with custom mappings\n\n\nAccess Model\nAPI-based search queries\nREST API, Kibana dashboards, SQL\n\n\nScaling\nFully managed, auto-scaling\nCluster-based, requires management"
+  },
+  {
+    "objectID": "examples/search.html#amazon-kendra",
+    "href": "examples/search.html#amazon-kendra",
+    "title": "Search Services: Kendra vs OpenSearch",
+    "section": "",
+    "text": "Definition: Amazon Kendra is an AI-powered enterprise search service that enables organizations to search structured and unstructured documents using natural language queries.\nCommon Use Cases: - Enterprise knowledge management - Internal document search - Customer support knowledge bases\n\n\nimport boto3\n\nkendra = boto3.client('kendra')\nresponse = kendra.query(\n    IndexId='index-id',\n    QueryText='How do I reset my password?'\n)\nprint(response)"
+  },
+  {
+    "objectID": "examples/search.html#amazon-opensearch-service",
+    "href": "examples/search.html#amazon-opensearch-service",
+    "title": "Search Services: Kendra vs OpenSearch",
+    "section": "",
+    "text": "Definition: Amazon OpenSearch Service is a managed search and analytics engine based on the open-source Elasticsearch and OpenSearch projects.\nCommon Use Cases: - Log and event data analysis - Real-time application search - Security monitoring and observability\n\n\nfrom opensearchpy import OpenSearch\n\nclient = OpenSearch(\n    hosts=[{'host': 'your-opensearch-domain', 'port': 443}],\n    http_auth=('user', 'password'),\n    use_ssl=True\n)\n\nquery = {\n    \"query\": {\n        \"match\": {\"message\": \"error\"}\n    }\n}\nresponse = client.search(index=\"logs\", body=query)\nprint(response)"
+  },
+  {
+    "objectID": "examples/search.html#conclusion",
+    "href": "examples/search.html#conclusion",
+    "title": "Search Services: Kendra vs OpenSearch",
+    "section": "",
+    "text": "If your use case involves enterprise knowledge retrieval with AI-driven natural language search, Amazon Kendra is the better option. If you need log analytics, real-time search, or structured query capabilities, OpenSearch is the preferred choice."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -11,77 +165,91 @@
     "href": "index.html",
     "title": "AWS Machine Learning Engineer Associate",
     "section": "",
-    "text": "Welcome, this is a work in progress. I’m creating this site to help me study for the AWS Machine Learning Engineer Associate certification. I’ll be adding more content over time, so check back for updates."
+    "text": "AWS MLE Associate Badge\n\n\nWelcome, this is a work in progress. I’m creating this site to help me study for the AWS Machine Learning Engineer Associate certification. I’ll be adding more content over time, so check back for updates."
   },
   {
-    "objectID": "aws-flashcards.html",
-    "href": "aws-flashcards.html",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html",
+    "href": "aws-definitions.html",
+    "title": "AWS Services Definitions",
     "section": "",
     "text": "Click each dropdown to reveal the definition/explanation of each service."
   },
   {
-    "objectID": "aws-flashcards.html#instructions",
-    "href": "aws-flashcards.html#instructions",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html#instructions",
+    "href": "aws-definitions.html#instructions",
+    "title": "AWS Services Definitions",
     "section": "",
     "text": "Click each dropdown to reveal the definition/explanation of each service."
   },
   {
-    "objectID": "aws-flashcards.html#data-services",
-    "href": "aws-flashcards.html#data-services",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html#data-services",
+    "href": "aws-definitions.html#data-services",
+    "title": "AWS Services Definitions",
     "section": "Data Services",
     "text": "Data Services\n\n\n\n\n\n\nAmazon Kinesis Data Streams\n\n\n\n\n\nA scalable and durable real-time data streaming service that can continuously capture gigabytes of data per second from hundreds of thousands of sources.\n\n\n\n\n\n\n\n\n\nAmazon Kinesis Data Firehose\n\n\n\n\n\nA fully managed service that scales automatically to match the throughput of your data. It can batch, compress, and encrypt data before loading it into storage and analytics services.\n\n\n\n\n\n\n\n\n\nAmazon MSK (Managed Streaming for Apache Kafka)\n\n\n\n\n\nA fully managed service that makes it easy to build and run applications using Apache Kafka, an open-source distributed event streaming platform."
   },
   {
-    "objectID": "aws-flashcards.html#storage-solutions",
-    "href": "aws-flashcards.html#storage-solutions",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html#storage-solutions",
+    "href": "aws-definitions.html#storage-solutions",
+    "title": "AWS Services Definitions",
     "section": "Storage Solutions",
     "text": "Storage Solutions\n\n\n\n\n\n\nAmazon S3\n\n\n\n\n\nHighly scalable object storage service offering industry-leading durability, security, and performance. Store and retrieve any amount of data from anywhere.\n\n\n\n\n\n\n\n\n\nAmazon EBS, FSx, and EFS\n\n\n\n\n\n\nAmazon EBS (Elastic Block Store): Block-level storage for EC2 instances.\nAmazon FSx: Fully managed file storage for Windows, Lustre, and other file systems.\nAmazon EFS (Elastic File System): Fully managed, scalable NFS file storage."
   },
   {
-    "objectID": "aws-flashcards.html#big-data-analytics",
-    "href": "aws-flashcards.html#big-data-analytics",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html#big-data-analytics",
+    "href": "aws-definitions.html#big-data-analytics",
+    "title": "AWS Services Definitions",
     "section": "Big Data & Analytics",
-    "text": "Big Data & Analytics\n\n\n\n\n\n\nApache Hadoop\n\n\n\n\n\nAn open-source framework for distributed processing of large datasets across clusters of computers.\n\n\n\n\n\n\n\n\n\nAWS Glue\n\n\n\n\n\nA fully managed extract, transform, and load (ETL) service that simplifies data preparation for analytics.\n\n\n\n\n\n\n\n\n\nAmazon EMR (Elastic MapReduce)\n\n\n\n\n\nA cloud big data platform for processing vast amounts of data using open-source frameworks like Apache Spark, Hadoop, and Presto."
+    "text": "Big Data & Analytics\n\n\n\n\n\n\nApache Hadoop\n\n\n\n\n\nAn open-source framework for distributed processing of large datasets across clusters of computers.\n\n\n\n\n\n\n\n\n\nAWS Glue\n\n\n\n\n\nA fully managed extract, transform, and load (ETL) service that simplifies data preparation for analytics.\n\n\n\n\n\n\n\n\n\nAmazon EMR (Elastic MapReduce)\n\n\n\n\n\nA cloud big data platform for processing vast amounts of data using open-source frameworks like Apache Spark, Hadoop, and Presto.\n\n\n\n\n\n\n\n\n\nAmazon Athena\n\n\n\n\n\nAn interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL.\n\n\n\n\n\n\n\n\n\nAWS Glue DataBrew\n\n\n\n\n\nA visual data preparation tool that makes it easy for data analysts and data scientists to clean and normalize data.\n\n\n\n\n\n\n\n\n\nAWS Glue Data Quality\n\n\n\n\n\nA service that helps you measure and monitor the quality of your data.\n\n\n\n\n\n\n\n\n\nAmazon Kinesis\n\n\n\n\n\nA platform on AWS to collect, process, and analyze real-time, streaming data.\n\n\n\n\n\n\n\n\n\nAWS Lake Formation\n\n\n\n\n\nA service that makes it easy to set up a secure data lake in days.\n\n\n\n\n\n\n\n\n\nAmazon Managed Service for Apache Flink\n\n\n\n\n\nA fully managed service that enables you to build and run Apache Flink applications.\n\n\n\n\n\n\n\n\n\nAmazon OpenSearch Service\n\n\n\n\n\nA fully managed service that makes it easy to deploy, secure, and operate OpenSearch at scale.\n\n\n\n\n\n\n\n\n\nAmazon QuickSight\n\n\n\n\n\nA scalable, serverless, embeddable, machine learning-powered business intelligence (BI) service built for the cloud.\n\n\n\n\n\n\n\n\n\nAmazon Redshift\n\n\n\n\n\nA fully managed data warehouse that makes it simple and cost-effective to analyze all your data using standard SQL and your existing Business Intelligence (BI) tools."
   },
   {
-    "objectID": "aws-flashcards.html#aiml-services",
-    "href": "aws-flashcards.html#aiml-services",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html#aiml-services",
+    "href": "aws-definitions.html#aiml-services",
+    "title": "AWS Services Definitions",
     "section": "AI/ML Services",
     "text": "AI/ML Services\n\n\n\n\n\n\nAmazon Bedrock\n\n\n\n\n\nA fully managed service that provides access to foundation models from leading AI providers via a single API.\n\n\n\n\n\n\n\n\n\nAmazon Comprehend\n\n\n\n\n\nA natural language processing (NLP) service that uses machine learning to analyze text for insights, such as sentiment and key phrases.\n\n\n\n\n\n\n\n\n\nAmazon Personalize\n\n\n\n\n\nA machine learning service for building real-time personalized recommendations.\n\n\n\n\n\n\n\n\n\nAmazon Lex\n\n\n\n\n\nA fully managed AI service for building conversational interfaces using speech and text.\n\n\n\n\n\n\n\n\n\nAmazon Polly\n\n\n\n\n\nA text-to-speech service that converts written text into lifelike speech.\n\n\n\n\n\n\n\n\n\nAmazon Rekognition\n\n\n\n\n\nA deep learning-based image and video analysis service for object detection, facial recognition, and content moderation.\n\n\n\n\n\n\n\n\n\nAmazon Textract\n\n\n\n\n\nAn AI service that automatically extracts text, handwriting, and data from scanned documents.\n\n\n\n\n\n\n\n\n\nAmazon Transcribe\n\n\n\n\n\nA speech-to-text service that uses machine learning to convert spoken language into written text.\n\n\n\n\n\n\n\n\n\nAmazon Kendra\n\n\n\n\n\nAn intelligent search service that uses machine learning to provide highly accurate search results.\n\n\n\n\n\n\n\n\n\nAmazon SageMaker\n\n\n\n\n\nA fully managed service that provides tools to build, train, and deploy machine learning models at scale.\n\n\n\n\n\n\n\n\n\nAWS Panorama\n\n\n\n\n\nA machine learning appliance and software development kit (SDK) that enables adding computer vision to on-premises cameras.\n\n\n\n\n\n\n\n\n\nAmazon CodeWhisperer\n\n\n\n\n\nAn AI-powered coding assistant that provides real-time code suggestions.\n\n\n\n\n\n\n\n\n\nAmazon HealthLake\n\n\n\n\n\nA HIPAA-eligible service that uses machine learning to store, transform, and analyze health data.\n\n\n\n\n\n\n\n\n\nAmazon Forecast\n\n\n\n\n\nA time-series forecasting service that uses machine learning to predict future trends.\n\n\n\n\n\n\n\n\n\nAmazon Fraud Detector\n\n\n\n\n\nAn AI service that helps identify potentially fraudulent activities in real-time."
   },
   {
-    "objectID": "aws-flashcards.html#sagemaker-ecosystem",
-    "href": "aws-flashcards.html#sagemaker-ecosystem",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html#sagemaker-ecosystem",
+    "href": "aws-definitions.html#sagemaker-ecosystem",
+    "title": "AWS Services Definitions",
     "section": "SageMaker Ecosystem",
     "text": "SageMaker Ecosystem\n\n\n\n\n\n\nAmazon SageMaker Studio\n\n\n\n\n\nA fully integrated development environment (IDE) for machine learning with a single, web-based visual interface. Provides capabilities for data preparation, model building, training, debugging, and deployment.\n\n\n\n\n\n\n\n\n\nBuilt-in SageMaker Algorithms\n\n\n\n\n\nPrebuilt algorithms optimized for performance and scalability: - Linear Learner (Regression, Classification) - XGBoost (Gradient Boosting) - DeepAR (Time Series Forecasting) - BlazingText (Word2Vec, Text Classification) - Object Detection (Image Analysis) - Image Classification (ResNet, VGG, etc.) - Semantic Segmentation - Factorization Machines (Recommender Systems) - Neural Topic Model (Topic Modeling) - K-Means Clustering - PCA (Dimensionality Reduction) - LDA (Latent Dirichlet Allocation) - Sequence-to-Sequence (Translation, Text Generation) - Random Cut Forest (Anomaly Detection) - And more…\n\n\n\n\n\n\n\n\n\nAmazon SageMaker Pipelines\n\n\n\n\n\nA CI/CD service for automating machine learning workflows, including data preprocessing, model training, and deployment. Features include: - Step-based workflow definition - Integration with SageMaker Training, Processing, and Model Registry - Lineage tracking and experiment management - Execution via SDK or AWS Console\n\n\n\n\n\n\n\n\n\nAmazon SageMaker Model Monitor\n\n\n\n\n\nContinuously monitors deployed models for data drift and quality issues. Key features: - Baseline creation from training data - Monitoring statistics and visualizations - Alerts and automated remediation - Integration with SageMaker Pipelines\n\n\n\n\n\n\n\n\n\nAmazon SageMaker Inference & Deployment\n\n\n\n\n\nMultiple options for deploying models: - Real-time inference: Deploy models as endpoints with auto-scaling - Batch Transform: Process large datasets asynchronously - Serverless inference: Deploy without managing infrastructure - Edge deployment: Use SageMaker Edge Manager for on-device inference\n\n\n\n\n\n\n\n\n\nAmazon SageMaker APIs\n\n\n\n\n\nSageMaker provides SDKs and APIs for integrating ML into applications: - Boto3 (Python SDK): Automate SageMaker workflows - SageMaker SDK: Train, deploy, and manage models - SageMaker JumpStart: Access pre-trained models and solutions - Model Registry API: Manage model versions and deployments\n\n\n\n\n\n\n\n\n\nAmazon SageMaker Feature Store\n\n\n\n\n\nA fully managed repository to store, update, and retrieve ML features. Supports: - Online and offline stores for low-latency and batch processing - Feature versioning and governance - Integration with SageMaker Pipelines and Model Monitor\n\n\n\n\n\n\n\n\n\nAmazon SageMaker Autopilot\n\n\n\n\n\nAutomates model selection, hyperparameter tuning, and feature engineering. Provides: - Explainability reports - Candidate model evaluation - Deployable models without manual tuning\n\n\n\n\n\n\n\n\n\nAmazon SageMaker Debugger\n\n\n\n\n\nAutomatically detects training issues, such as overfitting and vanishing gradients. Key features: - Real-time monitoring of training metrics - Integration with TensorBoard - Automated rule-based alerts\n\n\n\n\n\n\n\n\n\nAmazon SageMaker Ground Truth\n\n\n\n\n\nA data labeling service that supports: - Human-in-the-loop labeling - Automated labeling with active learning - Integration with Amazon Mechanical Turk and private workforce\n\n\n\n\n\n\n\n\n\nAmazon SageMaker Data Wrangler\n\n\n\n\n\nSimplifies data preparation and feature engineering with: - Pre-built data transformations - Automated data quality checks - Integration with SageMaker Pipelines\n\n\n\n\n\n\n\n\n\nAmazon SageMaker Clarify\n\n\n\n\n\nProvides explainability and bias detection tools: - Feature importance analysis - Bias detection in datasets and models - Integration with Model Monitor for ongoing fairness assessment"
   },
   {
-    "objectID": "aws-flashcards.html#security-networking",
-    "href": "aws-flashcards.html#security-networking",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html#security-networking",
+    "href": "aws-definitions.html#security-networking",
+    "title": "AWS Services Definitions",
     "section": "Security & Networking",
-    "text": "Security & Networking\n\n\n\n\n\n\nAmazon VPC Components\n\n\n\n\n\n\nVPC: A private, isolated cloud network.\nSubnets: Segments of VPC IP address ranges.\nInternet Gateway: Enables internet access for VPC.\nNAT Gateway: Allows private subnets to access the internet securely.\nSecurity Groups: Instance-level firewallsfor controlling inbound/outbound traffic.\n\n\n\n\n\n\n\n\n\n\nAWS Key Management Service (KMS)\n\n\n\n\n\nA fully managed service that makes it easy to create, control, and use cryptographic keys to encrypt your data."
+    "text": "Security & Networking\n\n\n\n\n\n\nAmazon VPC Components\n\n\n\n\n\n\nVPC: A private, isolated cloud network.\nSubnets: Segments of VPC IP address ranges.\nInternet Gateway: Enables internet access for VPC.\nNAT Gateway: Allows private subnets to access the internet securely.\nSecurity Groups: Instance-level firewalls for controlling inbound/outbound traffic.\n\n\n\n\n\n\n\n\n\n\nAWS Key Management Service (KMS)\n\n\n\n\n\nA fully managed service that makes it easy to create, control, and use cryptographic keys to encrypt your data."
   },
   {
-    "objectID": "aws-flashcards.html#devops-cicd",
-    "href": "aws-flashcards.html#devops-cicd",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html#devops-cicd",
+    "href": "aws-definitions.html#devops-cicd",
+    "title": "AWS Services Definitions",
     "section": "DevOps & CI/CD",
     "text": "DevOps & CI/CD\n\n\n\n\n\n\nAWS CodePipeline\n\n\n\n\n\nA fully managed continuous integration and continuous delivery (CI/CD) service that automates software release pipelines.\n\n\n\n\n\n\n\n\n\nContainers & Orchestration\n\n\n\n\n\n\nDocker: A platform for building, shipping, and running applications in containers.\nAmazon ECS: A scalable container orchestration service.\nAmazon ECR: A fully managed container registry for storing Docker images.\nAmazon EKS: A managed Kubernetes service for running containerized applications."
   },
   {
-    "objectID": "aws-flashcards.html#monitoring-management",
-    "href": "aws-flashcards.html#monitoring-management",
-    "title": "AWS Services Flashcards",
+    "objectID": "aws-definitions.html#monitoring-management",
+    "href": "aws-definitions.html#monitoring-management",
+    "title": "AWS Services Definitions",
     "section": "Monitoring & Management",
-    "text": "Monitoring & Management\n\n\n\n\n\n\nAmazon CloudWatch\n\n\n\n\n\nA monitoring and observability service for logs, metrics, alarms, and application performance.\n\n\n\n\n\n\n\n\n\nAWS Glue (ETL)\n\n\n\n\n\nA fully managed ETL (Extract, Transform, Load) service that prepares and integrates data for analytics and machine learning.\n\n\n\n\n.callout-note {\n  margin-bottom: 1em;\n}"
+    "text": "Monitoring & Management\n\n\n\n\n\n\nAmazon CloudWatch\n\n\n\n\n\nA monitoring and observability service for logs, metrics, alarms, and application performance.\n\n\n\n\n\n\n\n\n\nAWS Glue (ETL)\n\n\n\n\n\nA fully managed ETL (Extract, Transform, Load) service that prepares and integrates data for analytics and machine learning."
+  },
+  {
+    "objectID": "aws-definitions.html#application-integration",
+    "href": "aws-definitions.html#application-integration",
+    "title": "AWS Services Definitions",
+    "section": "Application Integration",
+    "text": "Application Integration\n\n\n\n\n\n\nAmazon EventBridge\n\n\n\n\n\nA serverless event bus service that makes it easy to connect applications using data from your own applications, integrated Software-as-a-Service (SaaS) applications, and AWS services.\n\n\n\n\n\n\n\n\n\nAmazon Managed Workflows for Apache Airflow (Amazon MWAA)\n\n\n\n\n\nA managed orchestration service for Apache Airflow that makes it easy to set up and operate end-to-end data pipelines in the cloud.\n\n\n\n\n\n\n\n\n\nAmazon Simple Notification Service (Amazon SNS)\n\n\n\n\n\nA fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.\n\n\n\n\n\n\n\n\n\nAmazon Simple Queue Service (Amazon SQS)\n\n\n\n\n\nA fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.\n\n\n\n\n\n\n\n\n\nAWS Step Functions\n\n\n\n\n\nA serverless orchestration service that lets you combine AWS Lambda functions and other AWS services to build business-critical applications."
+  },
+  {
+    "objectID": "aws-definitions.html#cloud-financial-management",
+    "href": "aws-definitions.html#cloud-financial-management",
+    "title": "AWS Services Definitions",
+    "section": "Cloud Financial Management",
+    "text": "Cloud Financial Management\n\n\n\n\n\n\nAWS Billing and Cost Management\n\n\n\n\n\nA service that helps you pay your AWS bill, monitor your usage, and budget your costs.\n\n\n\n\n\n\n\n\n\nAWS Budgets\n\n\n\n\n\nA service that lets you set custom cost and usage budgets and receive alerts when you exceed them.\n\n\n\n\n\n\n\n\n\nAWS Cost Explorer\n\n\n\n\n\nA service that enables you to visualize, understand, and manage your AWS costs and usage over time."
   },
   {
     "objectID": "aws-comparison-tables.html",
@@ -138,5 +306,173 @@
     "title": "AWS Comparison Tables",
     "section": "ML Model Deployment Options Comparison",
     "text": "ML Model Deployment Options Comparison\n\n\n\n\n\n\n\n\n\n\nFeature\nSageMaker Endpoints\nSageMaker Serverless\nLambda\nECS/EKS\n\n\n\n\nCold Start\nNo\nYes\nYes\nNo\n\n\nAuto-scaling\nYes\nYes\nYes\nYes\n\n\nMax Duration\nUnlimited\n15 min\n15 min\nUnlimited\n\n\nCost Model\nPer instance hour\nPer request\nPer request\nPer container\n\n\nUse Cases\nSteady traffic\nVariable traffic\nLightweight inference\nCustom deployment\n\n\nMax Model Size\nInstance dependent\n10GB\n10GB\nNo limit\n\n\nConcurrency\nHigh\nLimited\nLimited\nHigh"
+  },
+  {
+    "objectID": "examples/datastreams.html",
+    "href": "examples/datastreams.html",
+    "title": "Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA",
+    "section": "",
+    "text": "This document compares AWS streaming solutions: Kinesis Data Streams, Kinesis Data Firehose, Amazon Managed Streaming for Apache Kafka (MSK), and Amazon Managed Workflows for Apache Airflow (AMAA). We’ll explore their use cases, differences, and provide code examples."
+  },
+  {
+    "objectID": "examples/datastreams.html#kinesis-data-streams",
+    "href": "examples/datastreams.html#kinesis-data-streams",
+    "title": "Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA",
+    "section": "Kinesis Data Streams",
+    "text": "Kinesis Data Streams\nAWS Kinesis Data Streams is a real-time streaming service for collecting, processing, and analyzing large volumes of data. It provides low-latency access and supports custom consumer applications.\n\nKey Features:\n\nReal-time data processing\nCustom applications using AWS SDKs\nRetention period up to 7 days\n\n\n\nSample Code: Writing to Kinesis Data Stream\nimport boto3\nimport json\n\ndef put_record_to_kinesis(stream_name, data):\n    kinesis_client = boto3.client('kinesis')\n    response = kinesis_client.put_record(\n        StreamName=stream_name,\n        Data=json.dumps(data),\n        PartitionKey=\"partition-1\"\n    )\n    return response\n\n# Example usage\nrecord = {\"event\": \"click\", \"user\": \"12345\"}\nput_record_to_kinesis(\"my-stream\", record)"
+  },
+  {
+    "objectID": "examples/datastreams.html#kinesis-data-firehose",
+    "href": "examples/datastreams.html#kinesis-data-firehose",
+    "title": "Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA",
+    "section": "Kinesis Data Firehose",
+    "text": "Kinesis Data Firehose\nAWS Kinesis Data Firehose is a managed service that loads streaming data into data lakes, warehouses, or analytics services. Unlike Data Streams, Firehose handles buffering and batch writing.\n\nKey Features:\n\nFully managed with automatic scaling\nSupports S3, Redshift, Elasticsearch, and Splunk as destinations\nNo custom consumer applications required\n\n\n\nSample Code: Writing to Firehose\nimport boto3\nimport json\n\ndef put_record_to_firehose(delivery_stream_name, data):\n    firehose_client = boto3.client('firehose')\n    response = firehose_client.put_record(\n        DeliveryStreamName=delivery_stream_name,\n        Record={\"Data\": json.dumps(data) + \"\\n\"}\n    )\n    return response\n\n# Example usage\nrecord = {\"event\": \"purchase\", \"amount\": 100}\nput_record_to_firehose(\"my-firehose-stream\", record)"
+  },
+  {
+    "objectID": "examples/datastreams.html#amazon-managed-streaming-for-apache-kafka-msk",
+    "href": "examples/datastreams.html#amazon-managed-streaming-for-apache-kafka-msk",
+    "title": "Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA",
+    "section": "Amazon Managed Streaming for Apache Kafka (MSK)",
+    "text": "Amazon Managed Streaming for Apache Kafka (MSK)\nMSK provides a fully managed Kafka cluster that integrates with AWS services. It’s ideal for applications needing open-source Kafka features.\n\nKey Features:\n\nFully managed Kafka clusters\nSecure with IAM authentication\nSupports standard Kafka clients\n\n\n\nSample Code: Producing Messages to Kafka\nfrom kafka import KafkaProducer\nimport json\n\nproducer = KafkaProducer(\n    bootstrap_servers=['b-1.msk-cluster.amazonaws.com:9092'],\n    value_serializer=lambda v: json.dumps(v).encode('utf-8')\n)\n\nproducer.send(\"my-topic\", {\"event\": \"login\", \"user\": \"user_123\"})\nproducer.flush()"
+  },
+  {
+    "objectID": "examples/datastreams.html#amazon-managed-workflows-for-apache-airflow-amaa",
+    "href": "examples/datastreams.html#amazon-managed-workflows-for-apache-airflow-amaa",
+    "title": "Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA",
+    "section": "Amazon Managed Workflows for Apache Airflow (AMAA)",
+    "text": "Amazon Managed Workflows for Apache Airflow (AMAA)\nAMAA is a managed workflow orchestration service based on Apache Airflow. Unlike real-time streaming services, it is used for data pipeline scheduling and orchestration.\n\nKey Features:\n\nFully managed Airflow environment\nDAG-based workflow scheduling\nIntegrates with AWS services\n\n\n\nSample Code: Defining an Airflow DAG in AMAA\nfrom airflow import DAG\nfrom airflow.operators.dummy import DummyOperator\nfrom airflow.operators.python import PythonOperator\nfrom datetime import datetime\n\ndef my_task():\n    print(\"Running my task\")\n\ndefault_args = {\"start_date\": datetime(2024, 2, 1)}\n\ndag = DAG(\"my_dag\", default_args=default_args, schedule_interval=\"@daily\")\n\nstart = DummyOperator(task_id=\"start\", dag=dag)\ntask = PythonOperator(task_id=\"run_task\", python_callable=my_task, dag=dag)\n\nstart &gt;&gt; task"
+  },
+  {
+    "objectID": "examples/sagemaker-pipelines.html",
+    "href": "examples/sagemaker-pipelines.html",
+    "title": "Amazon SageMaker Pipelines: Real-World Examples",
+    "section": "",
+    "text": "Amazon SageMaker Pipelines provide a way to automate and manage machine learning workflows. They help in orchestrating ML steps, such as data processing, training, and deployment.\n\n\nimport boto3\nimport sagemaker\nfrom sagemaker.workflow.pipeline import Pipeline\nfrom sagemaker.workflow.steps import ProcessingStep, TrainingStep\nfrom sagemaker.processing import ScriptProcessor\nfrom sagemaker.sklearn.estimator import SKLearn\nfrom sagemaker.estimator import Estimator\n\nsagemaker_session = sagemaker.Session()\nrole = sagemaker.get_execution_role()\n\n# Step 1: Preprocessing\nsklearn_processor = ScriptProcessor(\n    image_uri=sagemaker.image_uris.retrieve(\"sklearn\", boto3.Session().region_name, version=\"0.23-1\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n)\n\nstep_preprocess = ProcessingStep(\n    name=\"PreprocessData\",\n    processor=sklearn_processor,\n    code=\"preprocessing.py\",\n    outputs=[],\n)\n\n# Step 2: Model Training\nestimator = Estimator(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    hyperparameters={\"max_depth\": 5, \"eta\": 0.2, \"objective\": \"reg:squarederror\"},\n)\n\nstep_train = TrainingStep(\n    name=\"TrainModel\",\n    estimator=estimator,\n    inputs={},\n)\n\n# Define Pipeline\npipeline = Pipeline(\n    name=\"BasicPipeline\",\n    steps=[step_preprocess, step_train],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()\n\n\n\nfrom sagemaker.workflow.steps import ModelStep\nfrom sagemaker.model import Model\n\nmodel = Model(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    model_data=\"s3://my-bucket/model.tar.gz\",\n    role=role,\n)\n\nstep_register = ModelStep(\n    name=\"RegisterModel\",\n    model=model,\n)\n\npipeline = Pipeline(\n    name=\"PipelineWithEvaluation\",\n    steps=[step_preprocess, step_train, step_register],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()"
+  },
+  {
+    "objectID": "examples/sagemaker-pipelines.html#example-1-basic-sagemaker-pipeline-with-preprocessing-and-training",
+    "href": "examples/sagemaker-pipelines.html#example-1-basic-sagemaker-pipeline-with-preprocessing-and-training",
+    "title": "Amazon SageMaker Pipelines: Real-World Examples",
+    "section": "",
+    "text": "import boto3\nimport sagemaker\nfrom sagemaker.workflow.pipeline import Pipeline\nfrom sagemaker.workflow.steps import ProcessingStep, TrainingStep\nfrom sagemaker.processing import ScriptProcessor\nfrom sagemaker.sklearn.estimator import SKLearn\nfrom sagemaker.estimator import Estimator\n\nsagemaker_session = sagemaker.Session()\nrole = sagemaker.get_execution_role()\n\n# Step 1: Preprocessing\nsklearn_processor = ScriptProcessor(\n    image_uri=sagemaker.image_uris.retrieve(\"sklearn\", boto3.Session().region_name, version=\"0.23-1\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n)\n\nstep_preprocess = ProcessingStep(\n    name=\"PreprocessData\",\n    processor=sklearn_processor,\n    code=\"preprocessing.py\",\n    outputs=[],\n)\n\n# Step 2: Model Training\nestimator = Estimator(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    hyperparameters={\"max_depth\": 5, \"eta\": 0.2, \"objective\": \"reg:squarederror\"},\n)\n\nstep_train = TrainingStep(\n    name=\"TrainModel\",\n    estimator=estimator,\n    inputs={},\n)\n\n# Define Pipeline\npipeline = Pipeline(\n    name=\"BasicPipeline\",\n    steps=[step_preprocess, step_train],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()"
+  },
+  {
+    "objectID": "examples/sagemaker-pipelines.html#example-2-sagemaker-pipeline-with-model-evaluation",
+    "href": "examples/sagemaker-pipelines.html#example-2-sagemaker-pipeline-with-model-evaluation",
+    "title": "Amazon SageMaker Pipelines: Real-World Examples",
+    "section": "",
+    "text": "from sagemaker.workflow.steps import ModelStep\nfrom sagemaker.model import Model\n\nmodel = Model(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    model_data=\"s3://my-bucket/model.tar.gz\",\n    role=role,\n)\n\nstep_register = ModelStep(\n    name=\"RegisterModel\",\n    model=model,\n)\n\npipeline = Pipeline(\n    name=\"PipelineWithEvaluation\",\n    steps=[step_preprocess, step_train, step_register],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()"
+  },
+  {
+    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html",
+    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "",
+    "text": "AWS offers a range of storage solutions tailored for different use cases. Below is a comparison of four major storage options: Amazon S3, Amazon EFS, Amazon FSx, and Amazon EBS.\n\n\n\n\n\n\n\n\n\n\n\n\nFeature\nAmazon S3\nAmazon EFS\nAmazon FSx\nAmazon EBS\n\n\n\n\nType\nObject Storage\nNetwork File System\nManaged File System\nBlock Storage\n\n\nUse Case\nBackup, archival, static website hosting\nShared storage for Linux-based workloads\nWindows file system or high-performance workloads\nBoot volumes, databases, transactional workloads\n\n\nPerformance\nScalable, eventual consistency\nLow latency, shared access\nOptimized for Windows/Linux workloads\nHigh IOPS, low-latency\n\n\nAccess Model\nREST API, SDKs, web-based access\nNFS mount\nSMB (Windows) or Lustre (HPC)\nBlock device (EC2 instances)\n\n\nPersistence\nHighly durable (11 9’s)\nPersistent\nPersistent\nPersistent but tied to EC2\n\n\n\n\n\n\n\nDefinition: Amazon S3 is an object storage service designed for scalable storage of any amount of data, accessible over the internet.\nCommon Use Cases: - Backup and disaster recovery - Static website hosting - Data lakes and big data analytics\n\n\nimport boto3\n\ns3 = boto3.client('s3')\n\ns3.upload_file(\"localfile.txt\", \"my-bucket\", \"remote-file.txt\")\n\n\n\n\n\nDefinition: Amazon EFS is a scalable, fully managed network file system (NFS) for Linux-based applications and workloads.\nCommon Use Cases: - Shared storage for EC2 instances - Machine learning and big data processing - Containerized applications (EKS, ECS)\n\n\nsudo yum install -y amazon-efs-utils\nsudo mkdir /mnt/efs\nsudo mount -t efs fs-12345678:/ /mnt/efs\n\n\n\n\n\nDefinition: Amazon FSx provides fully managed, high-performance file systems for specialized workloads, including Windows-based and high-performance computing (HPC).\nCommon Use Cases: - Windows applications requiring NTFS - High-performance computing with Lustre - Media rendering and big data processing\n\n\nnet use X: \\\\fsx-share.amazonaws.com\\share /persistent:yes\n\n\n\n\n\nDefinition: Amazon EBS is block storage that provides persistent storage for EC2 instances, supporting low-latency, high-performance applications.\nCommon Use Cases: - Databases (MySQL, PostgreSQL, etc.) - Virtual machine storage - Transactional applications\n\n\naws ec2 attach-volume --volume-id vol-12345678 --instance-id i-abcdef12 --device /dev/xvdf\n\n\n\n\n\nEach AWS storage service serves a unique purpose, and choosing the right one depends on your workload needs. If you need object storage, go with S3. If you need shared file storage, use EFS. If you need a managed file system, consider FSx. If you require high-performance block storage, EBS is the best choice."
+  },
+  {
+    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#overview-table",
+    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#overview-table",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "",
+    "text": "Feature\nAmazon S3\nAmazon EFS\nAmazon FSx\nAmazon EBS\n\n\n\n\nType\nObject Storage\nNetwork File System\nManaged File System\nBlock Storage\n\n\nUse Case\nBackup, archival, static website hosting\nShared storage for Linux-based workloads\nWindows file system or high-performance workloads\nBoot volumes, databases, transactional workloads\n\n\nPerformance\nScalable, eventual consistency\nLow latency, shared access\nOptimized for Windows/Linux workloads\nHigh IOPS, low-latency\n\n\nAccess Model\nREST API, SDKs, web-based access\nNFS mount\nSMB (Windows) or Lustre (HPC)\nBlock device (EC2 instances)\n\n\nPersistence\nHighly durable (11 9’s)\nPersistent\nPersistent\nPersistent but tied to EC2"
+  },
+  {
+    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-s3-simple-storage-service",
+    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-s3-simple-storage-service",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "",
+    "text": "Definition: Amazon S3 is an object storage service designed for scalable storage of any amount of data, accessible over the internet.\nCommon Use Cases: - Backup and disaster recovery - Static website hosting - Data lakes and big data analytics\n\n\nimport boto3\n\ns3 = boto3.client('s3')\n\ns3.upload_file(\"localfile.txt\", \"my-bucket\", \"remote-file.txt\")"
+  },
+  {
+    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-efs-elastic-file-system",
+    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-efs-elastic-file-system",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "",
+    "text": "Definition: Amazon EFS is a scalable, fully managed network file system (NFS) for Linux-based applications and workloads.\nCommon Use Cases: - Shared storage for EC2 instances - Machine learning and big data processing - Containerized applications (EKS, ECS)\n\n\nsudo yum install -y amazon-efs-utils\nsudo mkdir /mnt/efs\nsudo mount -t efs fs-12345678:/ /mnt/efs"
+  },
+  {
+    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-fsx",
+    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-fsx",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "",
+    "text": "Definition: Amazon FSx provides fully managed, high-performance file systems for specialized workloads, including Windows-based and high-performance computing (HPC).\nCommon Use Cases: - Windows applications requiring NTFS - High-performance computing with Lustre - Media rendering and big data processing\n\n\nnet use X: \\\\fsx-share.amazonaws.com\\share /persistent:yes"
+  },
+  {
+    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-ebs-elastic-block-store",
+    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-ebs-elastic-block-store",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "",
+    "text": "Definition: Amazon EBS is block storage that provides persistent storage for EC2 instances, supporting low-latency, high-performance applications.\nCommon Use Cases: - Databases (MySQL, PostgreSQL, etc.) - Virtual machine storage - Transactional applications\n\n\naws ec2 attach-volume --volume-id vol-12345678 --instance-id i-abcdef12 --device /dev/xvdf"
+  },
+  {
+    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#conclusion",
+    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#conclusion",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "",
+    "text": "Each AWS storage service serves a unique purpose, and choosing the right one depends on your workload needs. If you need object storage, go with S3. If you need shared file storage, use EFS. If you need a managed file system, consider FSx. If you require high-performance block storage, EBS is the best choice."
+  },
+  {
+    "objectID": "examples/sagemaker-vs-bedrock.html",
+    "href": "examples/sagemaker-vs-bedrock.html",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "",
+    "text": "AWS provides multiple machine learning (ML) services, with Amazon SageMaker and Amazon Bedrock being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels.\n\n\n\n\n\n\n\n\n\n\nFeature\nAmazon SageMaker\nAmazon Bedrock\n\n\n\n\nType\nFully managed ML development platform\nFully managed foundation model (FM) service\n\n\nUse Case\nBuilding, training, and deploying custom ML models\nUsing and fine-tuning foundation models for AI applications\n\n\nCustomization\nHigh (bring your own data and model)\nLimited (fine-tune pre-trained models)\n\n\nModel Hosting\nCustom models on managed infrastructure\nAPI-based access to foundation models (FM)\n\n\nData Handling\nRequires dataset preparation and preprocessing\nUses pre-trained models with minimal data processing\n\n\nAccess Model\nSDK, APIs, Jupyter notebooks\nAPI-based inference\n\n\nScaling\nFully managed infrastructure\nFully managed with auto-scaling\n\n\n\n\n\n\n\nDefinition: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.\nCommon Use Cases: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring\n\n\nimport boto3\n\nsagemaker = boto3.client('sagemaker')\nresponse = sagemaker.create_training_job(\n    TrainingJobName='my-training-job',\n    AlgorithmSpecification={\n        'TrainingImage': 'your-docker-image',\n        'TrainingInputMode': 'File'\n    },\n    RoleArn='your-role-arn',\n    InputDataConfig=[\n        {\n            'ChannelName': 'train',\n            'DataSource': {\n                'S3DataSource': {\n                    'S3Uri': 's3://your-dataset/',\n                    'S3DataType': 'S3Prefix'\n                }\n            }\n        }\n    ],\n    OutputDataConfig={'S3OutputPath': 's3://your-output-bucket/'},\n    ResourceConfig={\n        'InstanceType': 'ml.m5.large',\n        'InstanceCount': 1,\n        'VolumeSizeInGB': 50\n    },\n    StoppingCondition={'MaxRuntimeInSeconds': 3600}\n)\nprint(response)\n\n\n\n\n\nDefinition: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.\nCommon Use Cases: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications\n\n\nimport boto3\n\nbedrock = boto3.client('bedrock-runtime')\nresponse = bedrock.invoke_model(\n    modelId='anthropic.claude-v2',\n    body='{\"prompt\": \"Write a short poem about the ocean.\", \"max_tokens\": 100}'\n)\nprint(response[\"body\"].read().decode('utf-8'))\n\n\n\n\n\nIf your goal is to build and train custom ML models, SageMaker provides the flexibility and infrastructure to do so. If you need quick access to pre-trained foundation models for AI applications, Bedrock offers a simple API-based approach to integrate generative AI into applications."
+  },
+  {
+    "objectID": "examples/sagemaker-vs-bedrock.html#overview-table",
+    "href": "examples/sagemaker-vs-bedrock.html#overview-table",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "",
+    "text": "Feature\nAmazon SageMaker\nAmazon Bedrock\n\n\n\n\nType\nFully managed ML development platform\nFully managed foundation model (FM) service\n\n\nUse Case\nBuilding, training, and deploying custom ML models\nUsing and fine-tuning foundation models for AI applications\n\n\nCustomization\nHigh (bring your own data and model)\nLimited (fine-tune pre-trained models)\n\n\nModel Hosting\nCustom models on managed infrastructure\nAPI-based access to foundation models (FM)\n\n\nData Handling\nRequires dataset preparation and preprocessing\nUses pre-trained models with minimal data processing\n\n\nAccess Model\nSDK, APIs, Jupyter notebooks\nAPI-based inference\n\n\nScaling\nFully managed infrastructure\nFully managed with auto-scaling"
+  },
+  {
+    "objectID": "examples/sagemaker-vs-bedrock.html#amazon-sagemaker",
+    "href": "examples/sagemaker-vs-bedrock.html#amazon-sagemaker",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "",
+    "text": "Definition: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.\nCommon Use Cases: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring\n\n\nimport boto3\n\nsagemaker = boto3.client('sagemaker')\nresponse = sagemaker.create_training_job(\n    TrainingJobName='my-training-job',\n    AlgorithmSpecification={\n        'TrainingImage': 'your-docker-image',\n        'TrainingInputMode': 'File'\n    },\n    RoleArn='your-role-arn',\n    InputDataConfig=[\n        {\n            'ChannelName': 'train',\n            'DataSource': {\n                'S3DataSource': {\n                    'S3Uri': 's3://your-dataset/',\n                    'S3DataType': 'S3Prefix'\n                }\n            }\n        }\n    ],\n    OutputDataConfig={'S3OutputPath': 's3://your-output-bucket/'},\n    ResourceConfig={\n        'InstanceType': 'ml.m5.large',\n        'InstanceCount': 1,\n        'VolumeSizeInGB': 50\n    },\n    StoppingCondition={'MaxRuntimeInSeconds': 3600}\n)\nprint(response)"
+  },
+  {
+    "objectID": "examples/sagemaker-vs-bedrock.html#amazon-bedrock",
+    "href": "examples/sagemaker-vs-bedrock.html#amazon-bedrock",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "",
+    "text": "Definition: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.\nCommon Use Cases: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications\n\n\nimport boto3\n\nbedrock = boto3.client('bedrock-runtime')\nresponse = bedrock.invoke_model(\n    modelId='anthropic.claude-v2',\n    body='{\"prompt\": \"Write a short poem about the ocean.\", \"max_tokens\": 100}'\n)\nprint(response[\"body\"].read().decode('utf-8'))"
+  },
+  {
+    "objectID": "examples/sagemaker-vs-bedrock.html#conclusion",
+    "href": "examples/sagemaker-vs-bedrock.html#conclusion",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "",
+    "text": "If your goal is to build and train custom ML models, SageMaker provides the flexibility and infrastructure to do so. If you need quick access to pre-trained foundation models for AI applications, Bedrock offers a simple API-based approach to integrate generative AI into applications."
+  },
+  {
+    "objectID": "examples/flink-vs-kinesis.html",
+    "href": "examples/flink-vs-kinesis.html",
+    "title": "Flink vs Kinesis",
+    "section": "",
+    "text": "Apache Flink and AWS Kinesis are both powerful tools for real-time data processing, but they serve different purposes and have different architectures. Below is a comparison of the two, with definitions, explanations, and code examples.\n\n\n\n\nApache Flink is an open-source stream-processing framework used for distributed processing of data streams. It is designed for stateful computations over unbounded data streams and can handle large-scale, real-time analytics.\n\nKey Features:\n\nReal-time stream processing\nFault tolerance with checkpointing\nSupports batch processing (as a special case of stream processing)\nAdvanced windowing and event time processing\nSupport for complex event processing (CEP)\n\n\n\n\n\nAWS Kinesis is a fully managed service by Amazon Web Services for real-time data streaming and processing. It allows users to collect, process, and analyze real-time data at massive scale.\n\nKey Features:\n\nFully managed, scalable stream processing\nIntegration with AWS ecosystem (e.g., Lambda, Redshift, etc.)\nReal-time analytics\nSupports data ingestion, storage, and analytics on streaming data\nAuto-scaling based on data volume\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFeature\nApache Flink\nAWS Kinesis\n\n\n\n\nPurpose\nStream processing and complex event processing\nReal-time data streaming and ingestion\n\n\nManagement\nSelf-managed (on-premise or cloud)\nFully managed service by AWS\n\n\nFault Tolerance\nCheckpointing and state management\nBuilt-in replication and data retention\n\n\nUse Case\nComplex analytics, real-time ETL, CEP\nData ingestion, analytics, and streaming apps\n\n\nScaling\nManual or automated scaling\nAuto-scaling based on data volume\n\n\nIntegrations\nKafka, HDFS, Cassandra, Elasticsearch\nAWS ecosystem (Lambda, Redshift, etc.)\n\n\nLanguage Support\nJava, Scala, Python, SQL\nKinesis Client Library (Java, Python, etc.)\n\n\nLatency\nSub-second latency (low-latency)\nTypically sub-second (low-latency)\n\n\n\n\n\n\n\n\nHere is a basic example of a Flink job that processes a stream of events:\nimport org.apache.flink.api.common.functions.MapFunction;\nimport org.apache.flink.streaming.api.datastream.DataStream;\nimport org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;\n\npublic class FlinkExample {\n    public static void main(String[] args) throws Exception {\n        final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();\n        \n        // Example: Create a stream of integers and map them to a string\n        DataStream&lt;Integer&gt; numbers = env.fromElements(1, 2, 3, 4, 5);\n        \n        DataStream&lt;String&gt; result = numbers.map(new MapFunction&lt;Integer, String&gt;() {\n            @Override\n            public String map(Integer value) throws Exception {\n                return \"Number: \" + value;\n            }\n        });\n\n        result.print(); // Output the result\n        \n        env.execute(\"Flink Streaming Example\");\n    }\n}\nIn this example, Flink reads from a stream of integers, processes them, and outputs a transformed result. AWS Kinesis Example\nBelow is an example of how to produce and consume data from Kinesis streams using the AWS SDK for Python (Boto3).\nKinesis Producer Example\nimport boto3\nimport json\n\n# Initialize Kinesis client\nkinesis = boto3.client('kinesis', region_name='us-east-1')\n\ndef send_to_kinesis(stream_name, data):\n    payload = json.dumps(data)\n    kinesis.put_record(\n        StreamName=stream_name,\n        Data=payload,\n        PartitionKey=\"partitionkey\"\n    )\n\n# Example usage\nsend_to_kinesis(\"my-kinesis-stream\", {\"event\": \"start\", \"timestamp\": \"2025-02-03T12:00:00\"})\nKinesis Consumer Example\nimport boto3\nimport json\n\n# Initialize Kinesis client\nkinesis = boto3.client('kinesis', region_name='us-east-1')\n\ndef consume_from_kinesis(stream_name):\n    shard_iterator = kinesis.get_shard_iterator(\n        StreamName=stream_name,\n        ShardId='shardId-000000000000',\n        ShardIteratorType='TRIM_HORIZON'\n    )['ShardIterator']\n    \n    while True:\n        record_response = kinesis.get_records(ShardIterator=shard_iterator, Limit=10)\n        for record in record_response['Records']:\n            print(json.loads(record['Data']))\n        \n        shard_iterator = record_response['NextShardIterator']\n\n# Example usage\nconsume_from_kinesis(\"my-kinesis-stream\")\nn the Kinesis example, we have a producer that sends data to a stream and a consumer that reads data from it. Conclusion\nBoth Apache Flink and AWS Kinesis are valuable tools in the realm of real-time data processing. Flink is a stream-processing framework ideal for complex event processing and advanced analytics, while Kinesis provides a fully managed solution for collecting, processing, and analyzing streaming data.\nThe choice between the two depends on factors such as the scale of your infrastructure, integration needs, and whether you prefer a fully managed service (Kinesis) or a more customizable stream processing framework (Flink)."
+  },
+  {
+    "objectID": "examples/flink-vs-kinesis.html#definitions",
+    "href": "examples/flink-vs-kinesis.html#definitions",
+    "title": "Flink vs Kinesis",
+    "section": "",
+    "text": "Apache Flink is an open-source stream-processing framework used for distributed processing of data streams. It is designed for stateful computations over unbounded data streams and can handle large-scale, real-time analytics.\n\nKey Features:\n\nReal-time stream processing\nFault tolerance with checkpointing\nSupports batch processing (as a special case of stream processing)\nAdvanced windowing and event time processing\nSupport for complex event processing (CEP)\n\n\n\n\n\nAWS Kinesis is a fully managed service by Amazon Web Services for real-time data streaming and processing. It allows users to collect, process, and analyze real-time data at massive scale.\n\nKey Features:\n\nFully managed, scalable stream processing\nIntegration with AWS ecosystem (e.g., Lambda, Redshift, etc.)\nReal-time analytics\nSupports data ingestion, storage, and analytics on streaming data\nAuto-scaling based on data volume"
+  },
+  {
+    "objectID": "examples/flink-vs-kinesis.html#key-differences",
+    "href": "examples/flink-vs-kinesis.html#key-differences",
+    "title": "Flink vs Kinesis",
+    "section": "",
+    "text": "Feature\nApache Flink\nAWS Kinesis\n\n\n\n\nPurpose\nStream processing and complex event processing\nReal-time data streaming and ingestion\n\n\nManagement\nSelf-managed (on-premise or cloud)\nFully managed service by AWS\n\n\nFault Tolerance\nCheckpointing and state management\nBuilt-in replication and data retention\n\n\nUse Case\nComplex analytics, real-time ETL, CEP\nData ingestion, analytics, and streaming apps\n\n\nScaling\nManual or automated scaling\nAuto-scaling based on data volume\n\n\nIntegrations\nKafka, HDFS, Cassandra, Elasticsearch\nAWS ecosystem (Lambda, Redshift, etc.)\n\n\nLanguage Support\nJava, Scala, Python, SQL\nKinesis Client Library (Java, Python, etc.)\n\n\nLatency\nSub-second latency (low-latency)\nTypically sub-second (low-latency)"
+  },
+  {
+    "objectID": "examples/flink-vs-kinesis.html#comparison-in-action",
+    "href": "examples/flink-vs-kinesis.html#comparison-in-action",
+    "title": "Flink vs Kinesis",
+    "section": "",
+    "text": "Here is a basic example of a Flink job that processes a stream of events:\nimport org.apache.flink.api.common.functions.MapFunction;\nimport org.apache.flink.streaming.api.datastream.DataStream;\nimport org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;\n\npublic class FlinkExample {\n    public static void main(String[] args) throws Exception {\n        final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();\n        \n        // Example: Create a stream of integers and map them to a string\n        DataStream&lt;Integer&gt; numbers = env.fromElements(1, 2, 3, 4, 5);\n        \n        DataStream&lt;String&gt; result = numbers.map(new MapFunction&lt;Integer, String&gt;() {\n            @Override\n            public String map(Integer value) throws Exception {\n                return \"Number: \" + value;\n            }\n        });\n\n        result.print(); // Output the result\n        \n        env.execute(\"Flink Streaming Example\");\n    }\n}\nIn this example, Flink reads from a stream of integers, processes them, and outputs a transformed result. AWS Kinesis Example\nBelow is an example of how to produce and consume data from Kinesis streams using the AWS SDK for Python (Boto3).\nKinesis Producer Example\nimport boto3\nimport json\n\n# Initialize Kinesis client\nkinesis = boto3.client('kinesis', region_name='us-east-1')\n\ndef send_to_kinesis(stream_name, data):\n    payload = json.dumps(data)\n    kinesis.put_record(\n        StreamName=stream_name,\n        Data=payload,\n        PartitionKey=\"partitionkey\"\n    )\n\n# Example usage\nsend_to_kinesis(\"my-kinesis-stream\", {\"event\": \"start\", \"timestamp\": \"2025-02-03T12:00:00\"})\nKinesis Consumer Example\nimport boto3\nimport json\n\n# Initialize Kinesis client\nkinesis = boto3.client('kinesis', region_name='us-east-1')\n\ndef consume_from_kinesis(stream_name):\n    shard_iterator = kinesis.get_shard_iterator(\n        StreamName=stream_name,\n        ShardId='shardId-000000000000',\n        ShardIteratorType='TRIM_HORIZON'\n    )['ShardIterator']\n    \n    while True:\n        record_response = kinesis.get_records(ShardIterator=shard_iterator, Limit=10)\n        for record in record_response['Records']:\n            print(json.loads(record['Data']))\n        \n        shard_iterator = record_response['NextShardIterator']\n\n# Example usage\nconsume_from_kinesis(\"my-kinesis-stream\")\nn the Kinesis example, we have a producer that sends data to a stream and a consumer that reads data from it. Conclusion\nBoth Apache Flink and AWS Kinesis are valuable tools in the realm of real-time data processing. Flink is a stream-processing framework ideal for complex event processing and advanced analytics, while Kinesis provides a fully managed solution for collecting, processing, and analyzing streaming data.\nThe choice between the two depends on factors such as the scale of your infrastructure, integration needs, and whether you prefer a fully managed service (Kinesis) or a more customizable stream processing framework (Flink)."
   }
 ]

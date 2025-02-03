@@ -1,0 +1,81 @@
+---
+title: "Search Services: Kendra vs OpenSearch"
+format: html
+---
+
+# AWS Search Services: Kendra vs OpenSearch
+
+AWS provides two primary search services: **Amazon Kendra** and **Amazon OpenSearch Service**. While both enable search capabilities, they serve different use cases and have distinct strengths.
+
+## Overview Table
+
+| Feature      | Amazon Kendra | Amazon OpenSearch Service |
+|-------------|--------------|--------------------------|
+| Type        | AI-powered enterprise search | Open-source search and analytics engine |
+| Use Case    | Document and knowledge search | Log analytics, full-text search, observability |
+| Data Sources| Pre-built connectors for common enterprise sources | Structured and unstructured data from various sources |
+| Query Type  | Natural Language Processing (NLP)-based | Keyword-based and structured queries (Elasticsearch DSL) |
+| Indexing    | Managed, AI-driven indexing | Full control over indexing with custom mappings |
+| Access Model| API-based search queries | REST API, Kibana dashboards, SQL |
+| Scaling     | Fully managed, auto-scaling | Cluster-based, requires management |
+
+---
+
+## Amazon Kendra
+
+**Definition**: Amazon Kendra is an AI-powered enterprise search service that enables organizations to search structured and unstructured documents using natural language queries.
+
+**Common Use Cases**:
+- Enterprise knowledge management
+- Internal document search
+- Customer support knowledge bases
+
+### Example Code: Querying Kendra with Python (Boto3)
+
+```python
+import boto3
+
+kendra = boto3.client('kendra')
+response = kendra.query(
+    IndexId='index-id',
+    QueryText='How do I reset my password?'
+)
+print(response)
+```
+
+---
+
+## Amazon OpenSearch Service
+
+**Definition**: Amazon OpenSearch Service is a managed search and analytics engine based on the open-source Elasticsearch and OpenSearch projects.
+
+**Common Use Cases**:
+- Log and event data analysis
+- Real-time application search
+- Security monitoring and observability
+
+### Example Code: Querying OpenSearch with Python
+
+```python
+from opensearchpy import OpenSearch
+
+client = OpenSearch(
+    hosts=[{'host': 'your-opensearch-domain', 'port': 443}],
+    http_auth=('user', 'password'),
+    use_ssl=True
+)
+
+query = {
+    "query": {
+        "match": {"message": "error"}
+    }
+}
+response = client.search(index="logs", body=query)
+print(response)
+```
+
+---
+
+## Conclusion
+If your use case involves **enterprise knowledge retrieval with AI-driven natural language search**, Amazon **Kendra** is the better option. If you need **log analytics, real-time search, or structured query capabilities**, **OpenSearch** is the preferred choice.
+

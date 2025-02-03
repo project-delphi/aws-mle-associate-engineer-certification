@@ -1,0 +1,96 @@
+---
+title: "ML Services: SageMaker vs Bedrock"
+format: html
+---
+
+# AWS ML Services: SageMaker vs Bedrock
+
+AWS provides multiple machine learning (ML) services, with **Amazon SageMaker** and **Amazon Bedrock** being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels.
+
+## Overview Table
+
+| Feature      | Amazon SageMaker | Amazon Bedrock |
+|-------------|----------------|---------------|
+| Type        | Fully managed ML development platform | Fully managed foundation model (FM) service |
+| Use Case    | Building, training, and deploying custom ML models | Using and fine-tuning foundation models for AI applications |
+| Customization | High (bring your own data and model) | Limited (fine-tune pre-trained models) |
+| Model Hosting | Custom models on managed infrastructure | API-based access to foundation models (FM) |
+| Data Handling | Requires dataset preparation and preprocessing | Uses pre-trained models with minimal data processing |
+| Access Model | SDK, APIs, Jupyter notebooks | API-based inference |
+| Scaling | Fully managed infrastructure | Fully managed with auto-scaling |
+
+---
+
+## Amazon SageMaker
+
+**Definition**: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.
+
+**Common Use Cases**:
+- Training custom ML models
+- Deploying inference endpoints
+- Experiment tracking and model monitoring
+
+### Example Code: Train a Model in SageMaker using Python
+
+```python
+import boto3
+
+sagemaker = boto3.client('sagemaker')
+response = sagemaker.create_training_job(
+    TrainingJobName='my-training-job',
+    AlgorithmSpecification={
+        'TrainingImage': 'your-docker-image',
+        'TrainingInputMode': 'File'
+    },
+    RoleArn='your-role-arn',
+    InputDataConfig=[
+        {
+            'ChannelName': 'train',
+            'DataSource': {
+                'S3DataSource': {
+                    'S3Uri': 's3://your-dataset/',
+                    'S3DataType': 'S3Prefix'
+                }
+            }
+        }
+    ],
+    OutputDataConfig={'S3OutputPath': 's3://your-output-bucket/'},
+    ResourceConfig={
+        'InstanceType': 'ml.m5.large',
+        'InstanceCount': 1,
+        'VolumeSizeInGB': 50
+    },
+    StoppingCondition={'MaxRuntimeInSeconds': 3600}
+)
+print(response)
+```
+
+---
+
+## Amazon Bedrock
+
+**Definition**: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.
+
+**Common Use Cases**:
+- Text generation and summarization
+- Chatbots and virtual assistants
+- Image generation and AI-powered applications
+
+### Example Code: Call a Foundation Model via Bedrock API
+
+```python
+import boto3
+
+bedrock = boto3.client('bedrock-runtime')
+response = bedrock.invoke_model(
+    modelId='anthropic.claude-v2',
+    body='{"prompt": "Write a short poem about the ocean.", "max_tokens": 100}'
+)
+print(response["body"].read().decode('utf-8'))
+```
+
+---
+
+## Conclusion
+If your goal is to **build and train custom ML models**, **SageMaker** provides the flexibility and infrastructure to do so. If you need **quick access to pre-trained foundation models for AI applications**, **Bedrock** offers a simple API-based approach to integrate generative AI into applications.
+

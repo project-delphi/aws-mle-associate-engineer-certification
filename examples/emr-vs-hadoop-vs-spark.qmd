@@ -1,0 +1,114 @@
+---
+title: "EMR vs Hadoop vs Spark"
+author: "Ravi Kalia"
+date: "2025-02-03"
+format: html
+---
+
+# Introduction
+
+This document compares **Amazon EMR**, **Apache Hadoop**, and **Apache Spark**, highlighting their use cases, differences, and providing code examples.
+
+---
+
+# Overview of Services
+
+## Amazon EMR
+AWS **Elastic MapReduce (EMR)** is a cloud-based big data processing service that simplifies running frameworks like Hadoop and Spark.
+
+### Key Features:
+- Managed Hadoop, Spark, Presto, and more
+- Auto-scaling and cost-efficient
+- Tight integration with AWS services
+
+### Sample Code: Submitting a Spark Job to EMR
+```python
+import boto3
+
+def submit_spark_job(cluster_id, script_s3_path):
+    emr_client = boto3.client('emr')
+    response = emr_client.add_job_flow_steps(
+        JobFlowId=cluster_id,
+        Steps=[{
+            'Name': 'Spark Job',
+            'ActionOnFailure': 'CONTINUE',
+            'HadoopJarStep': {
+                'Jar': 'command-runner.jar',
+                'Args': ['spark-submit', script_s3_path]
+            }
+        }]
+    )
+    return response
+
+# Example usage
+submit_spark_job("j-XYZ123", "s3://my-bucket/my-spark-job.py")
+```
+
+## Apache Hadoop
+**Hadoop** is an open-source framework for distributed storage and processing of large datasets using MapReduce.
+
+### Key Features:
+- Distributed computing using HDFS and YARN
+- Batch processing of large data volumes
+- Ecosystem includes Hive, Pig, HBase, and more
+
+### Sample Code: Hadoop Word Count Job
+```java
+import java.io.IOException;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.*;
+
+public class WordCount {
+    public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
+        private final static IntWritable one = new IntWritable(1);
+        private Text word = new Text();
+
+        public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+            for (String token : value.toString().split(" ")) {
+                word.set(token);
+                context.write(word, one);
+            }
+        }
+    }
+}
+```
+
+## Apache Spark
+**Spark** is a fast, in-memory data processing framework designed for large-scale data analytics and machine learning.
+
+### Key Features:
+- In-memory processing for speed
+- Supports batch, streaming, and machine learning workloads
+- APIs in Python, Java, Scala, and R
+
+### Sample Code: Running a PySpark Job
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("Example").getOrCreate()
+data = [("Alice", 34), ("Bob", 45)]
+df = spark.createDataFrame(data, ["Name", "Age"])
+df.show()
+```
+
+---
+
+# Comparison Table
+
+| Feature | Amazon EMR | Apache Hadoop | Apache Spark |
+|---------|------------|--------------|--------------|
+| Managed | Yes | No | No |
+| Processing Type | Batch & Streaming | Batch | Batch & Streaming |
+| Speed | Fast (optimized) | Slow (disk-based) | Very Fast (in-memory) |
+| Scalability | High (auto-scaling) | Moderate | High |
+
+---
+
+# Conclusion
+
+- **Amazon EMR** is ideal for running big data frameworks on AWS with ease.
+- **Hadoop** is best for batch processing with HDFS and YARN.
+- **Spark** is preferred for fast, in-memory processing with broader applications.
+
+Choose based on your workload needs!
+
