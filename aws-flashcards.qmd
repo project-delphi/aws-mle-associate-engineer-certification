@@ -154,42 +154,116 @@ An AI service that helps identify potentially fraudulent activities in real-time
 
 ---
 
+
 ## SageMaker Ecosystem
 
 ::: {.callout-note collapse="true"}
 ### Amazon SageMaker Studio
-A fully integrated development environment (IDE) for machine learning with a single, web-based visual interface.
-
+A fully integrated development environment (IDE) for machine learning with a single, web-based visual interface. Provides capabilities for data preparation, model building, training, debugging, and deployment.
 :::
 
 ::: {.callout-note collapse="true"}
 ### Built-in SageMaker Algorithms
 Prebuilt algorithms optimized for performance and scalability:
-- Linear Learner
-- XGBoost
-- DeepAR
-- BlazingText
-- Object Detection
+- Linear Learner (Regression, Classification)
+- XGBoost (Gradient Boosting)
+- DeepAR (Time Series Forecasting)
+- BlazingText (Word2Vec, Text Classification)
+- Object Detection (Image Analysis)
+- Image Classification (ResNet, VGG, etc.)
+- Semantic Segmentation
+- Factorization Machines (Recommender Systems)
+- Neural Topic Model (Topic Modeling)
+- K-Means Clustering
+- PCA (Dimensionality Reduction)
+- LDA (Latent Dirichlet Allocation)
+- Sequence-to-Sequence (Translation, Text Generation)
+- Random Cut Forest (Anomaly Detection)
 - And more...
-
 :::
 
 ::: {.callout-note collapse="true"}
-### AWS Lookout for Vision
-A machine learning service that uses computer vision to automate visual inspection of industrial products.
-
+### Amazon SageMaker Pipelines
+A CI/CD service for automating machine learning workflows, including data preprocessing, model training, and deployment. Features include:
+- Step-based workflow definition
+- Integration with SageMaker Training, Processing, and Model Registry
+- Lineage tracking and experiment management
+- Execution via SDK or AWS Console
 :::
 
 ::: {.callout-note collapse="true"}
-### AWS Lookout for Equipment
-A machine learning service that uses sensor data to detect abnormal equipment behavior and prevent costly downtime.
-
+### Amazon SageMaker Model Monitor
+Continuously monitors deployed models for data drift and quality issues. Key features:
+- Baseline creation from training data
+- Monitoring statistics and visualizations
+- Alerts and automated remediation
+- Integration with SageMaker Pipelines
 :::
 
 ::: {.callout-note collapse="true"}
-### AWS Lookout for Metrics
-A machine learning service that uses anomaly detection to monitor business metrics and alert on unexpected changes.
+### Amazon SageMaker Inference & Deployment
+Multiple options for deploying models:
+- **Real-time inference**: Deploy models as endpoints with auto-scaling
+- **Batch Transform**: Process large datasets asynchronously
+- **Serverless inference**: Deploy without managing infrastructure
+- **Edge deployment**: Use SageMaker Edge Manager for on-device inference
+:::
 
+::: {.callout-note collapse="true"}
+### Amazon SageMaker APIs
+SageMaker provides SDKs and APIs for integrating ML into applications:
+- **Boto3 (Python SDK)**: Automate SageMaker workflows
+- **SageMaker SDK**: Train, deploy, and manage models
+- **SageMaker JumpStart**: Access pre-trained models and solutions
+- **Model Registry API**: Manage model versions and deployments
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon SageMaker Feature Store
+A fully managed repository to store, update, and retrieve ML features. Supports:
+- Online and offline stores for low-latency and batch processing
+- Feature versioning and governance
+- Integration with SageMaker Pipelines and Model Monitor
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon SageMaker Autopilot
+Automates model selection, hyperparameter tuning, and feature engineering. Provides:
+- Explainability reports
+- Candidate model evaluation
+- Deployable models without manual tuning
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon SageMaker Debugger
+Automatically detects training issues, such as overfitting and vanishing gradients. Key features:
+- Real-time monitoring of training metrics
+- Integration with TensorBoard
+- Automated rule-based alerts
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon SageMaker Ground Truth
+A data labeling service that supports:
+- Human-in-the-loop labeling
+- Automated labeling with active learning
+- Integration with Amazon Mechanical Turk and private workforce
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon SageMaker Data Wrangler
+Simplifies data preparation and feature engineering with:
+- Pre-built data transformations
+- Automated data quality checks
+- Integration with SageMaker Pipelines
+:::
+
+::: {.callout-note collapse="true"}
+### Amazon SageMaker Clarify
+Provides explainability and bias detection tools:
+- Feature importance analysis
+- Bias detection in datasets and models
+- Integration with Model Monitor for ongoing fairness assessment
 :::
 
 ---
@@ -202,7 +276,7 @@ A machine learning service that uses anomaly detection to monitor business metri
 - **Subnets:** Segments of VPC IP address ranges.
 - **Internet Gateway:** Enables internet access for VPC.
 - **NAT Gateway:** Allows private subnets to access the internet securely.
-- **Security Groups:** Instance-level firewalls for controlling inbound/outbound traffic.
+- **Security Groups:** Instance-level firewallsfor controlling inbound/outbound traffic.
 
 :::
 
