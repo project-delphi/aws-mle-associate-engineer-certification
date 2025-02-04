@@ -8,6 +8,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: aws-mla-exam-resources.qmd
+        text: Exam Resources
       - href: aws-definitions.qmd
         text: AWS Services Definitions
       - href: aws-comparison-tables.qmd
