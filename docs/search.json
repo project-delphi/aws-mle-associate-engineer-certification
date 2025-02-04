@@ -123,35 +123,35 @@
     "href": "examples/search.html",
     "title": "Search Services: Kendra vs OpenSearch",
     "section": "",
-    "text": "AWS provides two primary search services: Amazon Kendra and Amazon OpenSearch Service. While both enable search capabilities, they serve different use cases and have distinct strengths.\n\n\n\n\n\n\n\n\n\n\nFeature\nAmazon Kendra\nAmazon OpenSearch Service\n\n\n\n\nType\nAI-powered enterprise search\nOpen-source search and analytics engine\n\n\nUse Case\nDocument and knowledge search\nLog analytics, full-text search, observability\n\n\nData Sources\nPre-built connectors for common enterprise sources\nStructured and unstructured data from various sources\n\n\nQuery Type\nNatural Language Processing (NLP)-based\nKeyword-based and structured queries (Elasticsearch DSL)\n\n\nIndexing\nManaged, AI-driven indexing\nFull control over indexing with custom mappings\n\n\nAccess Model\nAPI-based search queries\nREST API, Kibana dashboards, SQL\n\n\nScaling\nFully managed, auto-scaling\nCluster-based, requires management\n\n\n\n\n\n\n\nDefinition: Amazon Kendra is an AI-powered enterprise search service that enables organizations to search structured and unstructured documents using natural language queries.\nCommon Use Cases: - Enterprise knowledge management - Internal document search - Customer support knowledge bases\n\n\nimport boto3\n\nkendra = boto3.client('kendra')\nresponse = kendra.query(\n    IndexId='index-id',\n    QueryText='How do I reset my password?'\n)\nprint(response)\n\n\n\n\n\nDefinition: Amazon OpenSearch Service is a managed search and analytics engine based on the open-source Elasticsearch and OpenSearch projects.\nCommon Use Cases: - Log and event data analysis - Real-time application search - Security monitoring and observability\n\n\nfrom opensearchpy import OpenSearch\n\nclient = OpenSearch(\n    hosts=[{'host': 'your-opensearch-domain', 'port': 443}],\n    http_auth=('user', 'password'),\n    use_ssl=True\n)\n\nquery = {\n    \"query\": {\n        \"match\": {\"message\": \"error\"}\n    }\n}\nresponse = client.search(index=\"logs\", body=query)\nprint(response)\n\n\n\n\n\nIf your use case involves enterprise knowledge retrieval with AI-driven natural language search, Amazon Kendra is the better option. If you need log analytics, real-time search, or structured query capabilities, OpenSearch is the preferred choice."
+    "text": "AWS provides two primary search services: Amazon Kendra and Amazon OpenSearch Service. While both enable search capabilities, they serve different use cases and have distinct strengths."
   },
   {
     "objectID": "examples/search.html#overview-table",
     "href": "examples/search.html#overview-table",
     "title": "Search Services: Kendra vs OpenSearch",
-    "section": "",
-    "text": "Feature\nAmazon Kendra\nAmazon OpenSearch Service\n\n\n\n\nType\nAI-powered enterprise search\nOpen-source search and analytics engine\n\n\nUse Case\nDocument and knowledge search\nLog analytics, full-text search, observability\n\n\nData Sources\nPre-built connectors for common enterprise sources\nStructured and unstructured data from various sources\n\n\nQuery Type\nNatural Language Processing (NLP)-based\nKeyword-based and structured queries (Elasticsearch DSL)\n\n\nIndexing\nManaged, AI-driven indexing\nFull control over indexing with custom mappings\n\n\nAccess Model\nAPI-based search queries\nREST API, Kibana dashboards, SQL\n\n\nScaling\nFully managed, auto-scaling\nCluster-based, requires management"
+    "section": "Overview Table",
+    "text": "Overview Table\n\n\n\n\n\n\n\n\nFeature\nAmazon Kendra\nAmazon OpenSearch Service\n\n\n\n\nType\nAI-powered enterprise search\nOpen-source search and analytics engine\n\n\nUse Case\nDocument and knowledge search\nLog analytics, full-text search, observability\n\n\nData Sources\nPre-built connectors for common enterprise sources\nStructured and unstructured data from various sources\n\n\nQuery Type\nNatural Language Processing (NLP)-based\nKeyword-based and structured queries (Elasticsearch DSL)\n\n\nIndexing\nManaged, AI-driven indexing\nFull control over indexing with custom mappings\n\n\nAccess Model\nAPI-based search queries\nREST API, Kibana dashboards, SQL\n\n\nScaling\nFully managed, auto-scaling\nCluster-based, requires management"
   },
   {
     "objectID": "examples/search.html#amazon-kendra",
     "href": "examples/search.html#amazon-kendra",
     "title": "Search Services: Kendra vs OpenSearch",
-    "section": "",
-    "text": "Definition: Amazon Kendra is an AI-powered enterprise search service that enables organizations to search structured and unstructured documents using natural language queries.\nCommon Use Cases: - Enterprise knowledge management - Internal document search - Customer support knowledge bases\n\n\nimport boto3\n\nkendra = boto3.client('kendra')\nresponse = kendra.query(\n    IndexId='index-id',\n    QueryText='How do I reset my password?'\n)\nprint(response)"
+    "section": "Amazon Kendra",
+    "text": "Amazon Kendra\nDefinition: Amazon Kendra is an AI-powered enterprise search service that enables organizations to search structured and unstructured documents using natural language queries.\nCommon Use Cases: - Enterprise knowledge management - Internal document search - Customer support knowledge bases\n\nExample Code: Querying Kendra with Python (Boto3)\nimport boto3\n\nkendra = boto3.client('kendra')\nresponse = kendra.query(\n    IndexId='index-id',\n    QueryText='How do I reset my password?'\n)\nprint(response)"
   },
   {
     "objectID": "examples/search.html#amazon-opensearch-service",
     "href": "examples/search.html#amazon-opensearch-service",
     "title": "Search Services: Kendra vs OpenSearch",
-    "section": "",
-    "text": "Definition: Amazon OpenSearch Service is a managed search and analytics engine based on the open-source Elasticsearch and OpenSearch projects.\nCommon Use Cases: - Log and event data analysis - Real-time application search - Security monitoring and observability\n\n\nfrom opensearchpy import OpenSearch\n\nclient = OpenSearch(\n    hosts=[{'host': 'your-opensearch-domain', 'port': 443}],\n    http_auth=('user', 'password'),\n    use_ssl=True\n)\n\nquery = {\n    \"query\": {\n        \"match\": {\"message\": \"error\"}\n    }\n}\nresponse = client.search(index=\"logs\", body=query)\nprint(response)"
+    "section": "Amazon OpenSearch Service",
+    "text": "Amazon OpenSearch Service\nDefinition: Amazon OpenSearch Service is a managed search and analytics engine based on the open-source Elasticsearch and OpenSearch projects.\nCommon Use Cases: - Log and event data analysis - Real-time application search - Security monitoring and observability\n\nExample Code: Querying OpenSearch with Python\nfrom opensearchpy import OpenSearch\n\nclient = OpenSearch(\n    hosts=[{'host': 'your-opensearch-domain', 'port': 443}],\n    http_auth=('user', 'password'),\n    use_ssl=True\n)\n\nquery = {\n    \"query\": {\n        \"match\": {\"message\": \"error\"}\n    }\n}\nresponse = client.search(index=\"logs\", body=query)\nprint(response)"
   },
   {
     "objectID": "examples/search.html#conclusion",
     "href": "examples/search.html#conclusion",
     "title": "Search Services: Kendra vs OpenSearch",
-    "section": "",
-    "text": "If your use case involves enterprise knowledge retrieval with AI-driven natural language search, Amazon Kendra is the better option. If you need log analytics, real-time search, or structured query capabilities, OpenSearch is the preferred choice."
+    "section": "Conclusion",
+    "text": "Conclusion\nIf your use case involves enterprise knowledge retrieval with AI-driven natural language search, Amazon Kendra is the better option. If you need log analytics, real-time search, or structured query capabilities, OpenSearch is the preferred choice."
   },
   {
     "objectID": "about.html",
@@ -166,6 +166,13 @@
     "title": "AWS Machine Learning Engineer Associate",
     "section": "",
     "text": "AWS MLE Associate Badge\n\n\nWelcome, this is a work in progress. I’m creating this site to help me study for the AWS Machine Learning Engineer Associate certification. I’ll be adding more content over time, so check back for updates."
+  },
+  {
+    "objectID": "aws-mla-exam-resources.html",
+    "href": "aws-mla-exam-resources.html",
+    "title": "AWS MLA Exam Resources",
+    "section": "",
+    "text": "Overview of AWS Machine Learning Services\nThere’s a great list of resources on reddit.\nStephan Maarek and Frank Kane’s courses are the most well known paid course at this time.\nHere’s a link to the course - https://www.udemy.com/course/aws-certified-machine-learning-engineer-associate-mla-c01\nAnd here are the practice exams - https://www.udemy.com/course/practice-exams-aws-certified-machine-learning-engineer-associate\nOfficial AWS resources:\n\nCertification Page\nExam Guide\nFree SkillBuilder\nOfficial Free Practice Questions\nOfficial Paid Practice Questions\nTutorial Dojo Practice Exams"
   },
   {
     "objectID": "aws-definitions.html",
@@ -368,84 +375,84 @@
     "href": "examples/sagemaker-processing-vs-training-vs-hosting.html",
     "title": "Storage: S3 vs EFS vs FSx vs EBS",
     "section": "",
-    "text": "AWS offers a range of storage solutions tailored for different use cases. Below is a comparison of four major storage options: Amazon S3, Amazon EFS, Amazon FSx, and Amazon EBS.\n\n\n\n\n\n\n\n\n\n\n\n\nFeature\nAmazon S3\nAmazon EFS\nAmazon FSx\nAmazon EBS\n\n\n\n\nType\nObject Storage\nNetwork File System\nManaged File System\nBlock Storage\n\n\nUse Case\nBackup, archival, static website hosting\nShared storage for Linux-based workloads\nWindows file system or high-performance workloads\nBoot volumes, databases, transactional workloads\n\n\nPerformance\nScalable, eventual consistency\nLow latency, shared access\nOptimized for Windows/Linux workloads\nHigh IOPS, low-latency\n\n\nAccess Model\nREST API, SDKs, web-based access\nNFS mount\nSMB (Windows) or Lustre (HPC)\nBlock device (EC2 instances)\n\n\nPersistence\nHighly durable (11 9’s)\nPersistent\nPersistent\nPersistent but tied to EC2\n\n\n\n\n\n\n\nDefinition: Amazon S3 is an object storage service designed for scalable storage of any amount of data, accessible over the internet.\nCommon Use Cases: - Backup and disaster recovery - Static website hosting - Data lakes and big data analytics\n\n\nimport boto3\n\ns3 = boto3.client('s3')\n\ns3.upload_file(\"localfile.txt\", \"my-bucket\", \"remote-file.txt\")\n\n\n\n\n\nDefinition: Amazon EFS is a scalable, fully managed network file system (NFS) for Linux-based applications and workloads.\nCommon Use Cases: - Shared storage for EC2 instances - Machine learning and big data processing - Containerized applications (EKS, ECS)\n\n\nsudo yum install -y amazon-efs-utils\nsudo mkdir /mnt/efs\nsudo mount -t efs fs-12345678:/ /mnt/efs\n\n\n\n\n\nDefinition: Amazon FSx provides fully managed, high-performance file systems for specialized workloads, including Windows-based and high-performance computing (HPC).\nCommon Use Cases: - Windows applications requiring NTFS - High-performance computing with Lustre - Media rendering and big data processing\n\n\nnet use X: \\\\fsx-share.amazonaws.com\\share /persistent:yes\n\n\n\n\n\nDefinition: Amazon EBS is block storage that provides persistent storage for EC2 instances, supporting low-latency, high-performance applications.\nCommon Use Cases: - Databases (MySQL, PostgreSQL, etc.) - Virtual machine storage - Transactional applications\n\n\naws ec2 attach-volume --volume-id vol-12345678 --instance-id i-abcdef12 --device /dev/xvdf\n\n\n\n\n\nEach AWS storage service serves a unique purpose, and choosing the right one depends on your workload needs. If you need object storage, go with S3. If you need shared file storage, use EFS. If you need a managed file system, consider FSx. If you require high-performance block storage, EBS is the best choice."
+    "text": "AWS offers a range of storage solutions tailored for different use cases. Below is a comparison of four major storage options: Amazon S3, Amazon EFS, Amazon FSx, and Amazon EBS."
   },
   {
     "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#overview-table",
     "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#overview-table",
     "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "",
-    "text": "Feature\nAmazon S3\nAmazon EFS\nAmazon FSx\nAmazon EBS\n\n\n\n\nType\nObject Storage\nNetwork File System\nManaged File System\nBlock Storage\n\n\nUse Case\nBackup, archival, static website hosting\nShared storage for Linux-based workloads\nWindows file system or high-performance workloads\nBoot volumes, databases, transactional workloads\n\n\nPerformance\nScalable, eventual consistency\nLow latency, shared access\nOptimized for Windows/Linux workloads\nHigh IOPS, low-latency\n\n\nAccess Model\nREST API, SDKs, web-based access\nNFS mount\nSMB (Windows) or Lustre (HPC)\nBlock device (EC2 instances)\n\n\nPersistence\nHighly durable (11 9’s)\nPersistent\nPersistent\nPersistent but tied to EC2"
+    "section": "Overview Table",
+    "text": "Overview Table\n\n\n\n\n\n\n\n\n\n\nFeature\nAmazon S3\nAmazon EFS\nAmazon FSx\nAmazon EBS\n\n\n\n\nType\nObject Storage\nNetwork File System\nManaged File System\nBlock Storage\n\n\nUse Case\nBackup, archival, static website hosting\nShared storage for Linux-based workloads\nWindows file system or high-performance workloads\nBoot volumes, databases, transactional workloads\n\n\nPerformance\nScalable, eventual consistency\nLow latency, shared access\nOptimized for Windows/Linux workloads\nHigh IOPS, low-latency\n\n\nAccess Model\nREST API, SDKs, web-based access\nNFS mount\nSMB (Windows) or Lustre (HPC)\nBlock device (EC2 instances)\n\n\nPersistence\nHighly durable (11 9’s)\nPersistent\nPersistent\nPersistent but tied to EC2"
   },
   {
     "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-s3-simple-storage-service",
     "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-s3-simple-storage-service",
     "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "",
-    "text": "Definition: Amazon S3 is an object storage service designed for scalable storage of any amount of data, accessible over the internet.\nCommon Use Cases: - Backup and disaster recovery - Static website hosting - Data lakes and big data analytics\n\n\nimport boto3\n\ns3 = boto3.client('s3')\n\ns3.upload_file(\"localfile.txt\", \"my-bucket\", \"remote-file.txt\")"
+    "section": "Amazon S3 (Simple Storage Service)",
+    "text": "Amazon S3 (Simple Storage Service)\nDefinition: Amazon S3 is an object storage service designed for scalable storage of any amount of data, accessible over the internet.\nCommon Use Cases: - Backup and disaster recovery - Static website hosting - Data lakes and big data analytics\n\nExample Code: Upload a File to S3 using Python (Boto3)\nimport boto3\n\ns3 = boto3.client('s3')\n\ns3.upload_file(\"localfile.txt\", \"my-bucket\", \"remote-file.txt\")"
   },
   {
     "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-efs-elastic-file-system",
     "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-efs-elastic-file-system",
     "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "",
-    "text": "Definition: Amazon EFS is a scalable, fully managed network file system (NFS) for Linux-based applications and workloads.\nCommon Use Cases: - Shared storage for EC2 instances - Machine learning and big data processing - Containerized applications (EKS, ECS)\n\n\nsudo yum install -y amazon-efs-utils\nsudo mkdir /mnt/efs\nsudo mount -t efs fs-12345678:/ /mnt/efs"
+    "section": "Amazon EFS (Elastic File System)",
+    "text": "Amazon EFS (Elastic File System)\nDefinition: Amazon EFS is a scalable, fully managed network file system (NFS) for Linux-based applications and workloads.\nCommon Use Cases: - Shared storage for EC2 instances - Machine learning and big data processing - Containerized applications (EKS, ECS)\n\nExample Code: Mount an EFS File System on an EC2 Instance\nsudo yum install -y amazon-efs-utils\nsudo mkdir /mnt/efs\nsudo mount -t efs fs-12345678:/ /mnt/efs"
   },
   {
     "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-fsx",
     "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-fsx",
     "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "",
-    "text": "Definition: Amazon FSx provides fully managed, high-performance file systems for specialized workloads, including Windows-based and high-performance computing (HPC).\nCommon Use Cases: - Windows applications requiring NTFS - High-performance computing with Lustre - Media rendering and big data processing\n\n\nnet use X: \\\\fsx-share.amazonaws.com\\share /persistent:yes"
+    "section": "Amazon FSx",
+    "text": "Amazon FSx\nDefinition: Amazon FSx provides fully managed, high-performance file systems for specialized workloads, including Windows-based and high-performance computing (HPC).\nCommon Use Cases: - Windows applications requiring NTFS - High-performance computing with Lustre - Media rendering and big data processing\n\nExample Code: Mount an FSx File System on Windows\nnet use X: \\\\fsx-share.amazonaws.com\\share /persistent:yes"
   },
   {
     "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-ebs-elastic-block-store",
     "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-ebs-elastic-block-store",
     "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "",
-    "text": "Definition: Amazon EBS is block storage that provides persistent storage for EC2 instances, supporting low-latency, high-performance applications.\nCommon Use Cases: - Databases (MySQL, PostgreSQL, etc.) - Virtual machine storage - Transactional applications\n\n\naws ec2 attach-volume --volume-id vol-12345678 --instance-id i-abcdef12 --device /dev/xvdf"
+    "section": "Amazon EBS (Elastic Block Store)",
+    "text": "Amazon EBS (Elastic Block Store)\nDefinition: Amazon EBS is block storage that provides persistent storage for EC2 instances, supporting low-latency, high-performance applications.\nCommon Use Cases: - Databases (MySQL, PostgreSQL, etc.) - Virtual machine storage - Transactional applications\n\nExample Code: Attach an EBS Volume to an EC2 Instance\naws ec2 attach-volume --volume-id vol-12345678 --instance-id i-abcdef12 --device /dev/xvdf"
   },
   {
     "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#conclusion",
     "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#conclusion",
     "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "",
-    "text": "Each AWS storage service serves a unique purpose, and choosing the right one depends on your workload needs. If you need object storage, go with S3. If you need shared file storage, use EFS. If you need a managed file system, consider FSx. If you require high-performance block storage, EBS is the best choice."
+    "section": "Conclusion",
+    "text": "Conclusion\nEach AWS storage service serves a unique purpose, and choosing the right one depends on your workload needs. If you need object storage, go with S3. If you need shared file storage, use EFS. If you need a managed file system, consider FSx. If you require high-performance block storage, EBS is the best choice."
   },
   {
     "objectID": "examples/sagemaker-vs-bedrock.html",
     "href": "examples/sagemaker-vs-bedrock.html",
     "title": "ML Services: SageMaker vs Bedrock",
     "section": "",
-    "text": "AWS provides multiple machine learning (ML) services, with Amazon SageMaker and Amazon Bedrock being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels.\n\n\n\n\n\n\n\n\n\n\nFeature\nAmazon SageMaker\nAmazon Bedrock\n\n\n\n\nType\nFully managed ML development platform\nFully managed foundation model (FM) service\n\n\nUse Case\nBuilding, training, and deploying custom ML models\nUsing and fine-tuning foundation models for AI applications\n\n\nCustomization\nHigh (bring your own data and model)\nLimited (fine-tune pre-trained models)\n\n\nModel Hosting\nCustom models on managed infrastructure\nAPI-based access to foundation models (FM)\n\n\nData Handling\nRequires dataset preparation and preprocessing\nUses pre-trained models with minimal data processing\n\n\nAccess Model\nSDK, APIs, Jupyter notebooks\nAPI-based inference\n\n\nScaling\nFully managed infrastructure\nFully managed with auto-scaling\n\n\n\n\n\n\n\nDefinition: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.\nCommon Use Cases: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring\n\n\nimport boto3\n\nsagemaker = boto3.client('sagemaker')\nresponse = sagemaker.create_training_job(\n    TrainingJobName='my-training-job',\n    AlgorithmSpecification={\n        'TrainingImage': 'your-docker-image',\n        'TrainingInputMode': 'File'\n    },\n    RoleArn='your-role-arn',\n    InputDataConfig=[\n        {\n            'ChannelName': 'train',\n            'DataSource': {\n                'S3DataSource': {\n                    'S3Uri': 's3://your-dataset/',\n                    'S3DataType': 'S3Prefix'\n                }\n            }\n        }\n    ],\n    OutputDataConfig={'S3OutputPath': 's3://your-output-bucket/'},\n    ResourceConfig={\n        'InstanceType': 'ml.m5.large',\n        'InstanceCount': 1,\n        'VolumeSizeInGB': 50\n    },\n    StoppingCondition={'MaxRuntimeInSeconds': 3600}\n)\nprint(response)\n\n\n\n\n\nDefinition: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.\nCommon Use Cases: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications\n\n\nimport boto3\n\nbedrock = boto3.client('bedrock-runtime')\nresponse = bedrock.invoke_model(\n    modelId='anthropic.claude-v2',\n    body='{\"prompt\": \"Write a short poem about the ocean.\", \"max_tokens\": 100}'\n)\nprint(response[\"body\"].read().decode('utf-8'))\n\n\n\n\n\nIf your goal is to build and train custom ML models, SageMaker provides the flexibility and infrastructure to do so. If you need quick access to pre-trained foundation models for AI applications, Bedrock offers a simple API-based approach to integrate generative AI into applications."
+    "text": "AWS provides multiple machine learning (ML) services, with Amazon SageMaker and Amazon Bedrock being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels."
   },
   {
     "objectID": "examples/sagemaker-vs-bedrock.html#overview-table",
     "href": "examples/sagemaker-vs-bedrock.html#overview-table",
     "title": "ML Services: SageMaker vs Bedrock",
-    "section": "",
-    "text": "Feature\nAmazon SageMaker\nAmazon Bedrock\n\n\n\n\nType\nFully managed ML development platform\nFully managed foundation model (FM) service\n\n\nUse Case\nBuilding, training, and deploying custom ML models\nUsing and fine-tuning foundation models for AI applications\n\n\nCustomization\nHigh (bring your own data and model)\nLimited (fine-tune pre-trained models)\n\n\nModel Hosting\nCustom models on managed infrastructure\nAPI-based access to foundation models (FM)\n\n\nData Handling\nRequires dataset preparation and preprocessing\nUses pre-trained models with minimal data processing\n\n\nAccess Model\nSDK, APIs, Jupyter notebooks\nAPI-based inference\n\n\nScaling\nFully managed infrastructure\nFully managed with auto-scaling"
+    "section": "Overview Table",
+    "text": "Overview Table\n\n\n\n\n\n\n\n\nFeature\nAmazon SageMaker\nAmazon Bedrock\n\n\n\n\nType\nFully managed ML development platform\nFully managed foundation model (FM) service\n\n\nUse Case\nBuilding, training, and deploying custom ML models\nUsing and fine-tuning foundation models for AI applications\n\n\nCustomization\nHigh (bring your own data and model)\nLimited (fine-tune pre-trained models)\n\n\nModel Hosting\nCustom models on managed infrastructure\nAPI-based access to foundation models (FM)\n\n\nData Handling\nRequires dataset preparation and preprocessing\nUses pre-trained models with minimal data processing\n\n\nAccess Model\nSDK, APIs, Jupyter notebooks\nAPI-based inference\n\n\nScaling\nFully managed infrastructure\nFully managed with auto-scaling"
   },
   {
     "objectID": "examples/sagemaker-vs-bedrock.html#amazon-sagemaker",
     "href": "examples/sagemaker-vs-bedrock.html#amazon-sagemaker",
     "title": "ML Services: SageMaker vs Bedrock",
-    "section": "",
-    "text": "Definition: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.\nCommon Use Cases: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring\n\n\nimport boto3\n\nsagemaker = boto3.client('sagemaker')\nresponse = sagemaker.create_training_job(\n    TrainingJobName='my-training-job',\n    AlgorithmSpecification={\n        'TrainingImage': 'your-docker-image',\n        'TrainingInputMode': 'File'\n    },\n    RoleArn='your-role-arn',\n    InputDataConfig=[\n        {\n            'ChannelName': 'train',\n            'DataSource': {\n                'S3DataSource': {\n                    'S3Uri': 's3://your-dataset/',\n                    'S3DataType': 'S3Prefix'\n                }\n            }\n        }\n    ],\n    OutputDataConfig={'S3OutputPath': 's3://your-output-bucket/'},\n    ResourceConfig={\n        'InstanceType': 'ml.m5.large',\n        'InstanceCount': 1,\n        'VolumeSizeInGB': 50\n    },\n    StoppingCondition={'MaxRuntimeInSeconds': 3600}\n)\nprint(response)"
+    "section": "Amazon SageMaker",
+    "text": "Amazon SageMaker\nDefinition: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.\nCommon Use Cases: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring\n\nExample Code: Train a Model in SageMaker using Python\nimport boto3\n\nsagemaker = boto3.client('sagemaker')\nresponse = sagemaker.create_training_job(\n    TrainingJobName='my-training-job',\n    AlgorithmSpecification={\n        'TrainingImage': 'your-docker-image',\n        'TrainingInputMode': 'File'\n    },\n    RoleArn='your-role-arn',\n    InputDataConfig=[\n        {\n            'ChannelName': 'train',\n            'DataSource': {\n                'S3DataSource': {\n                    'S3Uri': 's3://your-dataset/',\n                    'S3DataType': 'S3Prefix'\n                }\n            }\n        }\n    ],\n    OutputDataConfig={'S3OutputPath': 's3://your-output-bucket/'},\n    ResourceConfig={\n        'InstanceType': 'ml.m5.large',\n        'InstanceCount': 1,\n        'VolumeSizeInGB': 50\n    },\n    StoppingCondition={'MaxRuntimeInSeconds': 3600}\n)\nprint(response)"
   },
   {
     "objectID": "examples/sagemaker-vs-bedrock.html#amazon-bedrock",
     "href": "examples/sagemaker-vs-bedrock.html#amazon-bedrock",
     "title": "ML Services: SageMaker vs Bedrock",
-    "section": "",
-    "text": "Definition: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.\nCommon Use Cases: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications\n\n\nimport boto3\n\nbedrock = boto3.client('bedrock-runtime')\nresponse = bedrock.invoke_model(\n    modelId='anthropic.claude-v2',\n    body='{\"prompt\": \"Write a short poem about the ocean.\", \"max_tokens\": 100}'\n)\nprint(response[\"body\"].read().decode('utf-8'))"
+    "section": "Amazon Bedrock",
+    "text": "Amazon Bedrock\nDefinition: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.\nCommon Use Cases: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications\n\nExample Code: Call a Foundation Model via Bedrock API\nimport boto3\n\nbedrock = boto3.client('bedrock-runtime')\nresponse = bedrock.invoke_model(\n    modelId='anthropic.claude-v2',\n    body='{\"prompt\": \"Write a short poem about the ocean.\", \"max_tokens\": 100}'\n)\nprint(response[\"body\"].read().decode('utf-8'))"
   },
   {
     "objectID": "examples/sagemaker-vs-bedrock.html#conclusion",
     "href": "examples/sagemaker-vs-bedrock.html#conclusion",
     "title": "ML Services: SageMaker vs Bedrock",
-    "section": "",
-    "text": "If your goal is to build and train custom ML models, SageMaker provides the flexibility and infrastructure to do so. If you need quick access to pre-trained foundation models for AI applications, Bedrock offers a simple API-based approach to integrate generative AI into applications."
+    "section": "Conclusion",
+    "text": "Conclusion\nIf your goal is to build and train custom ML models, SageMaker provides the flexibility and infrastructure to do so. If you need quick access to pre-trained foundation models for AI applications, Bedrock offers a simple API-based approach to integrate generative AI into applications."
   },
   {
     "objectID": "examples/flink-vs-kinesis.html",
