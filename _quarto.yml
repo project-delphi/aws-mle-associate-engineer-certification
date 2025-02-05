@@ -16,24 +16,42 @@ website:
         text: AWS Comparisons Table
       - text: "Examples"
         menu:
-          - text: "SageMaker Pipelines"
-            href: examples/sagemaker-pipelines.qmd
-          - text: "SageMaker Processing vs Training vs Hosting"
-            href: examples/sagemaker-processing-vs-training-vs-hosting.qmd
           - text: "Apache Flink vs Kinesis Data Analytics"
             href: examples/flink-vs-kinesis.qmd
           - text: "Storage: S3 vs EFS vs FSx vs EBS"
             href: examples/storage.qmd
           - text: "Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA"
             href: examples/datastreams.qmd
-          - text: "AI/ML: SageMaker vs Bedrock"
-            href: examples/sagemaker-vs-bedrock.qmd
           - text: "Glue Data Catalog vs Glue DataBrew vs Glue Studio"
             href: examples/glue.qmd
           - text: "Kendra vs OpenSearch"
             href: examples/search.qmd
           - text: "EMR vs Hadoop vs Spark"
             href: examples/emr-vs-hadoop-vs-spark.qmd
+      - text: "Sagemaker"
+        menu:
+          - text: "SageMaker Pipelines"
+            href: sagemaker/sagemaker-pipelines.qmd
+          - text: "SageMaker Processing vs Training vs Hosting"
+            href: sagemaker/sagemaker-processing-vs-training-vs-hosting.qmd
+          - text: "SageMaker for Model Building and Deployment"
+            href: sagemaker/sagemaker-model-building-and-deployment.qmd
+          - text: "SageMaker: Validating, Labelling and Mitigating Bias"
+            href: sagemaker/sagemaker-validating-labelling-mitigating-bias.qmd
+          - text: "Choosing and Integrating ML Models with AWS SageMaker"
+            href: sagemaker/sagemaker-choosing-and-integrating-ml-models.qmd
+          - text: "Advanced Machine Learning with AWS SageMaker"
+            href: sagemaker/sagemaker-model-deployment-and-monitoring.qmd
+          - text: "Multi-Model and Multi-Container Deployments on AWS"
+            href: sagemaker/sagemaker-multi-model-multi-container-deployments.qmd
+          - text: "Deploying and Monitoring SageMaker Models in a VPC"
+            href: sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.qmd
+          - text: "Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security"
+            href: sagemaker/sagemaker-optimizing-deployments.qmd
+          - text: "AI/ML: SageMaker vs Bedrock"
+            href: sagemaker/sagemaker-vs-bedrock.qmd
+
+          
 
 format:
   html:

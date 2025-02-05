@@ -1,0 +1,110 @@
+---
+title: "Deploying and Monitoring SageMaker Models in a VPC"
+author: "Ravi Kalia"
+date: "2025-02-04"
+categories: [AWS, Machine Learning, Deployment, Monitoring]
+format: html
+---
+
+## Introduction
+Amazon SageMaker provides powerful tools for deploying and monitoring machine learning models in a secure and scalable way. This blog post covers:
+
+- Configuring SageMaker endpoints within a VPC network.
+- Deploying and hosting models using the SageMaker SDK.
+- Monitoring models in production using SageMaker Model Monitor.
+- Detecting changes in data distribution with SageMaker Clarify.
+
+## Configuring SageMaker Endpoints within a VPC
+Deploying SageMaker endpoints within an Amazon Virtual Private Cloud (VPC) enhances security by preventing data from being exposed to the internet.
+
+### Steps to Configure a VPC-Enabled Endpoint:
+1. **Create a VPC** with private and public subnets.
+2. **Set up security groups** for inbound and outbound rules.
+3. **Deploy SageMaker endpoints** inside the VPC.
+
+```python
+import boto3
+sagemaker = boto3.client('sagemaker')
+
+response = sagemaker.create_endpoint_config(
+    EndpointConfigName='my-vpc-endpoint-config',
+    ProductionVariants=[
+        {
+            'VariantName': 'AllTraffic',
+            'ModelName': 'my-sagemaker-model',
+            'InstanceType': 'ml.m5.large',
+            'InitialInstanceCount': 1
+        }
+    ],
+    VpcConfig={
+        'Subnets': ['subnet-xxxxxx'],
+        'SecurityGroupIds': ['sg-xxxxxx']
+    }
+)
+```
+
+## Deploying and Hosting Models using the SageMaker SDK
+Using the SageMaker SDK, we can deploy models to fully managed endpoints with minimal setup.
+
+### Example: Deploying a Model with the SageMaker SDK
+```python
+from sagemaker import Session, Model
+session = Session()
+
+model = Model(
+    image_uri='your-ecr-image-uri',
+    model_data='s3://your-model-path/model.tar.gz',
+    role='arn:aws:iam::account-id:role/service-role'
+)
+
+predictor = model.deploy(instance_type='ml.m5.large', initial_instance_count=1)
+```
+
+## Monitoring Models in Production with SageMaker Model Monitor
+Model Monitor enables continuous evaluation of model predictions and data quality.
+
+| Monitoring Type  | Description  |
+|-----------------|-------------|
+| Data Quality    | Detects missing or unexpected values in input data. |
+| Model Bias      | Identifies bias drift over time. |
+| Model Explainability | Evaluates feature importance. |
+| Model Drift    | Detects changes in model predictions. |
+
+### Example: Setting Up Model Monitor
+```python
+from sagemaker.model_monitor import DataCaptureConfig
+
+data_capture_config = DataCaptureConfig(
+    enable_capture=True,
+    sampling_percentage=100,
+    destination_s3_uri='s3://your-monitoring-bucket/'
+)
+
+predictor.update_data_capture_config(data_capture_config)
+```
+
+## Detecting Data Distribution Changes with SageMaker Clarify
+SageMaker Clarify helps identify shifts in data distribution that can impact model performance.
+
+### Example: Running a Baseline Drift Analysis
+```python
+from sagemaker.clarify import BiasConfig, ModelMonitor
+
+bias_config = BiasConfig(
+    label_values_or_threshold=[1],
+    facet_name='feature-column',
+    facet_values_or_threshold=[0]
+)
+
+monitor = ModelMonitor(
+    job_definition_name='clarify-job',
+    role='arn:aws:iam::account-id:role/service-role',
+    bias_config=bias_config
+)
+
+monitor.create_monitoring_schedule()
+```
+
+## Conclusion
+By configuring SageMaker endpoints within a VPC, deploying with the SageMaker SDK, and monitoring data with Model Monitor and Clarify, we ensure secure and efficient model operations. These best practices help maintain model reliability and performance in production environments.
+

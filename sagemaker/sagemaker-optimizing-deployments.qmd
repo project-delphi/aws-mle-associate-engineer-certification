@@ -1,0 +1,124 @@
+---
+title: "Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security"
+author: "Ravi Kalia"
+date: "2025-02-04"
+categories: [AWS, Machine Learning, Cost Optimization, Security]
+format: html
+---
+
+## Introduction
+Amazon SageMaker offers flexible deployment options, cost-saving strategies, and security features. This post explores:
+
+- Rightsizing instance families and sizes using SageMaker Inference Recommender and AWS Compute Optimizer.
+- Optimizing costs with different purchasing options.
+- Managing access control with IAM roles and policies.
+- Implementing security and compliance best practices in SageMaker.
+
+## Rightsizing Instance Families and Sizes
+Selecting the appropriate instance type ensures optimal performance and cost-efficiency.
+
+| Instance Type | Use Case |
+|--------------|----------|
+| **CPU (ml.m5, ml.c5)** | Lightweight inference, batch processing |
+| **GPU (ml.g4dn, ml.p3)** | Deep learning inference, high-performance computing |
+| **Inf (ml.inf1)** | Optimized for deep learning with Inferentia chips |
+| **Graviton (ml.c7g, ml.m7g)** | Cost-efficient CPU workloads |
+
+### Using SageMaker Inference Recommender
+SageMaker Inference Recommender suggests the best instance type based on model performance.
+
+```python
+import boto3
+sagemaker = boto3.client('sagemaker')
+
+response = sagemaker.create_inference_recommendations_job(
+    JobName='my-inference-recommender-job',
+    RoleArn='arn:aws:iam::account-id:role/SageMakerRole',
+    ModelName='my-model',
+    EndpointConfigurations=[
+        {
+            'InstanceTypes': ['ml.m5.large', 'ml.g4dn.xlarge'],
+            'InitialInstanceCount': 1
+        }
+    ]
+)
+```
+
+## Optimizing Infrastructure Costs
+AWS provides multiple purchasing options to reduce costs:
+
+| Purchasing Option | Description | Savings Potential |
+|------------------|-------------|------------------|
+| **On-Demand** | Pay-as-you-go pricing | Baseline cost |
+| **Spot Instances** | Up to 90% discount but can be interrupted | High |
+| **Reserved Instances** | Commit for 1-3 years for lower rates | Up to 72% |
+| **SageMaker Savings Plans** | Flexible, commitment-based discount | Up to 64% |
+
+### Using Spot Instances in SageMaker
+```python
+from sagemaker.estimator import Estimator
+
+estimator = Estimator(
+    image_uri='your-container-image',
+    role='arn:aws:iam::account-id:role/SageMakerRole',
+    instance_count=1,
+    instance_type='ml.m5.large',
+    use_spot_instances=True,
+    max_wait=3600,
+    max_run=1800
+)
+```
+
+## IAM Roles, Policies, and Groups for Access Control
+AWS Identity and Access Management (IAM) controls permissions for SageMaker and related services.
+
+### Key IAM Components
+
+| IAM Component | Description |
+|--------------|-------------|
+| **IAM Roles** | Grant temporary access to AWS services |
+| **IAM Policies** | Define permissions for actions and resources |
+| **IAM Groups** | Organize multiple users with the same permissions |
+
+### Example: Creating a SageMaker Execution Role
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "sagemaker.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
+
+## SageMaker Security and Compliance Features
+AWS SageMaker includes built-in security measures:
+
+| Security Feature | Description |
+|-----------------|-------------|
+| **VPC Isolation** | Deploy endpoints inside a VPC for network control |
+| **Encryption** | Encrypt data at rest (S3) and in transit (TLS) |
+| **SageMaker Role Manager** | Simplifies IAM role management |
+| **Logging & Auditing** | Track actions with AWS CloudTrail and CloudWatch |
+
+### Enforcing Encryption in SageMaker
+```python
+from sagemaker import Model
+
+model = Model(
+    image_uri='your-ecr-image',
+    model_data='s3://your-bucket/model.tar.gz',
+    role='arn:aws:iam::account-id:role/SageMakerRole',
+    vpc_config={'SecurityGroupIds': ['sg-xxxx'], 'Subnets': ['subnet-xxxx']},
+    enable_network_isolation=True
+)
+```
+
+## Conclusion
+By rightsizing instances, optimizing cost strategies, enforcing IAM policies, and utilizing SageMaker’s security features, we can build efficient and secure ML deployments. These best practices ensure scalability while keeping costs under control.
+

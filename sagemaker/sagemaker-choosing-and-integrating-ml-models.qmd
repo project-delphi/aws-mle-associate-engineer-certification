@@ -1,0 +1,121 @@
+---
+title: "Choosing and Integrating ML Models with AWS SageMaker"
+date: "2025-02-04"
+categories: [AWS, Machine Learning, SageMaker]
+format: html
+---
+
+# Introduction
+
+AWS SageMaker provides a variety of built-in algorithms, foundation models, and solution templates to streamline machine learning (ML) workflows. This post explores:
+
+- How to choose built-in algorithms, foundation models, and solution templates from SageMaker JumpStart and Amazon Bedrock.
+- Methods for integrating externally developed models into SageMaker.
+- Using SageMaker built-in algorithms and common ML libraries to develop ML models.
+
+## Choosing Built-in Algorithms, Foundation Models, and Solution Templates
+
+### SageMaker JumpStart
+SageMaker JumpStart provides pre-built ML models, solution templates, and training scripts to help users get started quickly. It includes models for computer vision, NLP, and tabular data.
+
+#### Example: Listing Available JumpStart Models
+
+```python
+import boto3
+from sagemaker.jumpstart.notebook_utils import list_jumpstart_models
+
+models = list_jumpstart_models()
+print(models[:5])  # Display first five models
+```
+
+### Amazon Bedrock
+Amazon Bedrock allows developers to build and scale applications using foundation models from AWS and third-party providers. It provides access to powerful large language models (LLMs) without needing extensive infrastructure management.
+
+| Feature          | SageMaker JumpStart | Amazon Bedrock |
+|-----------------|-------------------|---------------|
+| Model Type      | Pre-trained ML models | Foundation Models (LLMs) |
+| Customization   | Fine-tuning and transfer learning | API-based integration |
+| Use Case        | Computer vision, NLP, structured data | Chatbots, content generation, summarization |
+
+#### Example: Using Amazon Bedrock for Text Generation
+```python
+import boto3
+
+bedrock = boto3.client("bedrock-runtime")
+response = bedrock.invoke_model(
+    modelId="ai21.j2-ultra",
+    body="{"prompt": "What are the benefits of using AWS SageMaker?"}"
+)
+print(response["body"].read().decode("utf-8"))
+```
+
+## Integrating External Models into SageMaker
+
+If a model is built outside of SageMaker, it can still be deployed using SageMaker endpoints. The most common methods include:
+
+### Using Pretrained Models from TensorFlow or PyTorch
+
+1. Save the trained model in an `s3://` bucket.
+2. Create a SageMaker inference script.
+3. Deploy using a SageMaker endpoint.
+
+#### Example: Deploying a Pretrained PyTorch Model
+
+```python
+from sagemaker.pytorch import PyTorchModel
+
+model = PyTorchModel(
+    model_data="s3://my-bucket/model.tar.gz",
+    role="arn:aws:iam::123456789012:role/MySageMakerRole",
+    entry_point="inference.py",
+    framework_version="1.8",
+    py_version="py3",
+)
+
+predictor = model.deploy(instance_type="ml.m5.large", initial_instance_count=1)
+print("Model deployed successfully")
+```
+
+## Developing ML Models with SageMaker Built-in Algorithms
+
+SageMaker provides built-in algorithms optimized for scalability and efficiency.
+
+| Algorithm              | Type          | Best For |
+|------------------------|--------------|-----------------|
+| XGBoost               | Supervised   | Classification, Regression |
+| Linear Learner        | Supervised   | Linear Regression, Binary Classification |
+| K-Means               | Unsupervised | Clustering |
+| DeepAR Forecasting    | Time Series  | Demand Forecasting |
+
+### Example: Training an ML Model with XGBoost
+
+```python
+import sagemaker
+from sagemaker import get_execution_role
+
+session = sagemaker.Session()
+role = get_execution_role()
+
+xgb = sagemaker.estimator.Estimator(
+    image_uri=sagemaker.image_uris.retrieve("xgboost", session.boto_region_name),
+    role=role,
+    instance_count=1,
+    instance_type="ml.m5.large",
+    output_path="s3://my-bucket/model-output/",
+    sagemaker_session=session,
+)
+
+xgb.set_hyperparameters(
+    max_depth=5,
+    eta=0.2,
+    objective="binary:logistic",
+    num_round=100,
+)
+
+xgb.fit({"train": "s3://my-bucket/train.csv"})
+print("Model training complete")
+```
+
+## Conclusion
+AWS SageMaker simplifies the ML development process by offering pre-built models, seamless integration of external models, and a variety of built-in algorithms. Whether you're using SageMaker JumpStart, Amazon Bedrock, or integrating your custom models, AWS provides a scalable and efficient ML workflow.
+

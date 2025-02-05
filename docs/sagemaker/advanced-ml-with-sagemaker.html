@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-02-04">
 
-<title>Storage: S3 vs EFS vs FSx vs EBS – AWS Machine Learning Associate Certification</title>
+<title>Advanced Machine Learning with AWS SageMaker – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,14 +144,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="../examples/sagemaker-pipelines.html">
- <span class="dropdown-text">SageMaker Pipelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../examples/sagemaker-processing-vs-training-vs-hosting.html">
- <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../examples/flink-vs-kinesis.html">
  <span class="dropdown-text">Apache Flink vs Kinesis Data Analytics</span></a>
   </li>  
@@ -163,10 +156,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../examples/sagemaker-vs-bedrock.html">
- <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../examples/glue.html">
  <span class="dropdown-text">Glue Data Catalog vs Glue DataBrew vs Glue Studio</span></a>
   </li>  
@@ -177,6 +166,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../examples/emr-vs-hadoop-vs-spark.html">
  <span class="dropdown-text">EMR vs Hadoop vs Spark</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sagemaker" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sagemaker</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sagemaker">    
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-pipelines.html">
+ <span class="dropdown-text">SageMaker Pipelines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
+ <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
+ <span class="dropdown-text">SageMaker for Model Building and Deployment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-validating-labelling-mitigating-bias.html">
+ <span class="dropdown-text">SageMaker: Validating, Labelling and Mitigating Bias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-choosing-and-integrating-ml-models.html">
+ <span class="dropdown-text">Choosing and Integrating ML Models with AWS SageMaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-model-deployment-and-monitoring.html">
+ <span class="dropdown-text">Advanced Machine Learning with AWS SageMaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-multi-model-multi-container-deployments.html">
+ <span class="dropdown-text">Multi-Model and Multi-Container Deployments on AWS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html">
+ <span class="dropdown-text">Deploying and Monitoring SageMaker Models in a VPC</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-optimizing-deployments.html">
+ <span class="dropdown-text">Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-vs-bedrock.html">
+ <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
   </li>  
     </ul>
   </li>
@@ -197,14 +233,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Storage: S3 vs EFS vs FSx vs EBS</h1>
-</div>
+<h1 class="title">Advanced Machine Learning with AWS SageMaker</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">AWS</div>
+    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">SageMaker</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 4, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -214,117 +261,177 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>AWS offers a range of storage solutions tailored for different use cases. Below is a comparison of four major storage options: <strong>Amazon S3, Amazon EFS, Amazon FSx, and Amazon EBS</strong>.</p>
-<section id="overview-table" class="level2">
-<h2 class="anchored" data-anchor-id="overview-table">Overview Table</h2>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>AWS SageMaker provides powerful tools for training, fine-tuning, and managing machine learning models. In this post, we explore:</p>
+<ul>
+<li>Using SageMaker script mode with TensorFlow and PyTorch.</li>
+<li>Fine-tuning pre-trained models with custom datasets using Amazon Bedrock and SageMaker JumpStart.</li>
+<li>Performing hyperparameter tuning with SageMaker Automatic Model Tuning (AMT).</li>
+<li>Managing model versions with the SageMaker Model Registry.</li>
+<li>Gaining insights with SageMaker Clarify.</li>
+</ul>
+<section id="using-sagemaker-script-mode-for-training" class="level2">
+<h2 class="anchored" data-anchor-id="using-sagemaker-script-mode-for-training">Using SageMaker Script Mode for Training</h2>
+<p>SageMaker script mode enables training models using popular frameworks while maintaining flexibility and scalability.</p>
+<section id="example-training-a-pytorch-model" class="level4">
+<h4 class="anchored" data-anchor-id="example-training-a-pytorch-model">Example: Training a PyTorch Model</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sagemaker</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.pytorch <span class="im">import</span> PyTorch</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>role <span class="op">=</span> <span class="st">"arn:aws:iam::123456789012:role/MySageMakerRole"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> sagemaker.Session()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pytorch_estimator <span class="op">=</span> PyTorch(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    entry_point<span class="op">=</span><span class="st">"train.py"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    source_dir<span class="op">=</span><span class="st">"src"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    framework_version<span class="op">=</span><span class="st">"1.8"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    py_version<span class="op">=</span><span class="st">"py3"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    sagemaker_session<span class="op">=</span>session</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>pytorch_estimator.fit({<span class="st">"train"</span>: <span class="st">"s3://my-bucket/train-data/"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="fine-tuning-pre-trained-models-with-custom-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="fine-tuning-pre-trained-models-with-custom-datasets">Fine-Tuning Pre-trained Models with Custom Datasets</h2>
+<p>Pre-trained models can be fine-tuned using Amazon Bedrock or SageMaker JumpStart for domain-specific applications.</p>
+<section id="example-fine-tuning-a-model-from-sagemaker-jumpstart" class="level4">
+<h4 class="anchored" data-anchor-id="example-fine-tuning-a-model-from-sagemaker-jumpstart">Example: Fine-Tuning a Model from SageMaker JumpStart</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.jumpstart.estimator <span class="im">import</span> JumpStartEstimator</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model_id <span class="op">=</span> <span class="st">"huggingface-text-classification"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tuner <span class="op">=</span> JumpStartEstimator(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model_id<span class="op">=</span>model_id,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    sagemaker_session<span class="op">=</span>session,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>tuner.fit({<span class="st">"train"</span>: <span class="st">"s3://my-bucket/custom-dataset/"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="performing-hyperparameter-tuning-with-sagemaker-amt" class="level2">
+<h2 class="anchored" data-anchor-id="performing-hyperparameter-tuning-with-sagemaker-amt">Performing Hyperparameter Tuning with SageMaker AMT</h2>
+<p>SageMaker Automatic Model Tuning (AMT) optimizes hyperparameters for improved model performance.</p>
+<section id="example-hyperparameter-tuning-with-xgboost" class="level4">
+<h4 class="anchored" data-anchor-id="example-hyperparameter-tuning-with-xgboost">Example: Hyperparameter Tuning with XGBoost</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.tuner <span class="im">import</span> HyperparameterTuner, IntegerParameter, ContinuousParameter</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.xgboost <span class="im">import</span> XGBoost</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>xgb <span class="op">=</span> XGBoost(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    framework_version<span class="op">=</span><span class="st">"1.3-1"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    output_path<span class="op">=</span><span class="st">"s3://my-bucket/xgboost-model/"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    sagemaker_session<span class="op">=</span>session,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>tuner <span class="op">=</span> HyperparameterTuner(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    xgb,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    objective_metric_name<span class="op">=</span><span class="st">"validation:rmse"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    hyperparameter_ranges<span class="op">=</span>{</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"max_depth"</span>: IntegerParameter(<span class="dv">3</span>, <span class="dv">10</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"eta"</span>: ContinuousParameter(<span class="fl">0.1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    max_jobs<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    max_parallel_jobs<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>tuner.fit({<span class="st">"train"</span>: <span class="st">"s3://my-bucket/train-data/"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="managing-model-versions-with-sagemaker-model-registry" class="level2">
+<h2 class="anchored" data-anchor-id="managing-model-versions-with-sagemaker-model-registry">Managing Model Versions with SageMaker Model Registry</h2>
+<p>The SageMaker Model Registry tracks and manages different versions of ML models for auditability and reproducibility.</p>
+<section id="example-registering-a-model-in-sagemaker-model-registry" class="level4">
+<h4 class="anchored" data-anchor-id="example-registering-a-model-in-sagemaker-model-registry">Example: Registering a Model in SageMaker Model Registry</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sm_client <span class="op">=</span> boto3.client(<span class="st">"sagemaker"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sm_client.create_model_package(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    ModelPackageGroupName<span class="op">=</span><span class="st">"MyModelPackageGroup"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ModelPackageDescription<span class="op">=</span><span class="st">"Version 1 of my model"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    InferenceSpecification<span class="op">=</span>{</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Containers"</span>: [</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Image"</span>: <span class="st">"123456789012.dkr.ecr.us-east-1.amazonaws.com/my-model:latest"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Mode"</span>: <span class="st">"SingleModel"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"SupportedContentTypes"</span>: [<span class="st">"text/csv"</span>],</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"SupportedResponseMIMETypes"</span>: [<span class="st">"application/json"</span>]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Model registered successfully"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="using-sagemaker-clarify-for-model-insights" class="level2">
+<h2 class="anchored" data-anchor-id="using-sagemaker-clarify-for-model-insights">Using SageMaker Clarify for Model Insights</h2>
+<p>SageMaker Clarify provides metrics to analyze ML training data and models.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 17%">
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 19%">
+<col style="width: 62%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Feature</th>
-<th>Amazon S3</th>
-<th>Amazon EFS</th>
-<th>Amazon FSx</th>
-<th>Amazon EBS</th>
+<th>Metric</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Type</td>
-<td>Object Storage</td>
-<td>Network File System</td>
-<td>Managed File System</td>
-<td>Block Storage</td>
+<td>Data Bias</td>
+<td>Measures imbalances in dataset representation.</td>
 </tr>
 <tr class="even">
-<td>Use Case</td>
-<td>Backup, archival, static website hosting</td>
-<td>Shared storage for Linux-based workloads</td>
-<td>Windows file system or high-performance workloads</td>
-<td>Boot volumes, databases, transactional workloads</td>
+<td>Model Bias</td>
+<td>Evaluates if the model favors specific groups.</td>
 </tr>
 <tr class="odd">
-<td>Performance</td>
-<td>Scalable, eventual consistency</td>
-<td>Low latency, shared access</td>
-<td>Optimized for Windows/Linux workloads</td>
-<td>High IOPS, low-latency</td>
-</tr>
-<tr class="even">
-<td>Access Model</td>
-<td>REST API, SDKs, web-based access</td>
-<td>NFS mount</td>
-<td>SMB (Windows) or Lustre (HPC)</td>
-<td>Block device (EC2 instances)</td>
-</tr>
-<tr class="odd">
-<td>Persistence</td>
-<td>Highly durable (11 9’s)</td>
-<td>Persistent</td>
-<td>Persistent</td>
-<td>Persistent but tied to EC2</td>
+<td>Feature Importance</td>
+<td>Determines which features contribute most to predictions.</td>
 </tr>
 </tbody>
 </table>
-<hr>
-</section>
-<section id="amazon-s3-simple-storage-service" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-s3-simple-storage-service">Amazon S3 (Simple Storage Service)</h2>
-<p><strong>Definition</strong>: Amazon S3 is an object storage service designed for scalable storage of any amount of data, accessible over the internet.</p>
-<p><strong>Common Use Cases</strong>: - Backup and disaster recovery - Static website hosting - Data lakes and big data analytics</p>
-<section id="example-code-upload-a-file-to-s3-using-python-boto3" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-upload-a-file-to-s3-using-python-boto3">Example Code: Upload a File to S3 using Python (Boto3)</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">"localfile.txt"</span>, <span class="st">"my-bucket"</span>, <span class="st">"remote-file.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="amazon-efs-elastic-file-system" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-efs-elastic-file-system">Amazon EFS (Elastic File System)</h2>
-<p><strong>Definition</strong>: Amazon EFS is a scalable, fully managed network file system (NFS) for Linux-based applications and workloads.</p>
-<p><strong>Common Use Cases</strong>: - Shared storage for EC2 instances - Machine learning and big data processing - Containerized applications (EKS, ECS)</p>
-<section id="example-code-mount-an-efs-file-system-on-an-ec2-instance" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-mount-an-efs-file-system-on-an-ec2-instance">Example Code: Mount an EFS File System on an EC2 Instance</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> yum install <span class="at">-y</span> amazon-efs-utils</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/efs</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-t</span> efs fs-12345678:/ /mnt/efs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="amazon-fsx" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-fsx">Amazon FSx</h2>
-<p><strong>Definition</strong>: Amazon FSx provides fully managed, high-performance file systems for specialized workloads, including Windows-based and high-performance computing (HPC).</p>
-<p><strong>Common Use Cases</strong>: - Windows applications requiring NTFS - High-performance computing with Lustre - Media rendering and big data processing</p>
-<section id="example-code-mount-an-fsx-file-system-on-windows" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-mount-an-fsx-file-system-on-windows">Example Code: Mount an FSx File System on Windows</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>net use X<span class="op">:</span> \\fsx-share<span class="op">.</span><span class="fu">amazonaws</span><span class="op">.</span><span class="fu">com</span>\share <span class="op">/</span>persistent<span class="op">:</span>yes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="amazon-ebs-elastic-block-store" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-ebs-elastic-block-store">Amazon EBS (Elastic Block Store)</h2>
-<p><strong>Definition</strong>: Amazon EBS is block storage that provides persistent storage for EC2 instances, supporting low-latency, high-performance applications.</p>
-<p><strong>Common Use Cases</strong>: - Databases (MySQL, PostgreSQL, etc.) - Virtual machine storage - Transactional applications</p>
-<section id="example-code-attach-an-ebs-volume-to-an-ec2-instance" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-attach-an-ebs-volume-to-an-ec2-instance">Example Code: Attach an EBS Volume to an EC2 Instance</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> ec2 attach-volume <span class="at">--volume-id</span> vol-12345678 <span class="at">--instance-id</span> i-abcdef12 <span class="at">--device</span> /dev/xvdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
+<section id="example-running-sagemaker-clarify-bias-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="example-running-sagemaker-clarify-bias-analysis">Example: Running SageMaker Clarify Bias Analysis</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.clarify <span class="im">import</span> ClarifyBiasConfig, ClarifyProcessor</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>clarify_processor <span class="op">=</span> ClarifyProcessor(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    sagemaker_session<span class="op">=</span>session</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>bias_config <span class="op">=</span> ClarifyBiasConfig(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"target"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    facet<span class="op">=</span><span class="st">"gender"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    dataset_format<span class="op">=</span>{<span class="st">"headers"</span>: <span class="va">True</span>, <span class="st">"dataset_type"</span>: <span class="st">"csv"</span>}</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>clarify_processor.run_pre_training_bias(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    data_config<span class="op">=</span>bias_config,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    data_file<span class="op">=</span><span class="st">"s3://my-bucket/dataset.csv"</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bias analysis completed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Each AWS storage service serves a unique purpose, and choosing the right one depends on your workload needs. If you need <strong>object storage</strong>, go with <strong>S3</strong>. If you need <strong>shared file storage</strong>, use <strong>EFS</strong>. If you need <strong>a managed file system</strong>, consider <strong>FSx</strong>. If you require <strong>high-performance block storage</strong>, <strong>EBS</strong> is the best choice.</p>
+<p>AWS SageMaker provides comprehensive tools for training, fine-tuning, hyperparameter tuning, model versioning, and bias analysis. These features streamline ML workflows, ensuring robust and auditable models.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

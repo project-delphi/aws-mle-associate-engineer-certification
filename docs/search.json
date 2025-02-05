@@ -1,5 +1,285 @@
 [
   {
+    "objectID": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html",
+    "href": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html",
+    "title": "Choosing and Integrating ML Models with AWS SageMaker",
+    "section": "",
+    "text": "AWS SageMaker provides a variety of built-in algorithms, foundation models, and solution templates to streamline machine learning (ML) workflows. This post explores:\n\nHow to choose built-in algorithms, foundation models, and solution templates from SageMaker JumpStart and Amazon Bedrock.\nMethods for integrating externally developed models into SageMaker.\nUsing SageMaker built-in algorithms and common ML libraries to develop ML models.\n\n\n\n\n\nSageMaker JumpStart provides pre-built ML models, solution templates, and training scripts to help users get started quickly. It includes models for computer vision, NLP, and tabular data.\n\n\nimport boto3\nfrom sagemaker.jumpstart.notebook_utils import list_jumpstart_models\n\nmodels = list_jumpstart_models()\nprint(models[:5])  # Display first five models\n\n\n\n\nAmazon Bedrock allows developers to build and scale applications using foundation models from AWS and third-party providers. It provides access to powerful large language models (LLMs) without needing extensive infrastructure management.\n\n\n\n\n\n\n\n\nFeature\nSageMaker JumpStart\nAmazon Bedrock\n\n\n\n\nModel Type\nPre-trained ML models\nFoundation Models (LLMs)\n\n\nCustomization\nFine-tuning and transfer learning\nAPI-based integration\n\n\nUse Case\nComputer vision, NLP, structured data\nChatbots, content generation, summarization\n\n\n\n\n\nimport boto3\n\nbedrock = boto3.client(\"bedrock-runtime\")\nresponse = bedrock.invoke_model(\n    modelId=\"ai21.j2-ultra\",\n    body=\"{\"prompt\": \"What are the benefits of using AWS SageMaker?\"}\"\n)\nprint(response[\"body\"].read().decode(\"utf-8\"))\n\n\n\n\n\nIf a model is built outside of SageMaker, it can still be deployed using SageMaker endpoints. The most common methods include:\n\n\n\nSave the trained model in an s3:// bucket.\nCreate a SageMaker inference script.\nDeploy using a SageMaker endpoint.\n\n\n\nfrom sagemaker.pytorch import PyTorchModel\n\nmodel = PyTorchModel(\n    model_data=\"s3://my-bucket/model.tar.gz\",\n    role=\"arn:aws:iam::123456789012:role/MySageMakerRole\",\n    entry_point=\"inference.py\",\n    framework_version=\"1.8\",\n    py_version=\"py3\",\n)\n\npredictor = model.deploy(instance_type=\"ml.m5.large\", initial_instance_count=1)\nprint(\"Model deployed successfully\")\n\n\n\n\n\nSageMaker provides built-in algorithms optimized for scalability and efficiency.\n\n\n\n\n\n\n\n\nAlgorithm\nType\nBest For\n\n\n\n\nXGBoost\nSupervised\nClassification, Regression\n\n\nLinear Learner\nSupervised\nLinear Regression, Binary Classification\n\n\nK-Means\nUnsupervised\nClustering\n\n\nDeepAR Forecasting\nTime Series\nDemand Forecasting\n\n\n\n\n\nimport sagemaker\nfrom sagemaker import get_execution_role\n\nsession = sagemaker.Session()\nrole = get_execution_role()\n\nxgb = sagemaker.estimator.Estimator(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", session.boto_region_name),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    output_path=\"s3://my-bucket/model-output/\",\n    sagemaker_session=session,\n)\n\nxgb.set_hyperparameters(\n    max_depth=5,\n    eta=0.2,\n    objective=\"binary:logistic\",\n    num_round=100,\n)\n\nxgb.fit({\"train\": \"s3://my-bucket/train.csv\"})\nprint(\"Model training complete\")\n\n\n\n\nAWS SageMaker simplifies the ML development process by offering pre-built models, seamless integration of external models, and a variety of built-in algorithms. Whether you’re using SageMaker JumpStart, Amazon Bedrock, or integrating your custom models, AWS provides a scalable and efficient ML workflow."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html#choosing-built-in-algorithms-foundation-models-and-solution-templates",
+    "href": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html#choosing-built-in-algorithms-foundation-models-and-solution-templates",
+    "title": "Choosing and Integrating ML Models with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker JumpStart provides pre-built ML models, solution templates, and training scripts to help users get started quickly. It includes models for computer vision, NLP, and tabular data.\n\n\nimport boto3\nfrom sagemaker.jumpstart.notebook_utils import list_jumpstart_models\n\nmodels = list_jumpstart_models()\nprint(models[:5])  # Display first five models\n\n\n\n\nAmazon Bedrock allows developers to build and scale applications using foundation models from AWS and third-party providers. It provides access to powerful large language models (LLMs) without needing extensive infrastructure management.\n\n\n\n\n\n\n\n\nFeature\nSageMaker JumpStart\nAmazon Bedrock\n\n\n\n\nModel Type\nPre-trained ML models\nFoundation Models (LLMs)\n\n\nCustomization\nFine-tuning and transfer learning\nAPI-based integration\n\n\nUse Case\nComputer vision, NLP, structured data\nChatbots, content generation, summarization\n\n\n\n\n\nimport boto3\n\nbedrock = boto3.client(\"bedrock-runtime\")\nresponse = bedrock.invoke_model(\n    modelId=\"ai21.j2-ultra\",\n    body=\"{\"prompt\": \"What are the benefits of using AWS SageMaker?\"}\"\n)\nprint(response[\"body\"].read().decode(\"utf-8\"))"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html#integrating-external-models-into-sagemaker",
+    "href": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html#integrating-external-models-into-sagemaker",
+    "title": "Choosing and Integrating ML Models with AWS SageMaker",
+    "section": "",
+    "text": "If a model is built outside of SageMaker, it can still be deployed using SageMaker endpoints. The most common methods include:\n\n\n\nSave the trained model in an s3:// bucket.\nCreate a SageMaker inference script.\nDeploy using a SageMaker endpoint.\n\n\n\nfrom sagemaker.pytorch import PyTorchModel\n\nmodel = PyTorchModel(\n    model_data=\"s3://my-bucket/model.tar.gz\",\n    role=\"arn:aws:iam::123456789012:role/MySageMakerRole\",\n    entry_point=\"inference.py\",\n    framework_version=\"1.8\",\n    py_version=\"py3\",\n)\n\npredictor = model.deploy(instance_type=\"ml.m5.large\", initial_instance_count=1)\nprint(\"Model deployed successfully\")"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html#developing-ml-models-with-sagemaker-built-in-algorithms",
+    "href": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html#developing-ml-models-with-sagemaker-built-in-algorithms",
+    "title": "Choosing and Integrating ML Models with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker provides built-in algorithms optimized for scalability and efficiency.\n\n\n\n\n\n\n\n\nAlgorithm\nType\nBest For\n\n\n\n\nXGBoost\nSupervised\nClassification, Regression\n\n\nLinear Learner\nSupervised\nLinear Regression, Binary Classification\n\n\nK-Means\nUnsupervised\nClustering\n\n\nDeepAR Forecasting\nTime Series\nDemand Forecasting\n\n\n\n\n\nimport sagemaker\nfrom sagemaker import get_execution_role\n\nsession = sagemaker.Session()\nrole = get_execution_role()\n\nxgb = sagemaker.estimator.Estimator(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", session.boto_region_name),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    output_path=\"s3://my-bucket/model-output/\",\n    sagemaker_session=session,\n)\n\nxgb.set_hyperparameters(\n    max_depth=5,\n    eta=0.2,\n    objective=\"binary:logistic\",\n    num_round=100,\n)\n\nxgb.fit({\"train\": \"s3://my-bucket/train.csv\"})\nprint(\"Model training complete\")"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html#conclusion",
+    "href": "sagemaker/sagemaker-choosing-and-integrating-ml-models.html#conclusion",
+    "title": "Choosing and Integrating ML Models with AWS SageMaker",
+    "section": "",
+    "text": "AWS SageMaker simplifies the ML development process by offering pre-built models, seamless integration of external models, and a variety of built-in algorithms. Whether you’re using SageMaker JumpStart, Amazon Bedrock, or integrating your custom models, AWS provides a scalable and efficient ML workflow."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-building-and-deployment.html",
+    "href": "sagemaker/sagemaker-model-building-and-deployment.html",
+    "title": "Getting Started with Amazon SageMaker for Model Building and Deployment",
+    "section": "",
+    "text": "Amazon SageMaker provides a comprehensive suite of tools for building, training, and deploying machine learning models at scale. This post explores SageMaker’s capabilities, data ingestion options, feature engineering tools, and deployment strategies."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-building-and-deployment.html#introduction",
+    "href": "sagemaker/sagemaker-model-building-and-deployment.html#introduction",
+    "title": "Getting Started with Amazon SageMaker for Model Building and Deployment",
+    "section": "",
+    "text": "Amazon SageMaker provides a comprehensive suite of tools for building, training, and deploying machine learning models at scale. This post explores SageMaker’s capabilities, data ingestion options, feature engineering tools, and deployment strategies."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-building-and-deployment.html#sagemaker-capabilities-and-algorithms",
+    "href": "sagemaker/sagemaker-model-building-and-deployment.html#sagemaker-capabilities-and-algorithms",
+    "title": "Getting Started with Amazon SageMaker for Model Building and Deployment",
+    "section": "SageMaker Capabilities and Algorithms",
+    "text": "SageMaker Capabilities and Algorithms\nAmazon SageMaker supports various built-in machine learning algorithms for supervised and unsupervised learning, including:\n\n\n\n\n\n\n\n\nAlgorithm\nType\nUse Case\n\n\n\n\nXGBoost\nSupervised\nRegression, Classification\n\n\nLinear Learner\nSupervised\nRegression, Classification\n\n\nK-Means\nUnsupervised\nClustering\n\n\nRandom Cut Forest\nUnsupervised\nAnomaly Detection\n\n\nDeepAR Forecasting\nSupervised\nTime-Series Forecasting\n\n\n\nAdditionally, SageMaker allows users to train custom models using frameworks like TensorFlow, PyTorch, and Scikit-Learn.\n\nExample: Training an XGBoost Model in SageMaker\nimport sagemaker\nfrom sagemaker.inputs import TrainingInput\nfrom sagemaker.xgboost.estimator import XGBoost\n\n# Initialize SageMaker session\nsagemaker_session = sagemaker.Session()\nrole = sagemaker.get_execution_role()\n\n# Define S3 data paths\ntrain_data = 's3://your-bucket/train.csv'\ntest_data = 's3://your-bucket/test.csv'\n\n# Create XGBoost estimator\nxgb = XGBoost(entry_point='script.py',\n              framework_version='1.3-1',\n              role=role,\n              instance_count=1,\n              instance_type='ml.m5.large',\n              hyperparameters={'num_round': 100})\n\n# Train the model\nxgb.fit({'train': TrainingInput(train_data, content_type='csv')})"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-building-and-deployment.html#ingesting-data-into-sagemaker",
+    "href": "sagemaker/sagemaker-model-building-and-deployment.html#ingesting-data-into-sagemaker",
+    "title": "Getting Started with Amazon SageMaker for Model Building and Deployment",
+    "section": "Ingesting Data into SageMaker",
+    "text": "Ingesting Data into SageMaker\n\nUsing SageMaker Data Wrangler\nSageMaker Data Wrangler allows you to import, clean, and transform data before training models. You can: - Import data from Amazon S3, Redshift, Athena, and other sources. - Perform transformations such as filtering, joining, and feature engineering. - Export processed data directly into SageMaker Feature Store or S3.\n\n\nUsing SageMaker Feature Store\nSageMaker Feature Store helps manage features across ML workflows. It supports: - Online store for real-time inference. - Offline store for batch processing.\n\n\nExample: Storing Features in SageMaker Feature Store\nfrom sagemaker.feature_store.feature_group import FeatureGroup\nimport pandas as pd\n\n# Define feature group\nfeature_group = FeatureGroup(name=\"customer_features\", sagemaker_session=sagemaker_session)\n\n# Sample data\ndata = pd.DataFrame({\n    \"customer_id\": [1, 2, 3],\n    \"purchase_count\": [10, 20, 15],\n    \"avg_spend\": [100.5, 200.0, 150.7]\n})\n\n# Ingest data into feature store\nfeature_group.ingest(data_frame=data, max_workers=3, wait=True)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-building-and-deployment.html#data-exploration-and-feature-engineering",
+    "href": "sagemaker/sagemaker-model-building-and-deployment.html#data-exploration-and-feature-engineering",
+    "title": "Getting Started with Amazon SageMaker for Model Building and Deployment",
+    "section": "Data Exploration and Feature Engineering",
+    "text": "Data Exploration and Feature Engineering\nAWS offers multiple tools for data exploration and transformation:\n\n\n\nTool\nPurpose\n\n\n\n\nSageMaker Data Wrangler\nData preprocessing and transformation\n\n\nAWS Glue\nData cataloging and ETL\n\n\nAWS Glue DataBrew\nData cleaning and enrichment\n\n\n\n\nExample: Using AWS Glue for ETL\nimport boto3\n\nglue_client = boto3.client('glue')\nresponse = glue_client.create_job(\n    Name='etl-job',\n    Role='AWSGlueServiceRole',\n    Command={'Name': 'glueetl', 'ScriptLocation': 's3://your-bucket/scripts/etl.py'},\n)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-building-and-deployment.html#deploying-models-in-sagemaker",
+    "href": "sagemaker/sagemaker-model-building-and-deployment.html#deploying-models-in-sagemaker",
+    "title": "Getting Started with Amazon SageMaker for Model Building and Deployment",
+    "section": "Deploying Models in SageMaker",
+    "text": "Deploying Models in SageMaker\nSageMaker provides multiple deployment options:\n\n\n\nDeployment Method\nUse Case\n\n\n\n\nReal-time endpoint\nLow-latency inference\n\n\nBatch transform\nLarge-scale batch inference\n\n\nEdge deployment\nDeploying models to IoT and edge devices\n\n\n\n\nExample: Deploying a Model for Real-Time Inference\n# Deploy trained model as an endpoint\npredictor = xgb.deploy(instance_type='ml.m5.large', initial_instance_count=1)\n\n# Make predictions\nresult = predictor.predict(data=[1.5, 2.3, 3.1])\nprint(result)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-building-and-deployment.html#conclusion",
+    "href": "sagemaker/sagemaker-model-building-and-deployment.html#conclusion",
+    "title": "Getting Started with Amazon SageMaker for Model Building and Deployment",
+    "section": "Conclusion",
+    "text": "Conclusion\nAmazon SageMaker provides a powerful suite of tools for data preparation, model training, feature management, and deployment. By leveraging SageMaker Data Wrangler, Feature Store, and AWS Glue, you can create scalable and efficient ML pipelines."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-deployment-and-monitoring.html",
+    "href": "sagemaker/sagemaker-model-deployment-and-monitoring.html",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "AWS SageMaker provides powerful tools for training, fine-tuning, and managing machine learning models. In this post, we explore:\n\nUsing SageMaker script mode with TensorFlow and PyTorch.\nFine-tuning pre-trained models with custom datasets using Amazon Bedrock and SageMaker JumpStart.\nPerforming hyperparameter tuning with SageMaker Automatic Model Tuning (AMT).\nManaging model versions with the SageMaker Model Registry.\nGaining insights with SageMaker Clarify.\n\n\n\nSageMaker script mode enables training models using popular frameworks while maintaining flexibility and scalability.\n\n\nimport sagemaker\nfrom sagemaker.pytorch import PyTorch\n\nrole = \"arn:aws:iam::123456789012:role/MySageMakerRole\"\nsession = sagemaker.Session()\n\npytorch_estimator = PyTorch(\n    entry_point=\"train.py\",\n    source_dir=\"src\",\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.8\",\n    py_version=\"py3\",\n    sagemaker_session=session\n)\n\npytorch_estimator.fit({\"train\": \"s3://my-bucket/train-data/\"})\n\n\n\n\nPre-trained models can be fine-tuned using Amazon Bedrock or SageMaker JumpStart for domain-specific applications.\n\n\nfrom sagemaker.jumpstart.estimator import JumpStartEstimator\n\nmodel_id = \"huggingface-text-classification\"\n\ntuner = JumpStartEstimator(\n    model_id=model_id,\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session,\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/custom-dataset/\"})\n\n\n\n\nSageMaker Automatic Model Tuning (AMT) optimizes hyperparameters for improved model performance.\n\n\nfrom sagemaker.tuner import HyperparameterTuner, IntegerParameter, ContinuousParameter\nfrom sagemaker.xgboost import XGBoost\n\nxgb = XGBoost(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.3-1\",\n    output_path=\"s3://my-bucket/xgboost-model/\",\n    sagemaker_session=session,\n)\n\ntuner = HyperparameterTuner(\n    xgb,\n    objective_metric_name=\"validation:rmse\",\n    hyperparameter_ranges={\n        \"max_depth\": IntegerParameter(3, 10),\n        \"eta\": ContinuousParameter(0.1, 0.5)\n    },\n    max_jobs=10,\n    max_parallel_jobs=2\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/train-data/\"})\n\n\n\n\nThe SageMaker Model Registry tracks and manages different versions of ML models for auditability and reproducibility.\n\n\nimport boto3\n\nsm_client = boto3.client(\"sagemaker\")\n\nresponse = sm_client.create_model_package(\n    ModelPackageGroupName=\"MyModelPackageGroup\",\n    ModelPackageDescription=\"Version 1 of my model\",\n    InferenceSpecification={\n        \"Containers\": [\n            {\n                \"Image\": \"123456789012.dkr.ecr.us-east-1.amazonaws.com/my-model:latest\",\n                \"Mode\": \"SingleModel\"\n            }\n        ],\n        \"SupportedContentTypes\": [\"text/csv\"],\n        \"SupportedResponseMIMETypes\": [\"application/json\"]\n    },\n)\nprint(\"Model registered successfully\")\n\n\n\n\nSageMaker Clarify provides metrics to analyze ML training data and models.\n\n\n\n\n\n\n\nMetric\nDescription\n\n\n\n\nData Bias\nMeasures imbalances in dataset representation.\n\n\nModel Bias\nEvaluates if the model favors specific groups.\n\n\nFeature Importance\nDetermines which features contribute most to predictions.\n\n\n\n\n\nfrom sagemaker.clarify import ClarifyBiasConfig, ClarifyProcessor\n\nclarify_processor = ClarifyProcessor(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session\n)\n\nbias_config = ClarifyBiasConfig(\n    label=\"target\",\n    facet=\"gender\",\n    dataset_format={\"headers\": True, \"dataset_type\": \"csv\"}\n)\n\nclarify_processor.run_pre_training_bias(\n    data_config=bias_config,\n    data_file=\"s3://my-bucket/dataset.csv\"\n)\nprint(\"Bias analysis completed\")\n\n\n\n\nAWS SageMaker provides comprehensive tools for training, fine-tuning, hyperparameter tuning, model versioning, and bias analysis. These features streamline ML workflows, ensuring robust and auditable models."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-deployment-and-monitoring.html#using-sagemaker-script-mode-for-training",
+    "href": "sagemaker/sagemaker-model-deployment-and-monitoring.html#using-sagemaker-script-mode-for-training",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker script mode enables training models using popular frameworks while maintaining flexibility and scalability.\n\n\nimport sagemaker\nfrom sagemaker.pytorch import PyTorch\n\nrole = \"arn:aws:iam::123456789012:role/MySageMakerRole\"\nsession = sagemaker.Session()\n\npytorch_estimator = PyTorch(\n    entry_point=\"train.py\",\n    source_dir=\"src\",\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.8\",\n    py_version=\"py3\",\n    sagemaker_session=session\n)\n\npytorch_estimator.fit({\"train\": \"s3://my-bucket/train-data/\"})"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-deployment-and-monitoring.html#fine-tuning-pre-trained-models-with-custom-datasets",
+    "href": "sagemaker/sagemaker-model-deployment-and-monitoring.html#fine-tuning-pre-trained-models-with-custom-datasets",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "Pre-trained models can be fine-tuned using Amazon Bedrock or SageMaker JumpStart for domain-specific applications.\n\n\nfrom sagemaker.jumpstart.estimator import JumpStartEstimator\n\nmodel_id = \"huggingface-text-classification\"\n\ntuner = JumpStartEstimator(\n    model_id=model_id,\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session,\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/custom-dataset/\"})"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-deployment-and-monitoring.html#performing-hyperparameter-tuning-with-sagemaker-amt",
+    "href": "sagemaker/sagemaker-model-deployment-and-monitoring.html#performing-hyperparameter-tuning-with-sagemaker-amt",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker Automatic Model Tuning (AMT) optimizes hyperparameters for improved model performance.\n\n\nfrom sagemaker.tuner import HyperparameterTuner, IntegerParameter, ContinuousParameter\nfrom sagemaker.xgboost import XGBoost\n\nxgb = XGBoost(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.3-1\",\n    output_path=\"s3://my-bucket/xgboost-model/\",\n    sagemaker_session=session,\n)\n\ntuner = HyperparameterTuner(\n    xgb,\n    objective_metric_name=\"validation:rmse\",\n    hyperparameter_ranges={\n        \"max_depth\": IntegerParameter(3, 10),\n        \"eta\": ContinuousParameter(0.1, 0.5)\n    },\n    max_jobs=10,\n    max_parallel_jobs=2\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/train-data/\"})"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-deployment-and-monitoring.html#managing-model-versions-with-sagemaker-model-registry",
+    "href": "sagemaker/sagemaker-model-deployment-and-monitoring.html#managing-model-versions-with-sagemaker-model-registry",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "The SageMaker Model Registry tracks and manages different versions of ML models for auditability and reproducibility.\n\n\nimport boto3\n\nsm_client = boto3.client(\"sagemaker\")\n\nresponse = sm_client.create_model_package(\n    ModelPackageGroupName=\"MyModelPackageGroup\",\n    ModelPackageDescription=\"Version 1 of my model\",\n    InferenceSpecification={\n        \"Containers\": [\n            {\n                \"Image\": \"123456789012.dkr.ecr.us-east-1.amazonaws.com/my-model:latest\",\n                \"Mode\": \"SingleModel\"\n            }\n        ],\n        \"SupportedContentTypes\": [\"text/csv\"],\n        \"SupportedResponseMIMETypes\": [\"application/json\"]\n    },\n)\nprint(\"Model registered successfully\")"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-deployment-and-monitoring.html#using-sagemaker-clarify-for-model-insights",
+    "href": "sagemaker/sagemaker-model-deployment-and-monitoring.html#using-sagemaker-clarify-for-model-insights",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker Clarify provides metrics to analyze ML training data and models.\n\n\n\n\n\n\n\nMetric\nDescription\n\n\n\n\nData Bias\nMeasures imbalances in dataset representation.\n\n\nModel Bias\nEvaluates if the model favors specific groups.\n\n\nFeature Importance\nDetermines which features contribute most to predictions.\n\n\n\n\n\nfrom sagemaker.clarify import ClarifyBiasConfig, ClarifyProcessor\n\nclarify_processor = ClarifyProcessor(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session\n)\n\nbias_config = ClarifyBiasConfig(\n    label=\"target\",\n    facet=\"gender\",\n    dataset_format={\"headers\": True, \"dataset_type\": \"csv\"}\n)\n\nclarify_processor.run_pre_training_bias(\n    data_config=bias_config,\n    data_file=\"s3://my-bucket/dataset.csv\"\n)\nprint(\"Bias analysis completed\")"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-model-deployment-and-monitoring.html#conclusion",
+    "href": "sagemaker/sagemaker-model-deployment-and-monitoring.html#conclusion",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "AWS SageMaker provides comprehensive tools for training, fine-tuning, hyperparameter tuning, model versioning, and bias analysis. These features streamline ML workflows, ensuring robust and auditable models."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-optimizing-deployments.html",
+    "href": "sagemaker/sagemaker-optimizing-deployments.html",
+    "title": "Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security",
+    "section": "",
+    "text": "Amazon SageMaker offers flexible deployment options, cost-saving strategies, and security features. This post explores:\n\nRightsizing instance families and sizes using SageMaker Inference Recommender and AWS Compute Optimizer.\nOptimizing costs with different purchasing options.\nManaging access control with IAM roles and policies.\nImplementing security and compliance best practices in SageMaker."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-optimizing-deployments.html#introduction",
+    "href": "sagemaker/sagemaker-optimizing-deployments.html#introduction",
+    "title": "Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security",
+    "section": "",
+    "text": "Amazon SageMaker offers flexible deployment options, cost-saving strategies, and security features. This post explores:\n\nRightsizing instance families and sizes using SageMaker Inference Recommender and AWS Compute Optimizer.\nOptimizing costs with different purchasing options.\nManaging access control with IAM roles and policies.\nImplementing security and compliance best practices in SageMaker."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-optimizing-deployments.html#rightsizing-instance-families-and-sizes",
+    "href": "sagemaker/sagemaker-optimizing-deployments.html#rightsizing-instance-families-and-sizes",
+    "title": "Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security",
+    "section": "Rightsizing Instance Families and Sizes",
+    "text": "Rightsizing Instance Families and Sizes\nSelecting the appropriate instance type ensures optimal performance and cost-efficiency.\n\n\n\n\n\n\n\nInstance Type\nUse Case\n\n\n\n\nCPU (ml.m5, ml.c5)\nLightweight inference, batch processing\n\n\nGPU (ml.g4dn, ml.p3)\nDeep learning inference, high-performance computing\n\n\nInf (ml.inf1)\nOptimized for deep learning with Inferentia chips\n\n\nGraviton (ml.c7g, ml.m7g)\nCost-efficient CPU workloads\n\n\n\n\nUsing SageMaker Inference Recommender\nSageMaker Inference Recommender suggests the best instance type based on model performance.\nimport boto3\nsagemaker = boto3.client('sagemaker')\n\nresponse = sagemaker.create_inference_recommendations_job(\n    JobName='my-inference-recommender-job',\n    RoleArn='arn:aws:iam::account-id:role/SageMakerRole',\n    ModelName='my-model',\n    EndpointConfigurations=[\n        {\n            'InstanceTypes': ['ml.m5.large', 'ml.g4dn.xlarge'],\n            'InitialInstanceCount': 1\n        }\n    ]\n)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-optimizing-deployments.html#optimizing-infrastructure-costs",
+    "href": "sagemaker/sagemaker-optimizing-deployments.html#optimizing-infrastructure-costs",
+    "title": "Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security",
+    "section": "Optimizing Infrastructure Costs",
+    "text": "Optimizing Infrastructure Costs\nAWS provides multiple purchasing options to reduce costs:\n\n\n\n\n\n\n\n\nPurchasing Option\nDescription\nSavings Potential\n\n\n\n\nOn-Demand\nPay-as-you-go pricing\nBaseline cost\n\n\nSpot Instances\nUp to 90% discount but can be interrupted\nHigh\n\n\nReserved Instances\nCommit for 1-3 years for lower rates\nUp to 72%\n\n\nSageMaker Savings Plans\nFlexible, commitment-based discount\nUp to 64%\n\n\n\n\nUsing Spot Instances in SageMaker\nfrom sagemaker.estimator import Estimator\n\nestimator = Estimator(\n    image_uri='your-container-image',\n    role='arn:aws:iam::account-id:role/SageMakerRole',\n    instance_count=1,\n    instance_type='ml.m5.large',\n    use_spot_instances=True,\n    max_wait=3600,\n    max_run=1800\n)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-optimizing-deployments.html#iam-roles-policies-and-groups-for-access-control",
+    "href": "sagemaker/sagemaker-optimizing-deployments.html#iam-roles-policies-and-groups-for-access-control",
+    "title": "Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security",
+    "section": "IAM Roles, Policies, and Groups for Access Control",
+    "text": "IAM Roles, Policies, and Groups for Access Control\nAWS Identity and Access Management (IAM) controls permissions for SageMaker and related services.\n\nKey IAM Components\n\n\n\nIAM Component\nDescription\n\n\n\n\nIAM Roles\nGrant temporary access to AWS services\n\n\nIAM Policies\nDefine permissions for actions and resources\n\n\nIAM Groups\nOrganize multiple users with the same permissions\n\n\n\n\n\nExample: Creating a SageMaker Execution Role\n{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"Service\": \"sagemaker.amazonaws.com\"\n            },\n            \"Action\": \"sts:AssumeRole\"\n        }\n    ]\n}"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-optimizing-deployments.html#sagemaker-security-and-compliance-features",
+    "href": "sagemaker/sagemaker-optimizing-deployments.html#sagemaker-security-and-compliance-features",
+    "title": "Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security",
+    "section": "SageMaker Security and Compliance Features",
+    "text": "SageMaker Security and Compliance Features\nAWS SageMaker includes built-in security measures:\n\n\n\n\n\n\n\nSecurity Feature\nDescription\n\n\n\n\nVPC Isolation\nDeploy endpoints inside a VPC for network control\n\n\nEncryption\nEncrypt data at rest (S3) and in transit (TLS)\n\n\nSageMaker Role Manager\nSimplifies IAM role management\n\n\nLogging & Auditing\nTrack actions with AWS CloudTrail and CloudWatch\n\n\n\n\nEnforcing Encryption in SageMaker\nfrom sagemaker import Model\n\nmodel = Model(\n    image_uri='your-ecr-image',\n    model_data='s3://your-bucket/model.tar.gz',\n    role='arn:aws:iam::account-id:role/SageMakerRole',\n    vpc_config={'SecurityGroupIds': ['sg-xxxx'], 'Subnets': ['subnet-xxxx']},\n    enable_network_isolation=True\n)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-optimizing-deployments.html#conclusion",
+    "href": "sagemaker/sagemaker-optimizing-deployments.html#conclusion",
+    "title": "Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security",
+    "section": "Conclusion",
+    "text": "Conclusion\nBy rightsizing instances, optimizing cost strategies, enforcing IAM policies, and utilizing SageMaker’s security features, we can build efficient and secure ML deployments. These best practices ensure scalability while keeping costs under control."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html",
+    "href": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html",
+    "title": "Deploying and Monitoring SageMaker Models in a VPC",
+    "section": "",
+    "text": "Amazon SageMaker provides powerful tools for deploying and monitoring machine learning models in a secure and scalable way. This blog post covers:\n\nConfiguring SageMaker endpoints within a VPC network.\nDeploying and hosting models using the SageMaker SDK.\nMonitoring models in production using SageMaker Model Monitor.\nDetecting changes in data distribution with SageMaker Clarify."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#introduction",
+    "href": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#introduction",
+    "title": "Deploying and Monitoring SageMaker Models in a VPC",
+    "section": "",
+    "text": "Amazon SageMaker provides powerful tools for deploying and monitoring machine learning models in a secure and scalable way. This blog post covers:\n\nConfiguring SageMaker endpoints within a VPC network.\nDeploying and hosting models using the SageMaker SDK.\nMonitoring models in production using SageMaker Model Monitor.\nDetecting changes in data distribution with SageMaker Clarify."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#configuring-sagemaker-endpoints-within-a-vpc",
+    "href": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#configuring-sagemaker-endpoints-within-a-vpc",
+    "title": "Deploying and Monitoring SageMaker Models in a VPC",
+    "section": "Configuring SageMaker Endpoints within a VPC",
+    "text": "Configuring SageMaker Endpoints within a VPC\nDeploying SageMaker endpoints within an Amazon Virtual Private Cloud (VPC) enhances security by preventing data from being exposed to the internet.\n\nSteps to Configure a VPC-Enabled Endpoint:\n\nCreate a VPC with private and public subnets.\nSet up security groups for inbound and outbound rules.\nDeploy SageMaker endpoints inside the VPC.\n\nimport boto3\nsagemaker = boto3.client('sagemaker')\n\nresponse = sagemaker.create_endpoint_config(\n    EndpointConfigName='my-vpc-endpoint-config',\n    ProductionVariants=[\n        {\n            'VariantName': 'AllTraffic',\n            'ModelName': 'my-sagemaker-model',\n            'InstanceType': 'ml.m5.large',\n            'InitialInstanceCount': 1\n        }\n    ],\n    VpcConfig={\n        'Subnets': ['subnet-xxxxxx'],\n        'SecurityGroupIds': ['sg-xxxxxx']\n    }\n)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#deploying-and-hosting-models-using-the-sagemaker-sdk",
+    "href": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#deploying-and-hosting-models-using-the-sagemaker-sdk",
+    "title": "Deploying and Monitoring SageMaker Models in a VPC",
+    "section": "Deploying and Hosting Models using the SageMaker SDK",
+    "text": "Deploying and Hosting Models using the SageMaker SDK\nUsing the SageMaker SDK, we can deploy models to fully managed endpoints with minimal setup.\n\nExample: Deploying a Model with the SageMaker SDK\nfrom sagemaker import Session, Model\nsession = Session()\n\nmodel = Model(\n    image_uri='your-ecr-image-uri',\n    model_data='s3://your-model-path/model.tar.gz',\n    role='arn:aws:iam::account-id:role/service-role'\n)\n\npredictor = model.deploy(instance_type='ml.m5.large', initial_instance_count=1)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#monitoring-models-in-production-with-sagemaker-model-monitor",
+    "href": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#monitoring-models-in-production-with-sagemaker-model-monitor",
+    "title": "Deploying and Monitoring SageMaker Models in a VPC",
+    "section": "Monitoring Models in Production with SageMaker Model Monitor",
+    "text": "Monitoring Models in Production with SageMaker Model Monitor\nModel Monitor enables continuous evaluation of model predictions and data quality.\n\n\n\n\n\n\n\nMonitoring Type\nDescription\n\n\n\n\nData Quality\nDetects missing or unexpected values in input data.\n\n\nModel Bias\nIdentifies bias drift over time.\n\n\nModel Explainability\nEvaluates feature importance.\n\n\nModel Drift\nDetects changes in model predictions.\n\n\n\n\nExample: Setting Up Model Monitor\nfrom sagemaker.model_monitor import DataCaptureConfig\n\ndata_capture_config = DataCaptureConfig(\n    enable_capture=True,\n    sampling_percentage=100,\n    destination_s3_uri='s3://your-monitoring-bucket/'\n)\n\npredictor.update_data_capture_config(data_capture_config)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#detecting-data-distribution-changes-with-sagemaker-clarify",
+    "href": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#detecting-data-distribution-changes-with-sagemaker-clarify",
+    "title": "Deploying and Monitoring SageMaker Models in a VPC",
+    "section": "Detecting Data Distribution Changes with SageMaker Clarify",
+    "text": "Detecting Data Distribution Changes with SageMaker Clarify\nSageMaker Clarify helps identify shifts in data distribution that can impact model performance.\n\nExample: Running a Baseline Drift Analysis\nfrom sagemaker.clarify import BiasConfig, ModelMonitor\n\nbias_config = BiasConfig(\n    label_values_or_threshold=[1],\n    facet_name='feature-column',\n    facet_values_or_threshold=[0]\n)\n\nmonitor = ModelMonitor(\n    job_definition_name='clarify-job',\n    role='arn:aws:iam::account-id:role/service-role',\n    bias_config=bias_config\n)\n\nmonitor.create_monitoring_schedule()"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#conclusion",
+    "href": "sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html#conclusion",
+    "title": "Deploying and Monitoring SageMaker Models in a VPC",
+    "section": "Conclusion",
+    "text": "Conclusion\nBy configuring SageMaker endpoints within a VPC, deploying with the SageMaker SDK, and monitoring data with Model Monitor and Clarify, we ensure secure and efficient model operations. These best practices help maintain model reliability and performance in production environments."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-multi-model-multi-container-deployments.html",
+    "href": "sagemaker/sagemaker-multi-model-multi-container-deployments.html",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "AWS SageMaker provides powerful tools for training, fine-tuning, and managing machine learning models. In this post, we explore:\n\nUsing SageMaker script mode with TensorFlow and PyTorch.\nFine-tuning pre-trained models with custom datasets using Amazon Bedrock and SageMaker JumpStart.\nPerforming hyperparameter tuning with SageMaker Automatic Model Tuning (AMT).\nManaging model versions with the SageMaker Model Registry.\nGaining insights with SageMaker Clarify.\n\n\n\nSageMaker script mode enables training models using popular frameworks while maintaining flexibility and scalability.\n\n\nimport sagemaker\nfrom sagemaker.pytorch import PyTorch\n\nrole = \"arn:aws:iam::123456789012:role/MySageMakerRole\"\nsession = sagemaker.Session()\n\npytorch_estimator = PyTorch(\n    entry_point=\"train.py\",\n    source_dir=\"src\",\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.8\",\n    py_version=\"py3\",\n    sagemaker_session=session\n)\n\npytorch_estimator.fit({\"train\": \"s3://my-bucket/train-data/\"})\n\n\n\n\nPre-trained models can be fine-tuned using Amazon Bedrock or SageMaker JumpStart for domain-specific applications.\n\n\nfrom sagemaker.jumpstart.estimator import JumpStartEstimator\n\nmodel_id = \"huggingface-text-classification\"\n\ntuner = JumpStartEstimator(\n    model_id=model_id,\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session,\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/custom-dataset/\"})\n\n\n\n\nSageMaker Automatic Model Tuning (AMT) optimizes hyperparameters for improved model performance.\n\n\nfrom sagemaker.tuner import HyperparameterTuner, IntegerParameter, ContinuousParameter\nfrom sagemaker.xgboost import XGBoost\n\nxgb = XGBoost(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.3-1\",\n    output_path=\"s3://my-bucket/xgboost-model/\",\n    sagemaker_session=session,\n)\n\ntuner = HyperparameterTuner(\n    xgb,\n    objective_metric_name=\"validation:rmse\",\n    hyperparameter_ranges={\n        \"max_depth\": IntegerParameter(3, 10),\n        \"eta\": ContinuousParameter(0.1, 0.5)\n    },\n    max_jobs=10,\n    max_parallel_jobs=2\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/train-data/\"})\n\n\n\n\nThe SageMaker Model Registry tracks and manages different versions of ML models for auditability and reproducibility.\n\n\nimport boto3\n\nsm_client = boto3.client(\"sagemaker\")\n\nresponse = sm_client.create_model_package(\n    ModelPackageGroupName=\"MyModelPackageGroup\",\n    ModelPackageDescription=\"Version 1 of my model\",\n    InferenceSpecification={\n        \"Containers\": [\n            {\n                \"Image\": \"123456789012.dkr.ecr.us-east-1.amazonaws.com/my-model:latest\",\n                \"Mode\": \"SingleModel\"\n            }\n        ],\n        \"SupportedContentTypes\": [\"text/csv\"],\n        \"SupportedResponseMIMETypes\": [\"application/json\"]\n    },\n)\nprint(\"Model registered successfully\")\n\n\n\n\nSageMaker Clarify provides metrics to analyze ML training data and models.\n\n\n\n\n\n\n\nMetric\nDescription\n\n\n\n\nData Bias\nMeasures imbalances in dataset representation.\n\n\nModel Bias\nEvaluates if the model favors specific groups.\n\n\nFeature Importance\nDetermines which features contribute most to predictions.\n\n\n\n\n\nfrom sagemaker.clarify import ClarifyBiasConfig, ClarifyProcessor\n\nclarify_processor = ClarifyProcessor(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session\n)\n\nbias_config = ClarifyBiasConfig(\n    label=\"target\",\n    facet=\"gender\",\n    dataset_format={\"headers\": True, \"dataset_type\": \"csv\"}\n)\n\nclarify_processor.run_pre_training_bias(\n    data_config=bias_config,\n    data_file=\"s3://my-bucket/dataset.csv\"\n)\nprint(\"Bias analysis completed\")\n\n\n\n\nAWS SageMaker provides comprehensive tools for training, fine-tuning, hyperparameter tuning, model versioning, and bias analysis. These features streamline ML workflows, ensuring robust and auditable models."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#using-sagemaker-script-mode-for-training",
+    "href": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#using-sagemaker-script-mode-for-training",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker script mode enables training models using popular frameworks while maintaining flexibility and scalability.\n\n\nimport sagemaker\nfrom sagemaker.pytorch import PyTorch\n\nrole = \"arn:aws:iam::123456789012:role/MySageMakerRole\"\nsession = sagemaker.Session()\n\npytorch_estimator = PyTorch(\n    entry_point=\"train.py\",\n    source_dir=\"src\",\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.8\",\n    py_version=\"py3\",\n    sagemaker_session=session\n)\n\npytorch_estimator.fit({\"train\": \"s3://my-bucket/train-data/\"})"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#fine-tuning-pre-trained-models-with-custom-datasets",
+    "href": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#fine-tuning-pre-trained-models-with-custom-datasets",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "Pre-trained models can be fine-tuned using Amazon Bedrock or SageMaker JumpStart for domain-specific applications.\n\n\nfrom sagemaker.jumpstart.estimator import JumpStartEstimator\n\nmodel_id = \"huggingface-text-classification\"\n\ntuner = JumpStartEstimator(\n    model_id=model_id,\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session,\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/custom-dataset/\"})"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#performing-hyperparameter-tuning-with-sagemaker-amt",
+    "href": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#performing-hyperparameter-tuning-with-sagemaker-amt",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker Automatic Model Tuning (AMT) optimizes hyperparameters for improved model performance.\n\n\nfrom sagemaker.tuner import HyperparameterTuner, IntegerParameter, ContinuousParameter\nfrom sagemaker.xgboost import XGBoost\n\nxgb = XGBoost(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.3-1\",\n    output_path=\"s3://my-bucket/xgboost-model/\",\n    sagemaker_session=session,\n)\n\ntuner = HyperparameterTuner(\n    xgb,\n    objective_metric_name=\"validation:rmse\",\n    hyperparameter_ranges={\n        \"max_depth\": IntegerParameter(3, 10),\n        \"eta\": ContinuousParameter(0.1, 0.5)\n    },\n    max_jobs=10,\n    max_parallel_jobs=2\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/train-data/\"})"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#managing-model-versions-with-sagemaker-model-registry",
+    "href": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#managing-model-versions-with-sagemaker-model-registry",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "The SageMaker Model Registry tracks and manages different versions of ML models for auditability and reproducibility.\n\n\nimport boto3\n\nsm_client = boto3.client(\"sagemaker\")\n\nresponse = sm_client.create_model_package(\n    ModelPackageGroupName=\"MyModelPackageGroup\",\n    ModelPackageDescription=\"Version 1 of my model\",\n    InferenceSpecification={\n        \"Containers\": [\n            {\n                \"Image\": \"123456789012.dkr.ecr.us-east-1.amazonaws.com/my-model:latest\",\n                \"Mode\": \"SingleModel\"\n            }\n        ],\n        \"SupportedContentTypes\": [\"text/csv\"],\n        \"SupportedResponseMIMETypes\": [\"application/json\"]\n    },\n)\nprint(\"Model registered successfully\")"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#using-sagemaker-clarify-for-model-insights",
+    "href": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#using-sagemaker-clarify-for-model-insights",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker Clarify provides metrics to analyze ML training data and models.\n\n\n\n\n\n\n\nMetric\nDescription\n\n\n\n\nData Bias\nMeasures imbalances in dataset representation.\n\n\nModel Bias\nEvaluates if the model favors specific groups.\n\n\nFeature Importance\nDetermines which features contribute most to predictions.\n\n\n\n\n\nfrom sagemaker.clarify import ClarifyBiasConfig, ClarifyProcessor\n\nclarify_processor = ClarifyProcessor(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session\n)\n\nbias_config = ClarifyBiasConfig(\n    label=\"target\",\n    facet=\"gender\",\n    dataset_format={\"headers\": True, \"dataset_type\": \"csv\"}\n)\n\nclarify_processor.run_pre_training_bias(\n    data_config=bias_config,\n    data_file=\"s3://my-bucket/dataset.csv\"\n)\nprint(\"Bias analysis completed\")"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#conclusion",
+    "href": "sagemaker/sagemaker-multi-model-multi-container-deployments.html#conclusion",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "AWS SageMaker provides comprehensive tools for training, fine-tuning, hyperparameter tuning, model versioning, and bias analysis. These features streamline ML workflows, ensuring robust and auditable models."
+  },
+  {
     "objectID": "examples/glue.html",
     "href": "examples/glue.html",
     "title": "Glue Data Catalog vs Glue DataBrew vs Glue Studio",
@@ -61,62 +341,6 @@
     "title": "Storage: S3 vs EFS vs FSx vs EBS",
     "section": "Amazon EBS (Elastic Block Store)",
     "text": "Amazon EBS (Elastic Block Store)\n\nUse Case: Low-latency storage for EC2, Databases, Big Data\nFeatures:\n\nPersistent block storage for EC2\nSSD (gp3, io2) and HDD (sc1, st1) options\nSnapshots for backup & recovery\n\n\n\nExample: Attach an EBS Volume to EC2\naws ec2 attach-volume --volume-id vol-0123456789abcdef0 --instance-id i-0123456789abcdef0 --device /dev/xvdf"
-  },
-  {
-    "objectID": "examples/sagemaker-apis.html",
-    "href": "examples/sagemaker-apis.html",
-    "title": "Amazon SageMaker APIs: Real-World Examples",
-    "section": "",
-    "text": "Amazon SageMaker provides a variety of APIs to interact with its services, including training, inference, and model deployment. This document explores real-world examples of using these APIs.\n\n\nimport boto3\nimport json\n\nsagemaker_client = boto3.client(\"sagemaker\")\n\nresponse = sagemaker_client.create_training_job(\n    TrainingJobName=\"my-xgboost-training-job\",\n    AlgorithmSpecification={\n        \"TrainingImage\": \"811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest\",\n        \"TrainingInputMode\": \"File\"\n    },\n    RoleArn=\"arn:aws:iam::123456789012:role/SageMakerRole\",\n    InputDataConfig=[\n        {\n            \"ChannelName\": \"train\",\n            \"DataSource\": {\n                \"S3DataSource\": {\n                    \"S3DataType\": \"S3Prefix\",\n                    \"S3Uri\": \"s3://my-bucket/train/\",\n                    \"S3DataDistributionType\": \"FullyReplicated\"\n                }\n            }\n        }\n    ],\n    OutputDataConfig={\"S3OutputPath\": \"s3://my-bucket/output/\"},\n    ResourceConfig={\n        \"InstanceType\": \"ml.m5.large\",\n        \"InstanceCount\": 1,\n        \"VolumeSizeInGB\": 10\n    },\n    StoppingCondition={\"MaxRuntimeInSeconds\": 3600},\n)\n\nprint(json.dumps(response, indent=4))\n\n\n\nresponse = sagemaker_client.create_endpoint_config(\n    EndpointConfigName=\"my-endpoint-config\",\n    ProductionVariants=[\n        {\n            \"VariantName\": \"AllTraffic\",\n            \"ModelName\": \"my-trained-model\",\n            \"InstanceType\": \"ml.m5.large\",\n            \"InitialInstanceCount\": 1\n        }\n    ]\n)\n\nresponse = sagemaker_client.create_endpoint(\n    EndpointName=\"my-endpoint\",\n    EndpointConfigName=\"my-endpoint-config\"\n)\n\nprint(json.dumps(response, indent=4))\n\n\n\nimport json\nimport boto3\n\nruntime_client = boto3.client(\"sagemaker-runtime\")\n\nresponse = runtime_client.invoke_endpoint(\n    EndpointName=\"my-endpoint\",\n    ContentType=\"application/json\",\n    Body=json.dumps({\"data\": [1.0, 2.0, 3.0, 4.0]})\n)\n\nresult = json.loads(response[\"Body\"].read().decode())\nprint(result)"
-  },
-  {
-    "objectID": "examples/sagemaker-apis.html#example-1-creating-a-sagemaker-training-job",
-    "href": "examples/sagemaker-apis.html#example-1-creating-a-sagemaker-training-job",
-    "title": "Amazon SageMaker APIs: Real-World Examples",
-    "section": "",
-    "text": "import boto3\nimport json\n\nsagemaker_client = boto3.client(\"sagemaker\")\n\nresponse = sagemaker_client.create_training_job(\n    TrainingJobName=\"my-xgboost-training-job\",\n    AlgorithmSpecification={\n        \"TrainingImage\": \"811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest\",\n        \"TrainingInputMode\": \"File\"\n    },\n    RoleArn=\"arn:aws:iam::123456789012:role/SageMakerRole\",\n    InputDataConfig=[\n        {\n            \"ChannelName\": \"train\",\n            \"DataSource\": {\n                \"S3DataSource\": {\n                    \"S3DataType\": \"S3Prefix\",\n                    \"S3Uri\": \"s3://my-bucket/train/\",\n                    \"S3DataDistributionType\": \"FullyReplicated\"\n                }\n            }\n        }\n    ],\n    OutputDataConfig={\"S3OutputPath\": \"s3://my-bucket/output/\"},\n    ResourceConfig={\n        \"InstanceType\": \"ml.m5.large\",\n        \"InstanceCount\": 1,\n        \"VolumeSizeInGB\": 10\n    },\n    StoppingCondition={\"MaxRuntimeInSeconds\": 3600},\n)\n\nprint(json.dumps(response, indent=4))"
-  },
-  {
-    "objectID": "examples/sagemaker-apis.html#example-2-deploying-a-model-to-a-sagemaker-endpoint",
-    "href": "examples/sagemaker-apis.html#example-2-deploying-a-model-to-a-sagemaker-endpoint",
-    "title": "Amazon SageMaker APIs: Real-World Examples",
-    "section": "",
-    "text": "response = sagemaker_client.create_endpoint_config(\n    EndpointConfigName=\"my-endpoint-config\",\n    ProductionVariants=[\n        {\n            \"VariantName\": \"AllTraffic\",\n            \"ModelName\": \"my-trained-model\",\n            \"InstanceType\": \"ml.m5.large\",\n            \"InitialInstanceCount\": 1\n        }\n    ]\n)\n\nresponse = sagemaker_client.create_endpoint(\n    EndpointName=\"my-endpoint\",\n    EndpointConfigName=\"my-endpoint-config\"\n)\n\nprint(json.dumps(response, indent=4))"
-  },
-  {
-    "objectID": "examples/sagemaker-apis.html#example-3-invoking-a-sagemaker-endpoint-for-inference",
-    "href": "examples/sagemaker-apis.html#example-3-invoking-a-sagemaker-endpoint-for-inference",
-    "title": "Amazon SageMaker APIs: Real-World Examples",
-    "section": "",
-    "text": "import json\nimport boto3\n\nruntime_client = boto3.client(\"sagemaker-runtime\")\n\nresponse = runtime_client.invoke_endpoint(\n    EndpointName=\"my-endpoint\",\n    ContentType=\"application/json\",\n    Body=json.dumps({\"data\": [1.0, 2.0, 3.0, 4.0]})\n)\n\nresult = json.loads(response[\"Body\"].read().decode())\nprint(result)"
-  },
-  {
-    "objectID": "examples/emr-vs-hadoop-vs-spark.html",
-    "href": "examples/emr-vs-hadoop-vs-spark.html",
-    "title": "EMR vs Hadoop vs Spark",
-    "section": "",
-    "text": "This document compares Amazon EMR, Apache Hadoop, and Apache Spark, highlighting their use cases, differences, and providing code examples."
-  },
-  {
-    "objectID": "examples/emr-vs-hadoop-vs-spark.html#amazon-emr",
-    "href": "examples/emr-vs-hadoop-vs-spark.html#amazon-emr",
-    "title": "EMR vs Hadoop vs Spark",
-    "section": "Amazon EMR",
-    "text": "Amazon EMR\nAWS Elastic MapReduce (EMR) is a cloud-based big data processing service that simplifies running frameworks like Hadoop and Spark.\n\nKey Features:\n\nManaged Hadoop, Spark, Presto, and more\nAuto-scaling and cost-efficient\nTight integration with AWS services\n\n\n\nSample Code: Submitting a Spark Job to EMR\nimport boto3\n\ndef submit_spark_job(cluster_id, script_s3_path):\n    emr_client = boto3.client('emr')\n    response = emr_client.add_job_flow_steps(\n        JobFlowId=cluster_id,\n        Steps=[{\n            'Name': 'Spark Job',\n            'ActionOnFailure': 'CONTINUE',\n            'HadoopJarStep': {\n                'Jar': 'command-runner.jar',\n                'Args': ['spark-submit', script_s3_path]\n            }\n        }]\n    )\n    return response\n\n# Example usage\nsubmit_spark_job(\"j-XYZ123\", \"s3://my-bucket/my-spark-job.py\")"
-  },
-  {
-    "objectID": "examples/emr-vs-hadoop-vs-spark.html#apache-hadoop",
-    "href": "examples/emr-vs-hadoop-vs-spark.html#apache-hadoop",
-    "title": "EMR vs Hadoop vs Spark",
-    "section": "Apache Hadoop",
-    "text": "Apache Hadoop\nHadoop is an open-source framework for distributed storage and processing of large datasets using MapReduce.\n\nKey Features:\n\nDistributed computing using HDFS and YARN\nBatch processing of large data volumes\nEcosystem includes Hive, Pig, HBase, and more\n\n\n\nSample Code: Hadoop Word Count Job\nimport java.io.IOException;\nimport org.apache.hadoop.io.*;\nimport org.apache.hadoop.mapreduce.*;\n\npublic class WordCount {\n    public static class TokenizerMapper extends Mapper&lt;Object, Text, Text, IntWritable&gt; {\n        private final static IntWritable one = new IntWritable(1);\n        private Text word = new Text();\n\n        public void map(Object key, Text value, Context context) throws IOException, InterruptedException {\n            for (String token : value.toString().split(\" \")) {\n                word.set(token);\n                context.write(word, one);\n            }\n        }\n    }\n}"
-  },
-  {
-    "objectID": "examples/emr-vs-hadoop-vs-spark.html#apache-spark",
-    "href": "examples/emr-vs-hadoop-vs-spark.html#apache-spark",
-    "title": "EMR vs Hadoop vs Spark",
-    "section": "Apache Spark",
-    "text": "Apache Spark\nSpark is a fast, in-memory data processing framework designed for large-scale data analytics and machine learning.\n\nKey Features:\n\nIn-memory processing for speed\nSupports batch, streaming, and machine learning workloads\nAPIs in Python, Java, Scala, and R\n\n\n\nSample Code: Running a PySpark Job\nfrom pyspark.sql import SparkSession\n\nspark = SparkSession.builder.appName(\"Example\").getOrCreate()\ndata = [(\"Alice\", 34), (\"Bob\", 45)]\ndf = spark.createDataFrame(data, [\"Name\", \"Age\"])\ndf.show()"
   },
   {
     "objectID": "examples/search.html",
@@ -350,109 +574,32 @@
     "text": "Amazon Managed Workflows for Apache Airflow (AMAA)\nAMAA is a managed workflow orchestration service based on Apache Airflow. Unlike real-time streaming services, it is used for data pipeline scheduling and orchestration.\n\nKey Features:\n\nFully managed Airflow environment\nDAG-based workflow scheduling\nIntegrates with AWS services\n\n\n\nSample Code: Defining an Airflow DAG in AMAA\nfrom airflow import DAG\nfrom airflow.operators.dummy import DummyOperator\nfrom airflow.operators.python import PythonOperator\nfrom datetime import datetime\n\ndef my_task():\n    print(\"Running my task\")\n\ndefault_args = {\"start_date\": datetime(2024, 2, 1)}\n\ndag = DAG(\"my_dag\", default_args=default_args, schedule_interval=\"@daily\")\n\nstart = DummyOperator(task_id=\"start\", dag=dag)\ntask = PythonOperator(task_id=\"run_task\", python_callable=my_task, dag=dag)\n\nstart &gt;&gt; task"
   },
   {
-    "objectID": "examples/sagemaker-pipelines.html",
-    "href": "examples/sagemaker-pipelines.html",
-    "title": "Amazon SageMaker Pipelines: Real-World Examples",
+    "objectID": "examples/emr-vs-hadoop-vs-spark.html",
+    "href": "examples/emr-vs-hadoop-vs-spark.html",
+    "title": "EMR vs Hadoop vs Spark",
     "section": "",
-    "text": "Amazon SageMaker Pipelines provide a way to automate and manage machine learning workflows. They help in orchestrating ML steps, such as data processing, training, and deployment.\n\n\nimport boto3\nimport sagemaker\nfrom sagemaker.workflow.pipeline import Pipeline\nfrom sagemaker.workflow.steps import ProcessingStep, TrainingStep\nfrom sagemaker.processing import ScriptProcessor\nfrom sagemaker.sklearn.estimator import SKLearn\nfrom sagemaker.estimator import Estimator\n\nsagemaker_session = sagemaker.Session()\nrole = sagemaker.get_execution_role()\n\n# Step 1: Preprocessing\nsklearn_processor = ScriptProcessor(\n    image_uri=sagemaker.image_uris.retrieve(\"sklearn\", boto3.Session().region_name, version=\"0.23-1\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n)\n\nstep_preprocess = ProcessingStep(\n    name=\"PreprocessData\",\n    processor=sklearn_processor,\n    code=\"preprocessing.py\",\n    outputs=[],\n)\n\n# Step 2: Model Training\nestimator = Estimator(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    hyperparameters={\"max_depth\": 5, \"eta\": 0.2, \"objective\": \"reg:squarederror\"},\n)\n\nstep_train = TrainingStep(\n    name=\"TrainModel\",\n    estimator=estimator,\n    inputs={},\n)\n\n# Define Pipeline\npipeline = Pipeline(\n    name=\"BasicPipeline\",\n    steps=[step_preprocess, step_train],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()\n\n\n\nfrom sagemaker.workflow.steps import ModelStep\nfrom sagemaker.model import Model\n\nmodel = Model(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    model_data=\"s3://my-bucket/model.tar.gz\",\n    role=role,\n)\n\nstep_register = ModelStep(\n    name=\"RegisterModel\",\n    model=model,\n)\n\npipeline = Pipeline(\n    name=\"PipelineWithEvaluation\",\n    steps=[step_preprocess, step_train, step_register],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()"
+    "text": "This document compares Amazon EMR, Apache Hadoop, and Apache Spark, highlighting their use cases, differences, and providing code examples."
   },
   {
-    "objectID": "examples/sagemaker-pipelines.html#example-1-basic-sagemaker-pipeline-with-preprocessing-and-training",
-    "href": "examples/sagemaker-pipelines.html#example-1-basic-sagemaker-pipeline-with-preprocessing-and-training",
-    "title": "Amazon SageMaker Pipelines: Real-World Examples",
-    "section": "",
-    "text": "import boto3\nimport sagemaker\nfrom sagemaker.workflow.pipeline import Pipeline\nfrom sagemaker.workflow.steps import ProcessingStep, TrainingStep\nfrom sagemaker.processing import ScriptProcessor\nfrom sagemaker.sklearn.estimator import SKLearn\nfrom sagemaker.estimator import Estimator\n\nsagemaker_session = sagemaker.Session()\nrole = sagemaker.get_execution_role()\n\n# Step 1: Preprocessing\nsklearn_processor = ScriptProcessor(\n    image_uri=sagemaker.image_uris.retrieve(\"sklearn\", boto3.Session().region_name, version=\"0.23-1\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n)\n\nstep_preprocess = ProcessingStep(\n    name=\"PreprocessData\",\n    processor=sklearn_processor,\n    code=\"preprocessing.py\",\n    outputs=[],\n)\n\n# Step 2: Model Training\nestimator = Estimator(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    hyperparameters={\"max_depth\": 5, \"eta\": 0.2, \"objective\": \"reg:squarederror\"},\n)\n\nstep_train = TrainingStep(\n    name=\"TrainModel\",\n    estimator=estimator,\n    inputs={},\n)\n\n# Define Pipeline\npipeline = Pipeline(\n    name=\"BasicPipeline\",\n    steps=[step_preprocess, step_train],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()"
+    "objectID": "examples/emr-vs-hadoop-vs-spark.html#amazon-emr",
+    "href": "examples/emr-vs-hadoop-vs-spark.html#amazon-emr",
+    "title": "EMR vs Hadoop vs Spark",
+    "section": "Amazon EMR",
+    "text": "Amazon EMR\nAWS Elastic MapReduce (EMR) is a cloud-based big data processing service that simplifies running frameworks like Hadoop and Spark.\n\nKey Features:\n\nManaged Hadoop, Spark, Presto, and more\nAuto-scaling and cost-efficient\nTight integration with AWS services\n\n\n\nSample Code: Submitting a Spark Job to EMR\nimport boto3\n\ndef submit_spark_job(cluster_id, script_s3_path):\n    emr_client = boto3.client('emr')\n    response = emr_client.add_job_flow_steps(\n        JobFlowId=cluster_id,\n        Steps=[{\n            'Name': 'Spark Job',\n            'ActionOnFailure': 'CONTINUE',\n            'HadoopJarStep': {\n                'Jar': 'command-runner.jar',\n                'Args': ['spark-submit', script_s3_path]\n            }\n        }]\n    )\n    return response\n\n# Example usage\nsubmit_spark_job(\"j-XYZ123\", \"s3://my-bucket/my-spark-job.py\")"
   },
   {
-    "objectID": "examples/sagemaker-pipelines.html#example-2-sagemaker-pipeline-with-model-evaluation",
-    "href": "examples/sagemaker-pipelines.html#example-2-sagemaker-pipeline-with-model-evaluation",
-    "title": "Amazon SageMaker Pipelines: Real-World Examples",
-    "section": "",
-    "text": "from sagemaker.workflow.steps import ModelStep\nfrom sagemaker.model import Model\n\nmodel = Model(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    model_data=\"s3://my-bucket/model.tar.gz\",\n    role=role,\n)\n\nstep_register = ModelStep(\n    name=\"RegisterModel\",\n    model=model,\n)\n\npipeline = Pipeline(\n    name=\"PipelineWithEvaluation\",\n    steps=[step_preprocess, step_train, step_register],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()"
+    "objectID": "examples/emr-vs-hadoop-vs-spark.html#apache-hadoop",
+    "href": "examples/emr-vs-hadoop-vs-spark.html#apache-hadoop",
+    "title": "EMR vs Hadoop vs Spark",
+    "section": "Apache Hadoop",
+    "text": "Apache Hadoop\nHadoop is an open-source framework for distributed storage and processing of large datasets using MapReduce.\n\nKey Features:\n\nDistributed computing using HDFS and YARN\nBatch processing of large data volumes\nEcosystem includes Hive, Pig, HBase, and more\n\n\n\nSample Code: Hadoop Word Count Job\nimport java.io.IOException;\nimport org.apache.hadoop.io.*;\nimport org.apache.hadoop.mapreduce.*;\n\npublic class WordCount {\n    public static class TokenizerMapper extends Mapper&lt;Object, Text, Text, IntWritable&gt; {\n        private final static IntWritable one = new IntWritable(1);\n        private Text word = new Text();\n\n        public void map(Object key, Text value, Context context) throws IOException, InterruptedException {\n            for (String token : value.toString().split(\" \")) {\n                word.set(token);\n                context.write(word, one);\n            }\n        }\n    }\n}"
   },
   {
-    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html",
-    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html",
-    "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "",
-    "text": "AWS offers a range of storage solutions tailored for different use cases. Below is a comparison of four major storage options: Amazon S3, Amazon EFS, Amazon FSx, and Amazon EBS."
-  },
-  {
-    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#overview-table",
-    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#overview-table",
-    "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "Overview Table",
-    "text": "Overview Table\n\n\n\n\n\n\n\n\n\n\nFeature\nAmazon S3\nAmazon EFS\nAmazon FSx\nAmazon EBS\n\n\n\n\nType\nObject Storage\nNetwork File System\nManaged File System\nBlock Storage\n\n\nUse Case\nBackup, archival, static website hosting\nShared storage for Linux-based workloads\nWindows file system or high-performance workloads\nBoot volumes, databases, transactional workloads\n\n\nPerformance\nScalable, eventual consistency\nLow latency, shared access\nOptimized for Windows/Linux workloads\nHigh IOPS, low-latency\n\n\nAccess Model\nREST API, SDKs, web-based access\nNFS mount\nSMB (Windows) or Lustre (HPC)\nBlock device (EC2 instances)\n\n\nPersistence\nHighly durable (11 9’s)\nPersistent\nPersistent\nPersistent but tied to EC2"
-  },
-  {
-    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-s3-simple-storage-service",
-    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-s3-simple-storage-service",
-    "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "Amazon S3 (Simple Storage Service)",
-    "text": "Amazon S3 (Simple Storage Service)\nDefinition: Amazon S3 is an object storage service designed for scalable storage of any amount of data, accessible over the internet.\nCommon Use Cases: - Backup and disaster recovery - Static website hosting - Data lakes and big data analytics\n\nExample Code: Upload a File to S3 using Python (Boto3)\nimport boto3\n\ns3 = boto3.client('s3')\n\ns3.upload_file(\"localfile.txt\", \"my-bucket\", \"remote-file.txt\")"
-  },
-  {
-    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-efs-elastic-file-system",
-    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-efs-elastic-file-system",
-    "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "Amazon EFS (Elastic File System)",
-    "text": "Amazon EFS (Elastic File System)\nDefinition: Amazon EFS is a scalable, fully managed network file system (NFS) for Linux-based applications and workloads.\nCommon Use Cases: - Shared storage for EC2 instances - Machine learning and big data processing - Containerized applications (EKS, ECS)\n\nExample Code: Mount an EFS File System on an EC2 Instance\nsudo yum install -y amazon-efs-utils\nsudo mkdir /mnt/efs\nsudo mount -t efs fs-12345678:/ /mnt/efs"
-  },
-  {
-    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-fsx",
-    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-fsx",
-    "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "Amazon FSx",
-    "text": "Amazon FSx\nDefinition: Amazon FSx provides fully managed, high-performance file systems for specialized workloads, including Windows-based and high-performance computing (HPC).\nCommon Use Cases: - Windows applications requiring NTFS - High-performance computing with Lustre - Media rendering and big data processing\n\nExample Code: Mount an FSx File System on Windows\nnet use X: \\\\fsx-share.amazonaws.com\\share /persistent:yes"
-  },
-  {
-    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-ebs-elastic-block-store",
-    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#amazon-ebs-elastic-block-store",
-    "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "Amazon EBS (Elastic Block Store)",
-    "text": "Amazon EBS (Elastic Block Store)\nDefinition: Amazon EBS is block storage that provides persistent storage for EC2 instances, supporting low-latency, high-performance applications.\nCommon Use Cases: - Databases (MySQL, PostgreSQL, etc.) - Virtual machine storage - Transactional applications\n\nExample Code: Attach an EBS Volume to an EC2 Instance\naws ec2 attach-volume --volume-id vol-12345678 --instance-id i-abcdef12 --device /dev/xvdf"
-  },
-  {
-    "objectID": "examples/sagemaker-processing-vs-training-vs-hosting.html#conclusion",
-    "href": "examples/sagemaker-processing-vs-training-vs-hosting.html#conclusion",
-    "title": "Storage: S3 vs EFS vs FSx vs EBS",
-    "section": "Conclusion",
-    "text": "Conclusion\nEach AWS storage service serves a unique purpose, and choosing the right one depends on your workload needs. If you need object storage, go with S3. If you need shared file storage, use EFS. If you need a managed file system, consider FSx. If you require high-performance block storage, EBS is the best choice."
-  },
-  {
-    "objectID": "examples/sagemaker-vs-bedrock.html",
-    "href": "examples/sagemaker-vs-bedrock.html",
-    "title": "ML Services: SageMaker vs Bedrock",
-    "section": "",
-    "text": "AWS provides multiple machine learning (ML) services, with Amazon SageMaker and Amazon Bedrock being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels."
-  },
-  {
-    "objectID": "examples/sagemaker-vs-bedrock.html#overview-table",
-    "href": "examples/sagemaker-vs-bedrock.html#overview-table",
-    "title": "ML Services: SageMaker vs Bedrock",
-    "section": "Overview Table",
-    "text": "Overview Table\n\n\n\n\n\n\n\n\nFeature\nAmazon SageMaker\nAmazon Bedrock\n\n\n\n\nType\nFully managed ML development platform\nFully managed foundation model (FM) service\n\n\nUse Case\nBuilding, training, and deploying custom ML models\nUsing and fine-tuning foundation models for AI applications\n\n\nCustomization\nHigh (bring your own data and model)\nLimited (fine-tune pre-trained models)\n\n\nModel Hosting\nCustom models on managed infrastructure\nAPI-based access to foundation models (FM)\n\n\nData Handling\nRequires dataset preparation and preprocessing\nUses pre-trained models with minimal data processing\n\n\nAccess Model\nSDK, APIs, Jupyter notebooks\nAPI-based inference\n\n\nScaling\nFully managed infrastructure\nFully managed with auto-scaling"
-  },
-  {
-    "objectID": "examples/sagemaker-vs-bedrock.html#amazon-sagemaker",
-    "href": "examples/sagemaker-vs-bedrock.html#amazon-sagemaker",
-    "title": "ML Services: SageMaker vs Bedrock",
-    "section": "Amazon SageMaker",
-    "text": "Amazon SageMaker\nDefinition: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.\nCommon Use Cases: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring\n\nExample Code: Train a Model in SageMaker using Python\nimport boto3\n\nsagemaker = boto3.client('sagemaker')\nresponse = sagemaker.create_training_job(\n    TrainingJobName='my-training-job',\n    AlgorithmSpecification={\n        'TrainingImage': 'your-docker-image',\n        'TrainingInputMode': 'File'\n    },\n    RoleArn='your-role-arn',\n    InputDataConfig=[\n        {\n            'ChannelName': 'train',\n            'DataSource': {\n                'S3DataSource': {\n                    'S3Uri': 's3://your-dataset/',\n                    'S3DataType': 'S3Prefix'\n                }\n            }\n        }\n    ],\n    OutputDataConfig={'S3OutputPath': 's3://your-output-bucket/'},\n    ResourceConfig={\n        'InstanceType': 'ml.m5.large',\n        'InstanceCount': 1,\n        'VolumeSizeInGB': 50\n    },\n    StoppingCondition={'MaxRuntimeInSeconds': 3600}\n)\nprint(response)"
-  },
-  {
-    "objectID": "examples/sagemaker-vs-bedrock.html#amazon-bedrock",
-    "href": "examples/sagemaker-vs-bedrock.html#amazon-bedrock",
-    "title": "ML Services: SageMaker vs Bedrock",
-    "section": "Amazon Bedrock",
-    "text": "Amazon Bedrock\nDefinition: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.\nCommon Use Cases: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications\n\nExample Code: Call a Foundation Model via Bedrock API\nimport boto3\n\nbedrock = boto3.client('bedrock-runtime')\nresponse = bedrock.invoke_model(\n    modelId='anthropic.claude-v2',\n    body='{\"prompt\": \"Write a short poem about the ocean.\", \"max_tokens\": 100}'\n)\nprint(response[\"body\"].read().decode('utf-8'))"
-  },
-  {
-    "objectID": "examples/sagemaker-vs-bedrock.html#conclusion",
-    "href": "examples/sagemaker-vs-bedrock.html#conclusion",
-    "title": "ML Services: SageMaker vs Bedrock",
-    "section": "Conclusion",
-    "text": "Conclusion\nIf your goal is to build and train custom ML models, SageMaker provides the flexibility and infrastructure to do so. If you need quick access to pre-trained foundation models for AI applications, Bedrock offers a simple API-based approach to integrate generative AI into applications."
+    "objectID": "examples/emr-vs-hadoop-vs-spark.html#apache-spark",
+    "href": "examples/emr-vs-hadoop-vs-spark.html#apache-spark",
+    "title": "EMR vs Hadoop vs Spark",
+    "section": "Apache Spark",
+    "text": "Apache Spark\nSpark is a fast, in-memory data processing framework designed for large-scale data analytics and machine learning.\n\nKey Features:\n\nIn-memory processing for speed\nSupports batch, streaming, and machine learning workloads\nAPIs in Python, Java, Scala, and R\n\n\n\nSample Code: Running a PySpark Job\nfrom pyspark.sql import SparkSession\n\nspark = SparkSession.builder.appName(\"Example\").getOrCreate()\ndata = [(\"Alice\", 34), (\"Bob\", 45)]\ndf = spark.createDataFrame(data, [\"Name\", \"Age\"])\ndf.show()"
   },
   {
     "objectID": "examples/flink-vs-kinesis.html",
@@ -481,5 +628,222 @@
     "title": "Flink vs Kinesis",
     "section": "",
     "text": "Here is a basic example of a Flink job that processes a stream of events:\nimport org.apache.flink.api.common.functions.MapFunction;\nimport org.apache.flink.streaming.api.datastream.DataStream;\nimport org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;\n\npublic class FlinkExample {\n    public static void main(String[] args) throws Exception {\n        final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();\n        \n        // Example: Create a stream of integers and map them to a string\n        DataStream&lt;Integer&gt; numbers = env.fromElements(1, 2, 3, 4, 5);\n        \n        DataStream&lt;String&gt; result = numbers.map(new MapFunction&lt;Integer, String&gt;() {\n            @Override\n            public String map(Integer value) throws Exception {\n                return \"Number: \" + value;\n            }\n        });\n\n        result.print(); // Output the result\n        \n        env.execute(\"Flink Streaming Example\");\n    }\n}\nIn this example, Flink reads from a stream of integers, processes them, and outputs a transformed result. AWS Kinesis Example\nBelow is an example of how to produce and consume data from Kinesis streams using the AWS SDK for Python (Boto3).\nKinesis Producer Example\nimport boto3\nimport json\n\n# Initialize Kinesis client\nkinesis = boto3.client('kinesis', region_name='us-east-1')\n\ndef send_to_kinesis(stream_name, data):\n    payload = json.dumps(data)\n    kinesis.put_record(\n        StreamName=stream_name,\n        Data=payload,\n        PartitionKey=\"partitionkey\"\n    )\n\n# Example usage\nsend_to_kinesis(\"my-kinesis-stream\", {\"event\": \"start\", \"timestamp\": \"2025-02-03T12:00:00\"})\nKinesis Consumer Example\nimport boto3\nimport json\n\n# Initialize Kinesis client\nkinesis = boto3.client('kinesis', region_name='us-east-1')\n\ndef consume_from_kinesis(stream_name):\n    shard_iterator = kinesis.get_shard_iterator(\n        StreamName=stream_name,\n        ShardId='shardId-000000000000',\n        ShardIteratorType='TRIM_HORIZON'\n    )['ShardIterator']\n    \n    while True:\n        record_response = kinesis.get_records(ShardIterator=shard_iterator, Limit=10)\n        for record in record_response['Records']:\n            print(json.loads(record['Data']))\n        \n        shard_iterator = record_response['NextShardIterator']\n\n# Example usage\nconsume_from_kinesis(\"my-kinesis-stream\")\nn the Kinesis example, we have a producer that sends data to a stream and a consumer that reads data from it. Conclusion\nBoth Apache Flink and AWS Kinesis are valuable tools in the realm of real-time data processing. Flink is a stream-processing framework ideal for complex event processing and advanced analytics, while Kinesis provides a fully managed solution for collecting, processing, and analyzing streaming data.\nThe choice between the two depends on factors such as the scale of your infrastructure, integration needs, and whether you prefer a fully managed service (Kinesis) or a more customizable stream processing framework (Flink)."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html",
+    "href": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html",
+    "title": "Validating, Labeling, and Mitigating Bias in Data Using AWS",
+    "section": "",
+    "text": "Ensuring high-quality data is a crucial step in any machine learning pipeline. AWS offers a range of services to help validate, label, and mitigate bias in datasets. In this post, we will explore:\n\nData validation and labeling using Amazon SageMaker Ground Truth and Amazon Mechanical Turk\nIdentifying and mitigating bias with SageMaker Clarify\nApplying AWS-built algorithms for various ML tasks\n\n\n\n\n\nAmazon SageMaker Ground Truth is a managed service that simplifies data labeling by using machine learning-assisted workflows. It supports human labelers, automated data labeling, and integration with Amazon Mechanical Turk.\n\n\nimport boto3\n\nsagemaker_client = boto3.client(\"sagemaker\")\n\nresponse = sagemaker_client.create_labeling_job(\n    LabelingJobName=\"MyLabelingJob\",\n    HumanTaskConfig={\n        \"WorkteamArn\": \"arn:aws:sagemaker:us-east-1:123456789012:workteam/private-crowd/MyTeam\",\n        \"UiConfig\": {\"UiTemplateS3Uri\": \"s3://my-bucket/ui-template.html\"},\n        \"PreHumanTaskLambdaArn\": \"arn:aws:lambda:us-east-1:432987654321:function:preprocessing\",\n        \"AnnotationConsolidationConfig\": {\n            \"AnnotationConsolidationLambdaArn\": \"arn:aws:lambda:us-east-1:123456789012:function:consolidation\"\n        },\n    },\n    InputConfig={\"DataSource\": {\"S3DataSource\": {\"ManifestS3Uri\": \"s3://my-bucket/input.manifest\"}}},\n    OutputConfig={\"S3OutputPath\": \"s3://my-bucket/output/\"},\n    RoleArn=\"arn:aws:iam::123456789012:role/MySageMakerRole\"\n)\nprint(\"Labeling job started:\", response)\n\n\n\n\nAmazon Mechanical Turk (MTurk) allows businesses to leverage a global workforce to complete data annotation tasks. Ground Truth integrates directly with MTurk to provide a scalable solution for labeling large datasets.\n\n\n\n\nSageMaker Clarify helps detect bias in datasets and models by analyzing distributions and fairness metrics.\n\n\n\n\n\n\n\n\n\nBias Type\nDescription\n\n\n\n\nSelection Bias\nThe dataset is not representative of the real-world population.\n\n\nMeasurement Bias\nErrors in data collection or labeling lead to incorrect outcomes.\n\n\nLabeling Bias\nSubjectivity in human labeling skews the data.\n\n\n\n\n\n\nfrom sagemaker import clarify\n\nclarify_processor = clarify.SageMakerClarifyProcessor(role=\"arn:aws:iam::123456789012:role/MySageMakerRole\",\n    instance_count=1,\n    instance_type=\"ml.m5.xlarge\")\n\nbias_config = clarify.BiasConfig(\n    label_values_or_threshold=[1],\n    facet_name=\"gender\",\n    dataset_type=\"text/csv\")\n\nclarify_processor.run_pre_training_bias(\n    data_config=clarify.DataConfig(\n        s3_data_input_path=\"s3://my-bucket/data.csv\",\n        s3_output_path=\"s3://my-bucket/output/\",\n        label=\"outcome\"),\n    bias_config=bias_config)\nprint(\"Bias analysis complete\")\n\n\n\n\nSageMaker offers built-in algorithms optimized for scalability and efficiency. Below is a table summarizing key algorithms and their applications.\n\n\n\n\n\n\n\n\nAlgorithm\nType\nBest For\n\n\n\n\nXGBoost\nSupervised\nClassification, Regression\n\n\nLinear Learner\nSupervised\nLinear Regression, Binary Classification\n\n\nDeepAR Forecasting\nTime Series\nDemand Forecasting\n\n\nObject Detection\nComputer Vision\nDetecting objects in images\n\n\nSemantic Segmentation\nComputer Vision\nImage segmentation tasks\n\n\nFactorization Machines\nSupervised\nRecommendation Systems\n\n\n\n\n\nimport sagemaker\nfrom sagemaker import get_execution_role\nfrom sagemaker.algorithm_specifier import AlgorithmSpecification\n\nsession = sagemaker.Session()\nrole = get_execution_role()\n\ncontainer = sagemaker.image_uris.retrieve(\"xgboost\", region=session.boto_region_name)\n\nxgb = sagemaker.estimator.Estimator(\n    container,\n    role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    output_path=\"s3://my-bucket/model-output/\",\n    sagemaker_session=session)\n\nxgb.set_hyperparameters(\n    max_depth=5,\n    eta=0.2,\n    objective=\"binary:logistic\",\n    num_round=100)\n\nxgb.fit({\"train\": \"s3://my-bucket/train.csv\"})\nprint(\"Model training complete\")\n\n\n\n\nAWS provides powerful tools for data validation, bias mitigation, and model training. By using services like SageMaker Ground Truth for data labeling, SageMaker Clarify for bias detection, and SageMaker’s built-in algorithms for training, organizations can build robust and ethical machine learning models efficiently."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html#validating-and-labeling-data-with-aws-services",
+    "href": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html#validating-and-labeling-data-with-aws-services",
+    "title": "Validating, Labeling, and Mitigating Bias in Data Using AWS",
+    "section": "",
+    "text": "Amazon SageMaker Ground Truth is a managed service that simplifies data labeling by using machine learning-assisted workflows. It supports human labelers, automated data labeling, and integration with Amazon Mechanical Turk.\n\n\nimport boto3\n\nsagemaker_client = boto3.client(\"sagemaker\")\n\nresponse = sagemaker_client.create_labeling_job(\n    LabelingJobName=\"MyLabelingJob\",\n    HumanTaskConfig={\n        \"WorkteamArn\": \"arn:aws:sagemaker:us-east-1:123456789012:workteam/private-crowd/MyTeam\",\n        \"UiConfig\": {\"UiTemplateS3Uri\": \"s3://my-bucket/ui-template.html\"},\n        \"PreHumanTaskLambdaArn\": \"arn:aws:lambda:us-east-1:432987654321:function:preprocessing\",\n        \"AnnotationConsolidationConfig\": {\n            \"AnnotationConsolidationLambdaArn\": \"arn:aws:lambda:us-east-1:123456789012:function:consolidation\"\n        },\n    },\n    InputConfig={\"DataSource\": {\"S3DataSource\": {\"ManifestS3Uri\": \"s3://my-bucket/input.manifest\"}}},\n    OutputConfig={\"S3OutputPath\": \"s3://my-bucket/output/\"},\n    RoleArn=\"arn:aws:iam::123456789012:role/MySageMakerRole\"\n)\nprint(\"Labeling job started:\", response)\n\n\n\n\nAmazon Mechanical Turk (MTurk) allows businesses to leverage a global workforce to complete data annotation tasks. Ground Truth integrates directly with MTurk to provide a scalable solution for labeling large datasets."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html#identifying-and-mitigating-bias-with-sagemaker-clarify",
+    "href": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html#identifying-and-mitigating-bias-with-sagemaker-clarify",
+    "title": "Validating, Labeling, and Mitigating Bias in Data Using AWS",
+    "section": "",
+    "text": "SageMaker Clarify helps detect bias in datasets and models by analyzing distributions and fairness metrics.\n\n\n\n\n\n\n\n\n\nBias Type\nDescription\n\n\n\n\nSelection Bias\nThe dataset is not representative of the real-world population.\n\n\nMeasurement Bias\nErrors in data collection or labeling lead to incorrect outcomes.\n\n\nLabeling Bias\nSubjectivity in human labeling skews the data.\n\n\n\n\n\n\nfrom sagemaker import clarify\n\nclarify_processor = clarify.SageMakerClarifyProcessor(role=\"arn:aws:iam::123456789012:role/MySageMakerRole\",\n    instance_count=1,\n    instance_type=\"ml.m5.xlarge\")\n\nbias_config = clarify.BiasConfig(\n    label_values_or_threshold=[1],\n    facet_name=\"gender\",\n    dataset_type=\"text/csv\")\n\nclarify_processor.run_pre_training_bias(\n    data_config=clarify.DataConfig(\n        s3_data_input_path=\"s3://my-bucket/data.csv\",\n        s3_output_path=\"s3://my-bucket/output/\",\n        label=\"outcome\"),\n    bias_config=bias_config)\nprint(\"Bias analysis complete\")"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html#sagemaker-built-in-algorithms-and-when-to-use-them",
+    "href": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html#sagemaker-built-in-algorithms-and-when-to-use-them",
+    "title": "Validating, Labeling, and Mitigating Bias in Data Using AWS",
+    "section": "",
+    "text": "SageMaker offers built-in algorithms optimized for scalability and efficiency. Below is a table summarizing key algorithms and their applications.\n\n\n\n\n\n\n\n\nAlgorithm\nType\nBest For\n\n\n\n\nXGBoost\nSupervised\nClassification, Regression\n\n\nLinear Learner\nSupervised\nLinear Regression, Binary Classification\n\n\nDeepAR Forecasting\nTime Series\nDemand Forecasting\n\n\nObject Detection\nComputer Vision\nDetecting objects in images\n\n\nSemantic Segmentation\nComputer Vision\nImage segmentation tasks\n\n\nFactorization Machines\nSupervised\nRecommendation Systems\n\n\n\n\n\nimport sagemaker\nfrom sagemaker import get_execution_role\nfrom sagemaker.algorithm_specifier import AlgorithmSpecification\n\nsession = sagemaker.Session()\nrole = get_execution_role()\n\ncontainer = sagemaker.image_uris.retrieve(\"xgboost\", region=session.boto_region_name)\n\nxgb = sagemaker.estimator.Estimator(\n    container,\n    role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    output_path=\"s3://my-bucket/model-output/\",\n    sagemaker_session=session)\n\nxgb.set_hyperparameters(\n    max_depth=5,\n    eta=0.2,\n    objective=\"binary:logistic\",\n    num_round=100)\n\nxgb.fit({\"train\": \"s3://my-bucket/train.csv\"})\nprint(\"Model training complete\")"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html#conclusion",
+    "href": "sagemaker/sagemaker-validating-labelling-mitigating-bias.html#conclusion",
+    "title": "Validating, Labeling, and Mitigating Bias in Data Using AWS",
+    "section": "",
+    "text": "AWS provides powerful tools for data validation, bias mitigation, and model training. By using services like SageMaker Ground Truth for data labeling, SageMaker Clarify for bias detection, and SageMaker’s built-in algorithms for training, organizations can build robust and ethical machine learning models efficiently."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-pipelines.html",
+    "href": "sagemaker/sagemaker-pipelines.html",
+    "title": "Amazon SageMaker Pipelines: Real-World Examples",
+    "section": "",
+    "text": "Amazon SageMaker Pipelines provide a way to automate and manage machine learning workflows. They help in orchestrating ML steps, such as data processing, training, and deployment.\n\n\nimport boto3\nimport sagemaker\nfrom sagemaker.workflow.pipeline import Pipeline\nfrom sagemaker.workflow.steps import ProcessingStep, TrainingStep\nfrom sagemaker.processing import ScriptProcessor\nfrom sagemaker.sklearn.estimator import SKLearn\nfrom sagemaker.estimator import Estimator\n\nsagemaker_session = sagemaker.Session()\nrole = sagemaker.get_execution_role()\n\n# Step 1: Preprocessing\nsklearn_processor = ScriptProcessor(\n    image_uri=sagemaker.image_uris.retrieve(\"sklearn\", boto3.Session().region_name, version=\"0.23-1\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n)\n\nstep_preprocess = ProcessingStep(\n    name=\"PreprocessData\",\n    processor=sklearn_processor,\n    code=\"preprocessing.py\",\n    outputs=[],\n)\n\n# Step 2: Model Training\nestimator = Estimator(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    hyperparameters={\"max_depth\": 5, \"eta\": 0.2, \"objective\": \"reg:squarederror\"},\n)\n\nstep_train = TrainingStep(\n    name=\"TrainModel\",\n    estimator=estimator,\n    inputs={},\n)\n\n# Define Pipeline\npipeline = Pipeline(\n    name=\"BasicPipeline\",\n    steps=[step_preprocess, step_train],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()\n\n\n\nfrom sagemaker.workflow.steps import ModelStep\nfrom sagemaker.model import Model\n\nmodel = Model(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    model_data=\"s3://my-bucket/model.tar.gz\",\n    role=role,\n)\n\nstep_register = ModelStep(\n    name=\"RegisterModel\",\n    model=model,\n)\n\npipeline = Pipeline(\n    name=\"PipelineWithEvaluation\",\n    steps=[step_preprocess, step_train, step_register],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-pipelines.html#example-1-basic-sagemaker-pipeline-with-preprocessing-and-training",
+    "href": "sagemaker/sagemaker-pipelines.html#example-1-basic-sagemaker-pipeline-with-preprocessing-and-training",
+    "title": "Amazon SageMaker Pipelines: Real-World Examples",
+    "section": "",
+    "text": "import boto3\nimport sagemaker\nfrom sagemaker.workflow.pipeline import Pipeline\nfrom sagemaker.workflow.steps import ProcessingStep, TrainingStep\nfrom sagemaker.processing import ScriptProcessor\nfrom sagemaker.sklearn.estimator import SKLearn\nfrom sagemaker.estimator import Estimator\n\nsagemaker_session = sagemaker.Session()\nrole = sagemaker.get_execution_role()\n\n# Step 1: Preprocessing\nsklearn_processor = ScriptProcessor(\n    image_uri=sagemaker.image_uris.retrieve(\"sklearn\", boto3.Session().region_name, version=\"0.23-1\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n)\n\nstep_preprocess = ProcessingStep(\n    name=\"PreprocessData\",\n    processor=sklearn_processor,\n    code=\"preprocessing.py\",\n    outputs=[],\n)\n\n# Step 2: Model Training\nestimator = Estimator(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    hyperparameters={\"max_depth\": 5, \"eta\": 0.2, \"objective\": \"reg:squarederror\"},\n)\n\nstep_train = TrainingStep(\n    name=\"TrainModel\",\n    estimator=estimator,\n    inputs={},\n)\n\n# Define Pipeline\npipeline = Pipeline(\n    name=\"BasicPipeline\",\n    steps=[step_preprocess, step_train],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-pipelines.html#example-2-sagemaker-pipeline-with-model-evaluation",
+    "href": "sagemaker/sagemaker-pipelines.html#example-2-sagemaker-pipeline-with-model-evaluation",
+    "title": "Amazon SageMaker Pipelines: Real-World Examples",
+    "section": "",
+    "text": "from sagemaker.workflow.steps import ModelStep\nfrom sagemaker.model import Model\n\nmodel = Model(\n    image_uri=sagemaker.image_uris.retrieve(\"xgboost\", boto3.Session().region_name, \"latest\"),\n    model_data=\"s3://my-bucket/model.tar.gz\",\n    role=role,\n)\n\nstep_register = ModelStep(\n    name=\"RegisterModel\",\n    model=model,\n)\n\npipeline = Pipeline(\n    name=\"PipelineWithEvaluation\",\n    steps=[step_preprocess, step_train, step_register],\n)\n\npipeline.upsert(role_arn=role)\npipeline.start()"
+  },
+  {
+    "objectID": "sagemaker/advanced-ml-with-sagemaker.html",
+    "href": "sagemaker/advanced-ml-with-sagemaker.html",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "AWS SageMaker provides powerful tools for training, fine-tuning, and managing machine learning models. In this post, we explore:\n\nUsing SageMaker script mode with TensorFlow and PyTorch.\nFine-tuning pre-trained models with custom datasets using Amazon Bedrock and SageMaker JumpStart.\nPerforming hyperparameter tuning with SageMaker Automatic Model Tuning (AMT).\nManaging model versions with the SageMaker Model Registry.\nGaining insights with SageMaker Clarify.\n\n\n\nSageMaker script mode enables training models using popular frameworks while maintaining flexibility and scalability.\n\n\nimport sagemaker\nfrom sagemaker.pytorch import PyTorch\n\nrole = \"arn:aws:iam::123456789012:role/MySageMakerRole\"\nsession = sagemaker.Session()\n\npytorch_estimator = PyTorch(\n    entry_point=\"train.py\",\n    source_dir=\"src\",\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.8\",\n    py_version=\"py3\",\n    sagemaker_session=session\n)\n\npytorch_estimator.fit({\"train\": \"s3://my-bucket/train-data/\"})\n\n\n\n\nPre-trained models can be fine-tuned using Amazon Bedrock or SageMaker JumpStart for domain-specific applications.\n\n\nfrom sagemaker.jumpstart.estimator import JumpStartEstimator\n\nmodel_id = \"huggingface-text-classification\"\n\ntuner = JumpStartEstimator(\n    model_id=model_id,\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session,\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/custom-dataset/\"})\n\n\n\n\nSageMaker Automatic Model Tuning (AMT) optimizes hyperparameters for improved model performance.\n\n\nfrom sagemaker.tuner import HyperparameterTuner, IntegerParameter, ContinuousParameter\nfrom sagemaker.xgboost import XGBoost\n\nxgb = XGBoost(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.3-1\",\n    output_path=\"s3://my-bucket/xgboost-model/\",\n    sagemaker_session=session,\n)\n\ntuner = HyperparameterTuner(\n    xgb,\n    objective_metric_name=\"validation:rmse\",\n    hyperparameter_ranges={\n        \"max_depth\": IntegerParameter(3, 10),\n        \"eta\": ContinuousParameter(0.1, 0.5)\n    },\n    max_jobs=10,\n    max_parallel_jobs=2\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/train-data/\"})\n\n\n\n\nThe SageMaker Model Registry tracks and manages different versions of ML models for auditability and reproducibility.\n\n\nimport boto3\n\nsm_client = boto3.client(\"sagemaker\")\n\nresponse = sm_client.create_model_package(\n    ModelPackageGroupName=\"MyModelPackageGroup\",\n    ModelPackageDescription=\"Version 1 of my model\",\n    InferenceSpecification={\n        \"Containers\": [\n            {\n                \"Image\": \"123456789012.dkr.ecr.us-east-1.amazonaws.com/my-model:latest\",\n                \"Mode\": \"SingleModel\"\n            }\n        ],\n        \"SupportedContentTypes\": [\"text/csv\"],\n        \"SupportedResponseMIMETypes\": [\"application/json\"]\n    },\n)\nprint(\"Model registered successfully\")\n\n\n\n\nSageMaker Clarify provides metrics to analyze ML training data and models.\n\n\n\n\n\n\n\nMetric\nDescription\n\n\n\n\nData Bias\nMeasures imbalances in dataset representation.\n\n\nModel Bias\nEvaluates if the model favors specific groups.\n\n\nFeature Importance\nDetermines which features contribute most to predictions.\n\n\n\n\n\nfrom sagemaker.clarify import ClarifyBiasConfig, ClarifyProcessor\n\nclarify_processor = ClarifyProcessor(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session\n)\n\nbias_config = ClarifyBiasConfig(\n    label=\"target\",\n    facet=\"gender\",\n    dataset_format={\"headers\": True, \"dataset_type\": \"csv\"}\n)\n\nclarify_processor.run_pre_training_bias(\n    data_config=bias_config,\n    data_file=\"s3://my-bucket/dataset.csv\"\n)\nprint(\"Bias analysis completed\")\n\n\n\n\nAWS SageMaker provides comprehensive tools for training, fine-tuning, hyperparameter tuning, model versioning, and bias analysis. These features streamline ML workflows, ensuring robust and auditable models."
+  },
+  {
+    "objectID": "sagemaker/advanced-ml-with-sagemaker.html#using-sagemaker-script-mode-for-training",
+    "href": "sagemaker/advanced-ml-with-sagemaker.html#using-sagemaker-script-mode-for-training",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker script mode enables training models using popular frameworks while maintaining flexibility and scalability.\n\n\nimport sagemaker\nfrom sagemaker.pytorch import PyTorch\n\nrole = \"arn:aws:iam::123456789012:role/MySageMakerRole\"\nsession = sagemaker.Session()\n\npytorch_estimator = PyTorch(\n    entry_point=\"train.py\",\n    source_dir=\"src\",\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.8\",\n    py_version=\"py3\",\n    sagemaker_session=session\n)\n\npytorch_estimator.fit({\"train\": \"s3://my-bucket/train-data/\"})"
+  },
+  {
+    "objectID": "sagemaker/advanced-ml-with-sagemaker.html#fine-tuning-pre-trained-models-with-custom-datasets",
+    "href": "sagemaker/advanced-ml-with-sagemaker.html#fine-tuning-pre-trained-models-with-custom-datasets",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "Pre-trained models can be fine-tuned using Amazon Bedrock or SageMaker JumpStart for domain-specific applications.\n\n\nfrom sagemaker.jumpstart.estimator import JumpStartEstimator\n\nmodel_id = \"huggingface-text-classification\"\n\ntuner = JumpStartEstimator(\n    model_id=model_id,\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session,\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/custom-dataset/\"})"
+  },
+  {
+    "objectID": "sagemaker/advanced-ml-with-sagemaker.html#performing-hyperparameter-tuning-with-sagemaker-amt",
+    "href": "sagemaker/advanced-ml-with-sagemaker.html#performing-hyperparameter-tuning-with-sagemaker-amt",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker Automatic Model Tuning (AMT) optimizes hyperparameters for improved model performance.\n\n\nfrom sagemaker.tuner import HyperparameterTuner, IntegerParameter, ContinuousParameter\nfrom sagemaker.xgboost import XGBoost\n\nxgb = XGBoost(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    framework_version=\"1.3-1\",\n    output_path=\"s3://my-bucket/xgboost-model/\",\n    sagemaker_session=session,\n)\n\ntuner = HyperparameterTuner(\n    xgb,\n    objective_metric_name=\"validation:rmse\",\n    hyperparameter_ranges={\n        \"max_depth\": IntegerParameter(3, 10),\n        \"eta\": ContinuousParameter(0.1, 0.5)\n    },\n    max_jobs=10,\n    max_parallel_jobs=2\n)\n\ntuner.fit({\"train\": \"s3://my-bucket/train-data/\"})"
+  },
+  {
+    "objectID": "sagemaker/advanced-ml-with-sagemaker.html#managing-model-versions-with-sagemaker-model-registry",
+    "href": "sagemaker/advanced-ml-with-sagemaker.html#managing-model-versions-with-sagemaker-model-registry",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "The SageMaker Model Registry tracks and manages different versions of ML models for auditability and reproducibility.\n\n\nimport boto3\n\nsm_client = boto3.client(\"sagemaker\")\n\nresponse = sm_client.create_model_package(\n    ModelPackageGroupName=\"MyModelPackageGroup\",\n    ModelPackageDescription=\"Version 1 of my model\",\n    InferenceSpecification={\n        \"Containers\": [\n            {\n                \"Image\": \"123456789012.dkr.ecr.us-east-1.amazonaws.com/my-model:latest\",\n                \"Mode\": \"SingleModel\"\n            }\n        ],\n        \"SupportedContentTypes\": [\"text/csv\"],\n        \"SupportedResponseMIMETypes\": [\"application/json\"]\n    },\n)\nprint(\"Model registered successfully\")"
+  },
+  {
+    "objectID": "sagemaker/advanced-ml-with-sagemaker.html#using-sagemaker-clarify-for-model-insights",
+    "href": "sagemaker/advanced-ml-with-sagemaker.html#using-sagemaker-clarify-for-model-insights",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "SageMaker Clarify provides metrics to analyze ML training data and models.\n\n\n\n\n\n\n\nMetric\nDescription\n\n\n\n\nData Bias\nMeasures imbalances in dataset representation.\n\n\nModel Bias\nEvaluates if the model favors specific groups.\n\n\nFeature Importance\nDetermines which features contribute most to predictions.\n\n\n\n\n\nfrom sagemaker.clarify import ClarifyBiasConfig, ClarifyProcessor\n\nclarify_processor = ClarifyProcessor(\n    role=role,\n    instance_count=1,\n    instance_type=\"ml.m5.large\",\n    sagemaker_session=session\n)\n\nbias_config = ClarifyBiasConfig(\n    label=\"target\",\n    facet=\"gender\",\n    dataset_format={\"headers\": True, \"dataset_type\": \"csv\"}\n)\n\nclarify_processor.run_pre_training_bias(\n    data_config=bias_config,\n    data_file=\"s3://my-bucket/dataset.csv\"\n)\nprint(\"Bias analysis completed\")"
+  },
+  {
+    "objectID": "sagemaker/advanced-ml-with-sagemaker.html#conclusion",
+    "href": "sagemaker/advanced-ml-with-sagemaker.html#conclusion",
+    "title": "Advanced Machine Learning with AWS SageMaker",
+    "section": "",
+    "text": "AWS SageMaker provides comprehensive tools for training, fine-tuning, hyperparameter tuning, model versioning, and bias analysis. These features streamline ML workflows, ensuring robust and auditable models."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html",
+    "href": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "",
+    "text": "AWS offers a range of storage solutions tailored for different use cases. Below is a comparison of four major storage options: Amazon S3, Amazon EFS, Amazon FSx, and Amazon EBS."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#overview-table",
+    "href": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#overview-table",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Overview Table",
+    "text": "Overview Table\n\n\n\n\n\n\n\n\n\n\nFeature\nAmazon S3\nAmazon EFS\nAmazon FSx\nAmazon EBS\n\n\n\n\nType\nObject Storage\nNetwork File System\nManaged File System\nBlock Storage\n\n\nUse Case\nBackup, archival, static website hosting\nShared storage for Linux-based workloads\nWindows file system or high-performance workloads\nBoot volumes, databases, transactional workloads\n\n\nPerformance\nScalable, eventual consistency\nLow latency, shared access\nOptimized for Windows/Linux workloads\nHigh IOPS, low-latency\n\n\nAccess Model\nREST API, SDKs, web-based access\nNFS mount\nSMB (Windows) or Lustre (HPC)\nBlock device (EC2 instances)\n\n\nPersistence\nHighly durable (11 9’s)\nPersistent\nPersistent\nPersistent but tied to EC2"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#amazon-s3-simple-storage-service",
+    "href": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#amazon-s3-simple-storage-service",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Amazon S3 (Simple Storage Service)",
+    "text": "Amazon S3 (Simple Storage Service)\nDefinition: Amazon S3 is an object storage service designed for scalable storage of any amount of data, accessible over the internet.\nCommon Use Cases: - Backup and disaster recovery - Static website hosting - Data lakes and big data analytics\n\nExample Code: Upload a File to S3 using Python (Boto3)\nimport boto3\n\ns3 = boto3.client('s3')\n\ns3.upload_file(\"localfile.txt\", \"my-bucket\", \"remote-file.txt\")"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#amazon-efs-elastic-file-system",
+    "href": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#amazon-efs-elastic-file-system",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Amazon EFS (Elastic File System)",
+    "text": "Amazon EFS (Elastic File System)\nDefinition: Amazon EFS is a scalable, fully managed network file system (NFS) for Linux-based applications and workloads.\nCommon Use Cases: - Shared storage for EC2 instances - Machine learning and big data processing - Containerized applications (EKS, ECS)\n\nExample Code: Mount an EFS File System on an EC2 Instance\nsudo yum install -y amazon-efs-utils\nsudo mkdir /mnt/efs\nsudo mount -t efs fs-12345678:/ /mnt/efs"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#amazon-fsx",
+    "href": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#amazon-fsx",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Amazon FSx",
+    "text": "Amazon FSx\nDefinition: Amazon FSx provides fully managed, high-performance file systems for specialized workloads, including Windows-based and high-performance computing (HPC).\nCommon Use Cases: - Windows applications requiring NTFS - High-performance computing with Lustre - Media rendering and big data processing\n\nExample Code: Mount an FSx File System on Windows\nnet use X: \\\\fsx-share.amazonaws.com\\share /persistent:yes"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#amazon-ebs-elastic-block-store",
+    "href": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#amazon-ebs-elastic-block-store",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Amazon EBS (Elastic Block Store)",
+    "text": "Amazon EBS (Elastic Block Store)\nDefinition: Amazon EBS is block storage that provides persistent storage for EC2 instances, supporting low-latency, high-performance applications.\nCommon Use Cases: - Databases (MySQL, PostgreSQL, etc.) - Virtual machine storage - Transactional applications\n\nExample Code: Attach an EBS Volume to an EC2 Instance\naws ec2 attach-volume --volume-id vol-12345678 --instance-id i-abcdef12 --device /dev/xvdf"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#conclusion",
+    "href": "sagemaker/sagemaker-processing-vs-training-vs-hosting.html#conclusion",
+    "title": "Storage: S3 vs EFS vs FSx vs EBS",
+    "section": "Conclusion",
+    "text": "Conclusion\nEach AWS storage service serves a unique purpose, and choosing the right one depends on your workload needs. If you need object storage, go with S3. If you need shared file storage, use EFS. If you need a managed file system, consider FSx. If you require high-performance block storage, EBS is the best choice."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-apis.html",
+    "href": "sagemaker/sagemaker-apis.html",
+    "title": "Amazon SageMaker APIs: Real-World Examples",
+    "section": "",
+    "text": "Amazon SageMaker provides a variety of APIs to interact with its services, including training, inference, and model deployment. This document explores real-world examples of using these APIs.\n\n\nimport boto3\nimport json\n\nsagemaker_client = boto3.client(\"sagemaker\")\n\nresponse = sagemaker_client.create_training_job(\n    TrainingJobName=\"my-xgboost-training-job\",\n    AlgorithmSpecification={\n        \"TrainingImage\": \"811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest\",\n        \"TrainingInputMode\": \"File\"\n    },\n    RoleArn=\"arn:aws:iam::123456789012:role/SageMakerRole\",\n    InputDataConfig=[\n        {\n            \"ChannelName\": \"train\",\n            \"DataSource\": {\n                \"S3DataSource\": {\n                    \"S3DataType\": \"S3Prefix\",\n                    \"S3Uri\": \"s3://my-bucket/train/\",\n                    \"S3DataDistributionType\": \"FullyReplicated\"\n                }\n            }\n        }\n    ],\n    OutputDataConfig={\"S3OutputPath\": \"s3://my-bucket/output/\"},\n    ResourceConfig={\n        \"InstanceType\": \"ml.m5.large\",\n        \"InstanceCount\": 1,\n        \"VolumeSizeInGB\": 10\n    },\n    StoppingCondition={\"MaxRuntimeInSeconds\": 3600},\n)\n\nprint(json.dumps(response, indent=4))\n\n\n\nresponse = sagemaker_client.create_endpoint_config(\n    EndpointConfigName=\"my-endpoint-config\",\n    ProductionVariants=[\n        {\n            \"VariantName\": \"AllTraffic\",\n            \"ModelName\": \"my-trained-model\",\n            \"InstanceType\": \"ml.m5.large\",\n            \"InitialInstanceCount\": 1\n        }\n    ]\n)\n\nresponse = sagemaker_client.create_endpoint(\n    EndpointName=\"my-endpoint\",\n    EndpointConfigName=\"my-endpoint-config\"\n)\n\nprint(json.dumps(response, indent=4))\n\n\n\nimport json\nimport boto3\n\nruntime_client = boto3.client(\"sagemaker-runtime\")\n\nresponse = runtime_client.invoke_endpoint(\n    EndpointName=\"my-endpoint\",\n    ContentType=\"application/json\",\n    Body=json.dumps({\"data\": [1.0, 2.0, 3.0, 4.0]})\n)\n\nresult = json.loads(response[\"Body\"].read().decode())\nprint(result)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-apis.html#example-1-creating-a-sagemaker-training-job",
+    "href": "sagemaker/sagemaker-apis.html#example-1-creating-a-sagemaker-training-job",
+    "title": "Amazon SageMaker APIs: Real-World Examples",
+    "section": "",
+    "text": "import boto3\nimport json\n\nsagemaker_client = boto3.client(\"sagemaker\")\n\nresponse = sagemaker_client.create_training_job(\n    TrainingJobName=\"my-xgboost-training-job\",\n    AlgorithmSpecification={\n        \"TrainingImage\": \"811284229777.dkr.ecr.us-east-1.amazonaws.com/xgboost:latest\",\n        \"TrainingInputMode\": \"File\"\n    },\n    RoleArn=\"arn:aws:iam::123456789012:role/SageMakerRole\",\n    InputDataConfig=[\n        {\n            \"ChannelName\": \"train\",\n            \"DataSource\": {\n                \"S3DataSource\": {\n                    \"S3DataType\": \"S3Prefix\",\n                    \"S3Uri\": \"s3://my-bucket/train/\",\n                    \"S3DataDistributionType\": \"FullyReplicated\"\n                }\n            }\n        }\n    ],\n    OutputDataConfig={\"S3OutputPath\": \"s3://my-bucket/output/\"},\n    ResourceConfig={\n        \"InstanceType\": \"ml.m5.large\",\n        \"InstanceCount\": 1,\n        \"VolumeSizeInGB\": 10\n    },\n    StoppingCondition={\"MaxRuntimeInSeconds\": 3600},\n)\n\nprint(json.dumps(response, indent=4))"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-apis.html#example-2-deploying-a-model-to-a-sagemaker-endpoint",
+    "href": "sagemaker/sagemaker-apis.html#example-2-deploying-a-model-to-a-sagemaker-endpoint",
+    "title": "Amazon SageMaker APIs: Real-World Examples",
+    "section": "",
+    "text": "response = sagemaker_client.create_endpoint_config(\n    EndpointConfigName=\"my-endpoint-config\",\n    ProductionVariants=[\n        {\n            \"VariantName\": \"AllTraffic\",\n            \"ModelName\": \"my-trained-model\",\n            \"InstanceType\": \"ml.m5.large\",\n            \"InitialInstanceCount\": 1\n        }\n    ]\n)\n\nresponse = sagemaker_client.create_endpoint(\n    EndpointName=\"my-endpoint\",\n    EndpointConfigName=\"my-endpoint-config\"\n)\n\nprint(json.dumps(response, indent=4))"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-apis.html#example-3-invoking-a-sagemaker-endpoint-for-inference",
+    "href": "sagemaker/sagemaker-apis.html#example-3-invoking-a-sagemaker-endpoint-for-inference",
+    "title": "Amazon SageMaker APIs: Real-World Examples",
+    "section": "",
+    "text": "import json\nimport boto3\n\nruntime_client = boto3.client(\"sagemaker-runtime\")\n\nresponse = runtime_client.invoke_endpoint(\n    EndpointName=\"my-endpoint\",\n    ContentType=\"application/json\",\n    Body=json.dumps({\"data\": [1.0, 2.0, 3.0, 4.0]})\n)\n\nresult = json.loads(response[\"Body\"].read().decode())\nprint(result)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-vs-bedrock.html",
+    "href": "sagemaker/sagemaker-vs-bedrock.html",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "",
+    "text": "AWS provides multiple machine learning (ML) services, with Amazon SageMaker and Amazon Bedrock being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels."
+  },
+  {
+    "objectID": "sagemaker/sagemaker-vs-bedrock.html#overview-table",
+    "href": "sagemaker/sagemaker-vs-bedrock.html#overview-table",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "Overview Table",
+    "text": "Overview Table\n\n\n\n\n\n\n\n\nFeature\nAmazon SageMaker\nAmazon Bedrock\n\n\n\n\nType\nFully managed ML development platform\nFully managed foundation model (FM) service\n\n\nUse Case\nBuilding, training, and deploying custom ML models\nUsing and fine-tuning foundation models for AI applications\n\n\nCustomization\nHigh (bring your own data and model)\nLimited (fine-tune pre-trained models)\n\n\nModel Hosting\nCustom models on managed infrastructure\nAPI-based access to foundation models (FM)\n\n\nData Handling\nRequires dataset preparation and preprocessing\nUses pre-trained models with minimal data processing\n\n\nAccess Model\nSDK, APIs, Jupyter notebooks\nAPI-based inference\n\n\nScaling\nFully managed infrastructure\nFully managed with auto-scaling"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-vs-bedrock.html#amazon-sagemaker",
+    "href": "sagemaker/sagemaker-vs-bedrock.html#amazon-sagemaker",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "Amazon SageMaker",
+    "text": "Amazon SageMaker\nDefinition: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.\nCommon Use Cases: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring\n\nExample Code: Train a Model in SageMaker using Python\nimport boto3\n\nsagemaker = boto3.client('sagemaker')\nresponse = sagemaker.create_training_job(\n    TrainingJobName='my-training-job',\n    AlgorithmSpecification={\n        'TrainingImage': 'your-docker-image',\n        'TrainingInputMode': 'File'\n    },\n    RoleArn='your-role-arn',\n    InputDataConfig=[\n        {\n            'ChannelName': 'train',\n            'DataSource': {\n                'S3DataSource': {\n                    'S3Uri': 's3://your-dataset/',\n                    'S3DataType': 'S3Prefix'\n                }\n            }\n        }\n    ],\n    OutputDataConfig={'S3OutputPath': 's3://your-output-bucket/'},\n    ResourceConfig={\n        'InstanceType': 'ml.m5.large',\n        'InstanceCount': 1,\n        'VolumeSizeInGB': 50\n    },\n    StoppingCondition={'MaxRuntimeInSeconds': 3600}\n)\nprint(response)"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-vs-bedrock.html#amazon-bedrock",
+    "href": "sagemaker/sagemaker-vs-bedrock.html#amazon-bedrock",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "Amazon Bedrock",
+    "text": "Amazon Bedrock\nDefinition: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.\nCommon Use Cases: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications\n\nExample Code: Call a Foundation Model via Bedrock API\nimport boto3\n\nbedrock = boto3.client('bedrock-runtime')\nresponse = bedrock.invoke_model(\n    modelId='anthropic.claude-v2',\n    body='{\"prompt\": \"Write a short poem about the ocean.\", \"max_tokens\": 100}'\n)\nprint(response[\"body\"].read().decode('utf-8'))"
+  },
+  {
+    "objectID": "sagemaker/sagemaker-vs-bedrock.html#conclusion",
+    "href": "sagemaker/sagemaker-vs-bedrock.html#conclusion",
+    "title": "ML Services: SageMaker vs Bedrock",
+    "section": "Conclusion",
+    "text": "Conclusion\nIf your goal is to build and train custom ML models, SageMaker provides the flexibility and infrastructure to do so. If you need quick access to pre-trained foundation models for AI applications, Bedrock offers a simple API-based approach to integrate generative AI into applications."
   }
 ]
