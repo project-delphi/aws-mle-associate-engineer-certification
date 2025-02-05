@@ -7,21 +7,19 @@ date: 2025-02-03
 
 # Overview of AWS Machine Learning Services
 
-The course is extensive, so detailed practice should help you prepare for the exam. There are several routes that can be taken.
+The course is extensive, so detailed practice should help you prepare for the exam. There are a few approaches that can be taken.
 
-There's a great list of resources on [reddit](https://www.reddit.com/r/AWSCertifications/comments/1fn0hrw/aws_certified_machine_learning_engineer_associate/).
+Here's a great list of resources on [reddit](https://www.reddit.com/r/AWSCertifications/comments/1fn0hrw/aws_certified_machine_learning_engineer_associate/).
 
 
 Stephan Maarek and Frank Kane's courses are the most well known paid course at this time.
 
-Here's a link to the Udemy [course](https://www.udemy.com/course/aws-certified-machine-learning-engineer-associate-mla-c01)
-
-And here are the Udemy practice [exams](https://www.udemy.com/course/practice-exams-aws-certified-machine-learning-engineer-associate)
+Here's a link to the Udemy [course](https://www.udemy.com/course/aws-certified-machine-learning-engineer-associate-mla-c01) and practice [exams](https://www.udemy.com/course/practice-exams-aws-certified-machine-learning-engineer-associate)
 
 There's also  tutorial dojo practice [exams](https://portal.tutorialsdojo.com/courses/aws-certified-machine-learning-engineer-associate-practice-exams-mla-c01-2025/)
 
 
-Additionally, there are official AWS resources:
+Additionally, there are some free (and paid) official AWS resources:
 
 * [Certification Page](https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/)
 * [Exam Guide](https://d1.awsstatic.com/training-and-certification/docs-machine-learning-engineer-associate/AWS-Certified-Machine-Learning-Engineer-Associate_Exam-Guide.pdf)
