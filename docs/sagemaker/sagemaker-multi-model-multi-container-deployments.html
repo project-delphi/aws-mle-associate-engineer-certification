@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ravi Kalia">
-<meta name="dcterms.date" content="2025-02-03">
+<meta name="dcterms.date" content="2025-02-04">
 
-<title>Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA – AWS Machine Learning Associate Certification</title>
+<title>Advanced Machine Learning with AWS SageMaker – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -234,24 +233,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</h1>
-</div>
+<h1 class="title">Advanced Machine Learning with AWS SageMaker</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">AWS</div>
+    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">SageMaker</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ravi Kalia </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 3, 2025</p>
+      <p class="date">February 4, 2025</p>
     </div>
   </div>
   
@@ -265,186 +263,175 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>This document compares AWS streaming solutions: <strong>Kinesis Data Streams</strong>, <strong>Kinesis Data Firehose</strong>, <strong>Amazon Managed Streaming for Apache Kafka (MSK)</strong>, and <strong>Amazon Managed Workflows for Apache Airflow (AMAA)</strong>. We’ll explore their use cases, differences, and provide code examples.</p>
-<hr>
-</section>
-<section id="overview-of-services" class="level1">
-<h1>Overview of Services</h1>
-<section id="kinesis-data-streams" class="level2">
-<h2 class="anchored" data-anchor-id="kinesis-data-streams">Kinesis Data Streams</h2>
-<p>AWS <strong>Kinesis Data Streams</strong> is a real-time streaming service for collecting, processing, and analyzing large volumes of data. It provides low-latency access and supports custom consumer applications.</p>
-<section id="key-features" class="level3">
-<h3 class="anchored" data-anchor-id="key-features">Key Features:</h3>
+<p>AWS SageMaker provides powerful tools for training, fine-tuning, and managing machine learning models. In this post, we explore:</p>
 <ul>
-<li>Real-time data processing</li>
-<li>Custom applications using AWS SDKs</li>
-<li>Retention period up to 7 days</li>
+<li>Using SageMaker script mode with TensorFlow and PyTorch.</li>
+<li>Fine-tuning pre-trained models with custom datasets using Amazon Bedrock and SageMaker JumpStart.</li>
+<li>Performing hyperparameter tuning with SageMaker Automatic Model Tuning (AMT).</li>
+<li>Managing model versions with the SageMaker Model Registry.</li>
+<li>Gaining insights with SageMaker Clarify.</li>
 </ul>
-</section>
-<section id="sample-code-writing-to-kinesis-data-stream" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code-writing-to-kinesis-data-stream">Sample Code: Writing to Kinesis Data Stream</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<section id="using-sagemaker-script-mode-for-training" class="level2">
+<h2 class="anchored" data-anchor-id="using-sagemaker-script-mode-for-training">Using SageMaker Script Mode for Training</h2>
+<p>SageMaker script mode enables training models using popular frameworks while maintaining flexibility and scalability.</p>
+<section id="example-training-a-pytorch-model" class="level4">
+<h4 class="anchored" data-anchor-id="example-training-a-pytorch-model">Example: Training a PyTorch Model</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sagemaker</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.pytorch <span class="im">import</span> PyTorch</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> put_record_to_kinesis(stream_name, data):</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    kinesis_client <span class="op">=</span> boto3.client(<span class="st">'kinesis'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> kinesis_client.put_record(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        StreamName<span class="op">=</span>stream_name,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        Data<span class="op">=</span>json.dumps(data),</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        PartitionKey<span class="op">=</span><span class="st">"partition-1"</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>record <span class="op">=</span> {<span class="st">"event"</span>: <span class="st">"click"</span>, <span class="st">"user"</span>: <span class="st">"12345"</span>}</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>put_record_to_kinesis(<span class="st">"my-stream"</span>, record)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>role <span class="op">=</span> <span class="st">"arn:aws:iam::123456789012:role/MySageMakerRole"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> sagemaker.Session()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pytorch_estimator <span class="op">=</span> PyTorch(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    entry_point<span class="op">=</span><span class="st">"train.py"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    source_dir<span class="op">=</span><span class="st">"src"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    framework_version<span class="op">=</span><span class="st">"1.8"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    py_version<span class="op">=</span><span class="st">"py3"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    sagemaker_session<span class="op">=</span>session</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>pytorch_estimator.fit({<span class="st">"train"</span>: <span class="st">"s3://my-bucket/train-data/"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="kinesis-data-firehose" class="level2">
-<h2 class="anchored" data-anchor-id="kinesis-data-firehose">Kinesis Data Firehose</h2>
-<p>AWS <strong>Kinesis Data Firehose</strong> is a managed service that loads streaming data into data lakes, warehouses, or analytics services. Unlike Data Streams, Firehose handles buffering and batch writing.</p>
-<section id="key-features-1" class="level3">
-<h3 class="anchored" data-anchor-id="key-features-1">Key Features:</h3>
-<ul>
-<li>Fully managed with automatic scaling</li>
-<li>Supports S3, Redshift, Elasticsearch, and Splunk as destinations</li>
-<li>No custom consumer applications required</li>
-</ul>
-</section>
-<section id="sample-code-writing-to-firehose" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code-writing-to-firehose">Sample Code: Writing to Firehose</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> put_record_to_firehose(delivery_stream_name, data):</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    firehose_client <span class="op">=</span> boto3.client(<span class="st">'firehose'</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> firehose_client.put_record(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        DeliveryStreamName<span class="op">=</span>delivery_stream_name,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        Record<span class="op">=</span>{<span class="st">"Data"</span>: json.dumps(data) <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>}</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>record <span class="op">=</span> {<span class="st">"event"</span>: <span class="st">"purchase"</span>, <span class="st">"amount"</span>: <span class="dv">100</span>}</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>put_record_to_firehose(<span class="st">"my-firehose-stream"</span>, record)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="fine-tuning-pre-trained-models-with-custom-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="fine-tuning-pre-trained-models-with-custom-datasets">Fine-Tuning Pre-trained Models with Custom Datasets</h2>
+<p>Pre-trained models can be fine-tuned using Amazon Bedrock or SageMaker JumpStart for domain-specific applications.</p>
+<section id="example-fine-tuning-a-model-from-sagemaker-jumpstart" class="level4">
+<h4 class="anchored" data-anchor-id="example-fine-tuning-a-model-from-sagemaker-jumpstart">Example: Fine-Tuning a Model from SageMaker JumpStart</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.jumpstart.estimator <span class="im">import</span> JumpStartEstimator</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model_id <span class="op">=</span> <span class="st">"huggingface-text-classification"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tuner <span class="op">=</span> JumpStartEstimator(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model_id<span class="op">=</span>model_id,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    sagemaker_session<span class="op">=</span>session,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>tuner.fit({<span class="st">"train"</span>: <span class="st">"s3://my-bucket/custom-dataset/"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="amazon-managed-streaming-for-apache-kafka-msk" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-managed-streaming-for-apache-kafka-msk">Amazon Managed Streaming for Apache Kafka (MSK)</h2>
-<p>MSK provides a <strong>fully managed Kafka cluster</strong> that integrates with AWS services. It’s ideal for applications needing open-source Kafka features.</p>
-<section id="key-features-2" class="level3">
-<h3 class="anchored" data-anchor-id="key-features-2">Key Features:</h3>
-<ul>
-<li>Fully managed Kafka clusters</li>
-<li>Secure with IAM authentication</li>
-<li>Supports standard Kafka clients</li>
-</ul>
-</section>
-<section id="sample-code-producing-messages-to-kafka" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code-producing-messages-to-kafka">Sample Code: Producing Messages to Kafka</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> kafka <span class="im">import</span> KafkaProducer</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<section id="performing-hyperparameter-tuning-with-sagemaker-amt" class="level2">
+<h2 class="anchored" data-anchor-id="performing-hyperparameter-tuning-with-sagemaker-amt">Performing Hyperparameter Tuning with SageMaker AMT</h2>
+<p>SageMaker Automatic Model Tuning (AMT) optimizes hyperparameters for improved model performance.</p>
+<section id="example-hyperparameter-tuning-with-xgboost" class="level4">
+<h4 class="anchored" data-anchor-id="example-hyperparameter-tuning-with-xgboost">Example: Hyperparameter Tuning with XGBoost</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.tuner <span class="im">import</span> HyperparameterTuner, IntegerParameter, ContinuousParameter</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.xgboost <span class="im">import</span> XGBoost</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>producer <span class="op">=</span> KafkaProducer(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    bootstrap_servers<span class="op">=</span>[<span class="st">'b-1.msk-cluster.amazonaws.com:9092'</span>],</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    value_serializer<span class="op">=</span><span class="kw">lambda</span> v: json.dumps(v).encode(<span class="st">'utf-8'</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>producer.send(<span class="st">"my-topic"</span>, {<span class="st">"event"</span>: <span class="st">"login"</span>, <span class="st">"user"</span>: <span class="st">"user_123"</span>})</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>producer.flush()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>xgb <span class="op">=</span> XGBoost(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    framework_version<span class="op">=</span><span class="st">"1.3-1"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    output_path<span class="op">=</span><span class="st">"s3://my-bucket/xgboost-model/"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    sagemaker_session<span class="op">=</span>session,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>tuner <span class="op">=</span> HyperparameterTuner(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    xgb,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    objective_metric_name<span class="op">=</span><span class="st">"validation:rmse"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    hyperparameter_ranges<span class="op">=</span>{</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"max_depth"</span>: IntegerParameter(<span class="dv">3</span>, <span class="dv">10</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"eta"</span>: ContinuousParameter(<span class="fl">0.1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    max_jobs<span class="op">=</span><span class="dv">10</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    max_parallel_jobs<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>tuner.fit({<span class="st">"train"</span>: <span class="st">"s3://my-bucket/train-data/"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="amazon-managed-workflows-for-apache-airflow-amaa" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-managed-workflows-for-apache-airflow-amaa">Amazon Managed Workflows for Apache Airflow (AMAA)</h2>
-<p>AMAA is a managed <strong>workflow orchestration service</strong> based on Apache Airflow. Unlike real-time streaming services, it is used for <strong>data pipeline scheduling and orchestration</strong>.</p>
-<section id="key-features-3" class="level3">
-<h3 class="anchored" data-anchor-id="key-features-3">Key Features:</h3>
-<ul>
-<li>Fully managed Airflow environment</li>
-<li>DAG-based workflow scheduling</li>
-<li>Integrates with AWS services</li>
-</ul>
-</section>
-<section id="sample-code-defining-an-airflow-dag-in-amaa" class="level3">
-<h3 class="anchored" data-anchor-id="sample-code-defining-an-airflow-dag-in-amaa">Sample Code: Defining an Airflow DAG in AMAA</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> airflow <span class="im">import</span> DAG</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> airflow.operators.dummy <span class="im">import</span> DummyOperator</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> airflow.operators.python <span class="im">import</span> PythonOperator</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_task():</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Running my task"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>default_args <span class="op">=</span> {<span class="st">"start_date"</span>: datetime(<span class="dv">2024</span>, <span class="dv">2</span>, <span class="dv">1</span>)}</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>dag <span class="op">=</span> DAG(<span class="st">"my_dag"</span>, default_args<span class="op">=</span>default_args, schedule_interval<span class="op">=</span><span class="st">"@daily"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> DummyOperator(task_id<span class="op">=</span><span class="st">"start"</span>, dag<span class="op">=</span>dag)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>task <span class="op">=</span> PythonOperator(task_id<span class="op">=</span><span class="st">"run_task"</span>, python_callable<span class="op">=</span>my_task, dag<span class="op">=</span>dag)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>start <span class="op">&gt;&gt;</span> task</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
+<section id="managing-model-versions-with-sagemaker-model-registry" class="level2">
+<h2 class="anchored" data-anchor-id="managing-model-versions-with-sagemaker-model-registry">Managing Model Versions with SageMaker Model Registry</h2>
+<p>The SageMaker Model Registry tracks and manages different versions of ML models for auditability and reproducibility.</p>
+<section id="example-registering-a-model-in-sagemaker-model-registry" class="level4">
+<h4 class="anchored" data-anchor-id="example-registering-a-model-in-sagemaker-model-registry">Example: Registering a Model in SageMaker Model Registry</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sm_client <span class="op">=</span> boto3.client(<span class="st">"sagemaker"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sm_client.create_model_package(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    ModelPackageGroupName<span class="op">=</span><span class="st">"MyModelPackageGroup"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ModelPackageDescription<span class="op">=</span><span class="st">"Version 1 of my model"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    InferenceSpecification<span class="op">=</span>{</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Containers"</span>: [</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Image"</span>: <span class="st">"123456789012.dkr.ecr.us-east-1.amazonaws.com/my-model:latest"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Mode"</span>: <span class="st">"SingleModel"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"SupportedContentTypes"</span>: [<span class="st">"text/csv"</span>],</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"SupportedResponseMIMETypes"</span>: [<span class="st">"application/json"</span>]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Model registered successfully"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-</section>
-<section id="comparison-table" class="level1">
-<h1>Comparison Table</h1>
+<section id="using-sagemaker-clarify-for-model-insights" class="level2">
+<h2 class="anchored" data-anchor-id="using-sagemaker-clarify-for-model-insights">Using SageMaker Clarify for Model Insights</h2>
+<p>SageMaker Clarify provides metrics to analyze ML training data and models.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 35%">
-<col style="width: 30%">
-<col style="width: 8%">
-<col style="width: 10%">
+<col style="width: 62%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Feature</th>
-<th>Kinesis Data Streams</th>
-<th>Kinesis Firehose</th>
-<th>MSK</th>
-<th>AMAA</th>
+<th>Metric</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Use Case</td>
-<td>Real-time analytics</td>
-<td>Data lake ingestion</td>
-<td>Event-driven streaming</td>
-<td>Workflow automation</td>
+<td>Data Bias</td>
+<td>Measures imbalances in dataset representation.</td>
 </tr>
 <tr class="even">
-<td>Custom Consumers</td>
-<td>Yes</td>
-<td>No</td>
-<td>Yes</td>
-<td>No</td>
+<td>Model Bias</td>
+<td>Evaluates if the model favors specific groups.</td>
 </tr>
 <tr class="odd">
-<td>Latency</td>
-<td>Low</td>
-<td>Medium</td>
-<td>Low</td>
-<td>Scheduled</td>
-</tr>
-<tr class="even">
-<td>Integration</td>
-<td>AWS SDKs</td>
-<td>S3, Redshift, Elasticsearch</td>
-<td>Kafka ecosystem</td>
-<td>DAG-based workflows</td>
+<td>Feature Importance</td>
+<td>Determines which features contribute most to predictions.</td>
 </tr>
 </tbody>
 </table>
-<hr>
+<section id="example-running-sagemaker-clarify-bias-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="example-running-sagemaker-clarify-bias-analysis">Example: Running SageMaker Clarify Bias Analysis</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.clarify <span class="im">import</span> ClarifyBiasConfig, ClarifyProcessor</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>clarify_processor <span class="op">=</span> ClarifyProcessor(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    sagemaker_session<span class="op">=</span>session</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>bias_config <span class="op">=</span> ClarifyBiasConfig(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"target"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    facet<span class="op">=</span><span class="st">"gender"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    dataset_format<span class="op">=</span>{<span class="st">"headers"</span>: <span class="va">True</span>, <span class="st">"dataset_type"</span>: <span class="st">"csv"</span>}</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>clarify_processor.run_pre_training_bias(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    data_config<span class="op">=</span>bias_config,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    data_file<span class="op">=</span><span class="st">"s3://my-bucket/dataset.csv"</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bias analysis completed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="conclusion" class="level1">
-<h1>Conclusion</h1>
-<p>Each AWS streaming service serves a different purpose: - <strong>Kinesis Data Streams</strong>: Real-time custom streaming apps - <strong>Kinesis Firehose</strong>: Managed ETL to AWS data stores - <strong>MSK</strong>: Open-source Kafka for event-driven architectures - <strong>AMAA</strong>: Workflow automation with Airflow</p>
-<p>Choose the right service based on your use case!</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>AWS SageMaker provides comprehensive tools for training, fine-tuning, hyperparameter tuning, model versioning, and bias analysis. These features streamline ML workflows, ensuring robust and auditable models.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

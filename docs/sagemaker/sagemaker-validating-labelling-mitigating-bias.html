@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-02-04">
 
-<title>ML Services: SageMaker vs Bedrock – AWS Machine Learning Associate Certification</title>
+<title>Validating, Labeling, and Mitigating Bias in Data Using AWS – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,14 +144,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="../examples/sagemaker-pipelines.html">
- <span class="dropdown-text">SageMaker Pipelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../examples/sagemaker-processing-vs-training-vs-hosting.html">
- <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../examples/flink-vs-kinesis.html">
  <span class="dropdown-text">Apache Flink vs Kinesis Data Analytics</span></a>
   </li>  
@@ -163,10 +156,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../examples/sagemaker-vs-bedrock.html">
- <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../examples/glue.html">
  <span class="dropdown-text">Glue Data Catalog vs Glue DataBrew vs Glue Studio</span></a>
   </li>  
@@ -177,6 +166,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../examples/emr-vs-hadoop-vs-spark.html">
  <span class="dropdown-text">EMR vs Hadoop vs Spark</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sagemaker" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sagemaker</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sagemaker">    
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-pipelines.html">
+ <span class="dropdown-text">SageMaker Pipelines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
+ <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
+ <span class="dropdown-text">SageMaker for Model Building and Deployment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-validating-labelling-mitigating-bias.html">
+ <span class="dropdown-text">SageMaker: Validating, Labelling and Mitigating Bias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-choosing-and-integrating-ml-models.html">
+ <span class="dropdown-text">Choosing and Integrating ML Models with AWS SageMaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-model-deployment-and-monitoring.html">
+ <span class="dropdown-text">Advanced Machine Learning with AWS SageMaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-multi-model-multi-container-deployments.html">
+ <span class="dropdown-text">Multi-Model and Multi-Container Deployments on AWS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html">
+ <span class="dropdown-text">Deploying and Monitoring SageMaker Models in a VPC</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-optimizing-deployments.html">
+ <span class="dropdown-text">Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-vs-bedrock.html">
+ <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
   </li>  
     </ul>
   </li>
@@ -197,14 +233,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ML Services: SageMaker vs Bedrock</h1>
-</div>
+<h1 class="title">Validating, Labeling, and Mitigating Bias in Data Using AWS</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">AWS</div>
+    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">Data Science</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 4, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -214,123 +261,185 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>AWS provides multiple machine learning (ML) services, with <strong>Amazon SageMaker</strong> and <strong>Amazon Bedrock</strong> being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels.</p>
-<section id="overview-table" class="level2">
-<h2 class="anchored" data-anchor-id="overview-table">Overview Table</h2>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Ensuring high-quality data is a crucial step in any machine learning pipeline. AWS offers a range of services to help validate, label, and mitigate bias in datasets. In this post, we will explore:</p>
+<ul>
+<li>Data validation and labeling using Amazon SageMaker Ground Truth and Amazon Mechanical Turk</li>
+<li>Identifying and mitigating bias with SageMaker Clarify</li>
+<li>Applying AWS-built algorithms for various ML tasks</li>
+</ul>
+<section id="validating-and-labeling-data-with-aws-services" class="level2">
+<h2 class="anchored" data-anchor-id="validating-and-labeling-data-with-aws-services">Validating and Labeling Data with AWS Services</h2>
+<section id="amazon-sagemaker-ground-truth" class="level3">
+<h3 class="anchored" data-anchor-id="amazon-sagemaker-ground-truth">Amazon SageMaker Ground Truth</h3>
+<p>Amazon SageMaker Ground Truth is a managed service that simplifies data labeling by using machine learning-assisted workflows. It supports human labelers, automated data labeling, and integration with Amazon Mechanical Turk.</p>
+<section id="example-workflow" class="level4">
+<h4 class="anchored" data-anchor-id="example-workflow">Example Workflow:</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sagemaker_client <span class="op">=</span> boto3.client(<span class="st">"sagemaker"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sagemaker_client.create_labeling_job(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    LabelingJobName<span class="op">=</span><span class="st">"MyLabelingJob"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    HumanTaskConfig<span class="op">=</span>{</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"WorkteamArn"</span>: <span class="st">"arn:aws:sagemaker:us-east-1:123456789012:workteam/private-crowd/MyTeam"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"UiConfig"</span>: {<span class="st">"UiTemplateS3Uri"</span>: <span class="st">"s3://my-bucket/ui-template.html"</span>},</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"PreHumanTaskLambdaArn"</span>: <span class="st">"arn:aws:lambda:us-east-1:432987654321:function:preprocessing"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">"AnnotationConsolidationConfig"</span>: {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"AnnotationConsolidationLambdaArn"</span>: <span class="st">"arn:aws:lambda:us-east-1:123456789012:function:consolidation"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    InputConfig<span class="op">=</span>{<span class="st">"DataSource"</span>: {<span class="st">"S3DataSource"</span>: {<span class="st">"ManifestS3Uri"</span>: <span class="st">"s3://my-bucket/input.manifest"</span>}}},</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    OutputConfig<span class="op">=</span>{<span class="st">"S3OutputPath"</span>: <span class="st">"s3://my-bucket/output/"</span>},</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    RoleArn<span class="op">=</span><span class="st">"arn:aws:iam::123456789012:role/MySageMakerRole"</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Labeling job started:"</span>, response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="amazon-mechanical-turk" class="level3">
+<h3 class="anchored" data-anchor-id="amazon-mechanical-turk">Amazon Mechanical Turk</h3>
+<p>Amazon Mechanical Turk (MTurk) allows businesses to leverage a global workforce to complete data annotation tasks. Ground Truth integrates directly with MTurk to provide a scalable solution for labeling large datasets.</p>
+</section>
+</section>
+<section id="identifying-and-mitigating-bias-with-sagemaker-clarify" class="level2">
+<h2 class="anchored" data-anchor-id="identifying-and-mitigating-bias-with-sagemaker-clarify">Identifying and Mitigating Bias with SageMaker Clarify</h2>
+<p>SageMaker Clarify helps detect bias in datasets and models by analyzing distributions and fairness metrics.</p>
+<section id="types-of-bias" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-bias">Types of Bias:</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 29%">
-<col style="width: 36%">
-<col style="width: 34%">
+<col style="width: 59%">
+<col style="width: 40%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Feature</th>
-<th>Amazon SageMaker</th>
-<th>Amazon Bedrock</th>
+<th>Bias Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Type</td>
-<td>Fully managed ML development platform</td>
-<td>Fully managed foundation model (FM) service</td>
+<td>Selection Bias</td>
+<td>The dataset is not representative of the real-world population.</td>
 </tr>
 <tr class="even">
-<td>Use Case</td>
-<td>Building, training, and deploying custom ML models</td>
-<td>Using and fine-tuning foundation models for AI applications</td>
+<td>Measurement Bias</td>
+<td>Errors in data collection or labeling lead to incorrect outcomes.</td>
 </tr>
 <tr class="odd">
-<td>Customization</td>
-<td>High (bring your own data and model)</td>
-<td>Limited (fine-tune pre-trained models)</td>
-</tr>
-<tr class="even">
-<td>Model Hosting</td>
-<td>Custom models on managed infrastructure</td>
-<td>API-based access to foundation models (FM)</td>
-</tr>
-<tr class="odd">
-<td>Data Handling</td>
-<td>Requires dataset preparation and preprocessing</td>
-<td>Uses pre-trained models with minimal data processing</td>
-</tr>
-<tr class="even">
-<td>Access Model</td>
-<td>SDK, APIs, Jupyter notebooks</td>
-<td>API-based inference</td>
-</tr>
-<tr class="odd">
-<td>Scaling</td>
-<td>Fully managed infrastructure</td>
-<td>Fully managed with auto-scaling</td>
+<td>Labeling Bias</td>
+<td>Subjectivity in human labeling skews the data.</td>
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
-<section id="amazon-sagemaker" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-sagemaker">Amazon SageMaker</h2>
-<p><strong>Definition</strong>: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.</p>
-<p><strong>Common Use Cases</strong>: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring</p>
-<section id="example-code-train-a-model-in-sagemaker-using-python" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-train-a-model-in-sagemaker-using-python">Example Code: Train a Model in SageMaker using Python</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sagemaker <span class="op">=</span> boto3.client(<span class="st">'sagemaker'</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sagemaker.create_training_job(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    TrainingJobName<span class="op">=</span><span class="st">'my-training-job'</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    AlgorithmSpecification<span class="op">=</span>{</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'TrainingImage'</span>: <span class="st">'your-docker-image'</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'TrainingInputMode'</span>: <span class="st">'File'</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    RoleArn<span class="op">=</span><span class="st">'your-role-arn'</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    InputDataConfig<span class="op">=</span>[</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">'ChannelName'</span>: <span class="st">'train'</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">'DataSource'</span>: {</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">'S3DataSource'</span>: {</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'S3Uri'</span>: <span class="st">'s3://your-dataset/'</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'S3DataType'</span>: <span class="st">'S3Prefix'</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                }</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            }</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    OutputDataConfig<span class="op">=</span>{<span class="st">'S3OutputPath'</span>: <span class="st">'s3://your-output-bucket/'</span>},</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ResourceConfig<span class="op">=</span>{</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">'InstanceType'</span>: <span class="st">'ml.m5.large'</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">'InstanceCount'</span>: <span class="dv">1</span>,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">'VolumeSizeInGB'</span>: <span class="dv">50</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    StoppingCondition<span class="op">=</span>{<span class="st">'MaxRuntimeInSeconds'</span>: <span class="dv">3600</span>}</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="amazon-bedrock" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-bedrock">Amazon Bedrock</h2>
-<p><strong>Definition</strong>: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.</p>
-<p><strong>Common Use Cases</strong>: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications</p>
-<section id="example-code-call-a-foundation-model-via-bedrock-api" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-call-a-foundation-model-via-bedrock-api">Example Code: Call a Foundation Model via Bedrock API</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<section id="example-analyzing-bias-with-sagemaker-clarify" class="level3">
+<h3 class="anchored" data-anchor-id="example-analyzing-bias-with-sagemaker-clarify">Example: Analyzing Bias with SageMaker Clarify</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker <span class="im">import</span> clarify</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bedrock <span class="op">=</span> boto3.client(<span class="st">'bedrock-runtime'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> bedrock.invoke_model(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    modelId<span class="op">=</span><span class="st">'anthropic.claude-v2'</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    body<span class="op">=</span><span class="st">'{"prompt": "Write a short poem about the ocean.", "max_tokens": 100}'</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response[<span class="st">"body"</span>].read().decode(<span class="st">'utf-8'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>clarify_processor <span class="op">=</span> clarify.SageMakerClarifyProcessor(role<span class="op">=</span><span class="st">"arn:aws:iam::123456789012:role/MySageMakerRole"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.xlarge"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>bias_config <span class="op">=</span> clarify.BiasConfig(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    label_values_or_threshold<span class="op">=</span>[<span class="dv">1</span>],</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    facet_name<span class="op">=</span><span class="st">"gender"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    dataset_type<span class="op">=</span><span class="st">"text/csv"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>clarify_processor.run_pre_training_bias(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    data_config<span class="op">=</span>clarify.DataConfig(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        s3_data_input_path<span class="op">=</span><span class="st">"s3://my-bucket/data.csv"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        s3_output_path<span class="op">=</span><span class="st">"s3://my-bucket/output/"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">"outcome"</span>),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    bias_config<span class="op">=</span>bias_config)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bias analysis complete"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="sagemaker-built-in-algorithms-and-when-to-use-them" class="level2">
+<h2 class="anchored" data-anchor-id="sagemaker-built-in-algorithms-and-when-to-use-them">SageMaker Built-in Algorithms and When to Use Them</h2>
+<p>SageMaker offers built-in algorithms optimized for scalability and efficiency. Below is a table summarizing key algorithms and their applications.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 25%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Algorithm</th>
+<th>Type</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>XGBoost</td>
+<td>Supervised</td>
+<td>Classification, Regression</td>
+</tr>
+<tr class="even">
+<td>Linear Learner</td>
+<td>Supervised</td>
+<td>Linear Regression, Binary Classification</td>
+</tr>
+<tr class="odd">
+<td>DeepAR Forecasting</td>
+<td>Time Series</td>
+<td>Demand Forecasting</td>
+</tr>
+<tr class="even">
+<td>Object Detection</td>
+<td>Computer Vision</td>
+<td>Detecting objects in images</td>
+</tr>
+<tr class="odd">
+<td>Semantic Segmentation</td>
+<td>Computer Vision</td>
+<td>Image segmentation tasks</td>
+</tr>
+<tr class="even">
+<td>Factorization Machines</td>
+<td>Supervised</td>
+<td>Recommendation Systems</td>
+</tr>
+</tbody>
+</table>
+<section id="example-training-a-model-with-xgboost" class="level3">
+<h3 class="anchored" data-anchor-id="example-training-a-model-with-xgboost">Example: Training a Model with XGBoost</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sagemaker</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker <span class="im">import</span> get_execution_role</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.algorithm_specifier <span class="im">import</span> AlgorithmSpecification</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> sagemaker.Session()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>role <span class="op">=</span> get_execution_role()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>container <span class="op">=</span> sagemaker.image_uris.retrieve(<span class="st">"xgboost"</span>, region<span class="op">=</span>session.boto_region_name)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>xgb <span class="op">=</span> sagemaker.estimator.Estimator(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    container,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    role,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    output_path<span class="op">=</span><span class="st">"s3://my-bucket/model-output/"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    sagemaker_session<span class="op">=</span>session)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>xgb.set_hyperparameters(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    max_depth<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    eta<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    objective<span class="op">=</span><span class="st">"binary:logistic"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    num_round<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>xgb.fit({<span class="st">"train"</span>: <span class="st">"s3://my-bucket/train.csv"</span>})</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Model training complete"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>If your goal is to <strong>build and train custom ML models</strong>, <strong>SageMaker</strong> provides the flexibility and infrastructure to do so. If you need <strong>quick access to pre-trained foundation models for AI applications</strong>, <strong>Bedrock</strong> offers a simple API-based approach to integrate generative AI into applications.</p>
+<p>AWS provides powerful tools for data validation, bias mitigation, and model training. By using services like SageMaker Ground Truth for data labeling, SageMaker Clarify for bias detection, and SageMaker’s built-in algorithms for training, organizations can build robust and ethical machine learning models efficiently.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

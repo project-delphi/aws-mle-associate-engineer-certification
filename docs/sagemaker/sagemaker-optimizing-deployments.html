@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ravi Kalia">
-<meta name="dcterms.date" content="2025-02-03">
+<meta name="dcterms.date" content="2025-02-04">
 
-<title>AWS MLA Exam Resources – AWS Machine Learning Associate Certification</title>
+<title>Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,25 +22,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">AWS Machine Learning Associate Certification</span>
     </a>
   </div>
@@ -90,19 +124,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./aws-mla-exam-resources.html" aria-current="page"> 
+    <a class="nav-link" href="../aws-mla-exam-resources.html"> 
 <span class="menu-text">Exam Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aws-definitions.html"> 
+    <a class="nav-link" href="../aws-definitions.html"> 
 <span class="menu-text">AWS Services Definitions</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./aws-comparison-tables.html"> 
+    <a class="nav-link" href="../aws-comparison-tables.html"> 
 <span class="menu-text">AWS Comparisons Table</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -111,27 +145,27 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="./examples/flink-vs-kinesis.html">
+    <a class="dropdown-item" href="../examples/flink-vs-kinesis.html">
  <span class="dropdown-text">Apache Flink vs Kinesis Data Analytics</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/storage.html">
+    <a class="dropdown-item" href="../examples/storage.html">
  <span class="dropdown-text">Storage: S3 vs EFS vs FSx vs EBS</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/datastreams.html">
+    <a class="dropdown-item" href="../examples/datastreams.html">
  <span class="dropdown-text">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/glue.html">
+    <a class="dropdown-item" href="../examples/glue.html">
  <span class="dropdown-text">Glue Data Catalog vs Glue DataBrew vs Glue Studio</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/search.html">
+    <a class="dropdown-item" href="../examples/search.html">
  <span class="dropdown-text">Kendra vs OpenSearch</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./examples/emr-vs-hadoop-vs-spark.html">
+    <a class="dropdown-item" href="../examples/emr-vs-hadoop-vs-spark.html">
  <span class="dropdown-text">EMR vs Hadoop vs Spark</span></a>
   </li>  
     </ul>
@@ -142,43 +176,43 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-sagemaker">    
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-pipelines.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
  <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-model-building-and-deployment.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
  <span class="dropdown-text">SageMaker for Model Building and Deployment</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-validating-labelling-mitigating-bias.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-validating-labelling-mitigating-bias.html">
  <span class="dropdown-text">SageMaker: Validating, Labelling and Mitigating Bias</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-choosing-and-integrating-ml-models.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-choosing-and-integrating-ml-models.html">
  <span class="dropdown-text">Choosing and Integrating ML Models with AWS SageMaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-model-deployment-and-monitoring.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-model-deployment-and-monitoring.html">
  <span class="dropdown-text">Advanced Machine Learning with AWS SageMaker</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-multi-model-multi-container-deployments.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-multi-model-multi-container-deployments.html">
  <span class="dropdown-text">Multi-Model and Multi-Container Deployments on AWS</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html">
  <span class="dropdown-text">Deploying and Monitoring SageMaker Models in a VPC</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-optimizing-deployments.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-optimizing-deployments.html">
  <span class="dropdown-text">Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sagemaker/sagemaker-vs-bedrock.html">
+    <a class="dropdown-item" href="../sagemaker/sagemaker-vs-bedrock.html">
  <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
   </li>  
     </ul>
@@ -200,8 +234,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AWS MLA Exam Resources</h1>
-</div>
+<h1 class="title">Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">AWS</div>
+    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">Cost Optimization</div>
+    <div class="quarto-category">Security</div>
+  </div>
+  </div>
 
 
 
@@ -217,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 3, 2025</p>
+      <p class="date">February 4, 2025</p>
     </div>
   </div>
   
@@ -229,21 +269,215 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview-of-aws-machine-learning-services" class="level1">
-<h1>Overview of AWS Machine Learning Services</h1>
-<p>There’s a great list of resources on <a href="https://www.reddit.com/r/AWSCertifications/comments/1fn0hrw/aws_certified_machine_learning_engineer_associate/">reddit</a>.</p>
-<p>Stephan Maarek and Frank Kane’s courses are the most well known paid course at this time.</p>
-<p>Here’s a link to the course - https://www.udemy.com/course/aws-certified-machine-learning-engineer-associate-mla-c01</p>
-<p>And here are the practice exams - https://www.udemy.com/course/practice-exams-aws-certified-machine-learning-engineer-associate</p>
-<p>Official AWS resources:</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Amazon SageMaker offers flexible deployment options, cost-saving strategies, and security features. This post explores:</p>
 <ul>
-<li><a href="https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/">Certification Page</a></li>
-<li><a href="https://d1.awsstatic.com/training-and-certification/docs-machine-learning-engineer-associate/AWS-Certified-Machine-Learning-Engineer-Associate_Exam-Guide.pdf">Exam Guide</a></li>
-<li><a href="https://explore.skillbuilder.aws/learn/learning-plans/2191/standard-exam-prep-plan-aws-certified-machine-learning-associate-mla-c01">Free SkillBuilder</a></li>
-<li><a href="https://explore.skillbuilder.aws/learn/courses/19688/exam-prep-official-practice-question-set-aws-certified-machine-learning-engineer-associate-mla-c01-english">Official Free Practice Questions</a></li>
-<li><a href="https://explore.skillbuilder.aws/learn/courses/19742/exam-prep-official-pretest-aws-certified-machine-learning-engineer-associate-mla-c01-english">Official Paid Practice Questions</a></li>
-<li><a href="https://portal.tutorialsdojo.com/courses/aws-certified-machine-learning-engineer-associate-practice-exams-mla-c01-2025/">Tutorial Dojo Practice Exams</a></li>
+<li>Rightsizing instance families and sizes using SageMaker Inference Recommender and AWS Compute Optimizer.</li>
+<li>Optimizing costs with different purchasing options.</li>
+<li>Managing access control with IAM roles and policies.</li>
+<li>Implementing security and compliance best practices in SageMaker.</li>
 </ul>
+</section>
+<section id="rightsizing-instance-families-and-sizes" class="level2">
+<h2 class="anchored" data-anchor-id="rightsizing-instance-families-and-sizes">Rightsizing Instance Families and Sizes</h2>
+<p>Selecting the appropriate instance type ensures optimal performance and cost-efficiency.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 58%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Instance Type</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>CPU (ml.m5, ml.c5)</strong></td>
+<td>Lightweight inference, batch processing</td>
+</tr>
+<tr class="even">
+<td><strong>GPU (ml.g4dn, ml.p3)</strong></td>
+<td>Deep learning inference, high-performance computing</td>
+</tr>
+<tr class="odd">
+<td><strong>Inf (ml.inf1)</strong></td>
+<td>Optimized for deep learning with Inferentia chips</td>
+</tr>
+<tr class="even">
+<td><strong>Graviton (ml.c7g, ml.m7g)</strong></td>
+<td>Cost-efficient CPU workloads</td>
+</tr>
+</tbody>
+</table>
+<section id="using-sagemaker-inference-recommender" class="level3">
+<h3 class="anchored" data-anchor-id="using-sagemaker-inference-recommender">Using SageMaker Inference Recommender</h3>
+<p>SageMaker Inference Recommender suggests the best instance type based on model performance.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sagemaker <span class="op">=</span> boto3.client(<span class="st">'sagemaker'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sagemaker.create_inference_recommendations_job(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    JobName<span class="op">=</span><span class="st">'my-inference-recommender-job'</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    RoleArn<span class="op">=</span><span class="st">'arn:aws:iam::account-id:role/SageMakerRole'</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    ModelName<span class="op">=</span><span class="st">'my-model'</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    EndpointConfigurations<span class="op">=</span>[</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">'InstanceTypes'</span>: [<span class="st">'ml.m5.large'</span>, <span class="st">'ml.g4dn.xlarge'</span>],</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">'InitialInstanceCount'</span>: <span class="dv">1</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="optimizing-infrastructure-costs" class="level2">
+<h2 class="anchored" data-anchor-id="optimizing-infrastructure-costs">Optimizing Infrastructure Costs</h2>
+<p>AWS provides multiple purchasing options to reduce costs:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 26%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Purchasing Option</th>
+<th>Description</th>
+<th>Savings Potential</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>On-Demand</strong></td>
+<td>Pay-as-you-go pricing</td>
+<td>Baseline cost</td>
+</tr>
+<tr class="even">
+<td><strong>Spot Instances</strong></td>
+<td>Up to 90% discount but can be interrupted</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td><strong>Reserved Instances</strong></td>
+<td>Commit for 1-3 years for lower rates</td>
+<td>Up to 72%</td>
+</tr>
+<tr class="even">
+<td><strong>SageMaker Savings Plans</strong></td>
+<td>Flexible, commitment-based discount</td>
+<td>Up to 64%</td>
+</tr>
+</tbody>
+</table>
+<section id="using-spot-instances-in-sagemaker" class="level3">
+<h3 class="anchored" data-anchor-id="using-spot-instances-in-sagemaker">Using Spot Instances in SageMaker</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.estimator <span class="im">import</span> Estimator</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>estimator <span class="op">=</span> Estimator(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    image_uri<span class="op">=</span><span class="st">'your-container-image'</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span><span class="st">'arn:aws:iam::account-id:role/SageMakerRole'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">'ml.m5.large'</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    use_spot_instances<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    max_wait<span class="op">=</span><span class="dv">3600</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    max_run<span class="op">=</span><span class="dv">1800</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="iam-roles-policies-and-groups-for-access-control" class="level2">
+<h2 class="anchored" data-anchor-id="iam-roles-policies-and-groups-for-access-control">IAM Roles, Policies, and Groups for Access Control</h2>
+<p>AWS Identity and Access Management (IAM) controls permissions for SageMaker and related services.</p>
+<section id="key-iam-components" class="level3">
+<h3 class="anchored" data-anchor-id="key-iam-components">Key IAM Components</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>IAM Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>IAM Roles</strong></td>
+<td>Grant temporary access to AWS services</td>
+</tr>
+<tr class="even">
+<td><strong>IAM Policies</strong></td>
+<td>Define permissions for actions and resources</td>
+</tr>
+<tr class="odd">
+<td><strong>IAM Groups</strong></td>
+<td>Organize multiple users with the same permissions</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-creating-a-sagemaker-execution-role" class="level3">
+<h3 class="anchored" data-anchor-id="example-creating-a-sagemaker-execution-role">Example: Creating a SageMaker Execution Role</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"Version"</span><span class="fu">:</span> <span class="st">"2012-10-17"</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"Statement"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"Effect"</span><span class="fu">:</span> <span class="st">"Allow"</span><span class="fu">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"Principal"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"Service"</span><span class="fu">:</span> <span class="st">"sagemaker.amazonaws.com"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">},</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"Action"</span><span class="fu">:</span> <span class="st">"sts:AssumeRole"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="sagemaker-security-and-compliance-features" class="level2">
+<h2 class="anchored" data-anchor-id="sagemaker-security-and-compliance-features">SageMaker Security and Compliance Features</h2>
+<p>AWS SageMaker includes built-in security measures:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 56%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Security Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>VPC Isolation</strong></td>
+<td>Deploy endpoints inside a VPC for network control</td>
+</tr>
+<tr class="even">
+<td><strong>Encryption</strong></td>
+<td>Encrypt data at rest (S3) and in transit (TLS)</td>
+</tr>
+<tr class="odd">
+<td><strong>SageMaker Role Manager</strong></td>
+<td>Simplifies IAM role management</td>
+</tr>
+<tr class="even">
+<td><strong>Logging &amp; Auditing</strong></td>
+<td>Track actions with AWS CloudTrail and CloudWatch</td>
+</tr>
+</tbody>
+</table>
+<section id="enforcing-encryption-in-sagemaker" class="level3">
+<h3 class="anchored" data-anchor-id="enforcing-encryption-in-sagemaker">Enforcing Encryption in SageMaker</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker <span class="im">import</span> Model</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    image_uri<span class="op">=</span><span class="st">'your-ecr-image'</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    model_data<span class="op">=</span><span class="st">'s3://your-bucket/model.tar.gz'</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span><span class="st">'arn:aws:iam::account-id:role/SageMakerRole'</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    vpc_config<span class="op">=</span>{<span class="st">'SecurityGroupIds'</span>: [<span class="st">'sg-xxxx'</span>], <span class="st">'Subnets'</span>: [<span class="st">'subnet-xxxx'</span>]},</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    enable_network_isolation<span class="op">=</span><span class="va">True</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>By rightsizing instances, optimizing cost strategies, enforcing IAM policies, and utilizing SageMaker’s security features, we can build efficient and secure ML deployments. These best practices ensure scalability while keeping costs under control.</p>
 
 
 </section>

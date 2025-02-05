@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ravi Kalia">
-<meta name="dcterms.date" content="2025-02-03">
 
-<title>Amazon SageMaker Pipelines: Real-World Examples – AWS Machine Learning Associate Certification</title>
+<title>ML Services: SageMaker vs Bedrock – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,14 +143,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-examples">    
         <li>
-    <a class="dropdown-item" href="../examples/sagemaker-pipelines.html">
- <span class="dropdown-text">SageMaker Pipelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../examples/sagemaker-processing-vs-training-vs-hosting.html">
- <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../examples/flink-vs-kinesis.html">
  <span class="dropdown-text">Apache Flink vs Kinesis Data Analytics</span></a>
   </li>  
@@ -165,10 +155,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../examples/sagemaker-vs-bedrock.html">
- <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../examples/glue.html">
  <span class="dropdown-text">Glue Data Catalog vs Glue DataBrew vs Glue Studio</span></a>
   </li>  
@@ -179,6 +165,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../examples/emr-vs-hadoop-vs-spark.html">
  <span class="dropdown-text">EMR vs Hadoop vs Spark</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sagemaker" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sagemaker</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sagemaker">    
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-pipelines.html">
+ <span class="dropdown-text">SageMaker Pipelines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
+ <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
+ <span class="dropdown-text">SageMaker for Model Building and Deployment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-validating-labelling-mitigating-bias.html">
+ <span class="dropdown-text">SageMaker: Validating, Labelling and Mitigating Bias</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-choosing-and-integrating-ml-models.html">
+ <span class="dropdown-text">Choosing and Integrating ML Models with AWS SageMaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-model-deployment-and-monitoring.html">
+ <span class="dropdown-text">Advanced Machine Learning with AWS SageMaker</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-multi-model-multi-container-deployments.html">
+ <span class="dropdown-text">Multi-Model and Multi-Container Deployments on AWS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-deploying-and-monitoring-models-in-vpc.html">
+ <span class="dropdown-text">Deploying and Monitoring SageMaker Models in a VPC</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-optimizing-deployments.html">
+ <span class="dropdown-text">Optimizing SageMaker Deployments: Rightsizing, Cost Optimization, and Security</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-vs-bedrock.html">
+ <span class="dropdown-text">AI/ML: SageMaker vs Bedrock</span></a>
   </li>  
     </ul>
   </li>
@@ -199,26 +232,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Amazon SageMaker Pipelines: Real-World Examples</h1>
+<h1 class="title">ML Services: SageMaker vs Bedrock</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ravi Kalia </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 3, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -228,89 +249,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>Amazon SageMaker Pipelines provide a way to automate and manage machine learning workflows. They help in orchestrating ML steps, such as data processing, training, and deployment.</p>
-<section id="example-1-basic-sagemaker-pipeline-with-preprocessing-and-training" class="level2">
-<h2 class="anchored" data-anchor-id="example-1-basic-sagemaker-pipeline-with-preprocessing-and-training">Example 1: Basic SageMaker Pipeline with Preprocessing and Training</h2>
+<p>AWS provides multiple machine learning (ML) services, with <strong>Amazon SageMaker</strong> and <strong>Amazon Bedrock</strong> being two primary options. While both facilitate ML model deployment, they cater to different use cases and user expertise levels.</p>
+<section id="overview-table" class="level2">
+<h2 class="anchored" data-anchor-id="overview-table">Overview Table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 36%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Amazon SageMaker</th>
+<th>Amazon Bedrock</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Type</td>
+<td>Fully managed ML development platform</td>
+<td>Fully managed foundation model (FM) service</td>
+</tr>
+<tr class="even">
+<td>Use Case</td>
+<td>Building, training, and deploying custom ML models</td>
+<td>Using and fine-tuning foundation models for AI applications</td>
+</tr>
+<tr class="odd">
+<td>Customization</td>
+<td>High (bring your own data and model)</td>
+<td>Limited (fine-tune pre-trained models)</td>
+</tr>
+<tr class="even">
+<td>Model Hosting</td>
+<td>Custom models on managed infrastructure</td>
+<td>API-based access to foundation models (FM)</td>
+</tr>
+<tr class="odd">
+<td>Data Handling</td>
+<td>Requires dataset preparation and preprocessing</td>
+<td>Uses pre-trained models with minimal data processing</td>
+</tr>
+<tr class="even">
+<td>Access Model</td>
+<td>SDK, APIs, Jupyter notebooks</td>
+<td>API-based inference</td>
+</tr>
+<tr class="odd">
+<td>Scaling</td>
+<td>Fully managed infrastructure</td>
+<td>Fully managed with auto-scaling</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="amazon-sagemaker" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-sagemaker">Amazon SageMaker</h2>
+<p><strong>Definition</strong>: Amazon SageMaker is a fully managed ML service that provides tools to build, train, and deploy custom machine learning models.</p>
+<p><strong>Common Use Cases</strong>: - Training custom ML models - Deploying inference endpoints - Experiment tracking and model monitoring</p>
+<section id="example-code-train-a-model-in-sagemaker-using-python" class="level3">
+<h3 class="anchored" data-anchor-id="example-code-train-a-model-in-sagemaker-using-python">Example Code: Train a Model in SageMaker using Python</h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sagemaker</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.workflow.pipeline <span class="im">import</span> Pipeline</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.workflow.steps <span class="im">import</span> ProcessingStep, TrainingStep</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.processing <span class="im">import</span> ScriptProcessor</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.sklearn.estimator <span class="im">import</span> SKLearn</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.estimator <span class="im">import</span> Estimator</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sagemaker_session <span class="op">=</span> sagemaker.Session()</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>role <span class="op">=</span> sagemaker.get_execution_role()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Preprocessing</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sklearn_processor <span class="op">=</span> ScriptProcessor(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    image_uri<span class="op">=</span>sagemaker.image_uris.retrieve(<span class="st">"sklearn"</span>, boto3.Session().region_name, version<span class="op">=</span><span class="st">"0.23-1"</span>),</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>step_preprocess <span class="op">=</span> ProcessingStep(</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"PreprocessData"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    processor<span class="op">=</span>sklearn_processor,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    code<span class="op">=</span><span class="st">"preprocessing.py"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    outputs<span class="op">=</span>[],</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Model Training</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>estimator <span class="op">=</span> Estimator(</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    image_uri<span class="op">=</span>sagemaker.image_uris.retrieve(<span class="st">"xgboost"</span>, boto3.Session().region_name, <span class="st">"latest"</span>),</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>,</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    hyperparameters<span class="op">=</span>{<span class="st">"max_depth"</span>: <span class="dv">5</span>, <span class="st">"eta"</span>: <span class="fl">0.2</span>, <span class="st">"objective"</span>: <span class="st">"reg:squarederror"</span>},</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>step_train <span class="op">=</span> TrainingStep(</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"TrainModel"</span>,</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    estimator<span class="op">=</span>estimator,</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    inputs<span class="op">=</span>{},</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Define Pipeline</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> Pipeline(</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"BasicPipeline"</span>,</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    steps<span class="op">=</span>[step_preprocess, step_train],</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>pipeline.upsert(role_arn<span class="op">=</span>role)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>pipeline.start()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="example-2-sagemaker-pipeline-with-model-evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="example-2-sagemaker-pipeline-with-model-evaluation">Example 2: SageMaker Pipeline with Model Evaluation</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.workflow.steps <span class="im">import</span> ModelStep</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.model <span class="im">import</span> Model</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    image_uri<span class="op">=</span>sagemaker.image_uris.retrieve(<span class="st">"xgboost"</span>, boto3.Session().region_name, <span class="st">"latest"</span>),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model_data<span class="op">=</span><span class="st">"s3://my-bucket/model.tar.gz"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span>role,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>step_register <span class="op">=</span> ModelStep(</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"RegisterModel"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>model,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> Pipeline(</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"PipelineWithEvaluation"</span>,</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    steps<span class="op">=</span>[step_preprocess, step_train, step_register],</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>pipeline.upsert(role_arn<span class="op">=</span>role)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>pipeline.start()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sagemaker <span class="op">=</span> boto3.client(<span class="st">'sagemaker'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sagemaker.create_training_job(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    TrainingJobName<span class="op">=</span><span class="st">'my-training-job'</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    AlgorithmSpecification<span class="op">=</span>{</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'TrainingImage'</span>: <span class="st">'your-docker-image'</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'TrainingInputMode'</span>: <span class="st">'File'</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    RoleArn<span class="op">=</span><span class="st">'your-role-arn'</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    InputDataConfig<span class="op">=</span>[</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">'ChannelName'</span>: <span class="st">'train'</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">'DataSource'</span>: {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">'S3DataSource'</span>: {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'S3Uri'</span>: <span class="st">'s3://your-dataset/'</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'S3DataType'</span>: <span class="st">'S3Prefix'</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    OutputDataConfig<span class="op">=</span>{<span class="st">'S3OutputPath'</span>: <span class="st">'s3://your-output-bucket/'</span>},</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ResourceConfig<span class="op">=</span>{</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">'InstanceType'</span>: <span class="st">'ml.m5.large'</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">'InstanceCount'</span>: <span class="dv">1</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">'VolumeSizeInGB'</span>: <span class="dv">50</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    StoppingCondition<span class="op">=</span>{<span class="st">'MaxRuntimeInSeconds'</span>: <span class="dv">3600</span>}</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
 </section>
 </section>
-<section id="conclusion" class="level1">
-<h1>Conclusion</h1>
-<p>SageMaker Pipelines help in automating ML workflows efficiently. These examples demonstrate basic and advanced workflows, including preprocessing, training, and model registration.</p>
+<section id="amazon-bedrock" class="level2">
+<h2 class="anchored" data-anchor-id="amazon-bedrock">Amazon Bedrock</h2>
+<p><strong>Definition</strong>: Amazon Bedrock is a managed service that provides access to foundation models from leading AI providers, allowing users to build generative AI applications without needing to train models from scratch.</p>
+<p><strong>Common Use Cases</strong>: - Text generation and summarization - Chatbots and virtual assistants - Image generation and AI-powered applications</p>
+<section id="example-code-call-a-foundation-model-via-bedrock-api" class="level3">
+<h3 class="anchored" data-anchor-id="example-code-call-a-foundation-model-via-bedrock-api">Example Code: Call a Foundation Model via Bedrock API</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>bedrock <span class="op">=</span> boto3.client(<span class="st">'bedrock-runtime'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> bedrock.invoke_model(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    modelId<span class="op">=</span><span class="st">'anthropic.claude-v2'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    body<span class="op">=</span><span class="st">'{"prompt": "Write a short poem about the ocean.", "max_tokens": 100}'</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response[<span class="st">"body"</span>].read().decode(<span class="st">'utf-8'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>If your goal is to <strong>build and train custom ML models</strong>, <strong>SageMaker</strong> provides the flexibility and infrastructure to do so. If you need <strong>quick access to pre-trained foundation models for AI applications</strong>, <strong>Bedrock</strong> offers a simple API-based approach to integrate generative AI into applications.</p>
 
 
 </section>

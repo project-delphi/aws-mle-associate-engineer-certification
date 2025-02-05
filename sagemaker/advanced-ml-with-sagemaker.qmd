@@ -1,0 +1,166 @@
+---
+title: "Advanced Machine Learning with AWS SageMaker"
+date: "2025-02-04"
+categories: [AWS, Machine Learning, SageMaker]
+format: html
+---
+
+# Introduction
+
+AWS SageMaker provides powerful tools for training, fine-tuning, and managing machine learning models. In this post, we explore:
+
+- Using SageMaker script mode with TensorFlow and PyTorch.
+- Fine-tuning pre-trained models with custom datasets using Amazon Bedrock and SageMaker JumpStart.
+- Performing hyperparameter tuning with SageMaker Automatic Model Tuning (AMT).
+- Managing model versions with the SageMaker Model Registry.
+- Gaining insights with SageMaker Clarify.
+
+## Using SageMaker Script Mode for Training
+
+SageMaker script mode enables training models using popular frameworks while maintaining flexibility and scalability.
+
+#### Example: Training a PyTorch Model
+
+```python
+import sagemaker
+from sagemaker.pytorch import PyTorch
+
+role = "arn:aws:iam::123456789012:role/MySageMakerRole"
+session = sagemaker.Session()
+
+pytorch_estimator = PyTorch(
+    entry_point="train.py",
+    source_dir="src",
+    role=role,
+    instance_count=1,
+    instance_type="ml.m5.large",
+    framework_version="1.8",
+    py_version="py3",
+    sagemaker_session=session
+)
+
+pytorch_estimator.fit({"train": "s3://my-bucket/train-data/"})
+```
+
+## Fine-Tuning Pre-trained Models with Custom Datasets
+
+Pre-trained models can be fine-tuned using Amazon Bedrock or SageMaker JumpStart for domain-specific applications.
+
+#### Example: Fine-Tuning a Model from SageMaker JumpStart
+
+```python
+from sagemaker.jumpstart.estimator import JumpStartEstimator
+
+model_id = "huggingface-text-classification"
+
+tuner = JumpStartEstimator(
+    model_id=model_id,
+    role=role,
+    instance_count=1,
+    instance_type="ml.m5.large",
+    sagemaker_session=session,
+)
+
+tuner.fit({"train": "s3://my-bucket/custom-dataset/"})
+```
+
+## Performing Hyperparameter Tuning with SageMaker AMT
+
+SageMaker Automatic Model Tuning (AMT) optimizes hyperparameters for improved model performance.
+
+#### Example: Hyperparameter Tuning with XGBoost
+
+```python
+from sagemaker.tuner import HyperparameterTuner, IntegerParameter, ContinuousParameter
+from sagemaker.xgboost import XGBoost
+
+xgb = XGBoost(
+    role=role,
+    instance_count=1,
+    instance_type="ml.m5.large",
+    framework_version="1.3-1",
+    output_path="s3://my-bucket/xgboost-model/",
+    sagemaker_session=session,
+)
+
+tuner = HyperparameterTuner(
+    xgb,
+    objective_metric_name="validation:rmse",
+    hyperparameter_ranges={
+        "max_depth": IntegerParameter(3, 10),
+        "eta": ContinuousParameter(0.1, 0.5)
+    },
+    max_jobs=10,
+    max_parallel_jobs=2
+)
+
+tuner.fit({"train": "s3://my-bucket/train-data/"})
+```
+
+## Managing Model Versions with SageMaker Model Registry
+
+The SageMaker Model Registry tracks and manages different versions of ML models for auditability and reproducibility.
+
+#### Example: Registering a Model in SageMaker Model Registry
+
+```python
+import boto3
+
+sm_client = boto3.client("sagemaker")
+
+response = sm_client.create_model_package(
+    ModelPackageGroupName="MyModelPackageGroup",
+    ModelPackageDescription="Version 1 of my model",
+    InferenceSpecification={
+        "Containers": [
+            {
+                "Image": "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-model:latest",
+                "Mode": "SingleModel"
+            }
+        ],
+        "SupportedContentTypes": ["text/csv"],
+        "SupportedResponseMIMETypes": ["application/json"]
+    },
+)
+print("Model registered successfully")
+```
+
+## Using SageMaker Clarify for Model Insights
+
+SageMaker Clarify provides metrics to analyze ML training data and models.
+
+| Metric                | Description |
+|----------------------|-------------|
+| Data Bias            | Measures imbalances in dataset representation. |
+| Model Bias           | Evaluates if the model favors specific groups. |
+| Feature Importance   | Determines which features contribute most to predictions. |
+
+#### Example: Running SageMaker Clarify Bias Analysis
+
+```python
+from sagemaker.clarify import ClarifyBiasConfig, ClarifyProcessor
+
+clarify_processor = ClarifyProcessor(
+    role=role,
+    instance_count=1,
+    instance_type="ml.m5.large",
+    sagemaker_session=session
+)
+
+bias_config = ClarifyBiasConfig(
+    label="target",
+    facet="gender",
+    dataset_format={"headers": True, "dataset_type": "csv"}
+)
+
+clarify_processor.run_pre_training_bias(
+    data_config=bias_config,
+    data_file="s3://my-bucket/dataset.csv"
+)
+print("Bias analysis completed")
+```
+
+## Conclusion
+
+AWS SageMaker provides comprehensive tools for training, fine-tuning, hyperparameter tuning, model versioning, and bias analysis. These features streamline ML workflows, ensuring robust and auditable models.
+
