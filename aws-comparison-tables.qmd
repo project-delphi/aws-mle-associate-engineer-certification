@@ -3,7 +3,7 @@ title: "AWS Comparison Tables"
 format: html
 ---
 
-## Streaming Services Comparison
+## Streaming Services 
 
 | Feature | Kinesis Data Streams | AWS Firehose | MSK (Managed Kafka) |
 |---------|---------------------|--------------|-------------------|
@@ -14,7 +14,7 @@ format: html
 | Throughput | MB/s per shard | Automatic up to GB/s | MB/s per broker |
 | Cost Model | Per shard hour | Per GB processed | Per broker hour |
 
-## Storage Services Comparison
+## Storage Services 
 
 | Feature | S3 | EBS | EFS | FSx |
 |---------|-----|-----|-----|-----|
@@ -26,7 +26,7 @@ format: html
 | Availability | 99.99% | 99.99% | 99.99% | 99.99% |
 | Cost Model | GB-month + requests | GB-month provisioned | GB-month used | GB-month + throughput |
 
-## AI/ML Services Comparison
+## AI/ML Services 
 
 | Feature | Comprehend | Personalize | Bedrock | SageMaker |
 |---------|------------|-------------|----------|-----------|
@@ -38,7 +38,7 @@ format: html
 | Scaling | Automatic | Automatic | Automatic | Manual/Auto |
 | Cost Model | Per unit processed | Per training hour + predictions | Per token/request | Per instance hour |
 
-## Container Services Comparison
+## Container Services 
 
 | Feature | ECS | EKS | App Runner | Lambda Container |
 |---------|-----|-----|------------|------------------|
@@ -50,7 +50,7 @@ format: html
 | Use Cases | Microservices | Complex orchestration | Web apps | Serverless containers |
 | Cost Model | Per task hour | Per cluster hour + tasks | Per vCPU/GB | Per request + duration |
 
-## Data Analytics Services Comparison
+## Data Analytics Services 
 
 | Feature | EMR | Glue | Athena | Redshift |
 |---------|-----|------|--------|-----------|
@@ -62,7 +62,7 @@ format: html
 | Setup Time | Hours | Minutes | Minutes | Hours |
 | Cost Model | Per instance hour | Per DPU hour | Per TB scanned | Per node hour |
 
-## Monitoring Services Comparison
+## Monitoring Services 
 
 | Feature | CloudWatch | X-Ray | Prometheus | Grafana |
 |---------|------------|--------|------------|----------|
@@ -73,7 +73,7 @@ format: html
 | Integration | AWS native | AWS services | Kubernetes | Multiple sources |
 | Cost Model | Per metric/GB | Per trace | Storage based | By features |
 
-## ML Model Deployment Options Comparison
+## ML Model Deployment Options 
 
 | Feature | SageMaker Endpoints | SageMaker Serverless | Lambda | ECS/EKS |
 |---------|-------------------|---------------------|--------|----------|

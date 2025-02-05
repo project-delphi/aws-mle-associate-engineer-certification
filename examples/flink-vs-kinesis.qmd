@@ -129,7 +129,7 @@ def consume_from_kinesis(stream_name):
 consume_from_kinesis("my-kinesis-stream")
 ```
 
-n the Kinesis example, we have a producer that sends data to a stream and a consumer that reads data from it.
+In the Kinesis example, we have a producer that sends data to a stream and a consumer that reads data from it.
 Conclusion
 
 Both Apache Flink and AWS Kinesis are valuable tools in the realm of real-time data processing. Flink is a stream-processing framework ideal for complex event processing and advanced analytics, while Kinesis provides a fully managed solution for collecting, processing, and analyzing streaming data.
