@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Storage: S3 vs EFS vs FSx vs EBS – AWS Machine Learning Associate Certification</title>
+<title>sagemaker-processing-vs-training-vs-hosting – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -69,10 +35,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -178,10 +144,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">SageMaker Pipelines</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
- <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
  <span class="dropdown-text">SageMaker for Model Building and Deployment</span></a>
   </li>  
@@ -230,137 +192,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Storage: S3 vs EFS vs FSx vs EBS</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<p>AWS offers a range of storage solutions tailored for different use cases. Below is a comparison of four major storage options: <strong>Amazon S3, Amazon EFS, Amazon FSx, and Amazon EBS</strong>.</p>
-<section id="overview-table" class="level2">
-<h2 class="anchored" data-anchor-id="overview-table">Overview Table</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 17%">
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 19%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Amazon S3</th>
-<th>Amazon EFS</th>
-<th>Amazon FSx</th>
-<th>Amazon EBS</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Type</td>
-<td>Object Storage</td>
-<td>Network File System</td>
-<td>Managed File System</td>
-<td>Block Storage</td>
-</tr>
-<tr class="even">
-<td>Use Case</td>
-<td>Backup, archival, static website hosting</td>
-<td>Shared storage for Linux-based workloads</td>
-<td>Windows file system or high-performance workloads</td>
-<td>Boot volumes, databases, transactional workloads</td>
-</tr>
-<tr class="odd">
-<td>Performance</td>
-<td>Scalable, eventual consistency</td>
-<td>Low latency, shared access</td>
-<td>Optimized for Windows/Linux workloads</td>
-<td>High IOPS, low-latency</td>
-</tr>
-<tr class="even">
-<td>Access Model</td>
-<td>REST API, SDKs, web-based access</td>
-<td>NFS mount</td>
-<td>SMB (Windows) or Lustre (HPC)</td>
-<td>Block device (EC2 instances)</td>
-</tr>
-<tr class="odd">
-<td>Persistence</td>
-<td>Highly durable (11 9’s)</td>
-<td>Persistent</td>
-<td>Persistent</td>
-<td>Persistent but tied to EC2</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="amazon-s3-simple-storage-service" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-s3-simple-storage-service">Amazon S3 (Simple Storage Service)</h2>
-<p><strong>Definition</strong>: Amazon S3 is an object storage service designed for scalable storage of any amount of data, accessible over the internet.</p>
-<p><strong>Common Use Cases</strong>: - Backup and disaster recovery - Static website hosting - Data lakes and big data analytics</p>
-<section id="example-code-upload-a-file-to-s3-using-python-boto3" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-upload-a-file-to-s3-using-python-boto3">Example Code: Upload a File to S3 using Python (Boto3)</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">"localfile.txt"</span>, <span class="st">"my-bucket"</span>, <span class="st">"remote-file.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="amazon-efs-elastic-file-system" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-efs-elastic-file-system">Amazon EFS (Elastic File System)</h2>
-<p><strong>Definition</strong>: Amazon EFS is a scalable, fully managed network file system (NFS) for Linux-based applications and workloads.</p>
-<p><strong>Common Use Cases</strong>: - Shared storage for EC2 instances - Machine learning and big data processing - Containerized applications (EKS, ECS)</p>
-<section id="example-code-mount-an-efs-file-system-on-an-ec2-instance" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-mount-an-efs-file-system-on-an-ec2-instance">Example Code: Mount an EFS File System on an EC2 Instance</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> yum install <span class="at">-y</span> amazon-efs-utils</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir /mnt/efs</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mount <span class="at">-t</span> efs fs-12345678:/ /mnt/efs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="amazon-fsx" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-fsx">Amazon FSx</h2>
-<p><strong>Definition</strong>: Amazon FSx provides fully managed, high-performance file systems for specialized workloads, including Windows-based and high-performance computing (HPC).</p>
-<p><strong>Common Use Cases</strong>: - Windows applications requiring NTFS - High-performance computing with Lustre - Media rendering and big data processing</p>
-<section id="example-code-mount-an-fsx-file-system-on-windows" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-mount-an-fsx-file-system-on-windows">Example Code: Mount an FSx File System on Windows</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>net use X<span class="op">:</span> \\fsx-share<span class="op">.</span><span class="fu">amazonaws</span><span class="op">.</span><span class="fu">com</span>\share <span class="op">/</span>persistent<span class="op">:</span>yes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="amazon-ebs-elastic-block-store" class="level2">
-<h2 class="anchored" data-anchor-id="amazon-ebs-elastic-block-store">Amazon EBS (Elastic Block Store)</h2>
-<p><strong>Definition</strong>: Amazon EBS is block storage that provides persistent storage for EC2 instances, supporting low-latency, high-performance applications.</p>
-<p><strong>Common Use Cases</strong>: - Databases (MySQL, PostgreSQL, etc.) - Virtual machine storage - Transactional applications</p>
-<section id="example-code-attach-an-ebs-volume-to-an-ec2-instance" class="level3">
-<h3 class="anchored" data-anchor-id="example-code-attach-an-ebs-volume-to-an-ec2-instance">Example Code: Attach an EBS Volume to an EC2 Instance</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> ec2 attach-volume <span class="at">--volume-id</span> vol-12345678 <span class="at">--instance-id</span> i-abcdef12 <span class="at">--device</span> /dev/xvdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Each AWS storage service serves a unique purpose, and choosing the right one depends on your workload needs. If you need <strong>object storage</strong>, go with <strong>S3</strong>. If you need <strong>shared file storage</strong>, use <strong>EFS</strong>. If you need <strong>a managed file system</strong>, consider <strong>FSx</strong>. If you require <strong>high-performance block storage</strong>, <strong>EBS</strong> is the best choice.</p>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

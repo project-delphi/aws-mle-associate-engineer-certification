@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -178,10 +178,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
- <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
@@ -302,6 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>submit_spark_job(<span class="st">"j-XYZ123"</span>, <span class="st">"s3://my-bucket/my-spark-job.py"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Open source alternatives like <strong>Apache Hadoop</strong> and <strong>Apache Spark</strong> offer similar capabilities but require more manual setup and management. What is required is a cluster setup, configuration, and monitoring.</p>
 </section>
 </section>
 <section id="apache-hadoop" class="level2">
@@ -340,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="apache-spark">Apache Spark</h2>
 <p><strong>Spark</strong> is a fast, in-memory data processing framework designed for large-scale data analytics and machine learning.</p>
 <section id="key-features-2" class="level3">
-<h3 class="anchored" data-anchor-id="key-features-2">Key Features:</h3>
+<h3 class="anchored" data-anchor-id="key-features-2">Key Features</h3>
 <ul>
 <li>In-memory processing for speed</li>
 <li>Supports batch, streaming, and machine learning workloads</li>
@@ -355,6 +352,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [(<span class="st">"Alice"</span>, <span class="dv">34</span>), (<span class="st">"Bob"</span>, <span class="dv">45</span>)]</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> spark.createDataFrame(data, [<span class="st">"Name"</span>, <span class="st">"Age"</span>])</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note, AWS Spark is not an equivalent of Amazon EMR. Apache Spark is an open-source, distributed computing framework for big data processing, while Amazon EMR (Elastic MapReduce) is a fully managed cloud service that simplifies running big data frameworks like Spark, Hadoop, and others on AWS.</p>
+<p>In other words, Spark is one of the software frameworks that can be run on Amazon EMR, but EMR itself offers a lot more than just Spark. It manages the cluster infrastructure, scaling, and integration with AWS services, while Apache Spark is just the processing engine for big data tasks. The open source tool to manage cluster infrastructure is Apache Hadoop, which includes HDFS and YARN.</p>
 <hr>
 </section>
 </section>
