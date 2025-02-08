@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -178,10 +178,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
- <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
@@ -460,6 +456,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the Kinesis example, we have a producer that sends data to a stream and a consumer that reads data from it. Conclusion</p>
 <p>Both Apache Flink and AWS Kinesis are valuable tools in the realm of real-time data processing. Flink is a stream-processing framework ideal for complex event processing and advanced analytics, while Kinesis provides a fully managed solution for collecting, processing, and analyzing streaming data.</p>
 <p>The choice between the two depends on factors such as the scale of your infrastructure, integration needs, and whether you prefer a fully managed service (Kinesis) or a more customizable stream processing framework (Flink).</p>
+</section>
+<section id="type-of-compute" class="level3">
+<h3 class="anchored" data-anchor-id="type-of-compute">Type of Compute</h3>
+<p>For long running compute tasks, Flink is a better choice as it is designed for stateful computations over unbounded data streams. It can handle large-scale, real-time analytics and complex event processing. On the other hand, Kinesis is more suitable for real-time data streaming and ingestion, making it ideal for data ingestion, analytics, and streaming applications.</p>
+<p>For GPU compute tasks, Flink can be used with GPU resources for accelerated processing. AWS Kinesis does not provide GPU compute capabilities.</p>
+<p>Whereas Kinesis is suited to real-time data streaming and ingestion, Flink is more versatile and can handle complex analytics, real-time ETL, and complex event processing. For example, Flink can be used for real-time fraud detection, real-time recommendations, and real-time monitoring of IoT devices. The type of compute is small and lightweight, making it ideal for real-time processing of data streams.</p>
 
 
 </section>

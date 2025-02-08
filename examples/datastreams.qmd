@@ -133,6 +133,17 @@ start >> task
 
 ---
 
+Which is best for low latency?
+- **Kinesis Data Streams** is best for low-latency custom applications.
+Which is best for fault-tolerance?
+- **Kinesis Data Streams** and **MSK** provide fault-tolerant streaming.
+Which can replay data?
+- **Kinesis Data Streams** and **MSK** support data replay.
+What makes MSK unique?
+- **MSK** provides a fully managed Kafka cluster with AWS integrations.
+Which service is best for workflow automation?
+- **AMAA** is designed for workflow automation with Apache Airflow.
+
 # Conclusion
 
 Each AWS streaming service serves a different purpose:

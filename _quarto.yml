@@ -32,8 +32,6 @@ website:
         menu:
           - text: "SageMaker Pipelines"
             href: sagemaker/sagemaker-pipelines.qmd
-          - text: "SageMaker Processing vs Training vs Hosting"
-            href: sagemaker/sagemaker-processing-vs-training-vs-hosting.qmd
           - text: "SageMaker for Model Building and Deployment"
             href: sagemaker/sagemaker-model-building-and-deployment.qmd
           - text: "SageMaker: Validating, Labelling and Mitigating Bias"
@@ -67,4 +65,4 @@ website:
 
 format:
   html:
-    theme: slate
+    theme: sketchy

@@ -44,6 +44,9 @@ def submit_spark_job(cluster_id, script_s3_path):
 submit_spark_job("j-XYZ123", "s3://my-bucket/my-spark-job.py")
 ```
 
+
+Open source alternatives like **Apache Hadoop** and **Apache Spark** offer similar capabilities but require more manual setup and management. What is required is a cluster setup, configuration, and monitoring.
+
 ## Apache Hadoop
 **Hadoop** is an open-source framework for distributed storage and processing of large datasets using MapReduce.
 
@@ -74,14 +77,17 @@ public class WordCount {
 ```
 
 ## Apache Spark
+
 **Spark** is a fast, in-memory data processing framework designed for large-scale data analytics and machine learning.
 
-### Key Features:
+### Key Features
+
 - In-memory processing for speed
 - Supports batch, streaming, and machine learning workloads
 - APIs in Python, Java, Scala, and R
 
 ### Sample Code: Running a PySpark Job
+
 ```python
 from pyspark.sql import SparkSession
 
@@ -91,13 +97,18 @@ df = spark.createDataFrame(data, ["Name", "Age"])
 df.show()
 ```
 
+
+Note, AWS Spark is not an equivalent of Amazon EMR. Apache Spark is an open-source, distributed computing framework for big data processing, while Amazon EMR (Elastic MapReduce) is a fully managed cloud service that simplifies running big data frameworks like Spark, Hadoop, and others on AWS.
+
+In other words, Spark is one of the software frameworks that can be run on Amazon EMR, but EMR itself offers a lot more than just Spark. It manages the cluster infrastructure, scaling, and integration with AWS services, while Apache Spark is just the processing engine for big data tasks. The open source tool to manage cluster infrastructure is Apache Hadoop, which includes HDFS and YARN.
+    
 ---
 
 # Comparison Table
 
 | Feature | Amazon EMR | Apache Hadoop | Apache Spark |
-|---------|------------|--------------|--------------|
-| Managed | Yes | No | No |
+|---------|------------|---------------|--------------|
+| Managed | Yes        | No            | No           |
 | Processing Type | Batch & Streaming | Batch | Batch & Streaming |
 | Speed | Fast (optimized) | Slow (disk-based) | Very Fast (in-memory) |
 | Scalability | High (auto-scaling) | Moderate | High |
