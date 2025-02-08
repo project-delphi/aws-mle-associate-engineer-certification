@@ -1,0 +1,88 @@
+---
+title: "AWS SageMaker & Bedrock Quiz"
+format: html
+extra:
+  collapse: true
+---
+
+## AWS SageMaker & Bedrock Quiz
+
+### Question 1
+**Which SageMaker feature allows you to compare a new model’s performance against an existing production model without impacting live traffic?**
+
+<details>
+<summary>Show Answer</summary>
+**Shadow Testing** runs the new model in parallel to monitor performance without affecting live traffic.
+</details>
+
+### Question 2
+**Which AWS service is used to orchestrate steps in a machine learning pipeline, such as model training and deployment?**
+
+<details>
+<summary>Show Answer</summary>
+**Amazon SageMaker Pipelines** orchestrates multiple steps in a pipeline, including machine learning workflows.
+</details>
+
+### Question 3
+**What is a primary use case for SageMaker JumpStart?**
+
+<details>
+<summary>Show Answer</summary>
+**JumpStart simplifies deploying pre-trained models and solutions for common ML tasks.**
+</details>
+
+### Question 4
+**You are deploying a SageMaker training job that handles sensitive data. Which option best ensures that the data is protected both at rest and in transit?**
+
+<details>
+<summary>Show Answer</summary>
+Encrypting data at rest using **AWS KMS** and securing data in transit with **TLS/SSL** ensures protection at both stages.
+</details>
+
+### Question 5
+**Which deployment method in SageMaker is most suitable for handling infrequent or unpredictable traffic with the ability to scale down to zero?**
+
+<details>
+<summary>Show Answer</summary>
+**SageMaker Serverless Inference** is ideal for infrequent or unpredictable workloads, as it scales down to zero.
+</details>
+
+### Question 6
+**When setting up a new LLM agent in Amazon Bedrock, how does it dynamically decide which tool to use based on the user's query?**
+
+<details>
+<summary>Show Answer</summary>
+**Action Groups** define the tools available to the LLM and guide it on when to use each based on the user's query.
+</details>
+
+### Question 7
+**What is a key advantage of using self-attention in transformer models over traditional RNNs?**
+
+<details>
+<summary>Show Answer</summary>
+**Self-attention allows parallel processing**, unlike RNNs which process tokens sequentially.
+</details>
+
+### Question 8
+**Which feature in Amazon Bedrock should you use if your AI system needs to write and execute Python code?**
+
+<details>
+<summary>Show Answer</summary>
+**The Code Interpreter feature in Action Groups** allows the AI to write and execute Python code as part of its responses.
+</details>
+
+### Question 9
+**What is a key benefit of using Docker containers in Amazon SageMaker?**
+
+<details>
+<summary>Show Answer</summary>
+**Portability and environment consistency** across different deployment stages.
+</details>
+
+### Question 10
+**What is the most efficient way to frequently update a knowledge base in Amazon Bedrock with new company policies?**
+
+<details>
+<summary>Show Answer</summary>
+Updating the **vector database** is faster and more efficient than fine-tuning when adding new information.
+</details>

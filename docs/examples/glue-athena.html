@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ravi Kalia">
-<meta name="dcterms.date" content="2025-02-03">
+<meta name="dcterms.date" content="2025-02-07">
 
-<title>Flink vs Kinesis – AWS Machine Learning Associate Certification</title>
+<title>Understanding AWS Athena, Glue, and Data Processing Services – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -259,14 +259,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#aws-athena" id="toc-aws-athena" class="nav-link" data-scroll-target="#aws-athena">AWS Athena</a>
+  <ul class="collapse">
+  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features:</a></li>
+  <li><a href="#example-query-querying-an-s3-dataset" id="toc-example-query-querying-an-s3-dataset" class="nav-link" data-scroll-target="#example-query-querying-an-s3-dataset">Example Query (Querying an S3 Dataset):</a></li>
+  <li><a href="#when-to-use" id="toc-when-to-use" class="nav-link" data-scroll-target="#when-to-use">When to Use:</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-databrew" id="toc-aws-glue-databrew" class="nav-link" data-scroll-target="#aws-glue-databrew">AWS Glue DataBrew</a>
+  <ul class="collapse">
+  <li><a href="#key-features-1" id="toc-key-features-1" class="nav-link" data-scroll-target="#key-features-1">Key Features:</a></li>
+  <li><a href="#example-applying-a-transformation-using-python-api" id="toc-example-applying-a-transformation-using-python-api" class="nav-link" data-scroll-target="#example-applying-a-transformation-using-python-api">Example (Applying a Transformation Using Python API):</a></li>
+  <li><a href="#when-to-use-1" id="toc-when-to-use-1" class="nav-link" data-scroll-target="#when-to-use-1">When to Use:</a></li>
+  <li><a href="#limitations-1" id="toc-limitations-1" class="nav-link" data-scroll-target="#limitations-1">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-data-catalog" id="toc-aws-glue-data-catalog" class="nav-link" data-scroll-target="#aws-glue-data-catalog">AWS Glue Data Catalog</a>
+  <ul class="collapse">
+  <li><a href="#key-features-2" id="toc-key-features-2" class="nav-link" data-scroll-target="#key-features-2">Key Features:</a></li>
+  <li><a href="#example-creating-a-table-in-glue-data-catalog" id="toc-example-creating-a-table-in-glue-data-catalog" class="nav-link" data-scroll-target="#example-creating-a-table-in-glue-data-catalog">Example (Creating a Table in Glue Data Catalog):</a></li>
+  <li><a href="#when-to-use-2" id="toc-when-to-use-2" class="nav-link" data-scroll-target="#when-to-use-2">When to Use:</a></li>
+  <li><a href="#limitations-2" id="toc-limitations-2" class="nav-link" data-scroll-target="#limitations-2">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-etl" id="toc-aws-glue-etl" class="nav-link" data-scroll-target="#aws-glue-etl">AWS Glue ETL</a>
+  <ul class="collapse">
+  <li><a href="#key-features-3" id="toc-key-features-3" class="nav-link" data-scroll-target="#key-features-3">Key Features:</a></li>
+  <li><a href="#example-simple-etl-script-in-pyspark" id="toc-example-simple-etl-script-in-pyspark" class="nav-link" data-scroll-target="#example-simple-etl-script-in-pyspark">Example (Simple ETL Script in PySpark):</a></li>
+  <li><a href="#when-to-use-3" id="toc-when-to-use-3" class="nav-link" data-scroll-target="#when-to-use-3">When to Use:</a></li>
+  <li><a href="#limitations-3" id="toc-limitations-3" class="nav-link" data-scroll-target="#limitations-3">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-crawlers" id="toc-aws-glue-crawlers" class="nav-link" data-scroll-target="#aws-glue-crawlers">AWS Glue Crawlers</a>
+  <ul class="collapse">
+  <li><a href="#key-features-4" id="toc-key-features-4" class="nav-link" data-scroll-target="#key-features-4">Key Features:</a></li>
+  <li><a href="#example-creating-a-glue-crawler" id="toc-example-creating-a-glue-crawler" class="nav-link" data-scroll-target="#example-creating-a-glue-crawler">Example (Creating a Glue Crawler):</a></li>
+  <li><a href="#when-to-use-4" id="toc-when-to-use-4" class="nav-link" data-scroll-target="#when-to-use-4">When to Use:</a></li>
+  <li><a href="#limitations-4" id="toc-limitations-4" class="nav-link" data-scroll-target="#limitations-4">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-studio" id="toc-aws-glue-studio" class="nav-link" data-scroll-target="#aws-glue-studio">AWS Glue Studio</a>
+  <ul class="collapse">
+  <li><a href="#key-features-5" id="toc-key-features-5" class="nav-link" data-scroll-target="#key-features-5">Key Features:</a></li>
+  <li><a href="#when-to-use-5" id="toc-when-to-use-5" class="nav-link" data-scroll-target="#when-to-use-5">When to Use:</a></li>
+  <li><a href="#limitations-5" id="toc-limitations-5" class="nav-link" data-scroll-target="#limitations-5">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-data-quality" id="toc-aws-glue-data-quality" class="nav-link" data-scroll-target="#aws-glue-data-quality">AWS Glue Data Quality</a>
+  <ul class="collapse">
+  <li><a href="#key-features-6" id="toc-key-features-6" class="nav-link" data-scroll-target="#key-features-6">Key Features:</a></li>
+  <li><a href="#example-running-a-data-quality-check-in-glue" id="toc-example-running-a-data-quality-check-in-glue" class="nav-link" data-scroll-target="#example-running-a-data-quality-check-in-glue">Example (Running a Data Quality Check in Glue):</a></li>
+  <li><a href="#when-to-use-6" id="toc-when-to-use-6" class="nav-link" data-scroll-target="#when-to-use-6">When to Use:</a></li>
+  <li><a href="#limitations-6" id="toc-limitations-6" class="nav-link" data-scroll-target="#limitations-6">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table">Summary Table</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Flink vs Kinesis</h1>
-</div>
+<h1 class="title">Understanding AWS Athena, Glue, and Data Processing Services</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">AWS</div>
+    <div class="quarto-category">Data Engineering</div>
+    <div class="quarto-category">Cloud</div>
+  </div>
+  </div>
 
 
 
@@ -282,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 3, 2025</p>
+      <p class="date">February 7, 2025</p>
     </div>
   </div>
   
@@ -296,174 +359,293 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>Apache Flink and AWS Kinesis are both powerful tools for real-time data processing, but they serve different purposes and have different architectures. Below is a comparison of the two, with definitions, explanations, and code examples.</p>
-<section id="definitions" class="level2">
-<h2 class="anchored" data-anchor-id="definitions">Definitions</h2>
-<section id="apache-flink" class="level3">
-<h3 class="anchored" data-anchor-id="apache-flink">Apache Flink</h3>
-<p>Apache Flink is an open-source stream-processing framework used for distributed processing of data streams. It is designed for stateful computations over unbounded data streams and can handle large-scale, real-time analytics.</p>
+<p>AWS offers a suite of data processing and analytics tools to help organizations manage large-scale data efficiently. In this blog post, we will explore <strong>AWS Athena, AWS Glue DataBrew, AWS Glue Data Catalog, AWS Glue ETL, AWS Glue Crawlers, AWS Glue Studio, and AWS Glue Data Quality</strong>. Each of these services plays a unique role in data processing and analytics.</p>
+<hr>
+</section>
+<section id="aws-athena" class="level1">
+<h1>AWS Athena</h1>
+<p>AWS Athena is a <strong>serverless interactive query service</strong> that allows users to run SQL queries on structured and semi-structured data stored in Amazon S3.</p>
+<section id="key-features" class="level2">
+<h2 class="anchored" data-anchor-id="key-features">Key Features:</h2>
 <ul>
-<li><strong>Key Features</strong>:
-<ul>
-<li>Real-time stream processing</li>
-<li>Fault tolerance with checkpointing</li>
-<li>Supports batch processing (as a special case of stream processing)</li>
-<li>Advanced windowing and event time processing</li>
-<li>Support for complex event processing (CEP)</li>
-</ul></li>
+<li><strong>Serverless:</strong> No infrastructure management required.</li>
+<li><strong>SQL-Based Queries:</strong> Uses standard SQL via Presto and Trino engines.</li>
+<li><strong>Pay-Per-Query:</strong> Charges based on the amount of data scanned.</li>
+<li><strong>Integration with AWS Glue:</strong> Uses Glue Data Catalog for schema management.</li>
 </ul>
 </section>
-<section id="aws-kinesis" class="level3">
-<h3 class="anchored" data-anchor-id="aws-kinesis">AWS Kinesis</h3>
-<p>AWS Kinesis is a fully managed service by Amazon Web Services for real-time data streaming and processing. It allows users to collect, process, and analyze real-time data at massive scale.</p>
+<section id="example-query-querying-an-s3-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="example-query-querying-an-s3-dataset">Example Query (Querying an S3 Dataset):</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> sales_data</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> transaction_date <span class="op">&gt;=</span> <span class="st">'2024-01-01'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use">When to Use:</h2>
+<p>✅ Ad-hoc analysis on S3 data<br>
+✅ Business intelligence and dashboards<br>
+✅ Cost-effective querying</p>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations:</h2>
+<p>❌ Performance depends on partitioning and file format optimization<br>
+❌ No built-in transaction support</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-databrew" class="level1">
+<h1>AWS Glue DataBrew</h1>
+<p>AWS Glue DataBrew is a <strong>visual data preparation</strong> tool that allows data analysts and engineers to clean and transform data without writing code.</p>
+<section id="key-features-1" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-1">Key Features:</h2>
 <ul>
-<li><strong>Key Features</strong>:
-<ul>
-<li>Fully managed, scalable stream processing</li>
-<li>Integration with AWS ecosystem (e.g., Lambda, Redshift, etc.)</li>
-<li>Real-time analytics</li>
-<li>Supports data ingestion, storage, and analytics on streaming data</li>
-<li>Auto-scaling based on data volume</li>
-</ul></li>
+<li><strong>No-Code Data Cleaning:</strong> GUI-based transformations.</li>
+<li><strong>Prebuilt Transformations:</strong> 250+ transformations like normalization, deduplication, and missing value handling.</li>
+<li><strong>Integration with S3, Redshift, and Athena:</strong> Works with popular AWS data services.</li>
 </ul>
 </section>
+<section id="example-applying-a-transformation-using-python-api" class="level2">
+<h2 class="anchored" data-anchor-id="example-applying-a-transformation-using-python-api">Example (Applying a Transformation Using Python API):</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'databrew'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.create_recipe(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Name<span class="op">=</span><span class="st">'clean_sales_data'</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    Steps<span class="op">=</span>[</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'Action'</span>: <span class="st">'REMOVE_DUPLICATES'</span>, <span class="st">'Column'</span>: <span class="st">'order_id'</span>},</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'Action'</span>: <span class="st">'FILL_MISSING_VALUES'</span>, <span class="st">'Column'</span>: <span class="st">'price'</span>, <span class="st">'Value'</span>: <span class="st">'0'</span>}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="key-differences" class="level2">
-<h2 class="anchored" data-anchor-id="key-differences">Key Differences</h2>
+<section id="when-to-use-1" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-1">When to Use:</h2>
+<p>✅ Data cleaning and transformation without coding<br>
+✅ Exploratory data analysis<br>
+✅ Preparing data for machine learning</p>
+</section>
+<section id="limitations-1" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-1">Limitations:</h2>
+<p>❌ Not ideal for large-scale ETL pipelines<br>
+❌ Limited advanced transformation capabilities</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-data-catalog" class="level1">
+<h1>AWS Glue Data Catalog</h1>
+<p>AWS Glue Data Catalog is a <strong>metadata repository</strong> that stores schema information about datasets in AWS.</p>
+<section id="key-features-2" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-2">Key Features:</h2>
+<ul>
+<li><strong>Centralized Metadata Store:</strong> Stores schema and table definitions.</li>
+<li><strong>Supports Multiple Services:</strong> Used by Athena, Redshift, and EMR.</li>
+<li><strong>Automated Schema Detection:</strong> Works with Glue Crawlers.</li>
+</ul>
+</section>
+<section id="example-creating-a-table-in-glue-data-catalog" class="level2">
+<h2 class="anchored" data-anchor-id="example-creating-a-table-in-glue-data-catalog">Example (Creating a Table in Glue Data Catalog):</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'glue'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.create_table(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    DatabaseName<span class="op">=</span><span class="st">'sales_db'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    TableInput<span class="op">=</span>{</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Name'</span>: <span class="st">'sales_data'</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'StorageDescriptor'</span>: {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Columns'</span>: [</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                {<span class="st">'Name'</span>: <span class="st">'order_id'</span>, <span class="st">'Type'</span>: <span class="st">'string'</span>},</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                {<span class="st">'Name'</span>: <span class="st">'amount'</span>, <span class="st">'Type'</span>: <span class="st">'double'</span>}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            ],</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Location'</span>: <span class="st">'s3://my-bucket/sales/'</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-2" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-2">When to Use:</h2>
+<p>✅ Managing table metadata for Athena and Redshift<br>
+✅ Schema discovery and governance</p>
+</section>
+<section id="limitations-2" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-2">Limitations:</h2>
+<p>❌ Only supports AWS data sources</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-etl" class="level1">
+<h1>AWS Glue ETL</h1>
+<p>AWS Glue ETL (Extract, Transform, Load) is a <strong>serverless data integration</strong> service that automates data preparation and movement.</p>
+<section id="key-features-3" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-3">Key Features:</h2>
+<ul>
+<li><strong>Serverless Apache Spark-Based Processing</strong></li>
+<li><strong>Job Scheduling &amp; Dependency Management</strong></li>
+<li><strong>Automatic Schema Inference</strong></li>
+<li><strong>Supports Python and Scala</strong></li>
+</ul>
+</section>
+<section id="example-simple-etl-script-in-pyspark" class="level2">
+<h2 class="anchored" data-anchor-id="example-simple-etl-script-in-pyspark">Example (Simple ETL Script in PySpark):</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> awsglue.context <span class="im">import</span> GlueContext</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.context <span class="im">import</span> SparkContext</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>glueContext <span class="op">=</span> GlueContext(SparkContext.getOrCreate())</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> glueContext.create_dynamic_frame.from_catalog(database<span class="op">=</span><span class="st">"sales_db"</span>, table_name<span class="op">=</span><span class="st">"sales_data"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-3" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-3">When to Use:</h2>
+<p>✅ Large-scale data transformations<br>
+✅ Data migration across AWS services</p>
+</section>
+<section id="limitations-3" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-3">Limitations:</h2>
+<p>❌ Learning curve for PySpark-based development</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-crawlers" class="level1">
+<h1>AWS Glue Crawlers</h1>
+<p>AWS Glue Crawlers <strong>automatically scan data sources and populate the Glue Data Catalog.</strong></p>
+<section id="key-features-4" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-4">Key Features:</h2>
+<ul>
+<li><strong>Schema Detection &amp; Updating</strong></li>
+<li><strong>Supports JSON, CSV, Parquet, and more</strong></li>
+<li><strong>Runs on a schedule or on-demand</strong></li>
+</ul>
+</section>
+<section id="example-creating-a-glue-crawler" class="level2">
+<h2 class="anchored" data-anchor-id="example-creating-a-glue-crawler">Example (Creating a Glue Crawler):</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'glue'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.create_crawler(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    Name<span class="op">=</span><span class="st">'sales_crawler'</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    Role<span class="op">=</span><span class="st">'AWSGlueServiceRole'</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    DatabaseName<span class="op">=</span><span class="st">'sales_db'</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    Targets<span class="op">=</span>{<span class="st">'S3Targets'</span>: [{<span class="st">'Path'</span>: <span class="st">'s3://my-bucket/sales/'</span>}]}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-4" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-4">When to Use:</h2>
+<p>✅ Keeping schema definitions updated<br>
+✅ Automating data discovery</p>
+</section>
+<section id="limitations-4" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-4">Limitations:</h2>
+<p>❌ Not optimized for highly dynamic schemas</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-studio" class="level1">
+<h1>AWS Glue Studio</h1>
+<p>AWS Glue Studio is a <strong>visual interface for designing, running, and monitoring Glue ETL jobs</strong>.</p>
+<section id="key-features-5" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-5">Key Features:</h2>
+<ul>
+<li><strong>Drag-and-Drop UI for ETL Pipelines</strong></li>
+<li><strong>Code Generation for Python &amp; Spark</strong></li>
+<li><strong>Integrated Job Monitoring</strong></li>
+</ul>
+</section>
+<section id="when-to-use-5" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-5">When to Use:</h2>
+<p>✅ Simplifying ETL development<br>
+✅ Visualizing data pipelines</p>
+</section>
+<section id="limitations-5" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-5">Limitations:</h2>
+<p>❌ Limited advanced transformations</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-data-quality" class="level1">
+<h1>AWS Glue Data Quality</h1>
+<p>AWS Glue Data Quality is a <strong>data profiling and validation tool</strong> that ensures data integrity.</p>
+<section id="key-features-6" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-6">Key Features:</h2>
+<ul>
+<li><strong>Automated Data Quality Rules</strong></li>
+<li><strong>Anomaly Detection and Validation</strong></li>
+<li><strong>Integration with Glue ETL and Athena</strong></li>
+</ul>
+</section>
+<section id="example-running-a-data-quality-check-in-glue" class="level2">
+<h2 class="anchored" data-anchor-id="example-running-a-data-quality-check-in-glue">Example (Running a Data Quality Check in Glue):</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'glue'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.create_data_quality_ruleset(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    Name<span class="op">=</span><span class="st">'sales_data_quality'</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    RulesetExpression<span class="op">=</span><span class="st">'amount &gt; 0'</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-6" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-6">When to Use:</h2>
+<p>✅ Ensuring clean and valid data<br>
+✅ Identifying anomalies</p>
+</section>
+<section id="limitations-6" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-6">Limitations:</h2>
+<p>❌ Limited rule customization</p>
+<hr>
+</section>
+</section>
+<section id="summary-table" class="level1">
+<h1>Summary Table</h1>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 24%">
-<col style="width: 39%">
-<col style="width: 35%">
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 41%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Feature</th>
-<th>Apache Flink</th>
-<th>AWS Kinesis</th>
+<th>Service</th>
+<th>Purpose</th>
+<th>Key Feature</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Purpose</strong></td>
-<td>Stream processing and complex event processing</td>
-<td>Real-time data streaming and ingestion</td>
+<td><strong>Athena</strong></td>
+<td>Query data in S3</td>
+<td>Serverless SQL engine</td>
 </tr>
 <tr class="even">
-<td><strong>Management</strong></td>
-<td>Self-managed (on-premise or cloud)</td>
-<td>Fully managed service by AWS</td>
+<td><strong>DataBrew</strong></td>
+<td>No-code data preparation</td>
+<td>GUI-based transformations</td>
 </tr>
 <tr class="odd">
-<td><strong>Fault Tolerance</strong></td>
-<td>Checkpointing and state management</td>
-<td>Built-in replication and data retention</td>
+<td><strong>Data Catalog</strong></td>
+<td>Metadata management</td>
+<td>Schema storage for AWS services</td>
 </tr>
 <tr class="even">
-<td><strong>Use Case</strong></td>
-<td>Complex analytics, real-time ETL, CEP</td>
-<td>Data ingestion, analytics, and streaming apps</td>
+<td><strong>Glue ETL</strong></td>
+<td>Large-scale data transformation</td>
+<td>Apache Spark-based ETL</td>
 </tr>
 <tr class="odd">
-<td><strong>Scaling</strong></td>
-<td>Manual or automated scaling</td>
-<td>Auto-scaling based on data volume</td>
+<td><strong>Crawlers</strong></td>
+<td>Automate schema detection</td>
+<td>Populate Glue Data Catalog</td>
 </tr>
 <tr class="even">
-<td><strong>Integrations</strong></td>
-<td>Kafka, HDFS, Cassandra, Elasticsearch</td>
-<td>AWS ecosystem (Lambda, Redshift, etc.)</td>
+<td><strong>Glue Studio</strong></td>
+<td>Visual ETL workflow</td>
+<td>Drag-and-drop UI</td>
 </tr>
 <tr class="odd">
-<td><strong>Language Support</strong></td>
-<td>Java, Scala, Python, SQL</td>
-<td>Kinesis Client Library (Java, Python, etc.)</td>
-</tr>
-<tr class="even">
-<td><strong>Latency</strong></td>
-<td>Sub-second latency (low-latency)</td>
-<td>Typically sub-second (low-latency)</td>
+<td><strong>Data Quality</strong></td>
+<td>Data validation</td>
+<td>Automated rule-based checks</td>
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
-<section id="comparison-in-action" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-in-action">Comparison in Action</h2>
-<section id="apache-flink-example" class="level3">
-<h3 class="anchored" data-anchor-id="apache-flink-example">Apache Flink Example</h3>
-<p>Here is a basic example of a Flink job that processes a stream of events:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">apache</span><span class="op">.</span><span class="im">flink</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">common</span><span class="op">.</span><span class="im">functions</span><span class="op">.</span><span class="im">MapFunction</span><span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">apache</span><span class="op">.</span><span class="im">flink</span><span class="op">.</span><span class="im">streaming</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">datastream</span><span class="op">.</span><span class="im">DataStream</span><span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">apache</span><span class="op">.</span><span class="im">flink</span><span class="op">.</span><span class="im">streaming</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">environment</span><span class="op">.</span><span class="im">StreamExecutionEnvironment</span><span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> FlinkExample <span class="op">{</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Exception</span> <span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">final</span> StreamExecutionEnvironment env <span class="op">=</span> StreamExecutionEnvironment<span class="op">.</span><span class="fu">getExecutionEnvironment</span><span class="op">();</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Example: Create a stream of integers and map them to a string</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        DataStream<span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> numbers <span class="op">=</span> env<span class="op">.</span><span class="fu">fromElements</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">);</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        DataStream<span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> result <span class="op">=</span> numbers<span class="op">.</span><span class="fu">map</span><span class="op">(</span><span class="kw">new</span> MapFunction<span class="op">&lt;</span><span class="bu">Integer</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;()</span> <span class="op">{</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="bu">String</span> <span class="fu">map</span><span class="op">(</span><span class="bu">Integer</span> value<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Exception</span> <span class="op">{</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="st">"Number: "</span> <span class="op">+</span> value<span class="op">;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">});</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        result<span class="op">.</span><span class="fu">print</span><span class="op">();</span> <span class="co">// Output the result</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        env<span class="op">.</span><span class="fu">execute</span><span class="op">(</span><span class="st">"Flink Streaming Example"</span><span class="op">);</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this example, Flink reads from a stream of integers, processes them, and outputs a transformed result. AWS Kinesis Example</p>
-<p>Below is an example of how to produce and consume data from Kinesis streams using the AWS SDK for Python (Boto3).</p>
-<p>Kinesis Producer Example</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Kinesis client</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>kinesis <span class="op">=</span> boto3.client(<span class="st">'kinesis'</span>, region_name<span class="op">=</span><span class="st">'us-east-1'</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> send_to_kinesis(stream_name, data):</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">=</span> json.dumps(data)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    kinesis.put_record(</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        StreamName<span class="op">=</span>stream_name,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        Data<span class="op">=</span>payload,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        PartitionKey<span class="op">=</span><span class="st">"partitionkey"</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>send_to_kinesis(<span class="st">"my-kinesis-stream"</span>, {<span class="st">"event"</span>: <span class="st">"start"</span>, <span class="st">"timestamp"</span>: <span class="st">"2025-02-03T12:00:00"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Kinesis Consumer Example</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Kinesis client</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>kinesis <span class="op">=</span> boto3.client(<span class="st">'kinesis'</span>, region_name<span class="op">=</span><span class="st">'us-east-1'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> consume_from_kinesis(stream_name):</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    shard_iterator <span class="op">=</span> kinesis.get_shard_iterator(</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        StreamName<span class="op">=</span>stream_name,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        ShardId<span class="op">=</span><span class="st">'shardId-000000000000'</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        ShardIteratorType<span class="op">=</span><span class="st">'TRIM_HORIZON'</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    )[<span class="st">'ShardIterator'</span>]</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        record_response <span class="op">=</span> kinesis.get_records(ShardIterator<span class="op">=</span>shard_iterator, Limit<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> record <span class="kw">in</span> record_response[<span class="st">'Records'</span>]:</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(json.loads(record[<span class="st">'Data'</span>]))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        shard_iterator <span class="op">=</span> record_response[<span class="st">'NextShardIterator'</span>]</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>consume_from_kinesis(<span class="st">"my-kinesis-stream"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the Kinesis example, we have a producer that sends data to a stream and a consumer that reads data from it. Conclusion</p>
-<p>Both Apache Flink and AWS Kinesis are valuable tools in the realm of real-time data processing. Flink is a stream-processing framework ideal for complex event processing and advanced analytics, while Kinesis provides a fully managed solution for collecting, processing, and analyzing streaming data.</p>
-<p>The choice between the two depends on factors such as the scale of your infrastructure, integration needs, and whether you prefer a fully managed service (Kinesis) or a more customizable stream processing framework (Flink).</p>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>AWS provides a powerful ecosystem for data processing. Understanding <strong>Athena, Glue, and related services</strong> will help you build efficient, scalable data pipelines. 🚀</p>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

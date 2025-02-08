@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ravi Kalia">
-<meta name="dcterms.date" content="2025-02-03">
 
-<title>Flink vs Kinesis – AWS Machine Learning Associate Certification</title>
+<title>AWS Machine Learning Quiz – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -265,26 +229,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Flink vs Kinesis</h1>
+<h1 class="title">AWS Machine Learning Quiz</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ravi Kalia </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 3, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -294,175 +246,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>Apache Flink and AWS Kinesis are both powerful tools for real-time data processing, but they serve different purposes and have different architectures. Below is a comparison of the two, with definitions, explanations, and code examples.</p>
-<section id="definitions" class="level2">
-<h2 class="anchored" data-anchor-id="definitions">Definitions</h2>
-<section id="apache-flink" class="level3">
-<h3 class="anchored" data-anchor-id="apache-flink">Apache Flink</h3>
-<p>Apache Flink is an open-source stream-processing framework used for distributed processing of data streams. It is designed for stateful computations over unbounded data streams and can handle large-scale, real-time analytics.</p>
-<ul>
-<li><strong>Key Features</strong>:
-<ul>
-<li>Real-time stream processing</li>
-<li>Fault tolerance with checkpointing</li>
-<li>Supports batch processing (as a special case of stream processing)</li>
-<li>Advanced windowing and event time processing</li>
-<li>Support for complex event processing (CEP)</li>
-</ul></li>
-</ul>
+<section id="aws-ml-quiz-questions" class="level2">
+<h2 class="anchored" data-anchor-id="aws-ml-quiz-questions">AWS ML Quiz Questions</h2>
+<section id="question-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>You’re working with a sparse dataset and need to predict user-item interactions. Which SageMaker algorithm is most appropriate?</p>
 </section>
-<section id="aws-kinesis" class="level3">
-<h3 class="anchored" data-anchor-id="aws-kinesis">AWS Kinesis</h3>
-<p>AWS Kinesis is a fully managed service by Amazon Web Services for real-time data streaming and processing. It allows users to collect, process, and analyze real-time data at massive scale.</p>
-<ul>
-<li><strong>Key Features</strong>:
-<ul>
-<li>Fully managed, scalable stream processing</li>
-<li>Integration with AWS ecosystem (e.g., Lambda, Redshift, etc.)</li>
-<li>Real-time analytics</li>
-<li>Supports data ingestion, storage, and analytics on streaming data</li>
-<li>Auto-scaling based on data volume</li>
-</ul></li>
-</ul>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>In SageMaker’s XGBoost, which hyperparameter helps prevent overfitting by controlling the step size shrinkage?</p>
+<p><strong>Answer:</strong> The <code>eta</code> hyperparameter in XGBoost controls the step size shrinkage, which helps prevent overfitting by reducing the impact of individual trees.</p>
 </section>
+<section id="question-3" class="level3">
+<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>You are tasked with training a SageMaker model to predict future values of a time series. Which algorithm should you choose?</p>
+<p><strong>Answer:</strong> DeepAR is designed for forecasting future values in time series data.</p>
 </section>
-<section id="key-differences" class="level2">
-<h2 class="anchored" data-anchor-id="key-differences">Key Differences</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 24%">
-<col style="width: 39%">
-<col style="width: 35%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>Apache Flink</th>
-<th>AWS Kinesis</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Purpose</strong></td>
-<td>Stream processing and complex event processing</td>
-<td>Real-time data streaming and ingestion</td>
-</tr>
-<tr class="even">
-<td><strong>Management</strong></td>
-<td>Self-managed (on-premise or cloud)</td>
-<td>Fully managed service by AWS</td>
-</tr>
-<tr class="odd">
-<td><strong>Fault Tolerance</strong></td>
-<td>Checkpointing and state management</td>
-<td>Built-in replication and data retention</td>
-</tr>
-<tr class="even">
-<td><strong>Use Case</strong></td>
-<td>Complex analytics, real-time ETL, CEP</td>
-<td>Data ingestion, analytics, and streaming apps</td>
-</tr>
-<tr class="odd">
-<td><strong>Scaling</strong></td>
-<td>Manual or automated scaling</td>
-<td>Auto-scaling based on data volume</td>
-</tr>
-<tr class="even">
-<td><strong>Integrations</strong></td>
-<td>Kafka, HDFS, Cassandra, Elasticsearch</td>
-<td>AWS ecosystem (Lambda, Redshift, etc.)</td>
-</tr>
-<tr class="odd">
-<td><strong>Language Support</strong></td>
-<td>Java, Scala, Python, SQL</td>
-<td>Kinesis Client Library (Java, Python, etc.)</td>
-</tr>
-<tr class="even">
-<td><strong>Latency</strong></td>
-<td>Sub-second latency (low-latency)</td>
-<td>Typically sub-second (low-latency)</td>
-</tr>
-</tbody>
-</table>
+<section id="question-4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p>Which input format is optimal for training a model using SageMaker’s K-Means algorithm?</p>
+<p><strong>Answer:</strong> SageMaker’s K-Means algorithm typically expects input data in the RecordIO-Protobuf format, though CSV is also supported.</p>
 </section>
-<section id="comparison-in-action" class="level2">
-<h2 class="anchored" data-anchor-id="comparison-in-action">Comparison in Action</h2>
-<section id="apache-flink-example" class="level3">
-<h3 class="anchored" data-anchor-id="apache-flink-example">Apache Flink Example</h3>
-<p>Here is a basic example of a Flink job that processes a stream of events:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">apache</span><span class="op">.</span><span class="im">flink</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">common</span><span class="op">.</span><span class="im">functions</span><span class="op">.</span><span class="im">MapFunction</span><span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">apache</span><span class="op">.</span><span class="im">flink</span><span class="op">.</span><span class="im">streaming</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">datastream</span><span class="op">.</span><span class="im">DataStream</span><span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">org</span><span class="op">.</span><span class="im">apache</span><span class="op">.</span><span class="im">flink</span><span class="op">.</span><span class="im">streaming</span><span class="op">.</span><span class="im">api</span><span class="op">.</span><span class="im">environment</span><span class="op">.</span><span class="im">StreamExecutionEnvironment</span><span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> FlinkExample <span class="op">{</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Exception</span> <span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">final</span> StreamExecutionEnvironment env <span class="op">=</span> StreamExecutionEnvironment<span class="op">.</span><span class="fu">getExecutionEnvironment</span><span class="op">();</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Example: Create a stream of integers and map them to a string</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        DataStream<span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> numbers <span class="op">=</span> env<span class="op">.</span><span class="fu">fromElements</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">);</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        DataStream<span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> result <span class="op">=</span> numbers<span class="op">.</span><span class="fu">map</span><span class="op">(</span><span class="kw">new</span> MapFunction<span class="op">&lt;</span><span class="bu">Integer</span><span class="op">,</span> <span class="bu">String</span><span class="op">&gt;()</span> <span class="op">{</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">@Override</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="kw">public</span> <span class="bu">String</span> <span class="fu">map</span><span class="op">(</span><span class="bu">Integer</span> value<span class="op">)</span> <span class="kw">throws</span> <span class="bu">Exception</span> <span class="op">{</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="st">"Number: "</span> <span class="op">+</span> value<span class="op">;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">});</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        result<span class="op">.</span><span class="fu">print</span><span class="op">();</span> <span class="co">// Output the result</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        env<span class="op">.</span><span class="fu">execute</span><span class="op">(</span><span class="st">"Flink Streaming Example"</span><span class="op">);</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this example, Flink reads from a stream of integers, processes them, and outputs a transformed result. AWS Kinesis Example</p>
-<p>Below is an example of how to produce and consume data from Kinesis streams using the AWS SDK for Python (Boto3).</p>
-<p>Kinesis Producer Example</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Kinesis client</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>kinesis <span class="op">=</span> boto3.client(<span class="st">'kinesis'</span>, region_name<span class="op">=</span><span class="st">'us-east-1'</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> send_to_kinesis(stream_name, data):</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    payload <span class="op">=</span> json.dumps(data)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    kinesis.put_record(</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        StreamName<span class="op">=</span>stream_name,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        Data<span class="op">=</span>payload,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        PartitionKey<span class="op">=</span><span class="st">"partitionkey"</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>send_to_kinesis(<span class="st">"my-kinesis-stream"</span>, {<span class="st">"event"</span>: <span class="st">"start"</span>, <span class="st">"timestamp"</span>: <span class="st">"2025-02-03T12:00:00"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Kinesis Consumer Example</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Kinesis client</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>kinesis <span class="op">=</span> boto3.client(<span class="st">'kinesis'</span>, region_name<span class="op">=</span><span class="st">'us-east-1'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> consume_from_kinesis(stream_name):</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    shard_iterator <span class="op">=</span> kinesis.get_shard_iterator(</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        StreamName<span class="op">=</span>stream_name,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        ShardId<span class="op">=</span><span class="st">'shardId-000000000000'</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        ShardIteratorType<span class="op">=</span><span class="st">'TRIM_HORIZON'</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    )[<span class="st">'ShardIterator'</span>]</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        record_response <span class="op">=</span> kinesis.get_records(ShardIterator<span class="op">=</span>shard_iterator, Limit<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> record <span class="kw">in</span> record_response[<span class="st">'Records'</span>]:</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(json.loads(record[<span class="st">'Data'</span>]))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        shard_iterator <span class="op">=</span> record_response[<span class="st">'NextShardIterator'</span>]</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>consume_from_kinesis(<span class="st">"my-kinesis-stream"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the Kinesis example, we have a producer that sends data to a stream and a consumer that reads data from it. Conclusion</p>
-<p>Both Apache Flink and AWS Kinesis are valuable tools in the realm of real-time data processing. Flink is a stream-processing framework ideal for complex event processing and advanced analytics, while Kinesis provides a fully managed solution for collecting, processing, and analyzing streaming data.</p>
-<p>The choice between the two depends on factors such as the scale of your infrastructure, integration needs, and whether you prefer a fully managed service (Kinesis) or a more customizable stream processing framework (Flink).</p>
+<section id="question-5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<p>When using SageMaker’s Object2Vec algorithm, what is the primary output?</p>
+<p><strong>Answer:</strong> Object2Vec produces low-dimensional dense embeddings of high-dimensional objects, useful for tasks like similarity searches and recommendation systems.</p>
+</section>
+<section id="question-6" class="level3">
+<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<p>When using a Transformer model for text classification, which component is responsible for capturing the relationships between different tokens in a sentence?</p>
+<p><strong>Answer:</strong> Self-Attention captures the relationships between tokens by considering the entire sentence context.</p>
+</section>
+<section id="question-7" class="level3">
+<h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<p>You are fine-tuning a pre-trained GPT model for a customer service chatbot. Which training technique is most appropriate if you want to adapt the model with minimal training data?</p>
+<p><strong>Answer:</strong> Freezing the initial layers and training the last few layers is a common fine-tuning approach that requires less data.</p>
+</section>
+<section id="question-8" class="level3">
+<h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
+<p>Which AWS service would you use to quickly deploy a pre-trained model like GPT-J for text generation tasks?</p>
+<p><strong>Answer:</strong> Amazon SageMaker JumpStart allows easy deployment of pre-trained models like GPT-J.</p>
+</section>
+<section id="question-9" class="level3">
+<h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
+<p>In a sequence-to-sequence transformer model used for translation, what is the role of the decoder?</p>
+<p><strong>Answer:</strong> The decoder generates the target sequence based on the encoded information from the source sequence.</p>
+</section>
+<section id="question-10" class="level3">
+<h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
+<p>When using masked self-attention in GPT models, what is the purpose of the mask?</p>
+<p><strong>Answer:</strong> The mask ensures that each token can only attend to past tokens, not future ones.</p>
+</section>
+<section id="question-11" class="level3">
+<h3 class="anchored" data-anchor-id="question-11">Question 11</h3>
+<p>You are using AWS SageMaker JumpStart to deploy a model for text generation. Which model type would you choose for multilingual text generation?</p>
+<p><strong>Answer:</strong> Jurassic-2 is noted for its multilingual capabilities.</p>
+</section>
+<section id="question-12" class="level3">
+<h3 class="anchored" data-anchor-id="question-12">Question 12</h3>
+<p>During the training of a transformer model, which aspect allows the model to consider the position of each token within the sequence?</p>
+<p><strong>Answer:</strong> Positional encoding adds information about token positions.</p>
+</section>
+<section id="question-13" class="level3">
+<h3 class="anchored" data-anchor-id="question-13">Question 13</h3>
+<p>You are tasked with summarizing large volumes of text data. Which model would you select from AWS’s offerings?</p>
+<p><strong>Answer:</strong> Amazon Titan is optimized for tasks like text summarization.</p>
+</section>
+<section id="question-14" class="level3">
+<h3 class="anchored" data-anchor-id="question-14">Question 14</h3>
+<p>In the context of self-attention, which matrices are used to compute the attention scores for each token?</p>
+<p><strong>Answer:</strong> Attention scores are computed by the dot product of Query and Key matrices.</p>
+</section>
+<section id="question-15" class="level3">
+<h3 class="anchored" data-anchor-id="question-15">Question 15</h3>
+<p>What is a key advantage of using self-attention in transformer models over traditional RNNs?</p>
+<p><strong>Answer:</strong> Self-attention allows parallel processing, unlike RNNs.</p>
+</section>
+<section id="question-16" class="level3">
+<h3 class="anchored" data-anchor-id="question-16">Question 16</h3>
+<p>You are developing a customer support chatbot using Amazon Bedrock. The chatbot needs to respond accurately to specific customer inquiries using recent company data. Which approach would be most effective for this scenario?</p>
+<p><strong>Answer:</strong> RAG (Retrieval-Augmented Generation) is ideal for incorporating recent or proprietary information that the foundational model wasn’t originally trained on, making it well-suited for a chatbot needing up-to-date responses.</p>
+</section>
+<section id="question-17" class="level3">
+<h3 class="anchored" data-anchor-id="question-17">Question 17</h3>
+<p>You are using Amazon Bedrock to build an AI system for generating marketing content. The system must ensure the content generated adheres to brand guidelines and avoids inappropriate language. Which feature of Amazon Bedrock would best serve this purpose?</p>
+<p><strong>Answer:</strong> By using separate action groups, the LLM can be guided on when to use the knowledge base and when to call the API, making the system more flexible and maintainable.</p>
 
 
-</section>
 </section>
 </section>
 

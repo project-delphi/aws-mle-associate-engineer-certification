@@ -1,0 +1,81 @@
+---
+title: "AWS ML Quiz"
+format: html
+---
+
+## AWS Machine Learning Quiz
+
+This document contains multiple-choice questions related to AWS Machine Learning services. Click the **Show Answer** button to reveal the correct answer along with an explanation.
+
+### 1. While working with Amazon Bedrock, you need to frequently update your knowledge base with new company policies. What is the most efficient way to handle this?
+
+| Option | Explanation |
+|--------|-------------|
+| **A) Fine-tuning the model** | Fine-tuning is resource-intensive and not ideal for frequent updates. |
+| **B) Updating the vector database** | ✅ Correct. Updating the vector database is faster and more efficient than fine-tuning for adding new information. |
+| **C) Retraining the entire model** | Retraining is costly and time-consuming. |
+
+<details>
+  <summary>Show Answer</summary>
+  **B) Updating the vector database**  
+  Updating the vector database allows new information to be added quickly without retraining the model.
+</details>
+
+### 2. When setting up a new LLM agent in Amazon Bedrock, you want it to dynamically decide which tool to use based on the user's query. Which component is responsible for guiding the LLM in making this decision?
+
+| Option | Explanation |
+|--------|-------------|
+| **A) Embeddings** | Embeddings help with similarity search but don't guide tool selection. |
+| **B) Action Groups** | ✅ Correct. Action Groups define available tools and guide when to use each. |
+| **C) Model Fine-Tuning** | Fine-tuning customizes model behavior but doesn’t handle tool selection dynamically. |
+
+<details>
+  <summary>Show Answer</summary>
+  **B) Action Groups**  
+  Action Groups in Bedrock allow the model to decide which tool to use based on the user query.
+</details>
+
+### 3. Your team is planning to deploy a generative AI model in a serverless environment using Amazon Bedrock. What advantage does this provide?
+
+| Option | Explanation |
+|--------|-------------|
+| **A) High Availability** | Serverless automatically scales to demand. |
+| **B) No Infrastructure Management** | ✅ Correct. Serverless eliminates the need to manage infrastructure. |
+| **C) Lower Cost for Large-Scale Workloads** | Serverless can be cost-efficient but may not always be the cheapest for high usage. |
+
+<details>
+  <summary>Show Answer</summary>
+  **B) No Infrastructure Management**  
+  Serverless environments scale automatically and require no manual infrastructure management.
+</details>
+
+### 4. You need to monitor a deployed model for feature attribution drift. Which metric should you monitor using SageMaker Model Monitor?
+
+| Option | Explanation |
+|--------|-------------|
+| **A) Model Accuracy** | Accuracy measures overall performance, not feature drift. |
+| **B) Feature Attribution Scores** | ✅ Correct. Feature attribution drift is detected by monitoring these scores. |
+| **C) Training Loss** | Training loss relates to the training process, not drift. |
+
+<details>
+  <summary>Show Answer</summary>
+  **B) Feature Attribution Scores**  
+  SageMaker Model Monitor detects changes in feature attributions over time.
+</details>
+
+### 5. Which AWS service is used to orchestrate steps in a machine learning pipeline, such as model training and deployment?
+
+| Option | Explanation |
+|--------|-------------|
+| **A) AWS Step Functions** | Step Functions can orchestrate workflows but aren't specialized for ML. |
+| **B) SageMaker Pipelines** | ✅ Correct. SageMaker Pipelines orchestrate ML workflows end-to-end. |
+| **C) Lambda Functions** | Lambda executes code but isn't designed for full ML pipelines. |
+
+<details>
+  <summary>Show Answer</summary>
+  **B) SageMaker Pipelines**  
+  SageMaker Pipelines help automate ML workflows, including training and deployment.
+</details>
+
+---
+

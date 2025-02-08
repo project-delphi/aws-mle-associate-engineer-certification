@@ -1,0 +1,89 @@
+---
+title: "AWS Machine Learning Quiz"
+format: html
+---
+
+## AWS ML Quiz Questions
+
+### Question 1
+You're working with a sparse dataset and need to predict user-item interactions. Which SageMaker algorithm is most appropriate?
+
+### Question 2
+In SageMaker’s XGBoost, which hyperparameter helps prevent overfitting by controlling the step size shrinkage?
+
+**Answer:** The `eta` hyperparameter in XGBoost controls the step size shrinkage, which helps prevent overfitting by reducing the impact of individual trees.
+
+### Question 3
+You are tasked with training a SageMaker model to predict future values of a time series. Which algorithm should you choose?
+
+**Answer:** DeepAR is designed for forecasting future values in time series data.
+
+### Question 4
+Which input format is optimal for training a model using SageMaker's K-Means algorithm?
+
+**Answer:** SageMaker’s K-Means algorithm typically expects input data in the RecordIO-Protobuf format, though CSV is also supported.
+
+### Question 5
+When using SageMaker’s Object2Vec algorithm, what is the primary output?
+
+**Answer:** Object2Vec produces low-dimensional dense embeddings of high-dimensional objects, useful for tasks like similarity searches and recommendation systems.
+
+### Question 6
+When using a Transformer model for text classification, which component is responsible for capturing the relationships between different tokens in a sentence?
+
+**Answer:** Self-Attention captures the relationships between tokens by considering the entire sentence context.
+
+### Question 7
+You are fine-tuning a pre-trained GPT model for a customer service chatbot. Which training technique is most appropriate if you want to adapt the model with minimal training data?
+
+**Answer:** Freezing the initial layers and training the last few layers is a common fine-tuning approach that requires less data.
+
+### Question 8
+Which AWS service would you use to quickly deploy a pre-trained model like GPT-J for text generation tasks?
+
+**Answer:** Amazon SageMaker JumpStart allows easy deployment of pre-trained models like GPT-J.
+
+### Question 9
+In a sequence-to-sequence transformer model used for translation, what is the role of the decoder?
+
+**Answer:** The decoder generates the target sequence based on the encoded information from the source sequence.
+
+### Question 10
+When using masked self-attention in GPT models, what is the purpose of the mask?
+
+**Answer:** The mask ensures that each token can only attend to past tokens, not future ones.
+
+### Question 11
+You are using AWS SageMaker JumpStart to deploy a model for text generation. Which model type would you choose for multilingual text generation?
+
+**Answer:** Jurassic-2 is noted for its multilingual capabilities.
+
+### Question 12
+During the training of a transformer model, which aspect allows the model to consider the position of each token within the sequence?
+
+**Answer:** Positional encoding adds information about token positions.
+
+### Question 13
+You are tasked with summarizing large volumes of text data. Which model would you select from AWS’s offerings?
+
+**Answer:** Amazon Titan is optimized for tasks like text summarization.
+
+### Question 14
+In the context of self-attention, which matrices are used to compute the attention scores for each token?
+
+**Answer:** Attention scores are computed by the dot product of Query and Key matrices.
+
+### Question 15
+What is a key advantage of using self-attention in transformer models over traditional RNNs?
+
+**Answer:** Self-attention allows parallel processing, unlike RNNs.
+
+### Question 16
+You are developing a customer support chatbot using Amazon Bedrock. The chatbot needs to respond accurately to specific customer inquiries using recent company data. Which approach would be most effective for this scenario?
+
+**Answer:** RAG (Retrieval-Augmented Generation) is ideal for incorporating recent or proprietary information that the foundational model wasn't originally trained on, making it well-suited for a chatbot needing up-to-date responses.
+
+### Question 17
+You are using Amazon Bedrock to build an AI system for generating marketing content. The system must ensure the content generated adheres to brand guidelines and avoids inappropriate language. Which feature of Amazon Bedrock would best serve this purpose?
+
+**Answer:** By using separate action groups, the LLM can be guided on when to use the knowledge base and when to call the API, making the system more flexible and maintainable.
