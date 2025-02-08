@@ -1,0 +1,239 @@
+---
+title: "AWS SageMaker and Bedrock Quiz"
+format: html
+---
+
+## AWS SageMaker and Bedrock Quiz
+
+This document contains a series of multiple-choice questions with show/hide functionality for answers and detailed explanations.
+
+### Question 1: Predicting User-Item Interactions
+
+::: {.callout-tip}
+**Question**: You're working with a sparse dataset and need to predict user-item interactions. Which SageMaker algorithm is most appropriate?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: Factorization Machines
+
+**Explanation**:
+
+| Algorithm | Purpose |
+|-----------|---------|
+| Factorization Machines | Designed for sparse data and recommendation systems |
+| XGBoost | Handles structured data but is not optimized for sparse matrices |
+| DeepAR | Used for time-series forecasting, not recommendation |
+
+</details>
+
+---
+
+### Question 2: Preventing Overfitting in XGBoost
+
+::: {.callout-tip}
+**Question**: In SageMaker’s XGBoost, which hyperparameter helps prevent overfitting by controlling the step size shrinkage?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: `eta`
+
+**Explanation**:
+
+| Hyperparameter | Function |
+|---------------|----------|
+| `eta` | Controls step size shrinkage to prevent overfitting |
+| `max_depth` | Controls tree depth to prevent overfitting but doesn’t shrink step size |
+| `lambda` | Adds L2 regularization but doesn’t control learning rate |
+
+</details>
+
+---
+
+### Question 3: Forecasting Future Values in Time Series
+
+::: {.callout-tip}
+**Question**: You are tasked with training a SageMaker model to predict future values of a time series. Which algorithm should you choose?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: DeepAR
+
+**Explanation**:
+
+| Algorithm | Purpose |
+|-----------|---------|
+| DeepAR | Specifically designed for time series forecasting |
+| K-Means | Used for clustering, not forecasting |
+| Object2Vec | Used for embeddings, not time series |
+
+</details>
+
+---
+
+### Question 4: Input Format for SageMaker K-Means
+
+::: {.callout-tip}
+**Question**: Which input format is optimal for training a model using SageMaker's K-Means algorithm?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: RecordIO-Protobuf
+
+**Explanation**:
+
+| Format | Supported? |
+|--------|------------|
+| RecordIO-Protobuf | Yes, optimal for efficiency |
+| CSV | Supported but less efficient |
+| JSON | Not officially supported for K-Means |
+
+</details>
+
+---
+
+### Question 5: Multilingual Text Generation in Bedrock
+
+::: {.callout-tip}
+**Question**: You are using AWS SageMaker JumpStart to deploy a model for text generation. Which model type would you choose for multilingual text generation?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: Jurassic-2
+
+**Explanation**:
+
+| Model | Use Case |
+|-------|---------|
+| Jurassic-2 | Strong multilingual text generation capabilities |
+| Amazon Titan | Optimized for summarization and general text tasks |
+| Claude | Designed for conversation and automation |
+
+</details>
+
+---
+
+### Question 6: Ensuring Security When Fine-Tuning Bedrock Models
+
+::: {.callout-tip}
+**Question**: You're working on a Bedrock model that needs to incorporate sensitive customer data during fine-tuning. What steps should you take to ensure the security of this data?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: Use a VPC and PrivateLink
+
+**Explanation**:
+
+| Security Measure | Purpose |
+|----------------|---------|
+| VPC + PrivateLink | Ensures secure data transfer |
+| S3 Bucket with Encryption | Secures stored data but does not prevent exposure during transfer |
+| IAM Roles | Controls access but does not encrypt data during fine-tuning |
+
+</details>
+
+---
+
+### Question 7: Best Deployment Option for High Availability and Low Latency
+
+::: {.callout-tip}
+**Question**: You are tasked with deploying a Bedrock model that requires high availability and low-latency responses. Which deployment option should you choose?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: Provisioned Throughput
+
+**Explanation**:
+
+| Deployment Option | Purpose |
+|------------------|---------|
+| Provisioned Throughput | Ensures low-latency and high availability |
+| Serverless Deployment | Scales automatically but may have variable latency |
+| On-Demand | Suitable for occasional usage but not optimized for high availability |
+
+</details>
+
+---
+
+### Question 8: Preventing Feature Attribution Drift
+
+::: {.callout-tip}
+**Question**: You need to monitor a deployed model for feature attribution drift. Which metric should you monitor using SageMaker Model Monitor?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: SHAP (SHapley Additive exPlanations)
+
+**Explanation**:
+
+| Metric | Use Case |
+|--------|---------|
+| SHAP Values | Measures feature importance and drift |
+| Log Loss | Measures model performance, not feature drift |
+| F1 Score | Measures classification performance, not drift |
+
+</details>
+
+---
+
+### Question 9: Advantage of Using Spot Training in SageMaker
+
+::: {.callout-tip}
+**Question**: What is a key advantage of using SageMaker’s Managed Spot Training?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: Cost Savings
+
+**Explanation**:
+
+| Training Type | Benefit |
+|--------------|--------|
+| Spot Training | Reduces cost by using spare AWS capacity |
+| On-Demand Training | Ensures availability but is more expensive |
+| Dedicated Instances | Provides consistent resources but at a high cost |
+
+</details>
+
+---
+
+### Question 10: Orchestrating Machine Learning Pipelines in SageMaker
+
+::: {.callout-tip}
+**Question**: Which AWS service is used to orchestrate steps in a machine learning pipeline, such as model training and deployment?
+:::
+
+<details>
+<summary>Show Answer</summary>
+
+**Answer**: SageMaker Pipelines
+
+**Explanation**:
+
+| Service | Purpose |
+|---------|---------|
+| SageMaker Pipelines | Automates ML workflows |
+| Step Functions | General-purpose workflow automation |
+| Glue | Used for ETL, not ML pipeline orchestration |
+
+</details>
+
+---
+

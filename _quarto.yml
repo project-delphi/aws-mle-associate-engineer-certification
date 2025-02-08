@@ -48,6 +48,20 @@ website:
             href: sagemaker/sagemaker-optimizing-deployments.qmd
           - text: "AI/ML: SageMaker vs Bedrock"
             href: sagemaker/sagemaker-vs-bedrock.qmd
+      - text: "Practice Questions"
+        menu:
+          - text: "Practice Questions 1"
+            href: practice/practice-questions-1.qmd
+          - text: "Practice Questions 2"
+            href: practice/practice-questions-2.qmd
+          - text: "Practice Questions 3"
+            href: practice/practice-questions-3.qmd
+          - text: "Practice Questions 4"
+            href: practice/practice-questions-4.qmd
+          - text: "Practice Questions 5"
+            href: practice/practice-questions-5.qmd
+          - text: "Practice Questions 6"
+            href: practice/practice-questions-6.qmd
 
 format:
   html:

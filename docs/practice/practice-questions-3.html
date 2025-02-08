@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ravi Kalia">
-<meta name="dcterms.date" content="2025-02-04">
 
-<title>Deploying and Monitoring SageMaker Models in a VPC – AWS Machine Learning Associate Certification</title>
+<title>AWS Machine Learning Quiz – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -71,10 +35,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -180,6 +144,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">SageMaker Pipelines</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
+ <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
  <span class="dropdown-text">SageMaker for Model Building and Deployment</span></a>
   </li>  
@@ -261,32 +229,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Deploying and Monitoring SageMaker Models in a VPC</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">AWS</div>
-    <div class="quarto-category">Machine Learning</div>
-    <div class="quarto-category">Deployment</div>
-    <div class="quarto-category">Monitoring</div>
-  </div>
-  </div>
+<h1 class="title">AWS Machine Learning Quiz</h1>
+</div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ravi Kalia </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 4, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -296,136 +246,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Amazon SageMaker provides powerful tools for deploying and monitoring machine learning models in a secure and scalable way. This blog post covers:</p>
-<ul>
-<li>Configuring SageMaker endpoints within a VPC network.</li>
-<li>Deploying and hosting models using the SageMaker SDK.</li>
-<li>Monitoring models in production using SageMaker Model Monitor.</li>
-<li>Detecting changes in data distribution with SageMaker Clarify.</li>
-</ul>
+<section id="aws-ml-quiz-questions" class="level2">
+<h2 class="anchored" data-anchor-id="aws-ml-quiz-questions">AWS ML Quiz Questions</h2>
+<section id="question-1" class="level3">
+<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>You’re working with a sparse dataset and need to predict user-item interactions. Which SageMaker algorithm is most appropriate?</p>
 </section>
-<section id="configuring-sagemaker-endpoints-within-a-vpc" class="level2">
-<h2 class="anchored" data-anchor-id="configuring-sagemaker-endpoints-within-a-vpc">Configuring SageMaker Endpoints within a VPC</h2>
-<p>Deploying SageMaker endpoints within an Amazon Virtual Private Cloud (VPC) enhances security by preventing data from being exposed to the internet.</p>
-<section id="steps-to-configure-a-vpc-enabled-endpoint" class="level3">
-<h3 class="anchored" data-anchor-id="steps-to-configure-a-vpc-enabled-endpoint">Steps to Configure a VPC-Enabled Endpoint:</h3>
-<ol type="1">
-<li><strong>Create a VPC</strong> with private and public subnets.</li>
-<li><strong>Set up security groups</strong> for inbound and outbound rules.</li>
-<li><strong>Deploy SageMaker endpoints</strong> inside the VPC.</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sagemaker <span class="op">=</span> boto3.client(<span class="st">'sagemaker'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sagemaker.create_endpoint_config(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    EndpointConfigName<span class="op">=</span><span class="st">'my-vpc-endpoint-config'</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ProductionVariants<span class="op">=</span>[</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">'VariantName'</span>: <span class="st">'AllTraffic'</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">'ModelName'</span>: <span class="st">'my-sagemaker-model'</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">'InstanceType'</span>: <span class="st">'ml.m5.large'</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">'InitialInstanceCount'</span>: <span class="dv">1</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    VpcConfig<span class="op">=</span>{</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Subnets'</span>: [<span class="st">'subnet-xxxxxx'</span>],</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'SecurityGroupIds'</span>: [<span class="st">'sg-xxxxxx'</span>]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="question-2" class="level3">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>In SageMaker’s XGBoost, which hyperparameter helps prevent overfitting by controlling the step size shrinkage?</p>
+<p><strong>Answer:</strong> The <code>eta</code> hyperparameter in XGBoost controls the step size shrinkage, which helps prevent overfitting by reducing the impact of individual trees.</p>
 </section>
+<section id="question-3" class="level3">
+<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>You are tasked with training a SageMaker model to predict future values of a time series. Which algorithm should you choose?</p>
+<p><strong>Answer:</strong> DeepAR is designed for forecasting future values in time series data.</p>
 </section>
-<section id="deploying-and-hosting-models-using-the-sagemaker-sdk" class="level2">
-<h2 class="anchored" data-anchor-id="deploying-and-hosting-models-using-the-sagemaker-sdk">Deploying and Hosting Models using the SageMaker SDK</h2>
-<p>Using the SageMaker SDK, we can deploy models to fully managed endpoints with minimal setup.</p>
-<section id="example-deploying-a-model-with-the-sagemaker-sdk" class="level3">
-<h3 class="anchored" data-anchor-id="example-deploying-a-model-with-the-sagemaker-sdk">Example: Deploying a Model with the SageMaker SDK</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker <span class="im">import</span> Session, Model</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> Session()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    image_uri<span class="op">=</span><span class="st">'your-ecr-image-uri'</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model_data<span class="op">=</span><span class="st">'s3://your-model-path/model.tar.gz'</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span><span class="st">'arn:aws:iam::account-id:role/service-role'</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>predictor <span class="op">=</span> model.deploy(instance_type<span class="op">=</span><span class="st">'ml.m5.large'</span>, initial_instance_count<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="question-4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p>Which input format is optimal for training a model using SageMaker’s K-Means algorithm?</p>
+<p><strong>Answer:</strong> SageMaker’s K-Means algorithm typically expects input data in the RecordIO-Protobuf format, though CSV is also supported.</p>
 </section>
+<section id="question-5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<p>When using SageMaker’s Object2Vec algorithm, what is the primary output?</p>
+<p><strong>Answer:</strong> Object2Vec produces low-dimensional dense embeddings of high-dimensional objects, useful for tasks like similarity searches and recommendation systems.</p>
 </section>
-<section id="monitoring-models-in-production-with-sagemaker-model-monitor" class="level2">
-<h2 class="anchored" data-anchor-id="monitoring-models-in-production-with-sagemaker-model-monitor">Monitoring Models in Production with SageMaker Model Monitor</h2>
-<p>Model Monitor enables continuous evaluation of model predictions and data quality.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 56%">
-<col style="width: 43%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Monitoring Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Data Quality</td>
-<td>Detects missing or unexpected values in input data.</td>
-</tr>
-<tr class="even">
-<td>Model Bias</td>
-<td>Identifies bias drift over time.</td>
-</tr>
-<tr class="odd">
-<td>Model Explainability</td>
-<td>Evaluates feature importance.</td>
-</tr>
-<tr class="even">
-<td>Model Drift</td>
-<td>Detects changes in model predictions.</td>
-</tr>
-</tbody>
-</table>
-<section id="example-setting-up-model-monitor" class="level3">
-<h3 class="anchored" data-anchor-id="example-setting-up-model-monitor">Example: Setting Up Model Monitor</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.model_monitor <span class="im">import</span> DataCaptureConfig</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data_capture_config <span class="op">=</span> DataCaptureConfig(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    enable_capture<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    sampling_percentage<span class="op">=</span><span class="dv">100</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    destination_s3_uri<span class="op">=</span><span class="st">'s3://your-monitoring-bucket/'</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>predictor.update_data_capture_config(data_capture_config)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="question-6" class="level3">
+<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<p>When using a Transformer model for text classification, which component is responsible for capturing the relationships between different tokens in a sentence?</p>
+<p><strong>Answer:</strong> Self-Attention captures the relationships between tokens by considering the entire sentence context.</p>
 </section>
+<section id="question-7" class="level3">
+<h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<p>You are fine-tuning a pre-trained GPT model for a customer service chatbot. Which training technique is most appropriate if you want to adapt the model with minimal training data?</p>
+<p><strong>Answer:</strong> Freezing the initial layers and training the last few layers is a common fine-tuning approach that requires less data.</p>
 </section>
-<section id="detecting-data-distribution-changes-with-sagemaker-clarify" class="level2">
-<h2 class="anchored" data-anchor-id="detecting-data-distribution-changes-with-sagemaker-clarify">Detecting Data Distribution Changes with SageMaker Clarify</h2>
-<p>SageMaker Clarify helps identify shifts in data distribution that can impact model performance.</p>
-<section id="example-running-a-baseline-drift-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="example-running-a-baseline-drift-analysis">Example: Running a Baseline Drift Analysis</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.clarify <span class="im">import</span> BiasConfig, ModelMonitor</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>bias_config <span class="op">=</span> BiasConfig(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    label_values_or_threshold<span class="op">=</span>[<span class="dv">1</span>],</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    facet_name<span class="op">=</span><span class="st">'feature-column'</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    facet_values_or_threshold<span class="op">=</span>[<span class="dv">0</span>]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>monitor <span class="op">=</span> ModelMonitor(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    job_definition_name<span class="op">=</span><span class="st">'clarify-job'</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span><span class="st">'arn:aws:iam::account-id:role/service-role'</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    bias_config<span class="op">=</span>bias_config</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>monitor.create_monitoring_schedule()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="question-8" class="level3">
+<h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
+<p>Which AWS service would you use to quickly deploy a pre-trained model like GPT-J for text generation tasks?</p>
+<p><strong>Answer:</strong> Amazon SageMaker JumpStart allows easy deployment of pre-trained models like GPT-J.</p>
 </section>
+<section id="question-9" class="level3">
+<h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
+<p>In a sequence-to-sequence transformer model used for translation, what is the role of the decoder?</p>
+<p><strong>Answer:</strong> The decoder generates the target sequence based on the encoded information from the source sequence.</p>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>By configuring SageMaker endpoints within a VPC, deploying with the SageMaker SDK, and monitoring data with Model Monitor and Clarify, we ensure secure and efficient model operations. These best practices help maintain model reliability and performance in production environments.</p>
+<section id="question-10" class="level3">
+<h3 class="anchored" data-anchor-id="question-10">Question 10</h3>
+<p>When using masked self-attention in GPT models, what is the purpose of the mask?</p>
+<p><strong>Answer:</strong> The mask ensures that each token can only attend to past tokens, not future ones.</p>
+</section>
+<section id="question-11" class="level3">
+<h3 class="anchored" data-anchor-id="question-11">Question 11</h3>
+<p>You are using AWS SageMaker JumpStart to deploy a model for text generation. Which model type would you choose for multilingual text generation?</p>
+<p><strong>Answer:</strong> Jurassic-2 is noted for its multilingual capabilities.</p>
+</section>
+<section id="question-12" class="level3">
+<h3 class="anchored" data-anchor-id="question-12">Question 12</h3>
+<p>During the training of a transformer model, which aspect allows the model to consider the position of each token within the sequence?</p>
+<p><strong>Answer:</strong> Positional encoding adds information about token positions.</p>
+</section>
+<section id="question-13" class="level3">
+<h3 class="anchored" data-anchor-id="question-13">Question 13</h3>
+<p>You are tasked with summarizing large volumes of text data. Which model would you select from AWS’s offerings?</p>
+<p><strong>Answer:</strong> Amazon Titan is optimized for tasks like text summarization.</p>
+</section>
+<section id="question-14" class="level3">
+<h3 class="anchored" data-anchor-id="question-14">Question 14</h3>
+<p>In the context of self-attention, which matrices are used to compute the attention scores for each token?</p>
+<p><strong>Answer:</strong> Attention scores are computed by the dot product of Query and Key matrices.</p>
+</section>
+<section id="question-15" class="level3">
+<h3 class="anchored" data-anchor-id="question-15">Question 15</h3>
+<p>What is a key advantage of using self-attention in transformer models over traditional RNNs?</p>
+<p><strong>Answer:</strong> Self-attention allows parallel processing, unlike RNNs.</p>
+</section>
+<section id="question-16" class="level3">
+<h3 class="anchored" data-anchor-id="question-16">Question 16</h3>
+<p>You are developing a customer support chatbot using Amazon Bedrock. The chatbot needs to respond accurately to specific customer inquiries using recent company data. Which approach would be most effective for this scenario?</p>
+<p><strong>Answer:</strong> RAG (Retrieval-Augmented Generation) is ideal for incorporating recent or proprietary information that the foundational model wasn’t originally trained on, making it well-suited for a chatbot needing up-to-date responses.</p>
+</section>
+<section id="question-17" class="level3">
+<h3 class="anchored" data-anchor-id="question-17">Question 17</h3>
+<p>You are using Amazon Bedrock to build an AI system for generating marketing content. The system must ensure the content generated adheres to brand guidelines and avoids inappropriate language. Which feature of Amazon Bedrock would best serve this purpose?</p>
+<p><strong>Answer:</strong> By using separate action groups, the LLM can be guided on when to use the knowledge base and when to call the API, making the system more flexible and maintainable.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

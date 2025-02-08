@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ravi Kalia">
-<meta name="dcterms.date" content="2025-02-04">
+<meta name="dcterms.date" content="2025-02-07">
 
-<title>Deploying and Monitoring SageMaker Models in a VPC – AWS Machine Learning Associate Certification</title>
+<title>Understanding AWS Athena, Glue, and Data Processing Services – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -178,6 +178,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
+ <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
@@ -255,18 +259,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#aws-athena" id="toc-aws-athena" class="nav-link" data-scroll-target="#aws-athena">AWS Athena</a>
+  <ul class="collapse">
+  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features:</a></li>
+  <li><a href="#example-query-querying-an-s3-dataset" id="toc-example-query-querying-an-s3-dataset" class="nav-link" data-scroll-target="#example-query-querying-an-s3-dataset">Example Query (Querying an S3 Dataset):</a></li>
+  <li><a href="#when-to-use" id="toc-when-to-use" class="nav-link" data-scroll-target="#when-to-use">When to Use:</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-databrew" id="toc-aws-glue-databrew" class="nav-link" data-scroll-target="#aws-glue-databrew">AWS Glue DataBrew</a>
+  <ul class="collapse">
+  <li><a href="#key-features-1" id="toc-key-features-1" class="nav-link" data-scroll-target="#key-features-1">Key Features:</a></li>
+  <li><a href="#example-applying-a-transformation-using-python-api" id="toc-example-applying-a-transformation-using-python-api" class="nav-link" data-scroll-target="#example-applying-a-transformation-using-python-api">Example (Applying a Transformation Using Python API):</a></li>
+  <li><a href="#when-to-use-1" id="toc-when-to-use-1" class="nav-link" data-scroll-target="#when-to-use-1">When to Use:</a></li>
+  <li><a href="#limitations-1" id="toc-limitations-1" class="nav-link" data-scroll-target="#limitations-1">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-data-catalog" id="toc-aws-glue-data-catalog" class="nav-link" data-scroll-target="#aws-glue-data-catalog">AWS Glue Data Catalog</a>
+  <ul class="collapse">
+  <li><a href="#key-features-2" id="toc-key-features-2" class="nav-link" data-scroll-target="#key-features-2">Key Features:</a></li>
+  <li><a href="#example-creating-a-table-in-glue-data-catalog" id="toc-example-creating-a-table-in-glue-data-catalog" class="nav-link" data-scroll-target="#example-creating-a-table-in-glue-data-catalog">Example (Creating a Table in Glue Data Catalog):</a></li>
+  <li><a href="#when-to-use-2" id="toc-when-to-use-2" class="nav-link" data-scroll-target="#when-to-use-2">When to Use:</a></li>
+  <li><a href="#limitations-2" id="toc-limitations-2" class="nav-link" data-scroll-target="#limitations-2">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-etl" id="toc-aws-glue-etl" class="nav-link" data-scroll-target="#aws-glue-etl">AWS Glue ETL</a>
+  <ul class="collapse">
+  <li><a href="#key-features-3" id="toc-key-features-3" class="nav-link" data-scroll-target="#key-features-3">Key Features:</a></li>
+  <li><a href="#example-simple-etl-script-in-pyspark" id="toc-example-simple-etl-script-in-pyspark" class="nav-link" data-scroll-target="#example-simple-etl-script-in-pyspark">Example (Simple ETL Script in PySpark):</a></li>
+  <li><a href="#when-to-use-3" id="toc-when-to-use-3" class="nav-link" data-scroll-target="#when-to-use-3">When to Use:</a></li>
+  <li><a href="#limitations-3" id="toc-limitations-3" class="nav-link" data-scroll-target="#limitations-3">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-crawlers" id="toc-aws-glue-crawlers" class="nav-link" data-scroll-target="#aws-glue-crawlers">AWS Glue Crawlers</a>
+  <ul class="collapse">
+  <li><a href="#key-features-4" id="toc-key-features-4" class="nav-link" data-scroll-target="#key-features-4">Key Features:</a></li>
+  <li><a href="#example-creating-a-glue-crawler" id="toc-example-creating-a-glue-crawler" class="nav-link" data-scroll-target="#example-creating-a-glue-crawler">Example (Creating a Glue Crawler):</a></li>
+  <li><a href="#when-to-use-4" id="toc-when-to-use-4" class="nav-link" data-scroll-target="#when-to-use-4">When to Use:</a></li>
+  <li><a href="#limitations-4" id="toc-limitations-4" class="nav-link" data-scroll-target="#limitations-4">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-studio" id="toc-aws-glue-studio" class="nav-link" data-scroll-target="#aws-glue-studio">AWS Glue Studio</a>
+  <ul class="collapse">
+  <li><a href="#key-features-5" id="toc-key-features-5" class="nav-link" data-scroll-target="#key-features-5">Key Features:</a></li>
+  <li><a href="#when-to-use-5" id="toc-when-to-use-5" class="nav-link" data-scroll-target="#when-to-use-5">When to Use:</a></li>
+  <li><a href="#limitations-5" id="toc-limitations-5" class="nav-link" data-scroll-target="#limitations-5">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#aws-glue-data-quality" id="toc-aws-glue-data-quality" class="nav-link" data-scroll-target="#aws-glue-data-quality">AWS Glue Data Quality</a>
+  <ul class="collapse">
+  <li><a href="#key-features-6" id="toc-key-features-6" class="nav-link" data-scroll-target="#key-features-6">Key Features:</a></li>
+  <li><a href="#example-running-a-data-quality-check-in-glue" id="toc-example-running-a-data-quality-check-in-glue" class="nav-link" data-scroll-target="#example-running-a-data-quality-check-in-glue">Example (Running a Data Quality Check in Glue):</a></li>
+  <li><a href="#when-to-use-6" id="toc-when-to-use-6" class="nav-link" data-scroll-target="#when-to-use-6">When to Use:</a></li>
+  <li><a href="#limitations-6" id="toc-limitations-6" class="nav-link" data-scroll-target="#limitations-6">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table">Summary Table</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Deploying and Monitoring SageMaker Models in a VPC</h1>
+<h1 class="title">Understanding AWS Athena, Glue, and Data Processing Services</h1>
   <div class="quarto-categories">
     <div class="quarto-category">AWS</div>
-    <div class="quarto-category">Machine Learning</div>
-    <div class="quarto-category">Deployment</div>
-    <div class="quarto-category">Monitoring</div>
+    <div class="quarto-category">Data Engineering</div>
+    <div class="quarto-category">Cloud</div>
   </div>
   </div>
 
@@ -284,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 4, 2025</p>
+      <p class="date">February 7, 2025</p>
     </div>
   </div>
   
@@ -296,134 +357,293 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Amazon SageMaker provides powerful tools for deploying and monitoring machine learning models in a secure and scalable way. This blog post covers:</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>AWS offers a suite of data processing and analytics tools to help organizations manage large-scale data efficiently. In this blog post, we will explore <strong>AWS Athena, AWS Glue DataBrew, AWS Glue Data Catalog, AWS Glue ETL, AWS Glue Crawlers, AWS Glue Studio, and AWS Glue Data Quality</strong>. Each of these services plays a unique role in data processing and analytics.</p>
+<hr>
+</section>
+<section id="aws-athena" class="level1">
+<h1>AWS Athena</h1>
+<p>AWS Athena is a <strong>serverless interactive query service</strong> that allows users to run SQL queries on structured and semi-structured data stored in Amazon S3.</p>
+<section id="key-features" class="level2">
+<h2 class="anchored" data-anchor-id="key-features">Key Features:</h2>
 <ul>
-<li>Configuring SageMaker endpoints within a VPC network.</li>
-<li>Deploying and hosting models using the SageMaker SDK.</li>
-<li>Monitoring models in production using SageMaker Model Monitor.</li>
-<li>Detecting changes in data distribution with SageMaker Clarify.</li>
+<li><strong>Serverless:</strong> No infrastructure management required.</li>
+<li><strong>SQL-Based Queries:</strong> Uses standard SQL via Presto and Trino engines.</li>
+<li><strong>Pay-Per-Query:</strong> Charges based on the amount of data scanned.</li>
+<li><strong>Integration with AWS Glue:</strong> Uses Glue Data Catalog for schema management.</li>
 </ul>
 </section>
-<section id="configuring-sagemaker-endpoints-within-a-vpc" class="level2">
-<h2 class="anchored" data-anchor-id="configuring-sagemaker-endpoints-within-a-vpc">Configuring SageMaker Endpoints within a VPC</h2>
-<p>Deploying SageMaker endpoints within an Amazon Virtual Private Cloud (VPC) enhances security by preventing data from being exposed to the internet.</p>
-<section id="steps-to-configure-a-vpc-enabled-endpoint" class="level3">
-<h3 class="anchored" data-anchor-id="steps-to-configure-a-vpc-enabled-endpoint">Steps to Configure a VPC-Enabled Endpoint:</h3>
-<ol type="1">
-<li><strong>Create a VPC</strong> with private and public subnets.</li>
-<li><strong>Set up security groups</strong> for inbound and outbound rules.</li>
-<li><strong>Deploy SageMaker endpoints</strong> inside the VPC.</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sagemaker <span class="op">=</span> boto3.client(<span class="st">'sagemaker'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sagemaker.create_endpoint_config(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    EndpointConfigName<span class="op">=</span><span class="st">'my-vpc-endpoint-config'</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ProductionVariants<span class="op">=</span>[</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">'VariantName'</span>: <span class="st">'AllTraffic'</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">'ModelName'</span>: <span class="st">'my-sagemaker-model'</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">'InstanceType'</span>: <span class="st">'ml.m5.large'</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">'InitialInstanceCount'</span>: <span class="dv">1</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    VpcConfig<span class="op">=</span>{</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Subnets'</span>: [<span class="st">'subnet-xxxxxx'</span>],</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'SecurityGroupIds'</span>: [<span class="st">'sg-xxxxxx'</span>]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="example-query-querying-an-s3-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="example-query-querying-an-s3-dataset">Example Query (Querying an S3 Dataset):</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> sales_data</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> transaction_date <span class="op">&gt;=</span> <span class="st">'2024-01-01'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use">When to Use:</h2>
+<p>✅ Ad-hoc analysis on S3 data<br>
+✅ Business intelligence and dashboards<br>
+✅ Cost-effective querying</p>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations:</h2>
+<p>❌ Performance depends on partitioning and file format optimization<br>
+❌ No built-in transaction support</p>
+<hr>
 </section>
 </section>
-<section id="deploying-and-hosting-models-using-the-sagemaker-sdk" class="level2">
-<h2 class="anchored" data-anchor-id="deploying-and-hosting-models-using-the-sagemaker-sdk">Deploying and Hosting Models using the SageMaker SDK</h2>
-<p>Using the SageMaker SDK, we can deploy models to fully managed endpoints with minimal setup.</p>
-<section id="example-deploying-a-model-with-the-sagemaker-sdk" class="level3">
-<h3 class="anchored" data-anchor-id="example-deploying-a-model-with-the-sagemaker-sdk">Example: Deploying a Model with the SageMaker SDK</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker <span class="im">import</span> Session, Model</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> Session()</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    image_uri<span class="op">=</span><span class="st">'your-ecr-image-uri'</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model_data<span class="op">=</span><span class="st">'s3://your-model-path/model.tar.gz'</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span><span class="st">'arn:aws:iam::account-id:role/service-role'</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>predictor <span class="op">=</span> model.deploy(instance_type<span class="op">=</span><span class="st">'ml.m5.large'</span>, initial_instance_count<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="aws-glue-databrew" class="level1">
+<h1>AWS Glue DataBrew</h1>
+<p>AWS Glue DataBrew is a <strong>visual data preparation</strong> tool that allows data analysts and engineers to clean and transform data without writing code.</p>
+<section id="key-features-1" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-1">Key Features:</h2>
+<ul>
+<li><strong>No-Code Data Cleaning:</strong> GUI-based transformations.</li>
+<li><strong>Prebuilt Transformations:</strong> 250+ transformations like normalization, deduplication, and missing value handling.</li>
+<li><strong>Integration with S3, Redshift, and Athena:</strong> Works with popular AWS data services.</li>
+</ul>
+</section>
+<section id="example-applying-a-transformation-using-python-api" class="level2">
+<h2 class="anchored" data-anchor-id="example-applying-a-transformation-using-python-api">Example (Applying a Transformation Using Python API):</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'databrew'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.create_recipe(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Name<span class="op">=</span><span class="st">'clean_sales_data'</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    Steps<span class="op">=</span>[</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'Action'</span>: <span class="st">'REMOVE_DUPLICATES'</span>, <span class="st">'Column'</span>: <span class="st">'order_id'</span>},</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'Action'</span>: <span class="st">'FILL_MISSING_VALUES'</span>, <span class="st">'Column'</span>: <span class="st">'price'</span>, <span class="st">'Value'</span>: <span class="st">'0'</span>}</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-1" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-1">When to Use:</h2>
+<p>✅ Data cleaning and transformation without coding<br>
+✅ Exploratory data analysis<br>
+✅ Preparing data for machine learning</p>
+</section>
+<section id="limitations-1" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-1">Limitations:</h2>
+<p>❌ Not ideal for large-scale ETL pipelines<br>
+❌ Limited advanced transformation capabilities</p>
+<hr>
 </section>
 </section>
-<section id="monitoring-models-in-production-with-sagemaker-model-monitor" class="level2">
-<h2 class="anchored" data-anchor-id="monitoring-models-in-production-with-sagemaker-model-monitor">Monitoring Models in Production with SageMaker Model Monitor</h2>
-<p>Model Monitor enables continuous evaluation of model predictions and data quality.</p>
+<section id="aws-glue-data-catalog" class="level1">
+<h1>AWS Glue Data Catalog</h1>
+<p>AWS Glue Data Catalog is a <strong>metadata repository</strong> that stores schema information about datasets in AWS.</p>
+<section id="key-features-2" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-2">Key Features:</h2>
+<ul>
+<li><strong>Centralized Metadata Store:</strong> Stores schema and table definitions.</li>
+<li><strong>Supports Multiple Services:</strong> Used by Athena, Redshift, and EMR.</li>
+<li><strong>Automated Schema Detection:</strong> Works with Glue Crawlers.</li>
+</ul>
+</section>
+<section id="example-creating-a-table-in-glue-data-catalog" class="level2">
+<h2 class="anchored" data-anchor-id="example-creating-a-table-in-glue-data-catalog">Example (Creating a Table in Glue Data Catalog):</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'glue'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.create_table(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    DatabaseName<span class="op">=</span><span class="st">'sales_db'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    TableInput<span class="op">=</span>{</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Name'</span>: <span class="st">'sales_data'</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'StorageDescriptor'</span>: {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Columns'</span>: [</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                {<span class="st">'Name'</span>: <span class="st">'order_id'</span>, <span class="st">'Type'</span>: <span class="st">'string'</span>},</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                {<span class="st">'Name'</span>: <span class="st">'amount'</span>, <span class="st">'Type'</span>: <span class="st">'double'</span>}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            ],</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Location'</span>: <span class="st">'s3://my-bucket/sales/'</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-2" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-2">When to Use:</h2>
+<p>✅ Managing table metadata for Athena and Redshift<br>
+✅ Schema discovery and governance</p>
+</section>
+<section id="limitations-2" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-2">Limitations:</h2>
+<p>❌ Only supports AWS data sources</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-etl" class="level1">
+<h1>AWS Glue ETL</h1>
+<p>AWS Glue ETL (Extract, Transform, Load) is a <strong>serverless data integration</strong> service that automates data preparation and movement.</p>
+<section id="key-features-3" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-3">Key Features:</h2>
+<ul>
+<li><strong>Serverless Apache Spark-Based Processing</strong></li>
+<li><strong>Job Scheduling &amp; Dependency Management</strong></li>
+<li><strong>Automatic Schema Inference</strong></li>
+<li><strong>Supports Python and Scala</strong></li>
+</ul>
+</section>
+<section id="example-simple-etl-script-in-pyspark" class="level2">
+<h2 class="anchored" data-anchor-id="example-simple-etl-script-in-pyspark">Example (Simple ETL Script in PySpark):</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> awsglue.context <span class="im">import</span> GlueContext</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.context <span class="im">import</span> SparkContext</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>glueContext <span class="op">=</span> GlueContext(SparkContext.getOrCreate())</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> glueContext.create_dynamic_frame.from_catalog(database<span class="op">=</span><span class="st">"sales_db"</span>, table_name<span class="op">=</span><span class="st">"sales_data"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>df.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-3" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-3">When to Use:</h2>
+<p>✅ Large-scale data transformations<br>
+✅ Data migration across AWS services</p>
+</section>
+<section id="limitations-3" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-3">Limitations:</h2>
+<p>❌ Learning curve for PySpark-based development</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-crawlers" class="level1">
+<h1>AWS Glue Crawlers</h1>
+<p>AWS Glue Crawlers <strong>automatically scan data sources and populate the Glue Data Catalog.</strong></p>
+<section id="key-features-4" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-4">Key Features:</h2>
+<ul>
+<li><strong>Schema Detection &amp; Updating</strong></li>
+<li><strong>Supports JSON, CSV, Parquet, and more</strong></li>
+<li><strong>Runs on a schedule or on-demand</strong></li>
+</ul>
+</section>
+<section id="example-creating-a-glue-crawler" class="level2">
+<h2 class="anchored" data-anchor-id="example-creating-a-glue-crawler">Example (Creating a Glue Crawler):</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'glue'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.create_crawler(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    Name<span class="op">=</span><span class="st">'sales_crawler'</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    Role<span class="op">=</span><span class="st">'AWSGlueServiceRole'</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    DatabaseName<span class="op">=</span><span class="st">'sales_db'</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    Targets<span class="op">=</span>{<span class="st">'S3Targets'</span>: [{<span class="st">'Path'</span>: <span class="st">'s3://my-bucket/sales/'</span>}]}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-4" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-4">When to Use:</h2>
+<p>✅ Keeping schema definitions updated<br>
+✅ Automating data discovery</p>
+</section>
+<section id="limitations-4" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-4">Limitations:</h2>
+<p>❌ Not optimized for highly dynamic schemas</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-studio" class="level1">
+<h1>AWS Glue Studio</h1>
+<p>AWS Glue Studio is a <strong>visual interface for designing, running, and monitoring Glue ETL jobs</strong>.</p>
+<section id="key-features-5" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-5">Key Features:</h2>
+<ul>
+<li><strong>Drag-and-Drop UI for ETL Pipelines</strong></li>
+<li><strong>Code Generation for Python &amp; Spark</strong></li>
+<li><strong>Integrated Job Monitoring</strong></li>
+</ul>
+</section>
+<section id="when-to-use-5" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-5">When to Use:</h2>
+<p>✅ Simplifying ETL development<br>
+✅ Visualizing data pipelines</p>
+</section>
+<section id="limitations-5" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-5">Limitations:</h2>
+<p>❌ Limited advanced transformations</p>
+<hr>
+</section>
+</section>
+<section id="aws-glue-data-quality" class="level1">
+<h1>AWS Glue Data Quality</h1>
+<p>AWS Glue Data Quality is a <strong>data profiling and validation tool</strong> that ensures data integrity.</p>
+<section id="key-features-6" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-6">Key Features:</h2>
+<ul>
+<li><strong>Automated Data Quality Rules</strong></li>
+<li><strong>Anomaly Detection and Validation</strong></li>
+<li><strong>Integration with Glue ETL and Athena</strong></li>
+</ul>
+</section>
+<section id="example-running-a-data-quality-check-in-glue" class="level2">
+<h2 class="anchored" data-anchor-id="example-running-a-data-quality-check-in-glue">Example (Running a Data Quality Check in Glue):</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'glue'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.create_data_quality_ruleset(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    Name<span class="op">=</span><span class="st">'sales_data_quality'</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    RulesetExpression<span class="op">=</span><span class="st">'amount &gt; 0'</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-6" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-6">When to Use:</h2>
+<p>✅ Ensuring clean and valid data<br>
+✅ Identifying anomalies</p>
+</section>
+<section id="limitations-6" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-6">Limitations:</h2>
+<p>❌ Limited rule customization</p>
+<hr>
+</section>
+</section>
+<section id="summary-table" class="level1">
+<h1>Summary Table</h1>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 56%">
-<col style="width: 43%">
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 41%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Monitoring Type</th>
-<th>Description</th>
+<th>Service</th>
+<th>Purpose</th>
+<th>Key Feature</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Data Quality</td>
-<td>Detects missing or unexpected values in input data.</td>
+<td><strong>Athena</strong></td>
+<td>Query data in S3</td>
+<td>Serverless SQL engine</td>
 </tr>
 <tr class="even">
-<td>Model Bias</td>
-<td>Identifies bias drift over time.</td>
+<td><strong>DataBrew</strong></td>
+<td>No-code data preparation</td>
+<td>GUI-based transformations</td>
 </tr>
 <tr class="odd">
-<td>Model Explainability</td>
-<td>Evaluates feature importance.</td>
+<td><strong>Data Catalog</strong></td>
+<td>Metadata management</td>
+<td>Schema storage for AWS services</td>
 </tr>
 <tr class="even">
-<td>Model Drift</td>
-<td>Detects changes in model predictions.</td>
+<td><strong>Glue ETL</strong></td>
+<td>Large-scale data transformation</td>
+<td>Apache Spark-based ETL</td>
+</tr>
+<tr class="odd">
+<td><strong>Crawlers</strong></td>
+<td>Automate schema detection</td>
+<td>Populate Glue Data Catalog</td>
+</tr>
+<tr class="even">
+<td><strong>Glue Studio</strong></td>
+<td>Visual ETL workflow</td>
+<td>Drag-and-drop UI</td>
+</tr>
+<tr class="odd">
+<td><strong>Data Quality</strong></td>
+<td>Data validation</td>
+<td>Automated rule-based checks</td>
 </tr>
 </tbody>
 </table>
-<section id="example-setting-up-model-monitor" class="level3">
-<h3 class="anchored" data-anchor-id="example-setting-up-model-monitor">Example: Setting Up Model Monitor</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.model_monitor <span class="im">import</span> DataCaptureConfig</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data_capture_config <span class="op">=</span> DataCaptureConfig(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    enable_capture<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    sampling_percentage<span class="op">=</span><span class="dv">100</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    destination_s3_uri<span class="op">=</span><span class="st">'s3://your-monitoring-bucket/'</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>predictor.update_data_capture_config(data_capture_config)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
 </section>
-</section>
-<section id="detecting-data-distribution-changes-with-sagemaker-clarify" class="level2">
-<h2 class="anchored" data-anchor-id="detecting-data-distribution-changes-with-sagemaker-clarify">Detecting Data Distribution Changes with SageMaker Clarify</h2>
-<p>SageMaker Clarify helps identify shifts in data distribution that can impact model performance.</p>
-<section id="example-running-a-baseline-drift-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="example-running-a-baseline-drift-analysis">Example: Running a Baseline Drift Analysis</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.clarify <span class="im">import</span> BiasConfig, ModelMonitor</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>bias_config <span class="op">=</span> BiasConfig(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    label_values_or_threshold<span class="op">=</span>[<span class="dv">1</span>],</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    facet_name<span class="op">=</span><span class="st">'feature-column'</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    facet_values_or_threshold<span class="op">=</span>[<span class="dv">0</span>]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>monitor <span class="op">=</span> ModelMonitor(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    job_definition_name<span class="op">=</span><span class="st">'clarify-job'</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span><span class="st">'arn:aws:iam::account-id:role/service-role'</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    bias_config<span class="op">=</span>bias_config</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>monitor.create_monitoring_schedule()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>By configuring SageMaker endpoints within a VPC, deploying with the SageMaker SDK, and monitoring data with Model Monitor and Clarify, we ensure secure and efficient model operations. These best practices help maintain model reliability and performance in production environments.</p>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>AWS provides a powerful ecosystem for data processing. Understanding <strong>Athena, Glue, and related services</strong> will help you build efficient, scalable data pipelines. 🚀</p>
 
 
 </section>

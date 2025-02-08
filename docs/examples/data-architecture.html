@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ravi Kalia">
-<meta name="dcterms.date" content="2025-02-04">
 
-<title>Deploying and Monitoring SageMaker Models in a VPC – AWS Machine Learning Associate Certification</title>
+<title>Understanding Data Warehousing, Data Mesh, Data Lakehouse, and Data Lake – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,10 +70,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -178,6 +177,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-pipelines.html">
  <span class="dropdown-text">SageMaker Pipelines</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sagemaker/sagemaker-processing-vs-training-vs-hosting.html">
+ <span class="dropdown-text">SageMaker Processing vs Training vs Hosting</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../sagemaker/sagemaker-model-building-and-deployment.html">
@@ -255,18 +258,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data-warehousing" id="toc-data-warehousing" class="nav-link" data-scroll-target="#data-warehousing">Data Warehousing</a>
+  <ul class="collapse">
+  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features:</a></li>
+  <li><a href="#example-code-using-amazon-redshift" id="toc-example-code-using-amazon-redshift" class="nav-link" data-scroll-target="#example-code-using-amazon-redshift">Example Code (Using Amazon Redshift)</a></li>
+  <li><a href="#when-to-use" id="toc-when-to-use" class="nav-link" data-scroll-target="#when-to-use">When to Use:</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#data-mesh" id="toc-data-mesh" class="nav-link" data-scroll-target="#data-mesh">Data Mesh</a>
+  <ul class="collapse">
+  <li><a href="#key-principles" id="toc-key-principles" class="nav-link" data-scroll-target="#key-principles">Key Principles:</a></li>
+  <li><a href="#example-using-aws-data-catalog-for-a-data-mesh" id="toc-example-using-aws-data-catalog-for-a-data-mesh" class="nav-link" data-scroll-target="#example-using-aws-data-catalog-for-a-data-mesh">Example (Using AWS Data Catalog for a Data Mesh)</a></li>
+  <li><a href="#when-to-use-1" id="toc-when-to-use-1" class="nav-link" data-scroll-target="#when-to-use-1">When to Use:</a></li>
+  <li><a href="#limitations-1" id="toc-limitations-1" class="nav-link" data-scroll-target="#limitations-1">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#data-lake" id="toc-data-lake" class="nav-link" data-scroll-target="#data-lake">Data Lake</a>
+  <ul class="collapse">
+  <li><a href="#key-features-1" id="toc-key-features-1" class="nav-link" data-scroll-target="#key-features-1">Key Features:</a></li>
+  <li><a href="#example-using-aws-s3-for-a-data-lake" id="toc-example-using-aws-s3-for-a-data-lake" class="nav-link" data-scroll-target="#example-using-aws-s3-for-a-data-lake">Example (Using AWS S3 for a Data Lake)</a></li>
+  <li><a href="#when-to-use-2" id="toc-when-to-use-2" class="nav-link" data-scroll-target="#when-to-use-2">When to Use:</a></li>
+  <li><a href="#limitations-2" id="toc-limitations-2" class="nav-link" data-scroll-target="#limitations-2">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#data-lakehouse" id="toc-data-lakehouse" class="nav-link" data-scroll-target="#data-lakehouse">Data Lakehouse</a>
+  <ul class="collapse">
+  <li><a href="#key-features-2" id="toc-key-features-2" class="nav-link" data-scroll-target="#key-features-2">Key Features:</a></li>
+  <li><a href="#example-using-delta-lake-with-pyspark" id="toc-example-using-delta-lake-with-pyspark" class="nav-link" data-scroll-target="#example-using-delta-lake-with-pyspark">Example (Using Delta Lake with PySpark)</a></li>
+  <li><a href="#when-to-use-3" id="toc-when-to-use-3" class="nav-link" data-scroll-target="#when-to-use-3">When to Use:</a></li>
+  <li><a href="#limitations-3" id="toc-limitations-3" class="nav-link" data-scroll-target="#limitations-3">Limitations:</a></li>
+  </ul></li>
+  <li><a href="#comparison-table" id="toc-comparison-table" class="nav-link" data-scroll-target="#comparison-table">Comparison Table</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Deploying and Monitoring SageMaker Models in a VPC</h1>
+<h1 class="title">Understanding Data Warehousing, Data Mesh, Data Lakehouse, and Data Lake</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">AWS</div>
-    <div class="quarto-category">Machine Learning</div>
-    <div class="quarto-category">Deployment</div>
-    <div class="quarto-category">Monitoring</div>
+    <div class="quarto-category">Data Engineering</div>
+    <div class="quarto-category">Cloud</div>
+    <div class="quarto-category">Architecture</div>
   </div>
   </div>
 
@@ -281,12 +321,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 4, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -296,134 +330,204 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Amazon SageMaker provides powerful tools for deploying and monitoring machine learning models in a secure and scalable way. This blog post covers:</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Modern data architectures have evolved significantly, leading to various approaches for storing, processing, and analyzing data. In this blog post, we’ll explore four key paradigms: <strong>Data Warehousing, Data Mesh, Data Lakehouse, and Data Lake</strong>. Each approach has its strengths and trade-offs, and choosing the right one depends on business needs, scalability, and analytical requirements.</p>
+</section>
+<section id="data-warehousing" class="level1">
+<h1>Data Warehousing</h1>
+<p>A <strong>data warehouse</strong> is a centralized repository optimized for structured data and analytical queries. It follows a schema-on-write approach, meaning data is transformed before ingestion.</p>
+<section id="key-features" class="level2">
+<h2 class="anchored" data-anchor-id="key-features">Key Features:</h2>
 <ul>
-<li>Configuring SageMaker endpoints within a VPC network.</li>
-<li>Deploying and hosting models using the SageMaker SDK.</li>
-<li>Monitoring models in production using SageMaker Model Monitor.</li>
-<li>Detecting changes in data distribution with SageMaker Clarify.</li>
+<li><strong>Structured Data:</strong> Data is organized into predefined schemas (e.g., star or snowflake schema).</li>
+<li><strong>Optimized for Analytics:</strong> Uses columnar storage and indexing for fast queries.</li>
+<li><strong>ETL Process:</strong> Data is extracted, transformed, and loaded (ETL) into the warehouse.</li>
+<li><strong>Batch Processing:</strong> Updates happen at scheduled intervals.</li>
 </ul>
 </section>
-<section id="configuring-sagemaker-endpoints-within-a-vpc" class="level2">
-<h2 class="anchored" data-anchor-id="configuring-sagemaker-endpoints-within-a-vpc">Configuring SageMaker Endpoints within a VPC</h2>
-<p>Deploying SageMaker endpoints within an Amazon Virtual Private Cloud (VPC) enhances security by preventing data from being exposed to the internet.</p>
-<section id="steps-to-configure-a-vpc-enabled-endpoint" class="level3">
-<h3 class="anchored" data-anchor-id="steps-to-configure-a-vpc-enabled-endpoint">Steps to Configure a VPC-Enabled Endpoint:</h3>
+<section id="example-code-using-amazon-redshift" class="level2">
+<h2 class="anchored" data-anchor-id="example-code-using-amazon-redshift">Example Code (Using Amazon Redshift)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> sales (</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    sale_id <span class="dt">INT</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    product <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    amount <span class="dt">DECIMAL</span>(<span class="dv">10</span>,<span class="dv">2</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    sale_date <span class="dt">DATE</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> sales</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="st">'s3://mybucket/sales_data.csv'</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>IAM_ROLE <span class="st">'arn:aws:iam::123456789012:role/RedshiftRole'</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>CSV;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use">When to Use:</h2>
+<p>✅ Business intelligence and reporting ✅ Structured data with predefined schemas ✅ High-speed analytical queries</p>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations:</h2>
+<p>❌ Poor handling of unstructured or semi-structured data ❌ Expensive to scale</p>
+<hr>
+</section>
+</section>
+<section id="data-mesh" class="level1">
+<h1>Data Mesh</h1>
+<p>A <strong>Data Mesh</strong> is a decentralized approach where data ownership is distributed across domain teams rather than being managed centrally.</p>
+<section id="key-principles" class="level2">
+<h2 class="anchored" data-anchor-id="key-principles">Key Principles:</h2>
 <ol type="1">
-<li><strong>Create a VPC</strong> with private and public subnets.</li>
-<li><strong>Set up security groups</strong> for inbound and outbound rules.</li>
-<li><strong>Deploy SageMaker endpoints</strong> inside the VPC.</li>
+<li><strong>Domain-Oriented Ownership:</strong> Each team owns and manages its data.</li>
+<li><strong>Self-Service Data Infrastructure:</strong> Tools and platforms enable teams to build and share data products.</li>
+<li><strong>Federated Governance:</strong> Policies and security controls are standardized across domains.</li>
+<li><strong>Data as a Product:</strong> Teams treat data like an API-driven product.</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sagemaker <span class="op">=</span> boto3.client(<span class="st">'sagemaker'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> sagemaker.create_endpoint_config(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    EndpointConfigName<span class="op">=</span><span class="st">'my-vpc-endpoint-config'</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ProductionVariants<span class="op">=</span>[</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">'VariantName'</span>: <span class="st">'AllTraffic'</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">'ModelName'</span>: <span class="st">'my-sagemaker-model'</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">'InstanceType'</span>: <span class="st">'ml.m5.large'</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">'InitialInstanceCount'</span>: <span class="dv">1</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    VpcConfig<span class="op">=</span>{</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Subnets'</span>: [<span class="st">'subnet-xxxxxx'</span>],</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'SecurityGroupIds'</span>: [<span class="st">'sg-xxxxxx'</span>]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
-<section id="deploying-and-hosting-models-using-the-sagemaker-sdk" class="level2">
-<h2 class="anchored" data-anchor-id="deploying-and-hosting-models-using-the-sagemaker-sdk">Deploying and Hosting Models using the SageMaker SDK</h2>
-<p>Using the SageMaker SDK, we can deploy models to fully managed endpoints with minimal setup.</p>
-<section id="example-deploying-a-model-with-the-sagemaker-sdk" class="level3">
-<h3 class="anchored" data-anchor-id="example-deploying-a-model-with-the-sagemaker-sdk">Example: Deploying a Model with the SageMaker SDK</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker <span class="im">import</span> Session, Model</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> Session()</span>
+<section id="example-using-aws-data-catalog-for-a-data-mesh" class="level2">
+<h2 class="anchored" data-anchor-id="example-using-aws-data-catalog-for-a-data-mesh">Example (Using AWS Data Catalog for a Data Mesh)</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> boto3.client(<span class="st">'glue'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    image_uri<span class="op">=</span><span class="st">'your-ecr-image-uri'</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model_data<span class="op">=</span><span class="st">'s3://your-model-path/model.tar.gz'</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span><span class="st">'arn:aws:iam::account-id:role/service-role'</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>predictor <span class="op">=</span> model.deploy(instance_type<span class="op">=</span><span class="st">'ml.m5.large'</span>, initial_instance_count<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new database for a domain-specific data product</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>client.create_database(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    DatabaseInput<span class="op">=</span>{<span class="st">'Name'</span>: <span class="st">'customer_data'</span>, <span class="st">'Description'</span>: <span class="st">'Customer analytics data'</span>}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-1" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-1">When to Use:</h2>
+<p>✅ Large organizations with multiple teams handling data ✅ Need for scalable and flexible data sharing ✅ Avoiding centralized bottlenecks</p>
+</section>
+<section id="limitations-1" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-1">Limitations:</h2>
+<p>❌ Requires cultural shift and strong governance ❌ Complexity in managing decentralized teams</p>
+<hr>
 </section>
 </section>
-<section id="monitoring-models-in-production-with-sagemaker-model-monitor" class="level2">
-<h2 class="anchored" data-anchor-id="monitoring-models-in-production-with-sagemaker-model-monitor">Monitoring Models in Production with SageMaker Model Monitor</h2>
-<p>Model Monitor enables continuous evaluation of model predictions and data quality.</p>
+<section id="data-lake" class="level1">
+<h1>Data Lake</h1>
+<p>A <strong>Data Lake</strong> is a centralized repository for storing raw, structured, semi-structured, and unstructured data at scale.</p>
+<section id="key-features-1" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-1">Key Features:</h2>
+<ul>
+<li><strong>Schema-on-Read:</strong> Data is ingested as-is and transformed when queried.</li>
+<li><strong>Supports All Data Types:</strong> Text, images, videos, and logs.</li>
+<li><strong>Low Cost &amp; Scalability:</strong> Typically stored in cloud-based object storage like Amazon S3.</li>
+<li><strong>Batch &amp; Streaming Processing:</strong> Can handle real-time and batch workloads.</li>
+</ul>
+</section>
+<section id="example-using-aws-s3-for-a-data-lake" class="level2">
+<h2 class="anchored" data-anchor-id="example-using-aws-s3-for-a-data-lake">Example (Using AWS S3 for a Data Lake)</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Upload raw data to S3</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">'local_file.json'</span>, <span class="st">'my-data-lake-bucket'</span>, <span class="st">'raw/data.json'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-2" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-2">When to Use:</h2>
+<p>✅ Storing vast amounts of raw data ✅ Machine learning, big data, and exploratory analysis ✅ Cost-effective storage</p>
+</section>
+<section id="limitations-2" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-2">Limitations:</h2>
+<p>❌ Query performance can be slow without indexing ❌ Risk of becoming a “data swamp” if not properly managed</p>
+<hr>
+</section>
+</section>
+<section id="data-lakehouse" class="level1">
+<h1>Data Lakehouse</h1>
+<p>A <strong>Data Lakehouse</strong> combines the best of <strong>Data Warehouses</strong> and <strong>Data Lakes</strong> by providing structured querying on a data lake.</p>
+<section id="key-features-2" class="level2">
+<h2 class="anchored" data-anchor-id="key-features-2">Key Features:</h2>
+<ul>
+<li><strong>Schema Enforcement &amp; Governance:</strong> Supports ACID transactions and structured querying.</li>
+<li><strong>Unified Storage:</strong> Uses a data lake but adds indexing and metadata layers.</li>
+<li><strong>Supports BI &amp; ML Workloads:</strong> Optimized for both analytics and AI applications.</li>
+<li><strong>Open Table Formats:</strong> Technologies like Apache Iceberg and Delta Lake.</li>
+</ul>
+</section>
+<section id="example-using-delta-lake-with-pyspark" class="level2">
+<h2 class="anchored" data-anchor-id="example-using-delta-lake-with-pyspark">Example (Using Delta Lake with PySpark)</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> delta <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> SparkSession.builder.appName(<span class="st">"Lakehouse"</span>)<span class="op">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">"spark.sql.extensions"</span>, <span class="st">"io.delta.sql.DeltaSparkSessionExtension"</span>)<span class="op">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    .getOrCreate()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Delta Lake table</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>spark.sql(<span class="st">"CREATE TABLE sales_delta (id INT, amount FLOAT) USING delta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="when-to-use-3" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-3">When to Use:</h2>
+<p>✅ Need structured querying on a data lake ✅ Unified analytics and machine learning ✅ Avoiding data duplication across systems</p>
+</section>
+<section id="limitations-3" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-3">Limitations:</h2>
+<p>❌ More complex than a pure data warehouse or lake ❌ Newer technology with evolving best practices</p>
+<hr>
+</section>
+</section>
+<section id="comparison-table" class="level1">
+<h1>Comparison Table</h1>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 56%">
-<col style="width: 43%">
+<col style="width: 24%">
+<col style="width: 21%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 21%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Monitoring Type</th>
-<th>Description</th>
+<th>Feature</th>
+<th>Data Warehouse</th>
+<th>Data Mesh</th>
+<th>Data Lake</th>
+<th>Data Lakehouse</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Data Quality</td>
-<td>Detects missing or unexpected values in input data.</td>
+<td><strong>Storage</strong></td>
+<td>Structured</td>
+<td>Decentralized</td>
+<td>Raw (Any Format)</td>
+<td>Structured &amp; Raw</td>
 </tr>
 <tr class="even">
-<td>Model Bias</td>
-<td>Identifies bias drift over time.</td>
+<td><strong>Query Performance</strong></td>
+<td>High</td>
+<td>Medium</td>
+<td>Low</td>
+<td>High</td>
 </tr>
 <tr class="odd">
-<td>Model Explainability</td>
-<td>Evaluates feature importance.</td>
+<td><strong>Scalability</strong></td>
+<td>Limited</td>
+<td>High</td>
+<td>Very High</td>
+<td>High</td>
 </tr>
 <tr class="even">
-<td>Model Drift</td>
-<td>Detects changes in model predictions.</td>
+<td><strong>Best for</strong></td>
+<td>BI &amp; Reporting</td>
+<td>Large Orgs</td>
+<td>Big Data &amp; AI</td>
+<td>Unified Analytics</td>
+</tr>
+<tr class="odd">
+<td><strong>Governance</strong></td>
+<td>Centralized</td>
+<td>Federated</td>
+<td>Minimal</td>
+<td>Strong</td>
 </tr>
 </tbody>
 </table>
-<section id="example-setting-up-model-monitor" class="level3">
-<h3 class="anchored" data-anchor-id="example-setting-up-model-monitor">Example: Setting Up Model Monitor</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.model_monitor <span class="im">import</span> DataCaptureConfig</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data_capture_config <span class="op">=</span> DataCaptureConfig(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    enable_capture<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    sampling_percentage<span class="op">=</span><span class="dv">100</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    destination_s3_uri<span class="op">=</span><span class="st">'s3://your-monitoring-bucket/'</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>predictor.update_data_capture_config(data_capture_config)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
-<section id="detecting-data-distribution-changes-with-sagemaker-clarify" class="level2">
-<h2 class="anchored" data-anchor-id="detecting-data-distribution-changes-with-sagemaker-clarify">Detecting Data Distribution Changes with SageMaker Clarify</h2>
-<p>SageMaker Clarify helps identify shifts in data distribution that can impact model performance.</p>
-<section id="example-running-a-baseline-drift-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="example-running-a-baseline-drift-analysis">Example: Running a Baseline Drift Analysis</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.clarify <span class="im">import</span> BiasConfig, ModelMonitor</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>bias_config <span class="op">=</span> BiasConfig(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    label_values_or_threshold<span class="op">=</span>[<span class="dv">1</span>],</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    facet_name<span class="op">=</span><span class="st">'feature-column'</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    facet_values_or_threshold<span class="op">=</span>[<span class="dv">0</span>]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>monitor <span class="op">=</span> ModelMonitor(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    job_definition_name<span class="op">=</span><span class="st">'clarify-job'</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    role<span class="op">=</span><span class="st">'arn:aws:iam::account-id:role/service-role'</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    bias_config<span class="op">=</span>bias_config</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>monitor.create_monitoring_schedule()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>By configuring SageMaker endpoints within a VPC, deploying with the SageMaker SDK, and monitoring data with Model Monitor and Clarify, we ensure secure and efficient model operations. These best practices help maintain model reliability and performance in production environments.</p>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Choosing the right data architecture depends on your organization’s needs. <strong>Data Warehouses</strong> work well for structured analytics, while <strong>Data Lakes</strong> handle raw, unstructured data. <strong>Data Mesh</strong> provides decentralized data ownership, and <strong>Data Lakehouses</strong> unify data lakes with structured querying capabilities.</p>
+<p>🚀 <strong>What’s your experience with these architectures? Let me know</strong></p>
 
 
 </section>
