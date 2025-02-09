@@ -28,6 +28,12 @@ website:
             href: examples/search.qmd
           - text: "EMR vs Hadoop vs Spark"
             href: examples/emr-vs-hadoop-vs-spark.qmd
+          - text: "Architecting Data: Warehouse, Lakes and Lakehouses"
+            href: examples/data-architecture.qmd
+          - text: "Glue and Athena"
+            href: examples/glue-athena.qmd
+          - text: "AWS Search"
+            href: examples/search.qmd          
       - text: "Sagemaker"
         menu:
           - text: "SageMaker Pipelines"
