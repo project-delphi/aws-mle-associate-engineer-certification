@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ravi Kalia">
-<meta name="dcterms.date" content="2025-02-07">
 
-<title>Understanding AWS SageMaker Feature Store, Model Monitor, and Clarify – AWS Machine Learning Associate Certification</title>
+<title>File Formats for Data Storage – AWS Machine Learning Associate Certification</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -273,29 +272,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#sagemaker-feature-store" id="toc-sagemaker-feature-store" class="nav-link" data-scroll-target="#sagemaker-feature-store">SageMaker Feature Store</a>
+  <li><a href="#common-file-formats-for-data-storage" id="toc-common-file-formats-for-data-storage" class="nav-link" data-scroll-target="#common-file-formats-for-data-storage">Common File Formats for Data Storage</a>
   <ul class="collapse">
-  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features:</a></li>
-  <li><a href="#example-creating-a-feature-group-in-python" id="toc-example-creating-a-feature-group-in-python" class="nav-link" data-scroll-target="#example-creating-a-feature-group-in-python">Example (Creating a Feature Group in Python):</a></li>
-  <li><a href="#when-to-use" id="toc-when-to-use" class="nav-link" data-scroll-target="#when-to-use">When to Use:</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations:</a></li>
+  <li><a href="#parquet" id="toc-parquet" class="nav-link" data-scroll-target="#parquet">Parquet</a></li>
+  <li><a href="#orc" id="toc-orc" class="nav-link" data-scroll-target="#orc">ORC</a></li>
+  <li><a href="#avro" id="toc-avro" class="nav-link" data-scroll-target="#avro">AVRO</a></li>
+  <li><a href="#parquet-vs-orc-vs-avro" id="toc-parquet-vs-orc-vs-avro" class="nav-link" data-scroll-target="#parquet-vs-orc-vs-avro">Parquet vs ORC vs AVRO</a></li>
+  <li><a href="#recordio" id="toc-recordio" class="nav-link" data-scroll-target="#recordio">RecordIO</a></li>
+  <li><a href="#json" id="toc-json" class="nav-link" data-scroll-target="#json">JSON</a></li>
+  <li><a href="#json-lines" id="toc-json-lines" class="nav-link" data-scroll-target="#json-lines">JSON Lines</a></li>
+  <li><a href="#csv" id="toc-csv" class="nav-link" data-scroll-target="#csv">CSV</a></li>
+  <li><a href="#bzip" id="toc-bzip" class="nav-link" data-scroll-target="#bzip">BZip</a></li>
+  <li><a href="#pickle" id="toc-pickle" class="nav-link" data-scroll-target="#pickle">Pickle</a></li>
+  <li><a href="#apache-arrow" id="toc-apache-arrow" class="nav-link" data-scroll-target="#apache-arrow">Apache Arrow</a></li>
+  <li><a href="#avro-recordio" id="toc-avro-recordio" class="nav-link" data-scroll-target="#avro-recordio">AVRO RecordIO</a></li>
+  <li><a href="#thoughts" id="toc-thoughts" class="nav-link" data-scroll-target="#thoughts">Thoughts</a></li>
   </ul></li>
-  <li><a href="#sagemaker-model-monitor" id="toc-sagemaker-model-monitor" class="nav-link" data-scroll-target="#sagemaker-model-monitor">SageMaker Model Monitor</a>
-  <ul class="collapse">
-  <li><a href="#key-features-1" id="toc-key-features-1" class="nav-link" data-scroll-target="#key-features-1">Key Features:</a></li>
-  <li><a href="#example-setting-up-model-monitor" id="toc-example-setting-up-model-monitor" class="nav-link" data-scroll-target="#example-setting-up-model-monitor">Example (Setting Up Model Monitor):</a></li>
-  <li><a href="#when-to-use-1" id="toc-when-to-use-1" class="nav-link" data-scroll-target="#when-to-use-1">When to Use:</a></li>
-  <li><a href="#limitations-1" id="toc-limitations-1" class="nav-link" data-scroll-target="#limitations-1">Limitations:</a></li>
-  </ul></li>
-  <li><a href="#sagemaker-clarify" id="toc-sagemaker-clarify" class="nav-link" data-scroll-target="#sagemaker-clarify">SageMaker Clarify</a>
-  <ul class="collapse">
-  <li><a href="#key-features-2" id="toc-key-features-2" class="nav-link" data-scroll-target="#key-features-2">Key Features:</a></li>
-  <li><a href="#example-running-bias-detection-with-clarify" id="toc-example-running-bias-detection-with-clarify" class="nav-link" data-scroll-target="#example-running-bias-detection-with-clarify">Example (Running Bias Detection with Clarify):</a></li>
-  <li><a href="#when-to-use-2" id="toc-when-to-use-2" class="nav-link" data-scroll-target="#when-to-use-2">When to Use:</a></li>
-  <li><a href="#limitations-2" id="toc-limitations-2" class="nav-link" data-scroll-target="#limitations-2">Limitations:</a></li>
-  </ul></li>
-  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table">Summary Table</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -304,11 +296,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Understanding AWS SageMaker Feature Store, Model Monitor, and Clarify</h1>
+<h1 class="title">File Formats for Data Storage</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">AWS</div>
-    <div class="quarto-category">Machine Learning</div>
-    <div class="quarto-category">MLOps</div>
+    <div class="quarto-category">Data</div>
+    <div class="quarto-category">File Formats</div>
+    <div class="quarto-category">Data Architecture</div>
   </div>
   </div>
 
@@ -323,12 +315,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 7, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -340,175 +326,200 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>AWS SageMaker provides a suite of tools to manage machine learning (ML) workflows efficiently. This blog post will focus on three essential components: <strong>SageMaker Feature Store, SageMaker Model Monitor, and SageMaker Clarify</strong>. These services help in feature management, model monitoring, and ensuring fairness and explainability in ML models.</p>
+<p>When working with data, choosing the right file format for storage is important for performance and cost considerations. Different file formats offer various trade-offs in terms of efficiency, compression, and compatibility with different tools and systems. In this guide, we’ll explore some common file formats used for data storage and processing.</p>
+<p>To that end there’s many formats to consider, related to organizations’ capabilities and training on AWS. The cost and efficiency difference can be significant, enough to impact the bottom line.</p>
+<p>AWS is a cloud provider that offers a wide range of services for data storage, processing, and analytics. When working with data on AWS, it’s essential to choose the right file format based on your use case, data size, and processing requirements. Here are some common file formats used for data storage on AWS:</p>
 <hr>
 </section>
-<section id="sagemaker-feature-store" class="level1">
-<h1>SageMaker Feature Store</h1>
-<p>AWS SageMaker Feature Store is a <strong>fully managed repository</strong> for storing, sharing, and reusing ML features across different models.</p>
-<section id="key-features" class="level2">
-<h2 class="anchored" data-anchor-id="key-features">Key Features:</h2>
-<ul>
-<li><strong>Online &amp; Offline Stores:</strong> Supports real-time and batch feature storage.</li>
-<li><strong>Feature Discovery &amp; Reusability:</strong> Enables teams to use standardized features across projects.</li>
-<li><strong>Integration with SageMaker Pipelines &amp; Model Training:</strong> Seamlessly connects to ML workflows.</li>
-</ul>
-</section>
-<section id="example-creating-a-feature-group-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="example-creating-a-feature-group-in-python">Example (Creating a Feature Group in Python):</h2>
+<section id="common-file-formats-for-data-storage" class="level1">
+<h1>Common File Formats for Data Storage</h1>
+<section id="parquet" class="level2">
+<h2 class="anchored" data-anchor-id="parquet">Parquet</h2>
+<p>Parquet provides efficient columnar storage, high compression, and compatibility with various analytics tools. It’s commonly used for storing structured data in data lakes and data warehouses.</p>
+<p><strong>Business Context:</strong> A financial services company uses Parquet to store structured transactional data in Amazon S3 and process it efficiently using AWS Glue and Amazon Athena for business intelligence and fraud detection.</p>
+<p>This is a common use case for Parquet, as it provides columnar storage, efficient compression, and compatibility with various analytics tools.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.feature_store.feature_group <span class="im">import</span> FeatureGroup</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>boto_session <span class="op">=</span> boto3.Session()</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>feature_store_client <span class="op">=</span> boto_session.client(service_name<span class="op">=</span><span class="st">"sagemaker-featurestore-runtime"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>feature_group <span class="op">=</span> FeatureGroup(name<span class="op">=</span><span class="st">"customer_churn_features"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                             sagemaker_session<span class="op">=</span>boto_session)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>feature_group.create(</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    record_identifier_name<span class="op">=</span><span class="st">"customer_id"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    event_time_feature_name<span class="op">=</span><span class="st">"event_time"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    feature_definitions<span class="op">=</span>[</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"FeatureName"</span>: <span class="st">"age"</span>, <span class="st">"FeatureType"</span>: <span class="st">"Integral"</span>},</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"FeatureName"</span>: <span class="st">"monthly_spend"</span>, <span class="st">"FeatureType"</span>: <span class="st">"Fractional"</span>}</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">'data.parquet'</span>, <span class="st">'my-bucket'</span>, <span class="st">'data.parquet'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="when-to-use" class="level2">
-<h2 class="anchored" data-anchor-id="when-to-use">When to Use:</h2>
-<p>✅ Centralized feature management across ML models<br>
-✅ Real-time feature retrieval for online inference<br>
-✅ Historical feature storage for batch processing</p>
+<section id="orc" class="level2">
+<h2 class="anchored" data-anchor-id="orc">ORC</h2>
+<p>ORC (Optimized Row Columnar) is another columnar storage format that provides efficient compression and query performance for structured data. It’s commonly used with Apache Hive and Presto for processing large-scale datasets.</p>
+<p><strong>Business Context:</strong> A healthcare analytics firm processes large-scale patient records using Apache Hive on Amazon EMR, benefiting from ORC’s high compression and query performance.</p>
+<p>EMR and ORC a good match, as ORC is optimized for Hive and Presto queries, providing efficient storage and processing of structured data.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">'data.orc'</span>, <span class="st">'my-bucket'</span>, <span class="st">'data.orc'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations">Limitations:</h2>
-<p>❌ Increased cost for maintaining both online and offline stores<br>
-❌ Requires additional governance to avoid feature drift</p>
-<hr>
+<section id="avro" class="level2">
+<h2 class="anchored" data-anchor-id="avro">AVRO</h2>
+<p>AVRO is a row-based data serialization format that provides schema evolution and efficient serialization for data exchange. It’s commonly used in streaming data processing and data pipelines. The benefits of Avro include schema evolution and efficient serialization, making it suitable for streaming data processing and data pipelines.</p>
+<p><strong>Business Context:</strong></p>
+<p>A streaming analytics company processes clickstream data using Apache Kafka and stores Avro files in Amazon S3 for downstream analysis with AWS Glue.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fastavro</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastavro.schema <span class="im">import</span> load_schema</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>schema <span class="op">=</span> load_schema(<span class="st">'schema.avsc'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data.avro'</span>, <span class="st">'wb'</span>) <span class="im">as</span> out:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    fastavro.writer(out, schema, [{<span class="st">'field1'</span>: <span class="st">'value1'</span>}])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
-<section id="sagemaker-model-monitor" class="level1">
-<h1>SageMaker Model Monitor</h1>
-<p>AWS SageMaker Model Monitor is a <strong>real-time model performance tracking service</strong> that detects data drift, quality issues, and concept drift.</p>
-<section id="key-features-1" class="level2">
-<h2 class="anchored" data-anchor-id="key-features-1">Key Features:</h2>
-<ul>
-<li><strong>Automatic Model Drift Detection</strong></li>
-<li><strong>Prebuilt Metrics for Data Quality, Bias, and Feature Drift</strong></li>
-<li><strong>Integration with Amazon CloudWatch for Alerts</strong></li>
-<li><strong>Supports Custom Metrics and Logs</strong></li>
-</ul>
-</section>
-<section id="example-setting-up-model-monitor" class="level2">
-<h2 class="anchored" data-anchor-id="example-setting-up-model-monitor">Example (Setting Up Model Monitor):</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.model_monitor <span class="im">import</span> ModelMonitor</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>monitor <span class="op">=</span> ModelMonitor(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    role_arn<span class="op">=</span><span class="st">"arn:aws:iam::123456789012:role/SageMakerExecutionRole"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    instance_count<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>monitor.create_monitoring_schedule(</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    endpoint_name<span class="op">=</span><span class="st">"churn-prediction-endpoint"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    schedule_expression<span class="op">=</span><span class="st">"cron(0 * * * ? *)"</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="when-to-use-1" class="level2">
-<h2 class="anchored" data-anchor-id="when-to-use-1">When to Use:</h2>
-<p>✅ Ensuring ML models maintain performance over time<br>
-✅ Detecting bias and feature drift in production models<br>
-✅ Setting up alerts for data quality issues</p>
-</section>
-<section id="limitations-1" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-1">Limitations:</h2>
-<p>❌ Requires scheduled jobs for batch monitoring<br>
-❌ Limited real-time feedback unless integrated with other AWS services</p>
-<hr>
-</section>
-</section>
-<section id="sagemaker-clarify" class="level1">
-<h1>SageMaker Clarify</h1>
-<p>AWS SageMaker Clarify is a <strong>bias detection and explainability tool</strong> for ML models, helping ensure fairness and transparency in AI.</p>
-<section id="key-features-2" class="level2">
-<h2 class="anchored" data-anchor-id="key-features-2">Key Features:</h2>
-<ul>
-<li><strong>Bias Detection in Data &amp; Models</strong></li>
-<li><strong>Feature Importance &amp; SHAP-based Interpretability</strong></li>
-<li><strong>Integration with SageMaker Model Training &amp; Monitoring</strong></li>
-<li><strong>Comprehensive Reports for Regulatory Compliance</strong></li>
-</ul>
-</section>
-<section id="example-running-bias-detection-with-clarify" class="level2">
-<h2 class="anchored" data-anchor-id="example-running-bias-detection-with-clarify">Example (Running Bias Detection with Clarify):</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sagemaker.clarify <span class="im">import</span> BiasConfig, SageMakerClarifyProcessor</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>bias_config <span class="op">=</span> BiasConfig(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    label_values_or_threshold<span class="op">=</span>[<span class="dv">1</span>],</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    facet_name<span class="op">=</span><span class="st">"gender"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    group_name<span class="op">=</span><span class="st">"male"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>clarify_processor <span class="op">=</span> SageMakerClarifyProcessor(role<span class="op">=</span><span class="st">"arn:aws:iam::123456789012:role/SageMakerExecutionRole"</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                                              instance_count<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                                              instance_type<span class="op">=</span><span class="st">"ml.m5.large"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>clarify_processor.run_bias(</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    data_config<span class="op">=</span>data_config,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    bias_config<span class="op">=</span>bias_config,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    model_config<span class="op">=</span>model_config</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="when-to-use-2" class="level2">
-<h2 class="anchored" data-anchor-id="when-to-use-2">When to Use:</h2>
-<p>✅ Ensuring fairness in ML models<br>
-✅ Understanding feature importance for better transparency<br>
-✅ Generating explainability reports for compliance</p>
-</section>
-<section id="limitations-2" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-2">Limitations:</h2>
-<p>❌ Bias detection does not solve bias, only detects it<br>
-❌ Computational overhead for large models</p>
-<hr>
-</section>
-</section>
-<section id="summary-table" class="level1">
-<h1>Summary Table</h1>
+<section id="parquet-vs-orc-vs-avro" class="level2">
+<h2 class="anchored" data-anchor-id="parquet-vs-orc-vs-avro">Parquet vs ORC vs AVRO</h2>
+<p>Parquet, ORC, and Avro are popular file formats for storing and processing data efficiently. They are commonly used in big data processing frameworks like Apache Hadoop, Apache Spark, and AWS services like Amazon EMR and AWS Glue. Here’s a comparison of these file formats. There pros and cons are in this table:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 29%">
-<col style="width: 29%">
-<col style="width: 41%">
+<col style="width: 17%">
+<col style="width: 27%">
+<col style="width: 27%">
+<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Service</th>
-<th>Purpose</th>
-<th>Key Feature</th>
+<th>Feature</th>
+<th>Parquet</th>
+<th>ORC</th>
+<th>Avro</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>SageMaker Feature Store</strong></td>
-<td>Feature management &amp; storage</td>
-<td>Online &amp; offline feature storage</td>
+<td>Storage</td>
+<td>Columnar</td>
+<td>Columnar</td>
+<td>Row-based</td>
 </tr>
 <tr class="even">
-<td><strong>SageMaker Model Monitor</strong></td>
-<td>Model performance monitoring</td>
-<td>Drift &amp; data quality checks</td>
+<td>Compression</td>
+<td>High</td>
+<td>High</td>
+<td>Moderate</td>
 </tr>
 <tr class="odd">
-<td><strong>SageMaker Clarify</strong></td>
-<td>Fairness &amp; explainability</td>
-<td>Bias detection &amp; SHAP analysis</td>
+<td>Schema Evolution</td>
+<td>Limited</td>
+<td>Limited</td>
+<td>Full</td>
+</tr>
+<tr class="even">
+<td>Query Performance</td>
+<td>High</td>
+<td>High</td>
+<td>Moderate</td>
+</tr>
+<tr class="odd">
+<td>Compatibility</td>
+<td>Various tools and systems</td>
+<td>Hive, Presto</td>
+<td>Streaming frameworks</td>
+</tr>
+<tr class="even">
+<td>Use Cases</td>
+<td>Data lakes, data warehouses</td>
+<td>Large-scale datasets</td>
+<td>Streaming data processing</td>
 </tr>
 </tbody>
 </table>
-<hr>
 </section>
-<section id="conclusion" class="level1">
-<h1>Conclusion</h1>
-<p>AWS SageMaker provides powerful tools to manage ML workflows effectively. <strong>Feature Store</strong> helps manage and reuse ML features, <strong>Model Monitor</strong> ensures model consistency in production, and <strong>Clarify</strong> helps detect bias and improve explainability. Using these tools together enhances the reliability and fairness of ML models. 🚀</p>
+<section id="recordio" class="level2">
+<h2 class="anchored" data-anchor-id="recordio">RecordIO</h2>
+<p>RecordIO is a binary data format used for storing large datasets efficiently, especially for deep learning models. It’s commonly used in Amazon SageMaker for training datasets. It works effiiciently for deep learning models, especially in Amazon SageMaker. The data is stored in a binary format, which is efficient for large datasets.</p>
+<p><strong>Business Context:</strong> A machine learning startup uses RecordIO to store large training datasets for deep learning models in Amazon SageMaker.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">'data.recordio'</span>, <span class="st">'my-bucket'</span>, <span class="st">'data.recordio'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="json" class="level2">
+<h2 class="anchored" data-anchor-id="json">JSON</h2>
+<p>JSON (JavaScript Object Notation) is a lightweight data interchange format that is easy to read and write. It’s commonly used for storing semi-structured data and exchanging information between systems. JSON is widely used for storing semi-structured data and exchanging information between systems. It is easy to read and write, making it a popular choice for many applications, particularly web services.</p>
+<p><strong>Business Context:</strong> An e-commerce platform stores product catalog metadata in JSON format and processes it using AWS Lambda and DynamoDB.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'product_id'</span>: <span class="dv">123</span>, <span class="st">'name'</span>: <span class="st">'Laptop'</span>}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>json_data <span class="op">=</span> json.dumps(data)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>s3.put_object(Bucket<span class="op">=</span><span class="st">'my-bucket'</span>, Key<span class="op">=</span><span class="st">'product.json'</span>, Body<span class="op">=</span>json_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="json-lines" class="level2">
+<h2 class="anchored" data-anchor-id="json-lines">JSON Lines</h2>
+<p>JSON Lines (JSONL) is a format for storing multiple JSON objects in a single file, with each object on a separate line. It’s commonly used for log files and streaming data processing. JSON Lines is a format for storing multiple JSON objects in a single file, with each object on a separate line. It is commonly used for log files and streaming data processing. That way each line is a separate JSON object, making it easy to read and process.</p>
+<p><strong>Business Context:</strong> A social media analytics company stores user activity logs in JSON Lines format for real-time processing with Amazon Kinesis.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'logs.jsonl'</span>, <span class="st">'rb'</span>) <span class="im">as</span> f:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    s3.upload_fileobj(f, <span class="st">'my-bucket'</span>, <span class="st">'logs.jsonl'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="csv" class="level2">
+<h2 class="anchored" data-anchor-id="csv">CSV</h2>
+<p>CSV is a simple tabular data format that is widely used for storing and exchanging structured data. It’s commonly used in data processing pipelines and analytics workflows. CSV is a simple tabular data format that is widely used for storing and exchanging structured data. It is commonly used in data processing pipelines and analytics workflows. It is easy to read and write, making it a popular choice for many applications, and a legacy format for many systems.</p>
+<p><strong>Business Context:</strong> A retail chain stores daily sales transactions in CSV format and loads them into Amazon Redshift for reporting and analytics.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">'sales.csv'</span>, <span class="st">'my-bucket'</span>, <span class="st">'sales.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bzip" class="level2">
+<h2 class="anchored" data-anchor-id="bzip">BZip</h2>
+<p>BZip is a compression format that provides high compression ratios for text data. It’s commonly used for compressing large text files before storage or transfer. BZip is a compression format that provides high compression ratios for text data. It is commonly used for compressing large text files before storage or transfer.</p>
+<p><strong>Business Context:</strong> A genomics research institute compresses large DNA sequencing datasets using BZip and stores them in Amazon S3 for high-throughput computing.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> bz2</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> bz2.BZ2File(<span class="st">'data.bz2'</span>, <span class="st">'wb'</span>) <span class="im">as</span> f:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">b'sample data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pickle" class="level2">
+<h2 class="anchored" data-anchor-id="pickle">Pickle</h2>
+<p>Pickle is a serialization format in Python that allows objects to be serialized and deserialized. It’s commonly used for saving and loading machine learning models and other Python objects. Pickle is a serialization format in Python that allows objects to be serialized and deserialized. It is commonly used for saving and loading machine learning models and other Python objects.</p>
+<p><strong>Business Context:</strong> A data science consultancy saves model objects in pickle format for rapid loading into Amazon SageMaker endpoints.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'key'</span>: <span class="st">'value'</span>}</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data.pkl'</span>, <span class="st">'wb'</span>) <span class="im">as</span> f:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    pickle.dump(data, f)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">'data.pkl'</span>, <span class="st">'my-bucket'</span>, <span class="st">'data.pkl'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="apache-arrow" class="level2">
+<h2 class="anchored" data-anchor-id="apache-arrow">Apache Arrow</h2>
+<p>Arrow format is a columnar in-memory data format that provides efficient data interchange between different systems. It’s commonly used for high-performance analytics and data processing. Arrow format is a columnar in-memory data format that provides efficient data interchange between different systems. It is commonly used for high-performance analytics and data processing.</p>
+<p><strong>Business Context:</strong> A high-frequency trading firm shares structured data across multiple processing systems using Apache Arrow for in-memory analytics.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyarrow <span class="im">as</span> pa</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyarrow.parquet <span class="im">as</span> pq</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>array <span class="op">=</span> pa.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> pa.Table.from_arrays([array], names<span class="op">=</span>[<span class="st">'column'</span>])</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>pq.write_table(table, <span class="st">'data.arrow'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="avro-recordio" class="level2">
+<h2 class="anchored" data-anchor-id="avro-recordio">AVRO RecordIO</h2>
+<p>AVRO Record IO is a binary data format used for storing training datasets efficiently, especially for deep learning model training. It’s commonly used in cloud-based AI platforms like Amazon SageMaker.</p>
+<p><strong>Business Context:</strong> A cloud-based AI company stores training datasets in AVRO RecordIO format for efficient deep learning model training on Amazon SageMaker.</p>
+<p><strong>Example Usage in AWS Services:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">'s3'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>s3.upload_file(<span class="st">'data.avro.recordio'</span>, <span class="st">'my-bucket'</span>, <span class="st">'data.avro.recordio'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="thoughts">Thoughts</h2>
+<p>So which should you use? It depends on the use case. For example, Parquet and ORC are great for data lakes and warehouses, while JSON and CSV are more common for data exchange. The choice of file format can impact performance, storage costs, and compatibility with different tools and systems. It’s important to consider these factors when choosing a file format for data storage and processing on AWS.</p>
+<hr>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
