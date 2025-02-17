@@ -18,6 +18,8 @@ website:
         menu:
           - text: "Apache Flink vs Kinesis Data Analytics"
             href: examples/flink-vs-kinesis.qmd
+          - text: "Data Formats"
+            href: examples/data-formats.qmd
           - text: "Storage: S3 vs EFS vs FSx vs EBS"
             href: examples/storage.qmd
           - text: "Streaming: Kinesis Data Streams vs Data Firehose vs Managed Service Kafka vs AMAA"
