@@ -1,0 +1,152 @@
+---
+title: "Bias Metrics in AWS Clarify"
+author: "Your Name"
+date: today
+format: html
+categories: [Machine Learning, Bias Detection, AWS Clarify]
+---
+
+# Bias Detection in AWS Clarify
+
+Evaluating and reducing bias in machine learning models is crucial for creating fair and accurate models, especially in sensitive applications like hiring, lending, and healthcare. AWS Clarify provides **pre-training bias metrics** to help identify disparities in datasets before training.
+
+## Class Imbalance (CI)
+
+### What It Measures
+Class Imbalance (CI) checks whether different demographic groups are equally represented in the dataset. If one group is overrepresented, the model may favor it.
+
+### Business Use Case
+A recruitment dataset contains **80% male applicants** and only **20% female applicants**. A hiring model trained on this data may unfairly favor male candidates.
+
+### Example Code
+
+```python
+import pandas as pd
+
+# Sample dataset
+data = pd.DataFrame({
+    'gender': ['M', 'M', 'M', 'M', 'M', 'F', 'F'],  # More males than females
+    'hired': [1, 0, 1, 1, 1, 0, 1]
+})
+
+# Compute Class Imbalance
+ci = abs(data['gender'].value_counts(normalize=True)['M'] - 
+         data['gender'].value_counts(normalize=True)['F'])
+
+print(f"Class Imbalance (CI): {ci:.2f}")
+```
+
+## Difference in Proportions of Labels (DPL)
+
+### What It Measures
+
+DPL quantifies the disparity in **positive outcome rates** between demographic groups. A high DPL value suggests that one group is significantly more likely to receive a favorable outcome than another.
+
+Mathematically, DPL is calculated as:
+
+\[
+DPL = P(\text{positive outcome} | \text{group A}) - P(\text{positive outcome} | \text{group B})
+\]
+
+where \( P(\text{positive outcome} | \text{group}) \) represents the proportion of positive outcomes within each group.
+
+### Business Use Case
+
+Consider a **loan approval** system. If **60% of middle-aged applicants** are approved but only **30% of younger applicants**, the model may be **biased against younger individuals**. A high DPL suggests that **age is influencing approvals** beyond just financial risk factors.
+
+### Example Code
+
+```python
+import pandas as pd
+
+# Sample loan approval dataset
+loan_data = pd.DataFrame({
+    'age_group': ['Middle-aged', 'Middle-aged', 'Young', 'Young', 'Young'],
+    'approved': [1, 1, 0, 1, 0]
+})
+
+# Compute approval rates per group
+approval_rate_middle_aged = loan_data[loan_data['age_group'] == 'Middle-aged']['approved'].mean()
+approval_rate_young = loan_data[loan_data['age_group'] == 'Young']['approved'].mean()
+
+# Compute DPL
+dpl = approval_rate_middle_aged - approval_rate_young
+
+print(f"Difference in Proportions of Labels (DPL): {dpl:.2f}")
+```
+
+---
+
+## Total Variation Distance (TVD)
+
+### What It Measures
+
+TVD quantifies how much the **distribution of outcomes** varies across demographic groups. It measures the largest difference in label distributions and is computed as:
+
+\[
+TVD = \frac{1}{2} \sum | P(\text{label} | \text{group A}) - P(\text{label} | \text{group B}) |
+\]
+
+For **binary classification**, TVD simplifies to half the sum of absolute differences in positive and negative outcome probabilities. For **multi-class classification**, TVD extends to the sum of absolute differences across all class probabilities.
+
+**Range:**  
+- **TVD = 0** → No difference in outcome distributions  
+- **TVD = 1** → Maximum possible disparity  
+
+### Business Use Case
+
+Imagine a **fraud detection system** used by a financial institution. If **fraudulent transactions** are flagged **twice as often** for customers from a particular ethnic group, this could indicate **systematic bias**, potentially leading to **unjustified account restrictions**.
+
+Using TVD, we can measure the **difference in fraud detection rates** between groups to assess whether the model is disproportionately flagging certain demographics.
+
+### Example Code
+
+```python
+import numpy as np
+
+# Sample fraud detection dataset
+fraud_data = pd.DataFrame({
+    'ethnicity': ['Group A', 'Group A', 'Group B', 'Group B', 'Group B'],
+    'fraud_flag': [1, 0, 1, 1, 0]
+})
+
+# Compute fraud probabilities per group
+fraud_prob_group_a = fraud_data[fraud_data['ethnicity'] == 'Group A']['fraud_flag'].value_counts(normalize=True)
+fraud_prob_group_b = fraud_data[fraud_data['ethnicity'] == 'Group B']['fraud_flag'].value_counts(normalize=True)
+
+# Align probabilities (fill missing values with 0)
+fraud_prob_group_a, fraud_prob_group_b = (
+    fraud_prob_group_a.reindex([0, 1], fill_value=0),
+    fraud_prob_group_b.reindex([0, 1], fill_value=0)
+)
+
+# Compute TVD
+tvd = 0.5 * np.sum(np.abs(fraud_prob_group_a - fraud_prob_group_b))
+
+print(f"Total Variation Distance (TVD): {tvd:.2f}")
+```
+
+---
+
+## Why Not KL Divergence?
+
+While **Kullback-Leibler (KL) Divergence** is commonly used to measure how one probability distribution differs from another, it is **not specifically designed for fairness evaluation**. KL Divergence is often applied in:
+
+- **Natural Language Processing (NLP)**
+- **Variational Inference in Bayesian Models**
+- **General Probability Distributions Comparisons**
+
+For fairness analysis, **DPL, CI, and TVD** are more interpretable and **directly quantify bias across demographic groups**.
+
+---
+
+## Conclusion
+
+AWS Clarify provides powerful bias detection tools to help ensure **fair and equitable** machine learning models. Key metrics include:
+
+- **Class Imbalance (CI)** → Detects **representation gaps** in the dataset.
+- **Difference in Proportions of Labels (DPL)** → Highlights **disparities in positive outcomes**.
+- **Total Variation Distance (TVD)** → Measures **distributional differences in predictions**.
+
+By incorporating these bias detection techniques **before model training**, organizations can **reduce unfairness** and build **more responsible AI systems**.
+
