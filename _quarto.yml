@@ -54,6 +54,8 @@ website:
             href: sagemaker/sagemaker-optimizing-deployments.qmd
           - text: "AI/ML: SageMaker vs Bedrock"
             href: sagemaker/sagemaker-vs-bedrock.qmd
+          - text: "Bias Detection with SageMaker Clarify"
+            href: sagemaker/sagemaker-clarify.qmd
       - text: "Practice Questions"
         menu:
           - text: "Practice Questions 1"
